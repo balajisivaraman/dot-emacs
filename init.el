@@ -31,6 +31,8 @@
 (require 'init-customizations)
 (require 'init-editing)
 
+(require 'init-helm)
+
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
 						 emacs-start-time))))
