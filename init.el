@@ -28,6 +28,7 @@
 (require 'init-functions)
 (require 'init-package)
 (require 'init-defaults)
+(require 'init-customizations)
 
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
