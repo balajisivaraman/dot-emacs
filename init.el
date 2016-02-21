@@ -31,6 +31,7 @@
 (require 'init-customizations)
 (require 'init-editing)
 
+(require 'init-ibuffer)
 (require 'init-helm)
 
 (when (window-system)
