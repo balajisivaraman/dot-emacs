@@ -10,8 +10,32 @@
 (require 'diminish nil t)
 
 ;;; Configure Libraries
-(use-package s    :defer t :load-path "lib/s-el")
-(use-package dash :defer t :load-path "lib/dash-el")
+(use-package s    :load-path "lib/s-el")
+(use-package dash :load-path "lib/dash-el")
+
+;;; Utility Functions and Macros
+(defun balaji/network-connection-available-p ()
+    "Check whether we have internet connectivity"
+  (-any-p
+   (lambda (interface) (s-starts-with-p "en" (car interface)))
+   (network-interface-list)))
+
+;;; Initialize package.el
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+;; package.el should not initialize our packages.
+;; We're going to use use-package for that.
+(setq package-enable-at-startup nil)
+
+(if (balaji/network-connection-available-p)
+    (package-refresh-contents))
+
+(defun package-require (package)
+  "Install `package` only if it is not already installed"
+  (unless (package-installed-p package)
+    (package-install package nil)))
 
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
