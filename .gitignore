@@ -1,3 +1,7 @@
 auto-save-list/
 eshell/
 elpa/
+.emacs.desktop
+.emacs.desktop.lock
+.savehist
+temp/
