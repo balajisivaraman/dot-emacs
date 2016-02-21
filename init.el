@@ -23,6 +23,7 @@
 ;;; Configure Libraries
 (use-package s    :load-path "lib/s-el")
 (use-package dash :load-path "lib/dash-el")
+(use-package f    :load-path "lib/f-el")
 
 (require 'init-functions)
 (require 'init-package)
