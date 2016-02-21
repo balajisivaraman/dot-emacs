@@ -1,0 +1,1 @@
+Getting my started with my latest reworking of my Emacs configuration.
