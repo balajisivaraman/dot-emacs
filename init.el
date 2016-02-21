@@ -7,6 +7,7 @@
 (add-to-list 'load-path (expand-file-name "use-package" balaji/site-lisp-dir))
 (require 'use-package)
 (require 'bind-key)
+(require 'diminish nil t)
 
 ;;; Configure Libraries
 (use-package s    :defer t :load-path "lib/s-el")
