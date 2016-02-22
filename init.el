@@ -37,6 +37,7 @@
 (require 'init-helm)
 (require 'init-keybindings)
 (require 'init-project)
+(require 'init-snippets)
 
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
