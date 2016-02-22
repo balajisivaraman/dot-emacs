@@ -78,4 +78,46 @@
 ;; instead of asking you if you want to save.
 (setq compilation-ask-about-save nil)
 
+;; Below functions are taken from Bodil Stokke's ohai-emacs.
+;; It can be found here: https://github.com/bodil/ohai-emacs/blob/master/ohai/ohai-lib.el
+(defun balaji/exec (command)
+  "Run a shell command and return its output as a string, whitespace trimmed."
+  (s-trim (shell-command-to-string command)))
+
+(defun balaji/is-exec (command)
+  "Returns true if `command' is an executable on the system search path."
+  (f-executable? (s-trim (shell-command-to-string (s-concat "which " command)))))
+
+(defun balaji/resolve-exec (command)
+  "If `command' is an executable on the system search path, return its absolute path.
+Otherwise, return nil."
+  (-let [path (s-trim (shell-command-to-string (s-concat "which " command)))]
+    (when (f-executable? path) path)))
+
+(defun balaji/exec-if-exec (command args)
+  "If `command' satisfies `balaji/is-exec', run it with `args' and return its
+output as per `balaji/exec'. Otherwise, return nil."
+  (when (balaji/is-exec command) (balaji/exec (s-concat command " " args))))
+
+(defun balaji/getent (user)
+  "Get the /etc/passwd entry for the user `user' as a list of strings,
+or nil if there is no such user. Empty fields will be represented as nil,
+as opposed to empty strings."
+  (-let [ent (balaji/exec (s-concat "getent passwd " user))]
+    (when (not (s-blank? ent))
+      (-map (lambda (i) (if (s-blank? i) nil i))
+            (s-split ":" ent)))))
+
+(defun balaji/user-full-name ()
+  "Guess the user's full name. Returns nil if no likely name could be found."
+  (or (balaji/exec-if-exec "git" "config --get user.name")
+      (elt (balaji/getent (getenv "USER")) 4)))
+(setq user-full-name (balaji/user-full-name))
+
+(defun balaji/user-email ()
+  "Guess the user's email address. Returns nil if none could be found."
+  (or (balaji/exec-if-exec "git" "config --get user.email")
+      (getenv "EMAIL")))
+(setq user-mail-address (balaji/user-email))
+
 (provide 'init-defaults)
