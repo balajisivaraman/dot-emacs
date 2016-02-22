@@ -5,3 +5,7 @@ elpa/
 .emacs.desktop.lock
 .savehist
 temp/
+projectile.cache
+projectile-bookmarks.eld
+recentf
+tramp
