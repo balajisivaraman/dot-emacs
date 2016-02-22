@@ -35,6 +35,7 @@
 
 ;; pick up changes to files on disk automatically (ie, after git pull)
 (global-auto-revert-mode 1)
+(diminish 'auto-revert-mode)
 
 ;; Backup Directory Configuration
 (set-variable 'temporary-file-directory (s-concat user-emacs-directory "temp"))
