@@ -31,6 +31,7 @@
 (require 'init-customizations)
 (require 'init-editing)
 
+(require 'init-appearance)
 (require 'init-ibuffer)
 (require 'init-git)
 (require 'init-helm)
