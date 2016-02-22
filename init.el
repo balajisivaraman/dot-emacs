@@ -32,6 +32,7 @@
 (require 'init-editing)
 
 (require 'init-ibuffer)
+(require 'init-git)
 (require 'init-helm)
 
 (when (window-system)
