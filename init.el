@@ -32,6 +32,7 @@
 (require 'init-editing)
 
 (require 'init-appearance)
+(require 'init-complete)
 (require 'init-ibuffer)
 (require 'init-git)
 (require 'init-haskell)

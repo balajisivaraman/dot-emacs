@@ -32,6 +32,7 @@
 ;;; Code:
 
 (require 'init-package)
+(require 'init-complete)
 
 (defvar lisp-modes '(emacs-lisp-mode
 		     lisp-interaction-mode
@@ -91,6 +92,7 @@
 (defun balaji/lisp-mode-hook ()
   "Functions to be called when entering Lisp mode"
   (paredit-mode t)
+  (company-mode t)
   (use-package eldoc
     :diminish eldoc-mode
     :commands eldoc-mode))
