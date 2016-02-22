@@ -34,6 +34,7 @@
 (require 'init-appearance)
 (require 'init-ibuffer)
 (require 'init-git)
+(require 'init-haskell)
 (require 'init-helm)
 (require 'init-keybindings)
 (require 'init-lisp)
