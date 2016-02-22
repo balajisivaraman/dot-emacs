@@ -33,6 +33,16 @@
 
 (require 'init-package)
 
+;; Changes the Cursor depending on the context it is in.
+;; A bar appears when the cursor has been idle for a while.
+;; While moving rapidly through code, a line cursor is used.
+(use-package cursor-chg
+  :defer 5
+  :commands change-cursor-mode
+  :config
+  (change-cursor-mode 1)
+  (toggle-cursor-type-when-idle 1))
+
 ;;;; Browse Kill Ring
 (package-require 'browse-kill-ring)
 (use-package browse-kill-ring
