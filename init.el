@@ -36,6 +36,7 @@
 (require 'init-git)
 (require 'init-helm)
 (require 'init-keybindings)
+(require 'init-lisp)
 (require 'init-project)
 (require 'init-snippets)
 

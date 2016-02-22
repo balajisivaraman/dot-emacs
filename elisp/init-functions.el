@@ -63,4 +63,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (bind-key "C-a" 'balaji/smarter-move-beginning-of-line)
 
+(defsubst hook-into-modes (func &rest modes)
+  (dolist (mode-hook modes) (add-hook mode-hook func)))
+
 (provide 'init-functions)
