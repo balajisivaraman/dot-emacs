@@ -35,6 +35,7 @@
 (require 'init-ibuffer)
 (require 'init-git)
 (require 'init-helm)
+(require 'init-keybindings)
 
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
