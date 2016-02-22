@@ -34,6 +34,8 @@
 (require 'init-package)
 
 (package-require 'haskell-mode)
+(package-require 'ghc)
+(package-require 'company-ghc)
 
 (load "haskell-mode-autoloads")
 
@@ -88,12 +90,28 @@
 		   '(("(\\|)" . 'esk-paren-face)))))
 	'(haskell-mode literate-haskell-mode)))
 
+(defun balaji/haskell-mode-hook ()
+  (haskell-indentation-mode)
+  (ghc-init)
+  (company-mode t))
+
+(use-package ghc
+  :commands
+  (ghc-init
+   ghc-debug))
+
+(use-package company-ghc
+  :init
+  (add-to-list 'company-backends 'company-ghc))
+
 (use-package haskell-mode
   :mode
   (("\\.hs\\(c\\|-boot\\)?\\'" . haskell-mode)
    ("\\.lhs\\'" . literate-haskell-mode))
   :init
   (haskell-setup-unicode-conversions))
+
+(add-hook 'haskell-mode-hook 'balaji/haskell-mode-hook)
 
 (provide 'init-haskell)
 ;;; init-haskell.el ends here
