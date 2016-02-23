@@ -34,18 +34,20 @@
 ;;; Initialize package.el
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
+         '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 ;; package.el should not initialize our packages.
 ;; We're going to use use-package for that.
 (setq package-enable-at-startup nil)
 
-(if (balaji/network-connection-available-p)
-    (package-refresh-contents))
-
 (defun package-require (package)
   "Install `package` only if it is not already installed"
   (unless (package-installed-p package)
     (package-install package nil)))
+
+(package-require 'paradox)
+(use-package paradox
+  :commands
+  paradox-upgrade-packages)
 
 (provide 'init-package)
