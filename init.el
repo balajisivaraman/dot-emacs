@@ -35,6 +35,7 @@
 (require 'init-complete)
 (require 'init-ibuffer)
 (require 'init-git)
+(require 'init-finance)
 (require 'init-haskell)
 (require 'init-helm)
 (require 'init-keybindings)
