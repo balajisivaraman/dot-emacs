@@ -94,6 +94,8 @@
 (defun balaji/haskell-mode-hook ()
   (haskell-indentation-mode)
   (interactive-haskell-mode)
+  (bind-key "M-n" #'flycheck-next-error interactive-haskell-mode-map)
+  (bind-key "M-p" #'flycheck-previous-error interactive-haskell-mode-map)
   (ghc-init)
   (company-mode t)
   (flycheck-mode))
@@ -107,20 +109,25 @@
   :init
   (add-to-list 'company-backends 'company-ghc))
 
-(use-package flycheck-haskell
-  :config
-  (flycheck-haskell-setup)
-  (bind-key "M-n" #'flycheck-next-error haskell-mode-map)
-  (bind-key "M-p" #'flycheck-previous-error haskell-mode-map)
-  (bind-key "M-n" #'flycheck-next-error interactive-haskell-mode-map)
-  (bind-key "M-p" #'flycheck-previous-error interactive-haskell-mode-map))
-
 (use-package haskell-mode
   :mode
   (("\\.hs\\(c\\|-boot\\)?\\'" . haskell-mode)
    ("\\.lhs\\'" . literate-haskell-mode))
   :init
-  (haskell-setup-unicode-conversions))
+  (haskell-setup-unicode-conversions)
+  :config
+  (use-package flycheck-haskell
+    :config
+    (flycheck-haskell-setup)
+    (bind-key "M-n" #'flycheck-next-error haskell-mode-map)
+    (bind-key "M-p" #'flycheck-previous-error haskell-mode-map))
+  (use-package haskell-interactive-mode)
+  (use-package haskell-process
+    :init
+    (setq
+     haskell-process-suggest-remove-import-lines t
+     haskell-process-auto-import-loaded-modules t
+     haskell-process-log t)))
 
 (add-hook 'haskell-mode-hook 'balaji/haskell-mode-hook)
 
