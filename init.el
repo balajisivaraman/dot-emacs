@@ -32,6 +32,7 @@
 (require 'init-editing)
 
 (require 'init-appearance)
+(require 'init-codestyle)
 (require 'init-complete)
 (require 'init-dired)
 (require 'init-finance)
