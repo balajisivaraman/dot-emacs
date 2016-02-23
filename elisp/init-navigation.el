@@ -35,10 +35,10 @@
 (use-package avy
   :config
   (bind-keys :prefix-map balaji/avy-map
-	     :prefix "M-j"
-	     ("c" . avy-goto-char)
-	     ("w" . avy-goto-word-1)
-	     ("l" . avy-goto-line)))
+             :prefix "M-j"
+             ("c" . avy-goto-char)
+             ("w" . avy-goto-word-1)
+             ("l" . avy-goto-line)))
 
 (package-require 'ace-window)
 (use-package ace-window

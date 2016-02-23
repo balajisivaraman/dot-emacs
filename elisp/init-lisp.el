@@ -35,10 +35,10 @@
 (require 'init-complete)
 
 (defvar lisp-modes '(emacs-lisp-mode
-		     lisp-interaction-mode
-		     inferior-lisp-mode
-		     inferior-emacs-lisp-mode
-		     lisp-mode))
+                     lisp-interaction-mode
+                     inferior-lisp-mode
+                     inferior-emacs-lisp-mode
+                     lisp-mode))
 
 (defun do-eval-region ()
   (interactive)
@@ -60,7 +60,7 @@
       (delete-region (point-min) (point)))
     (goto-char (point-max))
     (if (memq current-mode lisp-modes)
-	(funcall current-mode))))
+    (funcall current-mode))))
 
 (bind-keys :prefix-map balaji/lisp-devel-map
            :prefix "C-c e"
@@ -78,8 +78,8 @@
 
 (defvar lisp-mode-hooks
   (--map (intern
-	  (concat (symbol-name it) "-hook"))
-	 lisp-modes))
+      (concat (symbol-name it) "-hook"))
+     lisp-modes))
 
 (package-require 'paredit)
 (use-package paredit
