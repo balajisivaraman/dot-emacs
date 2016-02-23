@@ -36,6 +36,7 @@
 (package-require 'haskell-mode)
 (package-require 'ghc)
 (package-require 'company-ghc)
+(package-require 'flycheck-haskell)
 
 (load "haskell-mode-autoloads")
 
@@ -76,24 +77,26 @@
 
 (defun haskell-setup-unicode-conversions ()
   (mapc (lambda (mode)
-	  (font-lock-add-keywords
-	   mode
-	   (append (--map
-		    `(,(car it)
-		      ,(if (characterp (cdr it))
-			   `(0 (ignore
-				(compose-region (match-beginning 1)
-						(match-end 1)
-						,(cdr it))))
-			 `(0 ,(cdr it))))
-		    haskell-unicode-conversions)
-		   '(("(\\|)" . 'esk-paren-face)))))
-	'(haskell-mode literate-haskell-mode)))
+      (font-lock-add-keywords
+       mode
+       (append (--map
+            `(,(car it)
+              ,(if (characterp (cdr it))
+               `(0 (ignore
+                (compose-region (match-beginning 1)
+                        (match-end 1)
+                        ,(cdr it))))
+             `(0 ,(cdr it))))
+            haskell-unicode-conversions)
+           '(("(\\|)" . 'esk-paren-face)))))
+    '(haskell-mode literate-haskell-mode)))
 
 (defun balaji/haskell-mode-hook ()
   (haskell-indentation-mode)
+  (interactive-haskell-mode)
   (ghc-init)
-  (company-mode t))
+  (company-mode t)
+  (flycheck-mode))
 
 (use-package ghc
   :commands
@@ -103,6 +106,14 @@
 (use-package company-ghc
   :init
   (add-to-list 'company-backends 'company-ghc))
+
+(use-package flycheck-haskell
+  :config
+  (flycheck-haskell-setup)
+  (bind-key "M-n" #'flycheck-next-error haskell-mode-map)
+  (bind-key "M-p" #'flycheck-previous-error haskell-mode-map)
+  (bind-key "M-n" #'flycheck-next-error interactive-haskell-mode-map)
+  (bind-key "M-p" #'flycheck-previous-error interactive-haskell-mode-map))
 
 (use-package haskell-mode
   :mode
