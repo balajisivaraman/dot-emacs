@@ -61,6 +61,20 @@
   :config
   (global-undo-tree-mode 1))
 
+;;;; Flyspell Mode
+(use-package flyspell
+  :bind (("C-c i b" . flyspell-buffer)
+         ("C-c i f" . flyspell-mode))
+  :init
+  (use-package ispell
+    :bind (("C-c i c" . ispell-comments-and-strings)
+           ("C-c i d" . ispell-change-dictionary)
+           ("C-c i k" . ispell-kill-ispell)
+           ("C-c i m" . ispell-message)
+           ("C-c i r" . ispell-region)))
+  :config
+  (unbind-key "C-." flyspell-mode-map))
+
 ;;;; Rectangle Editing
 (bind-key "C-x r i" 'string-insert-rectangle)
 
