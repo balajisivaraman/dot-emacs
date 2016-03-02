@@ -45,9 +45,9 @@
   (unless (package-installed-p package)
     (package-install package nil)))
 
-(package-require 'paradox)
-(use-package paradox
-  :commands
-  paradox-upgrade-packages)
+(use-package package-utils
+  :load-path "site-lisp/package-utils"
+  :bind
+  ("C-x P u" . package-utils-upgrade-all))
 
 (provide 'init-package)
