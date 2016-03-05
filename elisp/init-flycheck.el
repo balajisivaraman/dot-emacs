@@ -32,9 +32,13 @@
 ;;; Code:
 
 (package-require 'flycheck)
+(package-require 'flycheck-pos-tip)
 (use-package flycheck
   :defer 5
+  :init
+  (use-package flycheck-pos-tip)
   :config
+  (flycheck-pos-tip-mode t)
   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 (provide 'init-flycheck)
