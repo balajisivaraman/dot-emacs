@@ -40,57 +40,6 @@
 
 (load "haskell-mode-autoloads")
 
-(defconst haskell-unicode-conversions
-  '(("[ (]\\(->\\)[) \n]"     . ?→)
-    ("[ (]\\(/=\\)[) ]"       . ?≠)
-    ;;("[ (]\\(<=\\)[) ]"       . ?≤)
-    ;;("[ (]\\(>=\\)[) ]"       . ?≥)
-    ;;("[ (]\\(=\\)[) ]"        . ?≡)
-    ("[ (]\\(\\.\\)[) ]"      . ?∘)
-    ("[ (]\\(&&\\)[) ]"       . ?∧)
-    ("[ (]\\(||\\)[) ]"       . ?∨)
-    ("[ (]\\(\\*\\)[) ]"      . ?×)
-    ("[ (]\\(\\\\\\)[(_a-z]"  . ?λ)
-    (" \\(<-\\)[ \n]"         . ?←)
-    ;; (" \\(-<\\) "             . ?↢)
-    ;; (" \\(>-\\) "             . ?↣)
-    (" \\(=>\\)[ \n]"         . ?⇒)
-    ;;(" \\(>=>\\) "           . ?↣)
-    ;;(" \\(<=<\\) "           . ?↢)
-    ;;(" \\(>>=\\) "           . ?↦)
-    ;;(" \\(=<<\\) "           . ?↤)
-    ("[ (]\\(\\<not\\>\\)[ )]" . ?¬)
-    ;;("[ (]\\(<<<\\)[ )]"      . ?⋘)
-    ;;("[ (]\\(>>>\\)[ )]"      . ?⋙)
-    (" \\(::\\) "             . ?∷)
-    ("\\(`union`\\)"          . ?⋃)
-    ("\\(`intersect`\\)"      . ?⋂)
-    ("\\(`elem`\\)"           . ?∈)
-    ("\\(`notElem`\\)"        . ?∉)
-    ;;("\\<\\(mempty\\)\\>"    . ??)
-    ;; ("\\(`mappend`\\)"        . ?⨂)
-    ;; ("\\(`msum`\\)"           . ?⨁)
-    ;; ("\\(\\<True\\>\\)"       . "𝗧𝗿𝘂𝗲")
-    ;; ("\\(\\<False\\>\\)"      . "𝗙𝗮𝗹𝘀𝗲")
-    ("\\(\\<undefined\\>\\)"  . ?⊥)
-    ("\\<\\(forall \\)\\>"   . ?∀)))
-
-(defun haskell-setup-unicode-conversions ()
-  (mapc (lambda (mode)
-      (font-lock-add-keywords
-       mode
-       (append (--map
-            `(,(car it)
-              ,(if (characterp (cdr it))
-               `(0 (ignore
-                (compose-region (match-beginning 1)
-                        (match-end 1)
-                        ,(cdr it))))
-             `(0 ,(cdr it))))
-            haskell-unicode-conversions)
-           '(("(\\|)" . 'esk-paren-face)))))
-    '(haskell-mode literate-haskell-mode)))
-
 (defun balaji/haskell-mode-hook ()
   (haskell-indentation-mode)
   (interactive-haskell-mode)
@@ -114,7 +63,8 @@
   (("\\.hs\\(c\\|-boot\\)?\\'" . haskell-mode)
    ("\\.lhs\\'" . literate-haskell-mode))
   :init
-  (haskell-setup-unicode-conversions)
+  (require 'init-unicode-conversions)
+  (balaji/setup-unicode-conversions)
   :config
   (use-package flycheck-haskell
     :config

@@ -46,6 +46,7 @@
 (require 'init-navigation)
 (require 'init-project)
 (require 'init-snippets)
+(require 'init-unicode-conversions)
 
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
