@@ -39,17 +39,18 @@
   :mode
   ("\\.scala" . scala-mode)
   :init
+  (require 'init-unicode-conversions)
+  (balaji/setup-unicode-conversions)
+  (bind-keys :prefix-map balaji/scala-devel-map
+             :prefix "C-c C-s"
+             ("e" . ensime)
+             ("s" . ensime-shutdown))
+  :config
   (setq
    scala-indent:default-run-on-strategy scala-indent:eager-strategy
    scala-indent:indent-value-expression t
    scala-indent:align-parameters t
-   scala-indent:align-forms t)
-  (require 'init-unicode-conversions)
-  (balaji/setup-unicode-conversions)
-  (bind-keys :prefix-map balaji/scala-devel-map
-           :prefix "C-c C-s"
-           ("e" . ensime)
-           ("s" . ensime-shutdown)))
+   scala-indent:align-forms t))
 
 (use-package ensime
   :commands ensime ensime-mode
