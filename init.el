@@ -45,6 +45,7 @@
 (require 'init-lisp)
 (require 'init-navigation)
 (require 'init-project)
+(require 'init-scala)
 (require 'init-snippets)
 (require 'init-unicode-conversions)
 
