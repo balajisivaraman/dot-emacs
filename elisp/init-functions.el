@@ -63,6 +63,25 @@ point reaches the beginning or end of the buffer, stop there."
 
 (bind-key "C-a" 'balaji/smarter-move-beginning-of-line)
 
+(defun balaji/duplicate-line-or-region (mark point)
+  "If region is active, duplicates it. Othewise duplicates the current line."
+  (interactive "r")
+  (save-excursion
+    (let ((reg-begin mark)
+          (reg-end  point))
+      (if (not (region-active-p))
+          (progn
+            (balaji/smarter-move-beginning-of-line nil)
+            (setq reg-begin (point))
+            (move-end-of-line nil)
+            (setq reg-end (point))))
+      (kill-ring-save reg-begin reg-end)
+      (goto-char reg-end)
+      (move-end-of-line nil)
+      (newline-and-indent)
+      (yank))))
+(bind-key "C-c C-d" 'balaji/duplicate-line-or-region)
+
 (defsubst hook-into-modes (func &rest modes)
   (dolist (mode-hook modes) (add-hook mode-hook func)))
 
