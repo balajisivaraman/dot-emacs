@@ -80,7 +80,7 @@
                          `(0 ,(cdr it))))
                     balaji/unicode-conversions)
                    '(("(\\|)" . 'esk-paren-face)))))
-        '(haskell-mode literate-haskell-mode)))
+        '(haskell-mode literate-haskell-mode scala-mode)))
 
 (provide 'init-unicode-conversions)
 ;;; init-unicode-conversions.el ends here
