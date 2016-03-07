@@ -65,6 +65,7 @@
   :init
   (require 'init-unicode-conversions)
   (balaji/setup-unicode-conversions)
+  (setq haskell-hoogle-command nil)
   :config
   (use-package flycheck-haskell
     :config
