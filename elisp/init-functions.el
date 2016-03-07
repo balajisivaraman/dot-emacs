@@ -79,7 +79,7 @@ point reaches the beginning or end of the buffer, stop there."
       (setq line-text (buffer-substring reg-begin reg-end))
       (goto-char reg-end)
       (move-end-of-line nil)
-      (newline-and-indent)
+      (newline)
       (insert line-text))))
 (bind-key "C-c C-d" 'balaji/duplicate-line-or-region)
 
