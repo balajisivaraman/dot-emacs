@@ -34,8 +34,7 @@
 (require 'init-package)
 
 (package-require 'haskell-mode)
-(package-require 'ghc)
-(package-require 'company-ghc)
+(package-require 'intero)
 (package-require 'flycheck-haskell)
 
 (load "haskell-mode-autoloads")
@@ -43,20 +42,9 @@
 (defun balaji/haskell-mode-hook ()
   (haskell-indentation-mode)
   (interactive-haskell-mode)
-  (bind-key "M-n" #'flycheck-next-error interactive-haskell-mode-map)
-  (bind-key "M-p" #'flycheck-previous-error interactive-haskell-mode-map)
-  (ghc-init)
+  (intero-mode t)
   (company-mode t)
   (flycheck-mode))
-
-(use-package ghc
-  :commands
-  (ghc-init
-   ghc-debug))
-
-(use-package company-ghc
-  :init
-  (add-to-list 'company-backends 'company-ghc))
 
 (use-package haskell-mode
   :mode
