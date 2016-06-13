@@ -34,38 +34,30 @@
 (package-require 'solarized-theme)
 (use-package solarized-theme
   :init
-  (defvar my-color-themes (list '(solarized-dark . "#839496") '(solarized-light . "#839496")))
-  (defvar my-current-cursor-color nil)
+  (defvar my-color-themes (list '(solarized-dark) '(solarized-light)))
   (defvar my-current-theme nil)
   (defvar my-theme-list my-color-themes)
 
   (defun balaji/set-default-theme ()
     (interactive)
     (setq my-current-theme (car (car my-color-themes)))
-    (setq my-current-cursor-color (cdr (car my-color-themes)))
     (setq my-theme-list (cdr my-color-themes))
-    (load-theme my-current-theme t)
-    (setq-default curchg-default-cursor-color my-current-cursor-color))
+    (load-theme my-current-theme t))
 
   (defun balaji/cycle-themes ()
     (interactive)
     (cond
      ((null my-theme-list)
       (setq my-current-theme (car (car my-color-themes)))
-      (setq my-current-cursor-color (cdr (car my-color-themes)))
       (setq my-theme-list (cdr my-color-themes)))
      ((listp my-theme-list)
       (setq my-current-theme (car (car my-theme-list)))
-      (setq my-current-cursor-color (cdr (car my-theme-list)))
       (setq my-theme-list (cdr my-theme-list)))
      ((t)
       (setq my-current-theme (car (car my-theme-list)))
-      (setq my-current-cursor-color (cdr (car my-theme-list)))
       (setq my-theme-list (my-color-themes))))
     (load-theme my-current-theme t)
-    (setq-default curchg-default-cursor-color my-current-cursor-color)
     (message "%S" my-current-theme))
-
 
   :bind
   ("C-c t" . balaji/cycle-themes))
