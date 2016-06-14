@@ -63,5 +63,11 @@
 
 (balaji/set-default-theme)
 
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-helm-mode)
+  (spaceline-emacs-theme))
+
 (provide 'init-appearance)
 ;;; init-appearance.el ends here;
