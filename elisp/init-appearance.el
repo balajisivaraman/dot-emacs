@@ -59,7 +59,13 @@
     (message "%S" my-current-theme))
 
   :bind
-  ("C-c t" . balaji/cycle-themes))
+  ("C-c t" . balaji/cycle-themes)
+
+  :config
+  (setq
+   solarized-use-less-bold t
+   solarized-use-more-italic t
+   solarized-distinct-doc-face t))
 
 (balaji/set-default-theme)
 
