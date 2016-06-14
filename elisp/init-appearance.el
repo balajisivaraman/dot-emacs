@@ -73,7 +73,7 @@
   :ensure spaceline
   :config
   (spaceline-helm-mode)
-  (spaceline-emacs-theme))
+  (spaceline-spacemacs-theme))
 
 (provide 'init-appearance)
 ;;; init-appearance.el ends here;
