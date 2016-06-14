@@ -31,8 +31,6 @@
 
 ;;; Code:
 
-(package-require 'flycheck)
-(package-require 'flycheck-pos-tip)
 (use-package flycheck
   :defer 5
   :init

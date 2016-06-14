@@ -17,13 +17,14 @@
 ;;; Configure Use-Package
 (add-to-list 'load-path (expand-file-name "use-package" balaji/site-lisp-dir))
 (require 'use-package)
+(setq use-package-always-ensure t)
 (require 'bind-key)
 (require 'diminish nil t)
 
 ;;; Configure Libraries
-(use-package s    :load-path "lib/s-el")
-(use-package dash :load-path "lib/dash-el")
-(use-package f    :load-path "lib/f-el")
+(use-package s    :load-path "lib/s-el" :ensure nil)
+(use-package dash :load-path "lib/dash-el" :ensure nil)
+(use-package f    :load-path "lib/f-el" :ensure nil)
 
 (require 'init-functions)
 (require 'init-package)

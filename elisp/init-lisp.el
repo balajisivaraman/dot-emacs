@@ -81,7 +81,6 @@
       (concat (symbol-name it) "-hook"))
      lisp-modes))
 
-(package-require 'paredit)
 (use-package paredit
   :diminish paredit-mode
   :commands paredit-mode
@@ -94,6 +93,7 @@
   (paredit-mode t)
   (company-mode t)
   (use-package eldoc
+    :ensure nil
     :diminish eldoc-mode
     :commands eldoc-mode))
 

@@ -34,7 +34,6 @@
 (require 'init-package)
 
 ;; Browse Kill Ring
-(package-require 'browse-kill-ring)
 (use-package browse-kill-ring
   :defer 10
   :commands browse-kill-ring
@@ -42,7 +41,6 @@
   (browse-kill-ring-default-keybindings))
 
 ;;;; Undo Tree
-(package-require 'undo-tree)
 (use-package undo-tree
   :diminish undo-tree-mode
   :bind
@@ -53,10 +51,12 @@
 
 ;;;; Flyspell Mode
 (use-package flyspell
+  :ensure nil
   :bind (("C-c i b" . flyspell-buffer)
          ("C-c i f" . flyspell-mode))
   :init
   (use-package ispell
+    :ensure nil
     :bind (("C-c i c" . ispell-comments-and-strings)
            ("C-c i d" . ispell-change-dictionary)
            ("C-c i k" . ispell-kill-ispell)
@@ -69,20 +69,17 @@
 (bind-key "C-x r i" 'string-insert-rectangle)
 
 ;;;; Expand Region and Change Inner
-(package-require 'expand-region)
 (use-package expand-region
   :bind
   (("C-c C-e" . er/expand-region)
    ("C-c C-c" . er/contract-region)))
 
-(package-require 'change-inner)
 (use-package change-inner
   :bind
   (("C-c C-i" . change-inner)
    ("C-c C-o" . change-outer)))
 
 ;;;; Multiple Cursors Code
-(package-require 'multiple-cursors)
 (use-package multiple-cursors
   :bind
   ("C-C C-C" . mc/edit-lines))

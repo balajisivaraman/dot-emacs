@@ -33,7 +33,6 @@
 
 (require 'init-package)
 
-(package-require 'projectile)
 (use-package projectile
   :defer t
   :diminish projectile-mode
@@ -41,12 +40,10 @@
   (projectile-global-mode)
   (setq projectile-enable-caching t))
 
-(package-require 'helm-projectile)
 (use-package helm-projectile
   :bind
   ("C-c C-f" . helm-projectile))
 
-(package-require 'helm-ag)
 (use-package helm-ag
   :bind
   ("C-x /" . helm-do-ag))

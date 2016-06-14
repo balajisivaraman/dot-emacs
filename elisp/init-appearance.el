@@ -31,7 +31,6 @@
 
 ;;; Code:
 
-(package-require 'solarized-theme)
 (use-package solarized-theme
   :init
   (defvar my-color-themes (list '(solarized-dark) '(solarized-light)))

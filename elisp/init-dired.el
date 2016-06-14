@@ -31,14 +31,15 @@
 
 ;;; Code:
 
-(package-require 'dired+)
 (use-package dired
+  :ensure nil
   :defer t
   :config
   (setq diredp-hide-details-initially-flag nil)
   (setq dired-dwim-target t)
   (use-package dired+)
-  (use-package dired-x)
+  (use-package dired-x
+    :ensure nil)
   (unbind-key "M-g" dired-mode-map))
 
 (provide 'init-dired)

@@ -35,7 +35,6 @@
 (setq-default tab-width 4)
 (global-font-lock-mode t)
 
-(package-require 'ethan-wspace)
 (use-package ethan-wspace
   :diminish ethan-wspace-mode
   :init

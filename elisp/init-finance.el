@@ -31,7 +31,6 @@
 
 ;;; Code:
 
-(package-require 'ledger-mode)
 (use-package ledger-mode
   :mode
   "\\.ledger$")

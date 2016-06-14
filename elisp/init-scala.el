@@ -31,10 +31,6 @@
 
 ;;; Code:
 
-(package-require 'scala-mode)
-(package-require 'sbt-mode)
-(package-require 'ensime)
-
 (use-package scala-mode
   :mode
   ("\\.scala" . scala-mode)

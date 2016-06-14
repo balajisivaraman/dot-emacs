@@ -34,9 +34,6 @@
 (require 'init-package)
 
 (package-require 'haskell-mode)
-(package-require 'intero)
-(package-require 'flycheck-haskell)
-
 (load "haskell-mode-autoloads")
 
 (defun balaji/haskell-mode-hook ()
@@ -60,8 +57,10 @@
     (flycheck-haskell-setup)
     (bind-key "M-n" #'flycheck-next-error haskell-mode-map)
     (bind-key "M-p" #'flycheck-previous-error haskell-mode-map))
-  (use-package haskell-interactive-mode)
+  (use-package haskell-interactive-mode
+    :ensure nil)
   (use-package haskell-process
+    :ensure nil
     :init
     (setq
      haskell-process-suggest-remove-import-lines t

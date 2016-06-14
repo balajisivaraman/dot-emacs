@@ -31,8 +31,6 @@
 
 ;;; Code:
 
-(package-require 'company)
-(package-require 'company-quickhelp)
 (use-package company
   :diminish company-mode
   :commands company-mode

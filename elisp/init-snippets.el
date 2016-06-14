@@ -33,7 +33,6 @@
 
 (require 'init-package)
 
-(package-require 'yasnippet)
 (use-package yasnippet
   :commands (yas-expand yas-minor-mode)
   :diminish yas-minor-mode

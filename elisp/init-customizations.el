@@ -59,13 +59,13 @@
 
 ;; Saveplace Mode - Saves Cursor Position Within Files
 (use-package saveplace
+  :ensure nil
   :init
   (setq save-place-file (s-concat user-emacs-directory ".saveplace"))
   (setq-default save-place t))
 
 ;; Exec Path From Shell is always necessary
 ;; So I'll go ahead and add it here for now
-(package-require 'exec-path-from-shell)
 (use-package exec-path-from-shell
   :init
   (when (not (string-equal system-type "windows-nt"))

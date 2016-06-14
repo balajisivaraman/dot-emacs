@@ -33,9 +33,8 @@
 
 (require 'init-package)
 
-(package-require 'helm)
-(package-require 'helm-descbinds)
 (use-package helm-config
+  :ensure helm
   :demand t
   :bind
   (("M-x" . helm-M-x)
@@ -43,12 +42,16 @@
    ("C-x f" . helm-multi-files)
    ("C-x C-o" . helm-imenu))
   :config
-  (use-package helm-files)
-  (use-package helm-buffers)
+  (use-package helm-files
+    :ensure nil)
+  (use-package helm-buffers
+    :ensure nil)
   (use-package helm-descbinds
+    :ensure nil
     :bind
     ("C-h b" . helm-descbinds))
   (use-package helm-mode
+    :ensure nil
     :diminish helm-mode
     :init
     (helm-mode 1))

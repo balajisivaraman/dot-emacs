@@ -33,7 +33,6 @@
 
 (require 'init-package)
 
-(package-require 'magit)
 (use-package magit
   :bind
   (("C-x g g" . magit-status)

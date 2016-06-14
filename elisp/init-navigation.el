@@ -31,7 +31,6 @@
 
 ;;; Code:
 
-(package-require 'avy)
 (use-package avy
   :config
   (bind-keys :prefix-map balaji/avy-map
@@ -40,7 +39,6 @@
              ("w" . avy-goto-word-1)
              ("l" . avy-goto-line)))
 
-(package-require 'ace-window)
 (use-package ace-window
   :bind
   ("C-x o" . ace-window))
