@@ -89,6 +89,12 @@
   :bind (("C-c s r" . vr/query-replace)
          ("C-c s R" . vr/replace)))
 
+;;;; Easy killing and marking on C-w
+(use-package easy-kill
+  :bind
+  (([remap kill-ring-save] . easy-kill)
+   ([remap mark-sexp] . easy-mark)))
+
 ;;; Enable disabled commands
 (put 'downcase-region             'disabled nil)   ; Let downcasing work
 (put 'erase-buffer                'disabled nil)
