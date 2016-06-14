@@ -84,6 +84,11 @@
   :bind
   ("C-C C-C" . mc/edit-lines))
 
+;;;; Visual Regexp
+(use-package visual-regexp
+  :bind (("C-c s r" . vr/query-replace)
+         ("C-c s R" . vr/replace)))
+
 ;;; Enable disabled commands
 (put 'downcase-region             'disabled nil)   ; Let downcasing work
 (put 'erase-buffer                'disabled nil)
