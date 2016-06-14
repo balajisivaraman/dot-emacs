@@ -35,17 +35,17 @@
 
 (use-package magit
   :bind
-  (("C-x g g" . magit-status)
-   ("C-x g m" . magit-branch)
-   ("C-x g M" . magit-merge)
-   ("C-x g s" . magit-stash)
-   ("C-x g a" . magit-stash-apply)
-   ("C-x g p" . magit-pull)
-   ("C-x g r" . magit-reset-head)
-   ("C-x g R" . magit-reset-hard)
-   ("C-x g l" . magit-log-all)
-   ("C-x g L" . magit-log)
-   ("C-x g c" . magit-checkout))
+  (("C-c g g" . magit-status)
+   ("C-c g m" . magit-branch)
+   ("C-c g M" . magit-merge)
+   ("C-c g s" . magit-stash)
+   ("C-c g a" . magit-stash-apply)
+   ("C-c g p" . magit-pull)
+   ("C-c g r" . magit-reset-head)
+   ("C-c g R" . magit-reset-hard)
+   ("C-c g l" . magit-log-all)
+   ("C-c g L" . magit-log)
+   ("C-c g c" . magit-checkout))
   :init
   (setq-default magit-last-seen-setup-instructions "1.4.0"))
 
