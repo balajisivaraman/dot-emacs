@@ -31,9 +31,9 @@
 
 ;;; Code:
 
-(use-package solarized-theme
+(use-package material-theme
   :init
-  (defvar my-color-themes (list '(solarized-dark) '(solarized-light)))
+  (defvar my-color-themes (list '(material) '(material-light)))
   (defvar my-current-theme nil)
   (defvar my-theme-list my-color-themes)
 
@@ -59,13 +59,7 @@
     (message "%S" my-current-theme))
 
   :bind
-  ("C-c t" . balaji/cycle-themes)
-
-  :config
-  (setq
-   solarized-use-less-bold t
-   solarized-use-more-italic t
-   solarized-distinct-doc-face t))
+  ("C-c t t" . balaji/cycle-themes))
 
 (balaji/set-default-theme)
 
