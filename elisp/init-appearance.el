@@ -31,6 +31,8 @@
 
 ;;; Code:
 
+(require 'init-keybindings)
+
 (use-package material-theme
   :init
   (defvar my-color-themes (list '(material) '(material-light)))
@@ -56,6 +58,7 @@
       (setq my-current-theme (car (car my-theme-list)))
       (setq my-theme-list (my-color-themes))))
     (load-theme my-current-theme t)
+    (spaceline-spacemacs-theme)
     (message "%S" my-current-theme))
 
   :bind
