@@ -48,5 +48,14 @@
   :bind
   ("C-x /" . helm-do-ag))
 
+(use-package ignoramus
+  :config
+  (dolist (name '(".cask"
+                  ".vagrant"
+                  ".ensime_cache" ".ensime"
+                  ".stack-work"))
+    (add-to-list 'ignoramus-file-basename-exact-names name))
+  (ignoramus-setup))
+
 (provide 'init-project)
 ;;; init-project.el ends here
