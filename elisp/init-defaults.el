@@ -64,6 +64,7 @@
 (global-prettify-symbols-mode t)
 ;; Electric Pair Mode
 (electric-pair-mode t)
+(blink-cursor-mode -1)
 
 (setq x-select-enable-clipboard t
       save-interprogram-paste-before-kill t
