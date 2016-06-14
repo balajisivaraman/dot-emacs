@@ -32,7 +32,9 @@
 ;;; Code:
 
 ;; Hide the menu bar, tool bar and scroll bar
-(menu-bar-mode -1)
+;; For the menu bar, don't hide it in OSX, since the top bar is always visible anyway
+(when (and (not (eq system-type 'darwin)) (fboundp 'menu-bar-mode))
+  (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 ;; Don't display the default start up message
