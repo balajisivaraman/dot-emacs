@@ -67,6 +67,9 @@
      haskell-process-auto-import-loaded-modules t
      haskell-process-log t)))
 
+(use-package intero
+  :commands (intero-mode))
+
 (add-hook 'haskell-mode-hook 'balaji/haskell-mode-hook)
 
 (provide 'init-haskell)
