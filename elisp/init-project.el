@@ -46,7 +46,14 @@
 
 (use-package helm-ag
   :bind
-  ("C-x /" . helm-do-ag))
+  (("C-c s a" . helm-ag)
+   ("C-c s A" . helm-do-ag))
+  :config
+  (setq
+   helm-ag-fuzzy-match t                   ; Fuzzy matching
+   helm-ag-insert-at-point 'symbol         ; Default to symbol at point
+   helm-ag-edit-save t                     ; save buffers after editing
+   ))
 
 (use-package ignoramus
   :config
