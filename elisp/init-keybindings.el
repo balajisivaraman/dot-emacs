@@ -60,5 +60,46 @@
 (define-prefix-command 'toggle-map)
 (bind-key "C-c t" #'toggle-map)
 
+;; Inspired by Spacemacs and Sebastian Wiesner's Config
+;; The latter can be found here: https://github.com/lunaryorn/.emacs.d/blob/master/init.el#L317
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.4
+        which-key-sort-order 'which-key-prefix-then-key-order
+        ;; Let's go unicode :)
+        which-key-key-replacement-alist
+        '(("<\\([[:alnum:]-]+\\)>" . "\\1")
+          ("up"                    . "↑")
+          ("right"                 . "→")
+          ("down"                  . "↓")
+          ("left"                  . "←")
+          ("DEL"                   . "⌫")
+          ("deletechar"            . "⌦")
+          ("RET"                   . "⏎"))
+        which-key-description-replacement-alist
+        '(("Prefix Command" . "prefix")
+          ;; Lambdas
+          ("\\`\\?\\?\\'"   . "λ")
+          ;; Prettify hydra entry points
+          ("/body\\'"       . "|=")
+          ;; Drop/shorten package prefixes
+          ("\\`lunaryorn-"  . "")
+          ("projectile-"    . "proj-")
+          ("helm-"          . "h-")
+          ("magit-" . "ma-"))))
+
+(which-key-declare-prefixes
+  "C-c a" "applications"
+  "C-c f" "files"
+  "C-c g" "git"
+  "C-c h" "helm/help"
+  "C-c p" "projects"
+  "C-c p s" "projects/search"
+  "C-c q" "quit/restart"
+  "C-c s" "search"
+  "C-c t" "toggle")
+
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
