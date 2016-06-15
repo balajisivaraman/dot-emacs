@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; init-dired.el --- Extensions for dired mode
+;;; init-files.el --- Some customizations for working with files
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 
@@ -27,20 +27,45 @@
 
 ;;; Commentary:
 
-;; This module enhances the base Emacs dired mode with additional packages.
+;; Make working with files in emacs easier than before.
 
 ;;; Code:
+
+(defun balaji/revert-buffer ()
+  "Revert buffers without confirming first"
+  (interactive)
+  (revert-buffer nil t t))
+
+(use-package files
+  :ensure nil
+  :bind (("C-c f z" . balaji/revert-buffer)
+         ("C-c f /" . balaji/revert-buffer)))
+
+(use-package focus-autosave-mode
+  :init (focus-autosave-mode)
+  :diminish focus-autosave-mode)
 
 (use-package dired
   :ensure nil
   :defer t
   :config
-  (setq diredp-hide-details-initially-flag nil)
-  (setq dired-dwim-target t)
-  (use-package dired+)
-  (use-package dired-x
-    :ensure nil)
+  (setq
+   dired-auto-revert-buffer t
+   dired-listing-switches "-alhF"
+   dired-ls-F-marks-symlinks t
+   dired-recursive-copies 'always
+   diredp-hide-details-initially-flag nil
+   dired-dwim-target t)
   (unbind-key "M-g" dired-mode-map))
 
-(provide 'init-dired)
-;;; init-dired.el ends here
+(use-package dired+
+  :after dired)
+(use-package dired-x
+  :after dired
+  :ensure nil
+  :bind
+  (("C-c f j" . dired-jump)
+   ("C-x C-j" . dired-jump)))
+
+(provide 'init-files)
+;;; init-files.el ends here

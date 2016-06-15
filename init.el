@@ -35,7 +35,7 @@
 (require 'init-appearance)
 (require 'init-codestyle)
 (require 'init-complete)
-(require 'init-dired)
+(require 'init-files)
 (require 'init-finance)
 (require 'init-flycheck)
 (require 'init-git)
