@@ -45,9 +45,21 @@
   (unless (package-installed-p package)
     (package-install package nil)))
 
-(use-package package-utils
-  :load-path "site-lisp/package-utils"
-  :bind
-  ("C-x P u" . package-utils-upgrade-all))
+(use-package paradox
+  :bind (("C-c a p" . paradox-list-packages)
+         ("C-c a P" . package-list-packages-no-fetch)
+         ("C-c a u" . paradox-upgrade-packages))
+  :config
+  (setq
+   paradox-execute-asynchronously nil ; No async update, please
+   paradox-spinner-type 'moon      ; Fancy spinner
+   ;; Show all possible counts
+   paradox-display-download-count t
+   paradox-display-star-count t
+   ;; Don't star automatically
+   paradox-automatically-star nil
+   ;; Hide download button, and wiki packages
+   paradox-use-homepage-buttons nil ; Can type v instead
+   paradox-hide-wiki-packages t))
 
 (provide 'init-package)
