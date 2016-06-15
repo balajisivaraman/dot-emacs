@@ -32,12 +32,11 @@
 ;;; Code:
 
 (use-package avy
-  :config
-  (bind-keys :prefix-map balaji/avy-map
-             :prefix "C-c j"
-             ("c" . avy-goto-char)
-             ("w" . avy-goto-word-1)
-             ("l" . avy-goto-line)))
+  :bind
+  (("C-c j c" . avy-goto-char)
+   ("C-c j w" . avy-goto-word-1)
+   ("C-c j b" . avy-pop-mark)
+   ("C-c j l" . avy-goto-line)))
 
 (use-package ace-window
   :bind
