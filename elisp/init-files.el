@@ -82,5 +82,10 @@
   :bind
   (("C-c f J" . reveal-in-osx-finder)))
 
+;; Hardhat prevents us from editing user-protected files
+(use-package hardhat
+  :init (global-hardhat-mode)
+  :config (setq hardhat-mode-lighter " Ⓗ"))
+
 (provide 'init-files)
 ;;; init-files.el ends here
