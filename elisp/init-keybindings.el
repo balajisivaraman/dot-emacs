@@ -55,5 +55,14 @@
 (bind-key "<key-4660>" 'ignore)
 (bind-key "C-<key-4660>" 'ignore)
 
+(bind-key "C-c q q" 'save-buffers-kill-emacs)
+
+(use-package restart-emacs
+  :bind "C-c q r")
+
+(defvar toggle-map)
+(define-prefix-command 'toggle-map)
+(bind-key "C-c t" #'toggle-map)
+
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
