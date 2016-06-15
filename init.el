@@ -22,9 +22,9 @@
 (require 'diminish nil t)
 
 ;;; Configure Libraries
-(use-package s    :load-path "lib/s-el" :ensure nil)
+(use-package s    :load-path "lib/s-el"    :ensure nil)
 (use-package dash :load-path "lib/dash-el" :ensure nil)
-(use-package f    :load-path "lib/f-el" :ensure nil)
+(use-package f    :load-path "lib/f-el"    :ensure nil)
 
 (require 'init-functions)
 (require 'init-package)
