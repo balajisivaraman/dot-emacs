@@ -44,6 +44,8 @@
   :bind
   ("C-c C-f" . helm-projectile))
 
+(use-package ag)
+
 (use-package helm-ag
   :bind
   (("C-c s a" . helm-ag)
