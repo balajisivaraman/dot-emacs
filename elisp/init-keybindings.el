@@ -95,6 +95,7 @@
   "C-c f" "files"
   "C-c g" "git"
   "C-c h" "helm/help"
+  "C-c j" "jump"
   "C-c p" "projects"
   "C-c p s" "projects/search"
   "C-c q" "quit/restart"

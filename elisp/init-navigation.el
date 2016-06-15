@@ -34,7 +34,7 @@
 (use-package avy
   :config
   (bind-keys :prefix-map balaji/avy-map
-             :prefix "M-j"
+             :prefix "C-c j"
              ("c" . avy-goto-char)
              ("w" . avy-goto-word-1)
              ("l" . avy-goto-line)))
