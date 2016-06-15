@@ -60,12 +60,27 @@
 
 (use-package dired+
   :after dired)
+
 (use-package dired-x
   :after dired
   :ensure nil
   :bind
   (("C-c f j" . dired-jump)
    ("C-x C-j" . dired-jump)))
+
+;; Edit files as root, through Tramp
+(use-package sudo-edit
+  :defer t
+  :bind
+  (("C-c f s" . sudo-edit)
+   ("C-c f S" . sudo-edit-current-file)))
+
+;; Reveal current buffer in finder
+(use-package reveal-in-osx-finder
+  :if (eq system-type 'darwin)
+  ;; Bind analogous to `dired-jump' at C-c f j
+  :bind
+  (("C-c f J" . reveal-in-osx-finder)))
 
 (provide 'init-files)
 ;;; init-files.el ends here
