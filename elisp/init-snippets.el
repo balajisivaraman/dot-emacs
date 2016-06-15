@@ -35,7 +35,7 @@
 
 (use-package yasnippet
   :commands (yas-expand yas-minor-mode)
-  :diminish yas-minor-mode
+  :diminish (yas-minor-mode . " Ⓨ")
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
   :init
   (yas-global-mode 1))
