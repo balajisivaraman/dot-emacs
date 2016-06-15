@@ -56,6 +56,8 @@
 (setq desktop-load-locked-desktop t)
 ;; Set the location to save/load default desktop
 (setq desktop-dirname user-emacs-directory)
+;; Delete files by moving them to trash
+(setq delete-by-moving-to-trash t)
 
 ;; Saveplace Mode - Saves Cursor Position Within Files
 (use-package saveplace
@@ -70,6 +72,20 @@
   :init
   (when (not (string-equal system-type "windows-nt"))
     (exec-path-from-shell-initialize)))
+
+(use-package ns-win
+  :defer t
+  :ensure nil
+  :if (eq system-type 'darwin)
+  :config
+  (setq
+   ns-pop-up-frames nil
+   mac-option-modifier 'meta
+   mac-command-modifier 'meta))
+
+(use-package osx-trash
+  :if (eq system-type 'darwin)
+  :init (osx-trash-setup))
 
 (provide 'init-customizations)
 ;;; init-customizations.el ends here

@@ -48,10 +48,6 @@
 (bind-key "C-M-s" 'isearch-forward)
 (bind-key "C-M-r" 'isearch-backward)
 
-;; Use Command Key as Meta on Macs
-(if (string-equal system-type "darwin")
-    (setq-default mac-command-modifier 'meta))
-
 (bind-key "<key-4660>" 'ignore)
 (bind-key "C-<key-4660>" 'ignore)
 
