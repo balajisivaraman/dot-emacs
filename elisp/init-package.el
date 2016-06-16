@@ -33,8 +33,8 @@
 
 ;;; Initialize package.el
 (require 'package)
-(add-to-list 'package-archives
-         '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org"   . "http://orgmode.org/elpa/") t)
 (package-initialize)
 ;; package.el should not initialize our packages.
 ;; We're going to use use-package for that.

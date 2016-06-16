@@ -46,6 +46,7 @@
 (require 'init-lisp)
 (require 'init-misc-modes)
 (require 'init-navigation)
+(require 'init-org)
 (require 'init-project)
 (require 'init-scala)
 (require 'init-snippets)

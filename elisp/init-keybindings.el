@@ -96,11 +96,17 @@
   "C-c g" "git"
   "C-c h" "helm/help"
   "C-c j" "jump"
+  "C-c m" "major mode"
+  "C-c o" "org mode"
   "C-c p" "projects"
   "C-c p s" "projects/search"
   "C-c q" "quit/restart"
   "C-c s" "search"
   "C-c t" "toggle")
+
+
+(which-key-declare-prefixes-for-mode 'emacs-lisp-mode
+    "C-c m e" "eval")
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
