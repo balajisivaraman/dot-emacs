@@ -87,5 +87,7 @@
   :if (eq system-type 'darwin)
   :init (osx-trash-setup))
 
+(use-package hydra)
+
 (provide 'init-customizations)
 ;;; init-customizations.el ends here
