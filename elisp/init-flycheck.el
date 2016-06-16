@@ -33,11 +33,29 @@
 
 (use-package flycheck
   :defer 5
+  :bind (("C-c e" . lunaryorn-flycheck-errors/body)
+         ("C-c t f" . flycheck-mode))
   :init
-  (use-package flycheck-pos-tip)
+  (defhydra lunaryorn-flycheck-errors ()
+    "Flycheck errors."
+    ("n" flycheck-next-error "next")
+    ("p" flycheck-previous-error "previous")
+    ("f" flycheck-first-error "first")
+    ("l" flycheck-list-errors "list")
+    ("w" flycheck-copy-errors-as-kill "copy message")
+    ;; See `helm-flycheck' package below
+    ("h" helm-flycheck "list with helm"))
+
+  (global-flycheck-mode)
   :config
-  (flycheck-pos-tip-mode t)
-  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+  (setq
+   flycheck-standard-error-navigation nil
+   flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list
+   flycheck-scalastylerc "scalastyle_config.xml")
+  :diminish (flycheck-mode . " Ⓢ"))
+
+(use-package helm-flycheck
+  :after flycheck)
 
 (provide 'init-flycheck)
 ;;; init-flycheck.el ends here
