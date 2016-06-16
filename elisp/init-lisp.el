@@ -62,19 +62,18 @@
     (if (memq current-mode lisp-modes)
     (funcall current-mode))))
 
-(bind-keys :prefix-map balaji/lisp-devel-map
-           :prefix "C-c e"
-           ("E" . elint-current-buffer)
-           ("b" . do-eval-buffer)
-           ("c" . cancel-debug-on-entry)
-           ("d" . debug-on-entry)
-           ("e" . toggle-debug-on-error)
-           ("f" . emacs-lisp-byte-compile-and-load)
-           ("j" . emacs-lisp-mode)
-           ("l" . find-library)
-           ("r" . do-eval-region)
-           ("s" . scratch)
-           ("z" . byte-recompile-directory))
+(bind-keys :map emacs-lisp-mode-map
+           ("C-c m e E" . elint-current-buffer)
+           ("C-c m e b" . do-eval-buffer)
+           ("C-c m e c" . cancel-debug-on-entry)
+           ("C-c m e d" . debug-on-entry)
+           ("C-c m e e" . toggle-debug-on-error)
+           ("C-c m e f" . emacs-lisp-byte-compile-and-load)
+           ("C-c m e j" . emacs-lisp-mode)
+           ("C-c m e l" . find-library)
+           ("C-c m e r" . do-eval-region)
+           ("C-c m e s" . scratch)
+           ("C-c m e z" . byte-recompile-directory))
 
 (defvar lisp-mode-hooks
   (--map (intern
