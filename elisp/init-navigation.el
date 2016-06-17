@@ -42,5 +42,41 @@
   :bind
   ("C-x o" . ace-window))
 
+(use-package golden-ratio
+  :init
+  (defun lunaryorn-toggle-golden-ratio ()
+    (interactive)
+    (if (bound-and-true-p golden-ratio-mode)
+        (progn
+          (golden-ratio-mode -1)
+          (balance-windows))
+      (golden-ratio-mode)
+      (golden-ratio)))
+  :bind (("C-c t g" . lunaryorn-toggle-golden-ratio))
+  :diminish (golden-ratio-mode . "ⓖ")
+  :config
+  (setq
+   golden-ratio-extra-commands '(windmove-up
+                                 windmove-down
+                                 windmove-left
+                                 windmove-right
+                                 ace-window
+                                 ace-delete-window
+                                 ace-select-window
+                                 ace-swap-window
+                                 ace-maximize-window)
+   golden-ratio-auto-scale nil
+   golden-ratio-exclude-modes '(flycheck-error-list-mode
+                                calc-mode
+                                ediff-mode
+                                eshell-mode
+                                dired-mode)
+
+   split-width-threshold nil
+   golden-ratio-exclude-buffer-regexp
+   `(,(rx bos "*" (any "h" "H") "elm*" eos)
+     ,(rx bos "*which-key*" eos)
+     ,(rx bos "*NeoTree*" eos))))
+
 (provide 'init-navigation)
 ;;; init-navigation.el ends here
