@@ -72,5 +72,14 @@
   (spaceline-helm-mode)
   (spaceline-spacemacs-theme))
 
+(use-package nyan-mode
+  :init (nyan-mode))
+
+(use-package which-func
+  :init (which-function-mode)
+  :config
+  (setq
+   which-func-unknown "⊥"))
+
 (provide 'init-appearance)
-;;; init-appearance.el ends here;
+;;; init-appearance.el ends here
