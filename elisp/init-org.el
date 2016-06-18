@@ -75,7 +75,7 @@
   :after org
   :diminish (org-capture-mode . "ⓡ")
   :bind
-  (("C-c o r" . org-capture))
+  (("C-c o c" . org-capture))
   :config
   (setq
    org-capture-templates
