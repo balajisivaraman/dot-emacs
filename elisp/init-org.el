@@ -31,20 +31,32 @@
 
 ;;; Code:
 
-
-
 (use-package org
   :ensure org-plus-contrib
   :bind
-  (("C-c o a" . org-agenda-list))
+  (("C-c o A" . org-agenda-list)
+   ("C-c o d" . org-check-deadlines)
+   ("C-c o b" . org-check-before-date)
+   ("C-c o a" . org-check-after-date)
+   ("C-c o r" . org-archive-subtree))
   :config
   (setq
    org-todo-keywords
-   '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "FEEDBACK(f)" "VERIFY(v)"
-               "|" "DONE(d)" "DEFERRED(r)" "DELEGATED(l)" "CANCELLED(c)"))
+   '((sequence "TODO(t@/!)"
+               "WAITING(w@/!)"
+               "APPT(a!)"
+               "DELEGATED(l@/!)"
+               "STARTED(s!)"
+               "|"
+               "FEEDBACK(f@/!)"
+               "VERIFY(v@/!)"
+               "DONE(d@/!)"
+               "DEFERRED(r@/!)"
+               "CANCELLED(x@/!)"))
    org-agenda-files (quote ("~/ownCloud/Personal Notes/todo.org"))
+   org-archive-location "/Users/balajisivaraman/ownCloud/Personal Notes/archives.org::"
    org-default-notes-file "~/ownCloud/Personal Notes/notes.org"
-   org-agenda-ndays 7
+   org-agenda-ndays 21
    org-deadline-warning-days 14
    org-agenda-show-all-dates t
    org-agenda-skip-deadline-if-done t
@@ -57,6 +69,18 @@
   :after org
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
+
+(use-package org-capture
+  :ensure nil
+  :after org
+  :diminish (org-capture-mode . "ⓡ")
+  :bind
+  (("C-c o r" . org-capture))
+  :config
+  (setq
+   org-capture-templates
+   '(("t" "Todo" entry (file+headline "/Users/balajisivaraman/ownCloud/Personal Notes/todo.org" "Tasks"))
+     ("n" "Note" entry (file "/Users/balajisivaraman/ownCloud/Personal Notes/notes.org")))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
