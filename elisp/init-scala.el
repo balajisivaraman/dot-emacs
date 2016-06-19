@@ -34,13 +34,6 @@
 (use-package scala-mode
   :mode
   ("\\.scala" . scala-mode)
-  :init
-  (require 'init-unicode-conversions)
-  (balaji/setup-unicode-conversions)
-  (bind-keys :prefix-map balaji/scala-devel-map
-             :prefix "C-c C-s"
-             ("e" . ensime)
-             ("s" . ensime-shutdown))
   :config
   (setq
    scala-indent:default-run-on-strategy scala-indent:eager-strategy
@@ -50,6 +43,7 @@
 
 (use-package ensime
   :commands ensime ensime-mode
+  :after scala-mode
   :init
   (put 'ensime-auto-generate-config 'safe-local-variable #'booleanp)
   (setq
@@ -57,12 +51,41 @@
    ensime-prefer-noninteractive t
    ensime-refactor-enable-beta t
    ensime-refactor-preview t
+   ensime-auto-connect 'always
    ensime-refactor-preview-override-hunk 10)
   :config
-  (ensime-company-enable))
+  (ensime-company-enable)
+  (bind-keys
+   :map ensime-mode-map
+   ("C-c m E" ensime-reload)
+   ("M-n" nil)
+   ("M-p" nil))
+  (bind-keys
+   :map scala-mode-map
+   ("C-c m e" ensime)
+   ("C-c m s" ensime-shutdown)))
 
 (use-package sbt-mode
   :commands sbt-start sbt-command)
+
+(defcustom
+  balaji/scala-mode-prettify-symbols
+  '(("->" . ?→)
+    ("<-" . ?←)
+    ("=>" . ?⇒)
+    ("<=" . ?≤)
+    (">=" . ?≥)
+    ("==" . ?≡)
+    ("!=" . ?≠)
+    ("+-" . ?±))
+  "Prettify symbols for scala-mode.")
+
+(defun balaji/scala-mode-hook ()
+  (company-mode t)
+  (ensime-mode t)
+  (setq prettify-symbols-alist balaji/scala-mode-prettify-symbols))
+
+(add-hook 'scala-mode-hook 'balaji/scala-mode-hook)
 
 (provide 'init-scala)
 ;;; init-scala.el ends here
