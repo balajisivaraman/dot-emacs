@@ -44,7 +44,7 @@
 
 (use-package golden-ratio
   :init
-  (defun lunaryorn-toggle-golden-ratio ()
+  (defun balaji-toggle-golden-ratio ()
     (interactive)
     (if (bound-and-true-p golden-ratio-mode)
         (progn
@@ -52,7 +52,7 @@
           (balance-windows))
       (golden-ratio-mode)
       (golden-ratio)))
-  :bind (("C-c t g" . lunaryorn-toggle-golden-ratio))
+  :bind (("C-c t g" . balaji-toggle-golden-ratio))
   :diminish (golden-ratio-mode . "ⓖ")
   :config
   (setq
