@@ -67,7 +67,7 @@
   (bind-keys
    :map org-mode-map
    ("C-c m l" . org-metaleft)
-   ("C-c m l" . org-metaright)))
+   ("C-c m r" . org-metaright)))
 
 (use-package org-bullets
   :after org
