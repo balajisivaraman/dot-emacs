@@ -92,6 +92,7 @@
 
 (which-key-declare-prefixes
   "C-c a" "applications"
+  "C-c b" "bookmarks"
   "C-c f" "files"
   "C-c g" "git"
   "C-c h" "helm/help"

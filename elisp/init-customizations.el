@@ -89,5 +89,10 @@
 
 (use-package hydra)
 
+(use-package bookmark
+  :bind
+  ("C-c b b" . bookmark-jump)
+  ("C-c b m" . bookmark-set))
+
 (provide 'init-customizations)
 ;;; init-customizations.el ends here
