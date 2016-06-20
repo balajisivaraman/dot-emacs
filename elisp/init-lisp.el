@@ -63,17 +63,15 @@
     (funcall current-mode))))
 
 (bind-keys :map emacs-lisp-mode-map
-           ("C-c m e E" . elint-current-buffer)
            ("C-c m e b" . do-eval-buffer)
-           ("C-c m e c" . cancel-debug-on-entry)
-           ("C-c m e d" . debug-on-entry)
-           ("C-c m e e" . toggle-debug-on-error)
-           ("C-c m e f" . emacs-lisp-byte-compile-and-load)
-           ("C-c m e j" . emacs-lisp-mode)
-           ("C-c m e l" . find-library)
            ("C-c m e r" . do-eval-region)
-           ("C-c m e s" . scratch)
-           ("C-c m e z" . byte-recompile-directory))
+           ("C-c m s" . scratch)
+           ("C-c m d c" . cancel-debug-on-entry)
+           ("C-c m d e" . debug-on-entry)
+           ("C-c m d r" . toggle-debug-on-error)
+           ("C-c m f b" . emacs-lisp-byte-compile-and-load)
+           ("C-c m f l" . find-library)
+           ("C-c m L" . elint-current-buffer))
 
 (defvar lisp-mode-hooks
   (--map (intern

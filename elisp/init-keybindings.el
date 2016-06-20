@@ -88,7 +88,7 @@
           ("\\`lunaryorn-"  . "")
           ("projectile-"    . "proj-")
           ("helm-"          . "h-")
-          ("magit-" . "ma-"))))
+          ("magit-"         . "ma-"))))
 
 (which-key-declare-prefixes
   "C-c a" "applications"
@@ -106,7 +106,9 @@
 
 
 (which-key-declare-prefixes-for-mode 'emacs-lisp-mode
-    "C-c m e" "eval")
+  "C-c m e" "eval"
+  "C-c m f" "file"
+  "C-c m d" "debug")
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
