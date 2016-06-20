@@ -39,6 +39,9 @@
    ("C-c o b" . org-check-before-date)
    ("C-c o a" . org-check-after-date)
    ("C-c o r" . org-archive-subtree))
+  :bind (:map org-mode-map
+              ("C-c m l" . org-metaleft)
+              ("C-c m r" . org-metaright))
   :config
   (setq
    org-todo-keywords
