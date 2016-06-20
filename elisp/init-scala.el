@@ -62,8 +62,8 @@
    ("M-p" nil))
   (bind-keys
    :map scala-mode-map
-   ("C-c m e" ensime)
-   ("C-c m s" ensime-shutdown)))
+   ("C-c m e" . ensime)
+   ("C-c m s" . ensime-shutdown)))
 
 (use-package sbt-mode
   :commands sbt-start sbt-command)
