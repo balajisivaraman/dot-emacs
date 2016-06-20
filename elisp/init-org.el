@@ -39,9 +39,6 @@
    ("C-c o b" . org-check-before-date)
    ("C-c o a" . org-check-after-date)
    ("C-c o r" . org-archive-subtree))
-  :bind (:map org-mode-map
-              ("C-c m l" . org-metaleft)
-              ("C-c m r" . org-metaright))
   :config
   (setq
    org-todo-keywords
@@ -66,7 +63,11 @@
    org-agenda-skip-scheduled-if-done t
    org-agenda-start-on-weekday nil
    org-reverse-note-order t
-   org-log-done 'note))
+   org-log-done 'note)
+  (bind-keys
+   :map org-mode-map
+   ("C-c m l" org-metaleft)
+   ("C-c m l" org-metaright)))
 
 (use-package org-bullets
   :after org
