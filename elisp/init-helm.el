@@ -48,7 +48,6 @@
   (use-package helm-buffers
     :ensure nil)
   (use-package helm-descbinds
-    :ensure nil
     :bind
     ("C-h b" . helm-descbinds))
   (use-package helm-mode
