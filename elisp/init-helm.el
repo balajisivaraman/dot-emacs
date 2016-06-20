@@ -39,7 +39,8 @@
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files)
-   ("C-x f" . helm-multi-files)
+   ("C-c f f" . helm-find-files)
+   ("C-c f F" . helm-multi-files)
    ("C-c j t" . helm-imenu))
   :config
   (use-package helm-files
