@@ -94,5 +94,8 @@
   ("C-c b b" . bookmark-jump)
   ("C-c b m" . bookmark-set))
 
+(use-package persistent-scratch
+  :config (persistent-scratch-setup-default))
+
 (provide 'init-customizations)
 ;;; init-customizations.el ends here
