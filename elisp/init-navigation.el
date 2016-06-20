@@ -33,7 +33,7 @@
 
 (use-package avy
   :bind
-  (("C-c j c" . avy-goto-char)
+  (("C-c j j" . avy-goto-char)
    ("C-c j w" . avy-goto-word-1)
    ("C-c j b" . avy-pop-mark)
    ("C-c j l" . avy-goto-line)))
