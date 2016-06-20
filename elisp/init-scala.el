@@ -57,9 +57,9 @@
   (ensime-company-enable)
   (bind-keys
    :map ensime-mode-map
-   ("C-c m E" ensime-reload)
-   ("M-n" nil)
-   ("M-p" nil))
+   ("C-c m E" . ensime-reload)
+   ("M-n"     . nil)
+   ("M-p"     . nil))
   (bind-keys
    :map scala-mode-map
    ("C-c m e" . ensime)
@@ -77,7 +77,8 @@
     (">=" . ?≥)
     ("==" . ?≡)
     ("!=" . ?≠)
-    ("+-" . ?±))
+    ("+-" . ?±)
+    ("::" . ?∷))
   "Prettify symbols for scala-mode.")
 
 (defun balaji/scala-mode-hook ()
