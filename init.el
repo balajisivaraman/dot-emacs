@@ -94,7 +94,7 @@
 
 ;;; Utility Macros and Functions
 (defun balaji/network-connection-available-p ()
-    "Check whether we have internet connectivity."
+  "Check whether we have internet connectivity."
   (-any-p
    (lambda (interface) (s-starts-with-p "en" (car interface)))
    (network-interface-list)))
@@ -190,6 +190,13 @@ as opposed to empty strings."
       (getenv "EMAIL")))
 (setq user-mail-address (balaji/user-email))
 
+(defun balaji-dot-emacs ()
+  "Go directly to .emacs, do not pass Go, do not collect $200."
+  (interactive)
+  (message "Stop procrastinating and do some work!")
+  (find-file (s-concat user-emacs-directory "init.el")))
+(bind-key "C-c f d" 'balaji-dot-emacs)
+
 
 ;;; Better Defaults
 ;; Hide the menu bar, tool bar and scroll bar
@@ -205,7 +212,7 @@ as opposed to empty strings."
 (global-hl-line-mode t)
 ;; Who ever wants to fully type out YES and NO
 (fset 'yes-or-no-p 'y-or-n-p)
- ;; This will help us open up buffers without confirmation.
+;; This will help us open up buffers without confirmation.
 (setq confirm-nonexistent-file-or-buffer nil)
 ;; Setting word wrap mode as default
 (global-visual-line-mode 1)
@@ -251,7 +258,7 @@ as opposed to empty strings."
 ;; Backup Directory Configuration
 (set-variable 'temporary-file-directory (s-concat user-emacs-directory "temp"))
 (setq backup-directory-alist
-          `((".*" . ,temporary-file-directory)))
+      `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
@@ -859,7 +866,7 @@ as opposed to empty strings."
       (delete-region (point-min) (point)))
     (goto-char (point-max))
     (if (memq current-mode lisp-modes)
-    (funcall current-mode))))
+        (funcall current-mode))))
 
 (bind-keys :map emacs-lisp-mode-map
            ("C-c m e b" . do-eval-buffer)
@@ -874,8 +881,8 @@ as opposed to empty strings."
 
 (defvar lisp-mode-hooks
   (--map (intern
-      (concat (symbol-name it) "-hook"))
-     lisp-modes))
+          (concat (symbol-name it) "-hook"))
+         lisp-modes))
 
 (use-package paredit
   :diminish paredit-mode
@@ -1112,15 +1119,15 @@ as opposed to empty strings."
 ;;; Benchmarking Startup End
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
-                         emacs-start-time))))
+                                                 emacs-start-time))))
     (message "Loading %s...done (%.3fs)" load-file-name elapsed-time))
 
   (add-hook 'after-init-hook
-        `(lambda ()
-           (let ((elapsed-time (float-time (time-subtract (current-time)
-                                  emacs-start-time))))
-         (message "Loading %s...done (%.3fs)" ,load-file-name elapsed-time)))
-        t))
+            `(lambda ()
+               (let ((elapsed-time (float-time (time-subtract (current-time)
+                                                              emacs-start-time))))
+                 (message "Loading %s...done (%.3fs)" ,load-file-name elapsed-time)))
+            t))
 
 ;;; init.el ends here
 
