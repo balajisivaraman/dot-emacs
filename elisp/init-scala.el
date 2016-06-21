@@ -44,6 +44,14 @@
 (use-package ensime
   :commands ensime ensime-mode
   :after scala-mode
+  :bind
+  (:map scala-mode-map
+        ("C-c m e" . ensime)
+        ("C-c m s" . ensime-shutdown)
+   :map ensime-mode-map
+        ("C-c m E" . ensime-reload)
+        ("M-n"     . nil)
+        ("M-p"     . nil))
   :init
   (put 'ensime-auto-generate-config 'safe-local-variable #'booleanp)
   (setq
@@ -54,16 +62,7 @@
    ensime-auto-connect 'always
    ensime-refactor-preview-override-hunk 10)
   :config
-  (ensime-company-enable)
-  (bind-keys
-   :map ensime-mode-map
-   ("C-c m E" . ensime-reload)
-   ("M-n"     . nil)
-   ("M-p"     . nil))
-  (bind-keys
-   :map scala-mode-map
-   ("C-c m e" . ensime)
-   ("C-c m s" . ensime-shutdown)))
+  (ensime-company-enable))
 
 (use-package sbt-mode
   :commands sbt-start sbt-command)
