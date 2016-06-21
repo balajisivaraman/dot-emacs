@@ -1103,6 +1103,11 @@ as opposed to empty strings."
     (add-to-list 'ignoramus-file-basename-exact-names name))
   (ignoramus-setup))
 
+(use-package bookmark
+  :bind
+  ("C-c b b" . bookmark-jump)
+  ("C-c b m" . bookmark-set))
+
 
 ;;; Benchmarking Startup End
 (when (window-system)
