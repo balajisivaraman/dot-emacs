@@ -740,6 +740,11 @@ _d_: subtree
 (put 'set-goal-column             'disabled nil)
 (put 'upcase-region               'disabled nil)   ; Let upcasing work
 
+(use-package align
+  :bind (("C-c x a" . align)
+         ("C-c x c" . align-current)
+         ("C-c x r" . align-regexp)))
+
 
 ;;; Highlights and Fontification
 (defconst balaji/unicode-conversions
