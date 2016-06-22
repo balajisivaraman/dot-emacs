@@ -321,9 +321,6 @@ as opposed to empty strings."
 ;; Newline should always indent by default.
 (bind-key "<RET>" 'newline-and-indent)
 
-(bind-key "C-+" 'text-scale-increase)
-(bind-key "C--" 'text-scale-decrease)
-
 (defvar toggle-map)
 (define-prefix-command 'toggle-map)
 (bind-key "C-c t" #'toggle-map)
@@ -433,6 +430,18 @@ as opposed to empty strings."
   :bind
   ("C-c q r" . restart-emacs)
   ("C-c q q" . save-buffers-kill-emacs))
+
+(use-package face-remap
+  :ensure nil
+  :bind
+  (("C-+" . balaji-font-scaling/text-scale-increase)
+   ("C--" . balaji-font-scaling/text-scale-decrease))
+  :init
+  (defhydra balaji-font-scaling ()
+    "Font scaling"
+    ("+" text-scale-increase "Scale Up")
+    ("-" text-scale-decrease "Scale Down")
+    ("q" nil "Quit" :exit t )))
 
 
 ;;; Helm
