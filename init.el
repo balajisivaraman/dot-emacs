@@ -443,6 +443,10 @@ as opposed to empty strings."
     ("-" text-scale-decrease "Scale Down")
     ("q" nil "Quit" :exit t )))
 
+(use-package page-break-lines
+  :init (global-page-break-lines-mode)
+  :diminish page-break-lines-mode)
+
 
 ;;; Helm
 (use-package helm-config
