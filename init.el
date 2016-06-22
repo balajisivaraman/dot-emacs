@@ -1007,9 +1007,10 @@ _d_: subtree
   "Prettify symbols for scala-mode.")
 
 (defun balaji/scala-mode-hook ()
+  (setq prettify-symbols-alist balaji/scala-mode-prettify-symbols)
   (company-mode t)
   (ensime-mode t)
-  (setq prettify-symbols-alist balaji/scala-mode-prettify-symbols))
+  (ensime))
 
 (add-hook 'scala-mode-hook 'balaji/scala-mode-hook)
 
