@@ -317,61 +317,6 @@ as opposed to empty strings."
   (("C-c f J" . reveal-in-osx-finder)))
 
 
-;;; User Interface
-(use-package material-theme
-  :init
-  (defvar my-color-themes (list '(material) '(material-light)))
-  (defvar my-current-theme nil)
-  (defvar my-theme-list my-color-themes)
-
-  (defun balaji/set-default-theme ()
-    (interactive)
-    (setq my-current-theme (car (car my-color-themes)))
-    (setq my-theme-list (cdr my-color-themes))
-    (load-theme my-current-theme t))
-
-  (defun balaji/cycle-themes ()
-    (interactive)
-    (cond
-     ((null my-theme-list)
-      (setq my-current-theme (car (car my-color-themes)))
-      (setq my-theme-list (cdr my-color-themes)))
-     ((listp my-theme-list)
-      (setq my-current-theme (car (car my-theme-list)))
-      (setq my-theme-list (cdr my-theme-list)))
-     ((t)
-      (setq my-current-theme (car (car my-theme-list)))
-      (setq my-theme-list (my-color-themes))))
-    (load-theme my-current-theme t)
-    (spaceline-spacemacs-theme)
-    (message "%S" my-current-theme))
-
-  :bind
-  ("C-c t t" . balaji/cycle-themes))
-
-(balaji/set-default-theme)
-
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (spaceline-helm-mode)
-  (spaceline-spacemacs-theme))
-
-(use-package nyan-mode
-  :init (nyan-mode))
-
-(use-package which-func
-  :init (which-function-mode)
-  :config
-  (setq
-   which-func-unknown "⊥"))
-
-(use-package restart-emacs
-  :bind
-  ("C-c q r" . restart-emacs)
-  ("C-c q q" . save-buffers-kill-emacs))
-
-
 ;;; Keys and Keybindings
 ;; Newline should always indent by default.
 (bind-key "<RET>" 'newline-and-indent)
@@ -429,11 +374,67 @@ as opposed to empty strings."
   "C-c s" "search"
   "C-c t" "toggle")
 
-
 (which-key-declare-prefixes-for-mode 'emacs-lisp-mode
   "C-c m e" "eval"
   "C-c m f" "file"
   "C-c m d" "debug")
+
+
+;;; User Interface
+(use-package material-theme
+  :init
+  (defvar my-color-themes (list '(material) '(material-light)))
+  (defvar my-current-theme nil)
+  (defvar my-theme-list my-color-themes)
+
+  (defun balaji/set-default-theme ()
+    (interactive)
+    (setq my-current-theme (car (car my-color-themes)))
+    (setq my-theme-list (cdr my-color-themes))
+    (load-theme my-current-theme t))
+
+  (defun balaji/cycle-themes ()
+    (interactive)
+    (cond
+     ((null my-theme-list)
+      (setq my-current-theme (car (car my-color-themes)))
+      (setq my-theme-list (cdr my-color-themes)))
+     ((listp my-theme-list)
+      (setq my-current-theme (car (car my-theme-list)))
+      (setq my-theme-list (cdr my-theme-list)))
+     ((t)
+      (setq my-current-theme (car (car my-theme-list)))
+      (setq my-theme-list (my-color-themes))))
+    (load-theme my-current-theme t)
+    (spaceline-spacemacs-theme)
+    (message "%S" my-current-theme))
+
+  :bind
+  ("C-c t t" . balaji/cycle-themes))
+
+(balaji/set-default-theme)
+
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-helm-mode)
+  (spaceline-spacemacs-theme))
+
+(use-package nyan-mode
+  :init (nyan-mode))
+
+(use-package which-func
+  :init (which-function-mode)
+  :config
+  (setq
+   which-func-unknown "⊥"))
+
+(use-package restart-emacs
+  :bind
+  ("C-c q r" . restart-emacs)
+  ("C-c q q" . save-buffers-kill-emacs))
+
+
 ;;; Helm
 (use-package helm-config
   :ensure helm
