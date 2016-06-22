@@ -1150,7 +1150,8 @@ _d_: subtree
 (use-package bookmark
   :bind
   ("C-c b b" . bookmark-jump)
-  ("C-c b m" . bookmark-set))
+  ("C-c b m" . bookmark-set)
+  ("C-c b l" . bookmark-bmenu-list))
 
 
 ;;; Benchmarking Startup End
