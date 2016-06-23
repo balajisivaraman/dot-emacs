@@ -13,3 +13,4 @@ bookmarks
 ensime
 .mc-lists.el
 /.persistent-scratch
+/var
