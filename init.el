@@ -360,6 +360,7 @@ as opposed to empty strings."
   "C-c b" "bookmarks"
   "C-c f" "files"
   "C-c g" "git"
+  "C-c g g" "gist"
   "C-c h" "helm/help"
   "C-c j" "jump"
   "C-c m" "major mode"
@@ -1151,10 +1152,10 @@ _d_: subtree
 ;;; Version Control
 (use-package magit
   :bind
-  (("C-c g g" . magit-status)
+  (("C-c g s" . magit-status)
    ("C-c g m" . magit-branch)
    ("C-c g M" . magit-merge)
-   ("C-c g s" . magit-stash)
+   ("C-c g S" . magit-stash)
    ("C-c g a" . magit-stash-apply)
    ("C-c g p" . magit-pull)
    ("C-c g r" . magit-reset-head)
