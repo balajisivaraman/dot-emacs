@@ -901,6 +901,20 @@ _d_: subtree
   ".md\\|.markdown")
 
 
+;;; Finance
+(defun balaji/insert-rupee-symbol ()
+  "Insert Indian Rupee Symbol at point."
+  (interactive)
+  (insert "₹"))
+
+(use-package ledger-mode
+  :bind (:map ledger-mode-map
+              ("C-c m r" . balaji/insert-rupee-symbol))
+  :mode
+  "\\.ledger$")
+
+(add-hook 'ledger-mode-hook 'company-mode)
+
 ;;; Lisp Modes
 (defvar lisp-modes '(emacs-lisp-mode
                      lisp-interaction-mode
