@@ -1165,6 +1165,10 @@ _d_: subtree
   :init
   (setq-default magit-last-seen-setup-instructions "1.4.0"))
 
+(use-package gist
+  :bind (("C-c g g l" . gist-list)
+         ("C-c g g b" . gist-region-or-buffer)))
+
 
 ;;; Project Management
 (use-package projectile
