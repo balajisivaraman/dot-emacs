@@ -320,6 +320,7 @@ as opposed to empty strings."
 ;;; Keys and Keybindings
 ;; Newline should always indent by default.
 (bind-key "<RET>" 'newline-and-indent)
+(unbind-key "C-x C-c")
 
 (defvar toggle-map)
 (define-prefix-command 'toggle-map)
