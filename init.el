@@ -807,6 +807,13 @@ _d_: subtree
                    '(("(\\|)" . 'esk-paren-face)))))
         '(haskell-mode literate-haskell-mode)))
 
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :init
+  (dolist (hook '(text-mode-hook prog-mode-hook))
+    (add-hook hook #'rainbow-delimiters-mode)))
+
 
 ;;; Codestyle
 (setq-default indent-tabs-mode nil)
