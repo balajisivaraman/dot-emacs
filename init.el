@@ -504,6 +504,10 @@ as opposed to empty strings."
      (unless (eq ibuffer-sorting-mode 'alphabetic)
        (ibuffer-do-sort-by-alphabetic)))))
 (bind-key "C-x C-b" 'ibuffer)
+
+(use-package persistent-scratch
+  :config (persistent-scratch-setup-default))
+
 
 ;;; File Handling
 (defun balaji/revert-buffer ()
