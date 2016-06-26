@@ -197,6 +197,20 @@ as opposed to empty strings."
   (find-file (s-concat user-emacs-directory "init.el")))
 (bind-key "C-c f d" 'balaji-dot-emacs)
 
+(defun balaji-indent-region-or-buffer (&optional begin end)
+  "Indent a region or the whole file.
+
+If called after a region is marked, indents the region between BEGIN and END.
+
+Otherwise indents the whole buffer, i.e. everything between `point-min' and `point-max'"
+  (interactive "r")
+  (save-excursion
+    (delete-trailing-whitespace)
+    (if (region-active-p)
+        (indent-region begin end nil)
+      (indent-region (point-min) (point-max) nil))))
+(bind-key "C-c b i" 'balaji-indent-region-or-buffer)
+
 
 ;;; Better Defaults
 ;; Hide the menu bar, tool bar and scroll bar
@@ -351,14 +365,15 @@ as opposed to empty strings."
           ;; Prettify hydra entry points
           ("/body\\'"       . "|=")
           ;; Drop/shorten package prefixes
-          ("\\`lunaryorn-"  . "")
+          ("\\`balaji-"     . "b-")
           ("projectile-"    . "proj-")
           ("helm-"          . "h-")
           ("magit-"         . "ma-"))))
 
 (which-key-declare-prefixes
   "C-c a" "applications"
-  "C-c b" "bookmarks"
+  "C-c b" "buffer"
+  "C-c B" "bookmarks"
   "C-c f" "files"
   "C-c g" "git"
   "C-c g g" "gist"
@@ -1206,9 +1221,9 @@ _d_: subtree
 
 (use-package bookmark
   :bind
-  ("C-c b b" . bookmark-jump)
-  ("C-c b m" . bookmark-set)
-  ("C-c b l" . bookmark-bmenu-list))
+  ("C-c B b" . bookmark-jump)
+  ("C-c B m" . bookmark-set)
+  ("C-c B l" . bookmark-bmenu-list))
 
 
 ;;; Benchmarking Startup End
