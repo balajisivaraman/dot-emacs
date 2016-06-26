@@ -1113,7 +1113,7 @@ _d_: subtree
 (use-package org
   :ensure org-plus-contrib
   :bind
-  (("C-c o A" . org-agenda-list)
+  (("C-c o A" . org-agenda)
    ("C-c o d" . org-check-deadlines)
    ("C-c o b" . org-check-before-date)
    ("C-c o a" . org-check-after-date)
@@ -1121,6 +1121,8 @@ _d_: subtree
    :map org-mode-map
    ("C-c m l" . org-metaleft)
    ("C-c m r" . org-metaright))
+  :init
+  (advice-add 'org-agenda :after #'delete-other-windows)
   :config
   (setq
    org-todo-keywords
@@ -1191,7 +1193,8 @@ _d_: subtree
    ("C-c g L" . magit-log)
    ("C-c g c" . magit-checkout))
   :init
-  (setq-default magit-last-seen-setup-instructions "1.4.0"))
+  (setq-default magit-last-seen-setup-instructions "1.4.0")
+  (advice-add 'magit-status :after #'delete-other-windows))
 
 (use-package gist
   :bind (("C-c g g l" . gist-list)
