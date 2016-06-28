@@ -209,7 +209,7 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
     (if (region-active-p)
         (indent-region begin end nil)
       (indent-region (point-min) (point-max) nil))))
-(bind-key "C-c b i" 'balaji-indent-region-or-buffer)
+(bind-key "C-c B i" 'balaji-indent-region-or-buffer)
 
 
 ;;; Better Defaults
@@ -372,8 +372,8 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
 
 (which-key-declare-prefixes
   "C-c a" "applications"
-  "C-c b" "buffer"
-  "C-c B" "bookmarks"
+  "C-c b" "bookmarks"
+  "C-c B" "buffer"
   "C-c f" "files"
   "C-c g" "git"
   "C-c g g" "gist"
@@ -1113,10 +1113,10 @@ _d_: subtree
 (use-package org
   :ensure org-plus-contrib
   :bind
-  (("C-c o A" . org-agenda)
+  (("C-c o a" . org-agenda)
    ("C-c o d" . org-check-deadlines)
    ("C-c o b" . org-check-before-date)
-   ("C-c o a" . org-check-after-date)
+   ("C-c o A" . org-check-after-date)
    ("C-c o r" . org-archive-subtree)
    :map org-mode-map
    ("C-c m l" . org-metaleft)
@@ -1224,9 +1224,9 @@ _d_: subtree
 
 (use-package bookmark
   :bind
-  ("C-c B b" . bookmark-jump)
-  ("C-c B m" . bookmark-set)
-  ("C-c B l" . bookmark-bmenu-list))
+  ("C-c b b" . bookmark-jump)
+  ("C-c b m" . bookmark-set)
+  ("C-c b l" . bookmark-bmenu-list))
 
 
 ;;; Benchmarking Startup End
