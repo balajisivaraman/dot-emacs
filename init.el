@@ -407,6 +407,12 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
     (setq my-theme-list (cdr my-color-themes))
     (load-theme my-current-theme t))
 
+  (setq solarized-use-variable-pitch nil
+        ;; Prefer italics over bold
+        solarized-use-less-bold t
+        solarized-use-more-italic t
+        solarized-distinct-doc-face t)
+
   (defun balaji/cycle-themes ()
     (interactive)
     (cond
@@ -424,14 +430,7 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
     (message "%S" my-current-theme))
 
   :bind
-  ("C-c t t" . balaji/cycle-themes)
-
-  :config
-  (setq solarized-use-variable-pitch nil
-        ;; Prefer italics over bold
-        solarized-use-less-bold t
-        solarized-use-more-italic t
-        solarized-distinct-doc-face t))
+  ("C-c t t" . balaji/cycle-themes))
 
 (balaji/set-default-theme)
 
