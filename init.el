@@ -1170,6 +1170,40 @@ _d_: subtree
      ("n" "Note" entry (file "/Users/balajisivaraman/ownCloud/Personal Notes/notes.org")))))
 
 
+;;; Ruby
+(use-package enh-ruby-mode
+  :mode "\\(\\.rb\\|.erb\\)")
+
+(use-package robe
+  :commands robe-mode)
+
+(use-package rvm
+  :commands rvm-activate-corresponding-ruby)
+
+(use-package rspec-mode
+  :commands rspec-mode
+  :config
+  (rspec-install-snippets))
+
+(use-package rubocop
+  :commands rubocop-mode)
+
+(use-package ruby-tools
+  :commands ruby-tools-mode)
+
+(defun balaji-ruby-mode-hooks ()
+  "Hooks for enhanced ruby mode."
+  (robe-mode t)
+  (add-to-list 'company-backends 'company-robe)
+  (company-mode t)
+  (rvm-activate-corresponding-ruby)
+  (rspec-mode t)
+  (rubocop-mode t)
+  (ruby-tools-mode t))
+
+(add-hook 'enh-ruby-mode-hook 'balaji-ruby-mode-hooks)
+
+
 ;;; Scripting Languages
 (use-package shell-script-mode
   :ensure nil
