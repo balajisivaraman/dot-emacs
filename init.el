@@ -927,6 +927,10 @@ _d_: subtree
   :mode
   ".md\\|.markdown")
 
+(use-package yaml-mode
+  :mode
+  "\\(\\.yml\\|\\.yaml\\)")
+
 
 ;;; Finance
 (defun balaji/insert-rupee-symbol ()
