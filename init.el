@@ -881,10 +881,10 @@ _d_: subtree
 ;;; Spelling and Syntax Checking
 (use-package flycheck
   :defer 5
-  :bind (("C-c e" . lunaryorn-flycheck-errors/body)
+  :bind (("C-c e" . balaji-flycheck-errors/body)
          ("C-c t f" . flycheck-mode))
   :init
-  (defhydra lunaryorn-flycheck-errors ()
+  (defhydra balaji-flycheck-errors ()
     "Flycheck errors."
     ("n" flycheck-next-error "next")
     ("p" flycheck-previous-error "previous")
@@ -1172,24 +1172,37 @@ _d_: subtree
 
 ;;; Ruby
 (use-package enh-ruby-mode
-  :mode "\\(\\.rb\\|.erb\\)")
+  :mode "\\(\\.rb\\|.erb\\|Gemfile\\)"
+  :config
+  (setq ruby-insert-encoding-magic-comment nil))
 
 (use-package robe
+  :diminish robe-mode
   :commands robe-mode)
 
 (use-package rvm
   :commands rvm-activate-corresponding-ruby)
 
 (use-package rspec-mode
+  :diminish rspec-mode
   :commands rspec-mode
   :config
   (rspec-install-snippets))
 
 (use-package rubocop
+  :diminish rubocop-mode
   :commands rubocop-mode)
 
 (use-package ruby-tools
+  :diminish ruby-tools-mode
   :commands ruby-tools-mode)
+
+(use-package bundler
+  :bind
+  (:map enh-ruby-mode-map
+        ("C-c m b i" . bundle-install)
+        ("C-c m b u" . bundle-update)
+        ("C-c m b c" . bundle-check)))
 
 (defun balaji-ruby-mode-hooks ()
   "Hooks for enhanced ruby mode."
