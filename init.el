@@ -1022,7 +1022,8 @@ _d_: subtree
    scala-indent:default-run-on-strategy scala-indent:eager-strategy
    scala-indent:indent-value-expression t
    scala-indent:align-parameters t
-   scala-indent:align-forms t))
+   scala-indent:align-forms t
+   ensime-startup-snapshot-notification nil))
 
 (use-package ensime
   :commands ensime ensime-mode
