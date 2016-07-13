@@ -524,15 +524,13 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
 
 
 ;;; File Handling
-(defun balaji/revert-buffer ()
-  "Revert buffers without confirming first"
-  (interactive)
-  (revert-buffer nil t t))
-
 (use-package files
   :ensure nil
-  :bind (("C-c f z" . balaji/revert-buffer)
-         ("C-c f /" . balaji/revert-buffer)))
+  :bind (("C-c f z" . revert-buffer)
+         ("C-c f /" . revert-buffer))
+  :config
+  (setq
+   revert-without-query '("")))
 
 (use-package focus-autosave-mode
   :init (focus-autosave-mode)
