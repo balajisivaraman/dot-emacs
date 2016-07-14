@@ -537,6 +537,7 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
   :diminish focus-autosave-mode)
 
 (use-package dired
+  :diminish (dired-omit-mode . "Ⓞ")
   :ensure nil
   :defer t
   :config
