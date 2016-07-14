@@ -1250,6 +1250,10 @@ _d_: subtree
   :bind (("C-c g g l" . gist-list)
          ("C-c g g b" . gist-region-or-buffer)))
 
+
+(use-package git-timemachine
+  :bind (("C-c g t" . git-timemachine)))
+
 
 ;;; Project Management
 (use-package projectile
