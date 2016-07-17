@@ -2,14 +2,13 @@
 # name: elisp.filetemplate
 # key: doc
 # --
-;;; -*- lexical-binding: t -*-
-;;; ${1:`(f-base (buffer-file-name))`}.el --- ${2:This is an Emacs Lisp file with Emacs Lisp code.}
+;;; ${1:`(f-base (buffer-file-name))`}.el --- ${2:This is an Emacs Lisp file with Emacs Lisp code.} -*- lexical-binding: t -*-
 
-;; Author: `(balaji/user-full-name)` <`(balaji/user-email)`>
+;; Author: `user-full-name` <`user-mail-address`>
 
 ;; The MIT License (MIT)
 
-;; Copyright (C) `(format-time-string "%Y")` `(balaji/user-full-name)`
+;; Copyright (C) `(format-time-string "%Y")` `user-full-name`
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal

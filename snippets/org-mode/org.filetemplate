@@ -4,7 +4,7 @@
 # --
 #+TITLE: ${1: This is an Org mode file.}
 #+EMAIL: balaji AT balajisivaraman DOT com
-#+AUTHOR: `(balaji/user-full-name)`
+#+AUTHOR: `user-full-name`
 #+LANGUAGE: en
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [a4paper]
