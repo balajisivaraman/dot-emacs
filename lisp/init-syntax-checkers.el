@@ -72,5 +72,17 @@
   :config
   (unbind-key "C-." flyspell-mode-map))
 
+(use-package simple
+  :ensure nil
+  :bind (("M-g n" . balaji-errors/next-error)
+         ("M-g p" . balaji-errors/previous-error))
+  :init
+  (defhydra balaji-errors ()
+    "Errors."
+    ("n" next-error "next")
+    ("p" previous-error "previous")
+    ("f" first-error "first")
+    ("q" nil "Quit" :exit t )))
+
 (provide 'init-syntax-checkers)
 ;;; init-syntax-checkers.el ends here
