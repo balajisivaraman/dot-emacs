@@ -63,7 +63,17 @@
 ;; Multiple Cursors Code
 (use-package multiple-cursors
   :bind
-  ("C-C C-C" . mc/edit-lines))
+  (("C-c c <SPC>" . mc/vertical-align-with-space)
+   ("C-c c a"     . mc/vertical-align)
+   ("C-c c e"     . mc/mark-more-like-this-extended)
+   ("C-c c h"     . mc/mark-all-like-this-dwim)
+   ("C-c c l"     . mc/edit-lines)
+   ("C-c c n"     . mc/mark-next-like-this)
+   ("C-c c p"     . mc/mark-previous-like-this)
+   ("C-c c r"     . vr/mc-mark)
+   ("C-c c C-a"   . mc/edit-beginnings-of-lines)
+   ("C-c c C-e"   . mc/edit-ends-of-lines)
+   ("C-c c C-s" . mc/mark-all-in-region)))
 
 ;; Easy killing and marking on C-w
 (use-package easy-kill
