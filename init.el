@@ -82,7 +82,7 @@
 (require 'init-haskell)
 (require 'init-org)
 (require 'init-ruby)
-(require 'init-javascript)
+(require 'init-web-modes)
 (require 'init-scripting-langs)
 (require 'init-version-control)
 (require 'init-project)
