@@ -41,7 +41,7 @@
   :init
   (global-ethan-wspace-mode t)
   :bind
-  ("C-c c" . ethan-wspace-clean-all)
+  ("C-c w c" . ethan-wspace-clean-all)
   :config
   (setq mode-require-final-newline nil
         require-final-newline nil))
