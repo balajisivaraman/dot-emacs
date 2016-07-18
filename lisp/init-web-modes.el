@@ -73,6 +73,7 @@
   :config (setq css-indent-offset 2))
 
 (use-package web-beautify
+  :after js2-mode
   :config
   (bind-key "C-c m b j" 'web-beautify-js js2-mode-map)
   ;; (bind-key "C-c m b j" 'web-beautify-js web-mode-map)
