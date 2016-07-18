@@ -33,6 +33,8 @@
 ;;  - Emacs (and other) Lisp
 ;;  - Org Mode (Daily Agenda, Note Taking, Day Planner etc.)
 ;;  - Personal Finance (Ledger)
+;;  - Javascript
+;;  - Ruby
 
 ;;; Code:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
