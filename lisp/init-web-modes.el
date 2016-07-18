@@ -44,7 +44,8 @@
    js2-mode-indent-ignore-first-tab t
    js2-strict-inconsistent-return-warning nil
    js2-global-externs
-   '("module" "require" "__dirname" "process" "console" "JSON" "$" "_")))
+   '("module" "require" "__dirname" "process" "console" "JSON" "$" "_"))
+  (setq-default js2-basic-offset 2))
 
 (use-package js2-refactor
   :diminish js2-refactor-mode

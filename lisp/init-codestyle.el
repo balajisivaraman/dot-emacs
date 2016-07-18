@@ -34,6 +34,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (global-font-lock-mode t)
+(setq-default js-indent-level 2)
 
 ;; Cleanup unnecessary whitespace
 (use-package ethan-wspace
