@@ -38,6 +38,9 @@
 (define-prefix-command 'toggle-map)
 (bind-key "C-c t" #'toggle-map)
 
+(when (eq system-type 'gnu/linux)
+  (setq x-super-keysym 'meta))
+
 ;; Inspired by Spacemacs and Sebastian Wiesner's Config
 ;; The latter can be found here: https://github.com/lunaryorn/.emacs.d/blob/master/init.el#L317
 (use-package which-key
