@@ -95,5 +95,18 @@
          ("C-c x c" . align-current)
          ("C-c x r" . align-regexp)))
 
+(use-package embrace
+  :bind (("C-c y" . balaji-embrace/body)
+         ("C-c x e" . balaji-embrace/body))
+  :init
+  (defhydra balaji-embrace (:hint nil)
+    "
+    Add (_a_), change (_c_) or delete (_d_) a pair.  Quit with _q_.
+    "
+    ("a" embrace-add)
+    ("c" embrace-change)
+    ("d" embrace-delete)
+    ("q" nil)))
+
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here
