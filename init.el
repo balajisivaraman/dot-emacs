@@ -64,7 +64,6 @@
 (require 'init-defaults)
 (require 'init-customizations)
 (require 'init-exec-path)
-(require 'init-osx)
 (require 'init-keybindings)
 (require 'init-user-interface)
 (require 'init-helm)
@@ -89,6 +88,11 @@
 (require 'init-scripting-langs)
 (require 'init-version-control)
 (require 'init-project)
+
+;; Initialize OS specific bindings
+(cond
+ ((eq system-type 'darwin) (require 'init-osx))
+ ((eq system-type 'gnu/linux) (require 'init-linux)))
 
 ;;; Benchmarking Startup End
 (when (window-system)
