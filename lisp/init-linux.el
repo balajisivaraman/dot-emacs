@@ -185,10 +185,12 @@
                 '("~~>" #XE892)
                 '("~>>" #XE893))))
 
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (dolist (alias pragmatapro-font-lock-symbols-alist)
-              (push alias prettify-symbols-alist))))
+
+(apply #'hook-into-modes
+       (lambda ()
+         (dolist (alias pragmatapro-font-lock-symbols-alist)
+           (push alias prettify-symbols-alist)))
+       '(prog-mode-hook text-mode-hook))
 
 (provide 'init-linux)
 ;;; init-linux.el ends here
