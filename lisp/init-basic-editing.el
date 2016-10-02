@@ -62,8 +62,10 @@
 
 ;; Multiple Cursors Code
 (use-package multiple-cursors
+  :disabled
   :bind
-  (("C-c c <SPC>" . mc/vertical-align-with-space)
+  (
+   ("C-c c <SPC>" . mc/vertical-align-with-space)
    ("C-c c a"     . mc/vertical-align)
    ("C-c c e"     . mc/mark-more-like-this-extended)
    ("C-c c h"     . mc/mark-all-like-this-dwim)

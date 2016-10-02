@@ -65,6 +65,8 @@
 (require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
+(require 'init-evil)
+(require 'init-evil-keybindings)
 (require 'init-user-interface)
 (require 'init-helm)
 (require 'init-buffers)

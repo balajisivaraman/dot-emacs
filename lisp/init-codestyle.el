@@ -35,6 +35,8 @@
 (setq-default tab-width 4)
 (global-font-lock-mode t)
 (setq-default js-indent-level 2)
+(setq mode-require-final-newline nil
+      require-final-newline nil)
 
 ;; Cleanup unnecessary whitespace
 (use-package ethan-wspace
@@ -42,10 +44,7 @@
   :init
   (global-ethan-wspace-mode t)
   :bind
-  ("C-c w c" . ethan-wspace-clean-all)
-  :config
-  (setq mode-require-final-newline nil
-        require-final-newline nil))
+  ("C-c w c" . ethan-wspace-clean-all))
 
 (provide 'init-codestyle)
 ;;; init-codestyle.el ends here
