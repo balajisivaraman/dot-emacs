@@ -37,7 +37,9 @@
 ;; Shell Command
 (evil-leader/set-key "!" 'shell-command)
 
-(evil-leader/set-key "tr" 'linum-relative-mode)
+(evil-leader/set-key
+  "tr" 'linum-relative-mode
+  "tg" 'balaji-toggle-golden-ratio)
 
 (evil-leader/set-key
   "<SPC>" 'helm-M-x)
