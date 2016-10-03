@@ -64,6 +64,7 @@
     :init
     (global-evil-surround-mode 1))
   (use-package evil-escape
+    :diminish evil-escape-mode
     :config
     (setq evil-escape-key-sequence "ue"))
   (evil-mode t)
