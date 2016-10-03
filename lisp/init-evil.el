@@ -69,6 +69,7 @@
     :diminish evil-escape-mode
     :config
     (setq evil-escape-key-sequence "ue"))
+  (use-package evil-magit)
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
