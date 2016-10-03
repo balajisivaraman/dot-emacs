@@ -5,7 +5,7 @@
 
 ;; The MIT License (MIT)
 
-;; Copyright (C) 2015 Balaji Sivaraman
+;; Copyright (C) 2016 Balaji Sivaraman
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal
@@ -39,9 +39,11 @@
 
 (defun balaji/init-linum-relative ()
   (use-package linum-relative
+    :diminish linum-relative-mode
     :commands linum-relative-mode
     :config
-    (linum-relative-mode)))
+    (linum-relative-mode)
+    (setq linum-relative-current-symbol "")))
 
 (defun balaji/init-evil-org ()
   (use-package evil-org

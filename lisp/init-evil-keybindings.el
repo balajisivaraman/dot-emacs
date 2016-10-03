@@ -5,7 +5,7 @@
 
 ;; The MIT License (MIT)
 
-;; Copyright (C) 2015 Balaji Sivaraman
+;; Copyright (C) 2016 Balaji Sivaraman
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal
@@ -121,8 +121,13 @@
 
 ;; Package Utils
 (evil-leader/set-key
-  "Pu" 'package-utils-upgrade-all
-  "Pp" 'package-utils-list-upgrades)
+  "Pu" 'paradox-upgrade-packages
+  "PP" 'package-list-packages-no-fetch
+  "Pp" 'paradox-list-packages)
+
+(evil-leader/set-key
+    "qr" 'restart-emacs
+    "qq" 'save-buffers-kill-emacs)
 
 (provide 'init-evil-keybindings)
 ;;; init-evil-keybindings.el ends here

@@ -89,11 +89,7 @@
 (use-package restart-emacs
   :bind
   ("C-c q r" . restart-emacs)
-  ("C-c q q" . save-buffers-kill-emacs)
-  :init
-  (evil-leader/set-key
-    "qr" 'restart-emacs
-    "qq" 'save-buffers-kill-emacs))
+  ("C-c q q" . save-buffers-kill-emacs))
 
 (use-package face-remap
   :ensure nil
