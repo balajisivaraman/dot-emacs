@@ -173,6 +173,7 @@
   (evil-ex-call-command "" "nohlsearch" ""))
 
 (bind-key "RET" 'balaji-clear-search-highlight evil-normal-state-map)
+(bind-key ";" 'evil-ex evil-normal-state-map)
 
 (provide 'init-evil-keybindings)
 ;;; init-evil-keybindings.el ends here
