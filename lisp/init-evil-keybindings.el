@@ -167,5 +167,12 @@
 (evil-define-key 'normal 'ibuffer-mode-map "w" 'ibuffer-copy-filename-as-kill)
 (evil-define-key 'normal 'ibuffer-mode-map "x" 'ibuffer-do-kill-on-deletion-marks)
 
+(defun balaji-clear-search-highlight (args)
+  "Clear search highlight when Return is pressed."
+  (interactive "P")
+  (evil-ex-call-command "" "nohlsearch" ""))
+
+(bind-key "RET" 'balaji-clear-search-highlight evil-normal-state-map)
+
 (provide 'init-evil-keybindings)
 ;;; init-evil-keybindings.el ends here
