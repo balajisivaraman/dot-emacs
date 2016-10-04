@@ -31,18 +31,71 @@
 
 ;;; Code:
 
+;; Which Key Configuration
+
+(which-key-declare-prefixes
+  "SPC a"   "applications"
+  "SPC b"   "buffer"
+  "SPC B"   "bookmarks"
+  "SPC c"   "ex/co region"
+  "SPC f"   "files"
+  "SPC g"   "git"
+  "SPC g g" "gist"
+  "SPC h"   "helm/help"
+  "SPC i"   "indent"
+  "SPC j"   "jump"
+  "SPC m"   "major mode"
+  "SPC o"   "org mode"
+  "SPC O"   "outline"
+  "SPC p"   "projects"
+  "SPC p s" "projects/search"
+  "SPC P"   "packages"
+  "SPC q"   "quit/restart"
+  "SPC s"   "search"
+  "SPC t"   "toggle"
+  "SPC T"   "transpose"
+  "SPC w"   "window")
+
 ;; Universal Argument
 (evil-leader/set-key "u" 'universal-argument)
 
 ;; Shell Command
 (evil-leader/set-key "!" 'shell-command)
 
+;; General Keybindings
 (evil-leader/set-key
-  "tr" 'linum-relative-mode
-  "tg" 'balaji-toggle-golden-ratio)
+  "Tn" 'balaji/cycle-themes
+  "ir" 'indent-region)
+
+;; Evil Mode
+(bind-key "\C-c" 'evil-force-normal-state evil-insert-state-map)
+(bind-key "\C-c" 'evil-force-normal-state evil-replace-state-map)
+(bind-key "\C-c" 'evil-force-normal-state evil-visual-state-map)
 
 (evil-leader/set-key
   "<SPC>" 'helm-M-x)
+
+(defun balaji-clear-search-highlight (args)
+  "Clear search highlight when Return is pressed."
+  (interactive "P")
+  (evil-ex-call-command "" "nohlsearch" ""))
+
+(bind-key "RET" 'balaji-clear-search-highlight evil-normal-state-map)
+(bind-key ";" 'evil-ex evil-normal-state-map)
+
+;; Avy Jump Bindings
+(evil-leader/set-key
+  "jc" 'avy-goto-char
+  "jj" 'avy-goto-char
+  "jl" 'avy-goto-line
+  "jw" 'avy-goto-word-1)
+
+;; Bookmarks
+(evil-leader/set-key
+  "Bb" 'bookmark-jump
+  "Bj" 'bookmark-jump
+  "Bs" 'bookmark-set
+  "Bl" 'bookmark-bmenu-list)
 
 ;; Buffer Keybindings
 (evil-leader/set-key
@@ -53,83 +106,68 @@
   "bp" 'previous-buffer
   "bn" 'next-buffer)
 
-;; General Keybindings
-(evil-leader/set-key
-  "ff" 'helm-find-files
-  "Tn" 'balaji/cycle-themes
-  "ir" 'indent-region)
+;; Company Mode
+(eval-after-load "company"
+  (lambda ()
+    (bind-key "C-j" 'company-select-next company-active-map)
+    (bind-key "C-k" 'company-select-previous company-active-map)))
 
-;; Lisp Keybindings
-(evil-leader/set-key
-  "er" 'eval-region
-  "eb" 'eval-buffer)
+;; Emacs Lisp Bindings
+(evil-leader/set-key-for-mode 'emacs-lisp-mode
+  "meb" 'do-eval-buffer
+  "mer" 'do-eval-region
+  "mes" 'eval-last-sexp
+  "ms"  'scratch
+  "mdc" 'cancel-debug-on-entry
+  "mde" 'debug-on-entry
+  "mdr" 'toggle-debug-on-error
+  "mfb" 'emacs-lisp-byte-compile-and-load
+  "mfl" 'find-library
+  "mL"  'elint-current-buffer)
 
-;; Evil Mode
-(bind-key "\C-c" 'evil-force-normal-state evil-insert-state-map)
-(bind-key "\C-c" 'evil-force-normal-state evil-replace-state-map)
-(bind-key "\C-c" 'evil-force-normal-state evil-visual-state-map)
-(evil-leader/set-key
-  "jc" 'avy-goto-char
-  "jj" 'avy-goto-char
-  "jl" 'avy-goto-line
-  "jw" 'avy-goto-word-1)
-
-;; Projectile Mode
-(evil-leader/set-key
-  "ph" 'helm-projectile
-  "pi" 'projectile-invalidate-cache
-  "pk" 'projectile-kill-buffers
-  "xo" 'helm-imenu)
-
-;; Helm Ag
-(evil-leader/set-key
-  "/" 'helm-do-ag)
-
-;; Magit Mode
-(evil-leader/set-key
-  "gg" 'magit-status
-  "gb" 'magit-branch
-  "gs" 'magit-stash
-  "ga" 'magit-stash-apply
-  "gp" 'magit-pull
-  "gr" 'magit-reset-head
-  "gR" 'magit-reset-head-hard
-  "gf" 'magit-fetch
-  "gl" 'magit-log-all
-  "gL" 'magit-log
-  "gc" 'magit-checkout)
+(which-key-declare-prefixes-for-mode 'emacs-lisp-mode
+  "SPC m e" "eval"
+  "SPC m f" "file"
+  "SPC m d" "debug")
 
 ;; Expand Region
 (evil-leader/set-key
   "ce" 'er/expand-region
   "cc" 'er/contract-region)
 
-;; Transpose Words
+;; File Keybindings
 (evil-leader/set-key
-  "Tc" 'transpose-chars
-  "Tw" 'transpose-words
-  "Tt" 'transpose-words
-  "Tl" 'transpose-lines
-  "Te" 'transpose-sexps
-  "Ts" 'transpose-sentences
-  "Tp" 'transpose-paragraphs)
+  "fd" 'balaji-dot-emacs
+  "ff" 'helm-find-files
+  "fs" 'save-buffer
+  "fw" 'write-file)
 
-;; Bookmarks
+;; Helm Ag
 (evil-leader/set-key
-  "Bb" 'bookmark-jump
-  "Bj" 'bookmark-jump
-  "Bs" 'bookmark-set
-  "Bl" 'bookmark-bmenu-list)
+  "/" 'helm-do-ag)
 
-;; Package Utils
+;; Help
 (evil-leader/set-key
-  "Pu" 'paradox-upgrade-packages
-  "PP" 'package-list-packages-no-fetch
-  "Pp" 'paradox-list-packages)
-
-(evil-leader/set-key
-    "qr" 'restart-emacs
-    "qq" 'save-buffers-kill-emacs)
+  "hA" 'about-emacs
+  "ha" 'apropos-command
+  "hc" 'describe-copying
+  "hD" 'view-emacs-debugging
+  "hd" 'apropos-documentation
+  "hf" 'describe-function
+  "hF" 'view-emacs-FAQ
+  "hg" 'describe-gnu-project
+  "hh" 'view-hello-file
+  "hi" 'info
+  "hk" 'describe-key
+  "hm" 'describe-mode
+  "ho" 'describe-symbol
+  "hp" 'finder-by-keyword
+  "hs" 'describe-syntax
+  "ht" 'help-with-tutorial
+  "hv" 'describe-variable
+  "hw" 'describe-no-warranty
+  "h<return>" 'view-order-manuals
+  "h?" 'help-for-help)
 
 ;; Ibuffer Bindings
 (evil-define-key 'normal 'ibuffer-mode-map "A" 'ibuffer-do-view)
@@ -167,13 +205,119 @@
 (evil-define-key 'normal 'ibuffer-mode-map "w" 'ibuffer-copy-filename-as-kill)
 (evil-define-key 'normal 'ibuffer-mode-map "x" 'ibuffer-do-kill-on-deletion-marks)
 
-(defun balaji-clear-search-highlight (args)
-  "Clear search highlight when Return is pressed."
-  (interactive "P")
-  (evil-ex-call-command "" "nohlsearch" ""))
+;; Magit Mode
+(evil-leader/set-key
+  "gs" 'magit-status
+  "gb" 'magit-branch
+  "gp" 'magit-pull
+  "gr" 'magit-reset-head
+  "gR" 'magit-reset-head-hard
+  "gf" 'magit-fetch
+  "gl" 'magit-log-all
+  "gL" 'magit-log
+  "gc" 'magit-checkout)
 
-(bind-key "RET" 'balaji-clear-search-highlight evil-normal-state-map)
-(bind-key ";" 'evil-ex evil-normal-state-map)
+;; Org Bindings
+(evil-leader/set-key
+  "oa" 'org-agenda
+  "od" 'org-check-deadlines
+  "ob" 'org-check-before-date
+  "oA" 'org-check-after-date)
+
+;; Outline Mode
+(evil-leader/set-key
+  "O" 'balaji-outline/body)
+
+;; Package Utils
+(evil-leader/set-key
+  "Pu" 'paradox-upgrade-packages
+  "PP" 'package-list-packages-no-fetch
+  "Pp" 'paradox-list-packages)
+
+;; Projectile Mode
+(evil-leader/set-key
+  "ph" 'helm-projectile
+  "pi" 'projectile-invalidate-cache
+  "pk" 'projectile-kill-buffers
+  "xo" 'helm-imenu)
+
+;; Projectile Bindings
+(evil-leader/set-key
+  "p!" 'projectile-run-shell-command-in-root
+  "p&" 'projectile-run-async-shell-command-in-root
+  "pD" 'projectile-dired
+  "pE" 'projectile-edit-dir-locals
+  "pF" 'projectile-find-file-in-known-projects
+  "pI" 'projectile-ibuffer
+  "pP" 'projectile-test-project
+  "pR" 'projectile-regenerate-tags
+  "pS" 'projectile-save-project-buffers
+  "pT" 'projectile-find-test-file
+  "pa" 'projectile-find-other-file
+  "pb" 'projectile-switch-to-buffer
+  "pc" 'projectile-compile-project
+  "pd" 'projectile-find-dir
+  "pe" 'projectile-recentf
+  "pf" 'projectile-find-file
+  "pg" 'projectile-find-file-dwim
+  "ph" 'helm-projectile
+  "pi" 'projectile-invalidate-cache
+  "pj" 'projectile-find-tag
+  "pk" 'projectile-kill-buffers
+  "pl" 'projectile-find-file-in-directory
+  "pm" 'projectile-commander
+  "po" 'projectile-multi-occur
+  "pp" 'projectile-switch-project
+  "pq" 'projectile-switch-open-project
+  "pr" 'projectile-replace
+  "pt" 'projectile-toggle-between-implementation-and-test
+  "pu" 'projectile-run-project
+  "pv" 'projectile-vc
+  "pz" 'projectile-cache-current-file
+  "pxe" 'projectile-run-eshell
+  "pxs" 'projectile-run-shell
+  "pxt" 'projectile-run-term
+  "psg" 'projectile-grep
+  "pss" 'projectile-ag
+  "p4a" 'projectile-find-other-file-other-window
+  "p4b" 'projectile-switch-to-buffer-other-window
+  "p4d" 'projectile-find-dir-other-window
+  "p4f" 'projectile-find-file-other-window
+  "p4g" 'projectile-find-file-dwim-other-window
+  "p4t" 'projectile-find-implementation-or-test-other-window)
+
+;; Quit Bindings
+(evil-leader/set-key
+    "qr" 'restart-emacs
+    "qq" 'save-buffers-kill-emacs)
+
+;; Toggle Bindings
+(evil-leader/set-key
+  "tr" 'linum-relative-mode
+  "tg" 'balaji-toggle-golden-ratio)
+
+;; Transpose Words
+(evil-leader/set-key
+  "Tc" 'transpose-chars
+  "Tw" 'transpose-words
+  "Tt" 'transpose-words
+  "Tl" 'transpose-lines
+  "Te" 'transpose-sexps
+  "Ts" 'transpose-sentences
+  "Tp" 'transpose-paragraphs)
+
+;; Version Control
+(evil-leader/set-key
+  "ggp" 'gist-list
+  "ggb" 'gist-region-or-buffer)
+
+;; Window Bindings
+(evil-leader/set-key
+  "wd" 'delete-window
+  "wo" 'ace-window
+  "wh" 'split-window-horizontally
+  "wv" 'split-window-vertically
+  "wm" 'delete-other-windows)
 
 (provide 'init-evil-keybindings)
 ;;; init-evil-keybindings.el ends here
