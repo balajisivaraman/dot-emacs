@@ -41,6 +41,23 @@
   :bind
   ("C-x o" . ace-window))
 
+(use-package window-numbering
+  :commands
+  (select-window-0
+   select-window-1
+   select-window-2
+   select-window-3
+   select-window-4
+   select-window-5
+   select-window-6
+   select-window-7
+   select-window-8
+   select-window-9)
+  :config
+  (setq window-numbering-auto-assign-0-to-minibuffer nil)
+  (spaceline-toggle-window-number-off)
+  (window-numbering-mode 1))
+
 (use-package golden-ratio
   :init
   (defun balaji-toggle-golden-ratio ()
