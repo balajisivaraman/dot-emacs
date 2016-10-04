@@ -73,6 +73,7 @@
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
   (evil-escape-mode)
   (require 'init-evil-keybindings))
 

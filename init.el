@@ -66,7 +66,6 @@
 (require 'init-exec-path)
 (require 'init-keybindings)
 (require 'init-evil)
-(require 'init-evil-keybindings)
 (require 'init-user-interface)
 (require 'init-helm)
 (require 'init-buffers)
@@ -90,6 +89,7 @@
 (require 'init-scripting-langs)
 (require 'init-version-control)
 (require 'init-project)
+(require 'init-evil-keybindings)
 
 ;; Initialize OS specific bindings
 (cond
