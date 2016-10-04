@@ -224,6 +224,76 @@
   "ob" 'org-check-before-date
   "oA" 'org-check-after-date)
 
+;; Org Agenda Bindings
+(evil-define-key 'normal org-agenda-mode-map
+  "!" 'org-agenda-toggle-deadlines
+  "#" 'org-agenda-dim-blocked-tasks
+  "$" 'org-agenda-archive
+  "%" 'org-agenda-bulk-mark-regexp
+  "*" 'org-agenda-bulk-mark-all
+  "+" 'org-agenda-priority-up
+  "," 'org-agenda-priority
+  "-" 'org-agenda-priority-down
+  "." 'org-agenda-goto-today
+  "/" 'org-agenda-filter-by-tag
+  ":" 'org-agenda-set-tags
+  "<" 'org-agenda-filter-by-category
+  "=" 'org-agenda-filter-by-regexp
+  ">" 'org-agenda-date-prompt
+  "?" 'org-agenda-show-the-flagging-note
+  "A" 'org-agenda-append-agenda
+  "B" 'org-agenda-bulk-action
+  "C" 'org-agenda-convert-date
+  "D" 'org-agenda-toggle-diary
+  "E" 'org-agenda-entry-text-mode
+  "F" 'org-agenda-follow-mode
+  "G" 'org-agenda-toggle-time-grid
+  "H" 'org-agenda-holidays
+  "I" 'org-agenda-clock-in
+  "L" 'org-agenda-recenter
+  "M" 'org-agenda-phases-of-moon
+  "N" 'org-agenda-next-item
+  "O" 'org-agenda-clock-out
+  "P" 'org-agenda-previous-item
+  "Q" 'org-agenda-Quit
+  "R" 'org-agenda-clockreport-mode
+  "S" 'org-agenda-sunrise-sunset
+  "T" 'org-agenda-show-tags
+  "U" 'org-agenda-bulk-unmark-all
+  "X" 'org-agenda-clock-cancel
+  "[" 'org-agenda-manipulate-query-add
+  "\\" 'org-agenda-filter-by-tag-refine
+  "]" 'org-agenda-manipulate-query-subtract
+  "^" 'org-agenda-filter-by-top-headline
+  "_" 'org-agenda-filter-by-effort
+  "a" 'org-agenda-archive-default-with-confirmation
+  "b" 'org-agenda-earlier
+  "c" 'org-agenda-goto-calendar
+  "d" 'org-agenda-day-view
+  "e" 'org-agenda-set-effort
+  "f" 'org-agenda-later
+  "h" 'org-agenda-holidays
+  "i" 'org-agenda-diary-entry
+  "J" 'org-agenda-goto-date
+  "K" 'org-agenda-capture
+  "l" 'org-agenda-log-mode
+  "m" 'org-agenda-bulk-mark
+  "n" 'org-agenda-next-line
+  "p" 'org-agenda-previous-line
+  "q" 'org-agenda-quit
+  "r" 'org-agenda-redo
+  "t" 'org-agenda-todo
+  "u" 'org-agenda-bulk-unmark
+  "v" 'org-agenda-view-mode-dispatch
+  "w" 'org-agenda-week-view
+  "x" 'org-agenda-exit
+  "y" 'org-agenda-year-view
+  "z" 'org-agenda-add-note
+  "{" 'org-agenda-manipulate-query-add-re
+  "|" 'org-agenda-filter-remove-all
+  "}" 'org-agenda-manipulate-query-subtract-re
+  "~" 'org-agenda-limit-interactively)
+
 ;; Outline Mode
 (evil-leader/set-key
   "O" 'balaji-outline/body)
