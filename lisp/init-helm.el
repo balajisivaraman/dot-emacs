@@ -62,7 +62,12 @@
    helm-M-x-fuzzy-match t
    helm-buffers-fuzzy-matching t
    helm-recentf-fuzzy-match t
-   helm-apropos-fuzzy-match t))
+   helm-apropos-fuzzy-match t)
+  ;; Helm Bindings
+  (bind-key "C-k" 'helm-previous-line helm-map)
+  (bind-key "C-j" 'helm-next-line helm-map)
+  (bind-key "C-l" 'helm-execute-persistent-action helm-find-files-map)
+  (bind-key "C-h" 'helm-find-files-up-one-level helm-find-files-map))
 
 (provide 'init-helm)
 ;;; init-helm.el ends here
