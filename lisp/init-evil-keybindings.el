@@ -205,6 +205,10 @@
 (evil-define-key 'normal 'ibuffer-mode-map "w" 'ibuffer-copy-filename-as-kill)
 (evil-define-key 'normal 'ibuffer-mode-map "x" 'ibuffer-do-kill-on-deletion-marks)
 
+;; Ledger Mode
+(evil-leader/set-key-for-mode 'ledger-mode
+  "mr" 'balaji/insert-rupee-symbol)
+
 ;; Magit Mode
 (evil-leader/set-key
   "gs" 'magit-status
