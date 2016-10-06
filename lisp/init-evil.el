@@ -71,6 +71,7 @@
     (setq evil-escape-key-sequence "ue"))
   (use-package evil-magit)
   (use-package vi-tilde-fringe
+    :diminish vi-tilde-fringe-mode
     :init
     (global-vi-tilde-fringe-mode))
   (evil-mode t)
