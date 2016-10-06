@@ -70,6 +70,9 @@
     :config
     (setq evil-escape-key-sequence "ue"))
   (use-package evil-magit)
+  (use-package vi-tilde-fringe
+    :init
+    (global-vi-tilde-fringe-mode))
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
