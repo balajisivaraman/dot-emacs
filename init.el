@@ -83,6 +83,7 @@
 (require 'init-lisp)
 (require 'init-scala)
 (require 'init-haskell)
+(require 'init-erlang)
 (require 'init-org)
 (require 'init-ruby)
 (require 'init-web-modes)
