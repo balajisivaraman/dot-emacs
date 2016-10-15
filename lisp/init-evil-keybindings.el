@@ -361,15 +361,15 @@
   "p4t" 'projectile-find-implementation-or-test-other-window)
 
 ;; Purescipt Bindings
-(evil-leader/set-key
- "ma"     'psc-ide-add-clause
- "mb"     'psc-ide-rebuild
- "mc"     'psc-ide-case-split
- "ml"     'psc-ide-load-all
- "mq"     'psc-ide-server-quit
- "ms"     'psc-ide-server-start
- "mt"     'psc-ide-show-type
- "mL"     'psc-ide-load-module)
+(evil-leader/set-key-for-mode 'purescript-mode
+ "ma" 'psc-ide-add-clause
+ "mb" 'psc-ide-rebuild
+ "mc" 'psc-ide-case-split
+ "ml" 'psc-ide-load-all
+ "mq" 'psc-ide-server-quit
+ "ms" 'psc-ide-server-start
+ "mt" 'psc-ide-show-type
+ "mL" 'psc-ide-load-module)
 
 ;; Quit Bindings
 (evil-leader/set-key
