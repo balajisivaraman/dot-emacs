@@ -207,7 +207,14 @@
 
 ;; Ledger Mode
 (evil-leader/set-key-for-mode 'ledger-mode
-  "mr" 'balaji/insert-rupee-symbol)
+  "mr" 'balaji/insert-rupee-symbol
+  "ma" 'ledger-add-transaction
+  "mbp" 'ledger-display-balance-at-point)
+
+(which-key-declare-prefixes-for-mode 'ledger-mode
+  "SPC m r" "rupee-symbol"
+  "SPC m a" "add transaction"
+  "SPC m b" "balance")
 
 ;; Magit Mode
 (evil-leader/set-key
