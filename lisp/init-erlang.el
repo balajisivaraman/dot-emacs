@@ -47,6 +47,16 @@
 (use-package elixir-mode
   :commands elixir-mode)
 
+(use-package alchemist
+  :after elixir-mode)
+
+(defun balaji-elixir-mode-hook ()
+    "Elixir mode hooks."
+  (company-mode t)
+  (alchemist-mode t))
+
+(add-hook 'elixir-mode-hook 'balaji-elixir-mode-hook)
+
 (use-package elixir-yasnippets
   :after elixir-mode)
 
