@@ -50,8 +50,10 @@
   (psc-ide-mode)
   (company-mode)
   (flycheck-mode)
+  (inferior-psci-mode)
   (turn-on-purescript-indentation)
-  (diminish 'purescript-indentation-mode))
+  (diminish 'purescript-indentation-mode)
+  (psc-ide-server-start (locate-dominating-file default-directory "bower.json")))
 
 (add-hook 'purescript-mode-hook 'balaji-purescript-mode-hook)
 

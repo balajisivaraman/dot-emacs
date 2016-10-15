@@ -373,10 +373,15 @@
  "mb" 'psc-ide-rebuild
  "mc" 'psc-ide-case-split
  "ml" 'psc-ide-load-all
- "mq" 'psc-ide-server-quit
- "ms" 'psc-ide-server-start
+ "msq" 'psc-ide-server-quit
+ "mss" 'psc-ide-server-start
  "mt" 'psc-ide-show-type
- "mL" 'psc-ide-load-module)
+ "mL" 'psc-ide-load-module
+ "mpp" 'psci)
+
+(which-key-declare-prefixes-for-mode 'purescript-mode
+  "SPC m p" "psci"
+  "SPC m s" "server")
 
 ;; Quit Bindings
 (evil-leader/set-key
