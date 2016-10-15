@@ -33,6 +33,17 @@
 (use-package erlang
   :commands erlang-mode)
 
+(use-package company-distel
+  :after distel-completion-lib
+  :init
+  (add-to-list 'company-backends 'company-distel))
+
+(defun balaji-erlang-mode-hook ()
+    "Elixir mode hooks."
+  (company-mode t))
+
+(add-hook 'erlang-mode-hook 'balaji-erlang-mode-hook)
+
 (use-package elixir-mode
   :commands elixir-mode)
 
