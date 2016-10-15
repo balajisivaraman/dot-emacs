@@ -34,7 +34,26 @@
   :commands purescript-mode)
 
 (use-package flycheck-purescript
+  :after purescript-mode
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-purescript-setup))
+
+(use-package psci
   :after purescript-mode)
+
+(use-package psc-ide
+  :commands psc-ide-server-start
+  :after purescript-mode)
+
+(defun balaji-purescript-mode-hook ()
+  "Hooks for purescript mode."
+  (psc-ide-mode)
+  (company-mode)
+  (flycheck-mode)
+  (turn-on-purescript-indentation)
+  (diminish 'purescript-indentation-mode))
+
+(add-hook 'purescript-mode-hook 'balaji-purescript-mode-hook)
 
 (provide 'init-purescript)
 ;;; init-purescript.el ends here

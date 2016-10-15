@@ -360,6 +360,17 @@
   "p4g" 'projectile-find-file-dwim-other-window
   "p4t" 'projectile-find-implementation-or-test-other-window)
 
+;; Purescipt Bindings
+(evil-leader/set-key
+ "ma"     'psc-ide-add-clause
+ "mb"     'psc-ide-rebuild
+ "mc"     'psc-ide-case-split
+ "ml"     'psc-ide-load-all
+ "mq"     'psc-ide-server-quit
+ "ms"     'psc-ide-server-start
+ "mt"     'psc-ide-show-type
+ "mL"     'psc-ide-load-module)
+
 ;; Quit Bindings
 (evil-leader/set-key
     "qr" 'restart-emacs
@@ -392,7 +403,6 @@
   "wh" 'split-window-horizontally
   "wv" 'split-window-vertically
   "wm" 'delete-other-windows)
-
 
 (evil-leader/set-key
   "0" 'select-window-0
