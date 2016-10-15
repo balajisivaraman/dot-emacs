@@ -74,7 +74,9 @@
   :config
   (spaceline-helm-mode)
   (spaceline-spacemacs-theme)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (spaceline-toggle-window-number-on)
+  (setq spaceline-window-numbers-unicode t))
 
 (use-package nyan-mode
   :init (nyan-mode))

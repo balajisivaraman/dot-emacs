@@ -55,7 +55,6 @@
    select-window-9)
   :config
   (setq window-numbering-auto-assign-0-to-minibuffer nil)
-  (spaceline-toggle-window-number-off)
   (window-numbering-mode 1))
 
 (use-package golden-ratio
