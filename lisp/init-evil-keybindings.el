@@ -377,6 +377,9 @@
  "mss" 'psc-ide-server-start
  "mt" 'psc-ide-show-type
  "mL" 'psc-ide-load-module
+ "mg" 'psc-ide-goto-definition
+ "mb" 'psc-ide-goto-definition-impl
+ "mi" 'psc-ide-add-import
  "mpp" 'psci)
 
 (which-key-declare-prefixes-for-mode 'purescript-mode
