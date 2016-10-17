@@ -81,6 +81,8 @@
   (evil-ex-call-command "" "nohlsearch" ""))
 
 (bind-key "RET" 'balaji-clear-search-highlight evil-normal-state-map)
+(evil-leader/set-key
+  "sc" 'balaji-clear-search-highlight)
 (bind-key ";" 'evil-ex evil-normal-state-map)
 
 ;; Avy Jump Bindings
