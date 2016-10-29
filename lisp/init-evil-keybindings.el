@@ -232,6 +232,7 @@
  "mim" 'idris-add-missing
  "mir" 'idris-refine
  "mis" 'idris-add-clause
+ "mip" 'idris-case-split
  "miw" 'idris-make-with-block
 
  ;; Documentation.
@@ -246,15 +247,19 @@
  "mmh" 'idris-hide-term-implicits
  "mmc" 'idris-show-core-term
 
+ ;; Errors
+ "men" 'idris-next-error
+ "mep" 'idris-previous-error
+
  ;; REPL
  "m'"  'idris-repl
  "msb" 'idris-load-file
- "msB" 'spacemacs/idris-load-file-and-focus
+ ;; "msB" 'spacemacs/idris-load-file-and-focus
  "msi" 'idris-repl
  "msn" 'idris-load-forward-line
- "msN" 'spacemacs/idris-load-forward-line-and-focus
+ ;; "msN" 'spacemacs/idris-load-forward-line-and-focus
  "msp" 'idris-load-backward-line
- "msP" 'spacemacs/idris-load-backward-line-and-focus
+ ;; "msP" 'spacemacs/idris-load-backward-line-and-focus
  "mss" 'idris-pop-to-repl
  "msq" 'idris-quit)
 

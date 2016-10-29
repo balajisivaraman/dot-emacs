@@ -33,5 +33,12 @@
 (use-package idris-mode
   :mode ("\\.idr\\'" . idris-mode))
 
+(defun balaji/idris-mode-hook ()
+  "Hooks for Idris mode."
+  (company-mode t)
+  (flycheck-mode))
+
+(add-hook 'idris-mode-hook 'balaji/idris-mode-hook)
+
 (provide 'init-idris)
 ;;; init-idris.el ends here
