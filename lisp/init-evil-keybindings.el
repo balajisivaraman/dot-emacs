@@ -207,6 +207,70 @@
 (evil-define-key 'normal 'ibuffer-mode-map "w" 'ibuffer-copy-filename-as-kill)
 (evil-define-key 'normal 'ibuffer-mode-map "x" 'ibuffer-do-kill-on-deletion-marks)
 
+;; Idris Mode
+(evil-leader/set-key-for-mode 'idris-mode
+ ;; Shorthands: rebind the standard evil-mode combinations to the local
+ ;; leader for the keys not used as a prefix below.
+ "mc" 'idris-case-dwim
+ "md" 'idris-add-clause
+ "ml" 'idris-make-lemma
+ "mp" 'idris-proof-search
+ "mr" 'idris-load-file
+ "mt" 'idris-type-at-point
+ "mw" 'idris-make-with-block
+
+ ;; ipkg.
+ "mbc" 'idris-ipkg-build
+ "mbC" 'idris-ipkg-clean
+ "mbi" 'idris-ipkg-install
+ "mbp" 'idris-open-package-file
+
+ ;; Interactive editing.
+ "mia" 'idris-proof-search
+ "mic" 'idris-case-dwim
+ "mie" 'idris-make-lemma
+ "mim" 'idris-add-missing
+ "mir" 'idris-refine
+ "mis" 'idris-add-clause
+ "miw" 'idris-make-with-block
+
+ ;; Documentation.
+ "mha" 'idris-apropos
+ "mhd" 'idris-docs-at-point
+ "mhs" 'idris-type-search
+ "mht" 'idris-type-at-point
+
+ ;; Active term manipulations.
+ "mmn" 'idris-normalise-term
+ "mmi" 'idris-show-term-implicits
+ "mmh" 'idris-hide-term-implicits
+ "mmc" 'idris-show-core-term
+
+ ;; REPL
+ "m'"  'idris-repl
+ "msb" 'idris-load-file
+ "msB" 'spacemacs/idris-load-file-and-focus
+ "msi" 'idris-repl
+ "msn" 'idris-load-forward-line
+ "msN" 'spacemacs/idris-load-forward-line-and-focus
+ "msp" 'idris-load-backward-line
+ "msP" 'spacemacs/idris-load-backward-line-and-focus
+ "mss" 'idris-pop-to-repl
+ "msq" 'idris-quit)
+
+(evil-leader/set-key-for-mode 'idris-prover-script-mode
+  "mn" 'idris-prover-script-forward
+  "mp" 'idris-prover-script-backward
+  "mk" 'idris-prover-abandon
+  "mq" 'idris-prover-script-qed)
+
+(which-key-declare-prefixes-for-mode 'idris-mode
+  "SPC m b" "ipkg"
+  "SPC m i" "interactive edit"
+  "SPC m h" "doc"
+  "SPC m m" "term manipulation"
+  "SPC m s" "repl")
+
 ;; Ledger Mode
 (evil-leader/set-key-for-mode 'ledger-mode
   "mr" 'balaji/insert-rupee-symbol
