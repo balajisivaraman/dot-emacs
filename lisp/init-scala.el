@@ -59,6 +59,7 @@
    ensime-prefer-noninteractive t
    ensime-refactor-enable-beta t
    ensime-refactor-preview t
+   ensime-startup-notification nil
    ensime-auto-connect 'always
    ensime-refactor-preview-override-hunk 10)
   :config
