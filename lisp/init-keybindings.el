@@ -30,7 +30,7 @@
 
 ;;; Code:
 
-(define-key key-translation-map "\C-t" "\C-x")
+;; (define-key key-translation-map "\C-t" "\C-x")
 
 ;; Newline should always indent by default.
 (bind-key "<RET>" 'newline-and-indent)
