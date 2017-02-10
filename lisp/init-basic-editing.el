@@ -62,7 +62,6 @@
 
 ;; Multiple Cursors Code
 (use-package multiple-cursors
-  :disabled
   :bind
   (
    ("C-c c <SPC>" . mc/vertical-align-with-space)
@@ -75,7 +74,7 @@
    ("C-c c r"     . vr/mc-mark)
    ("C-c c C-a"   . mc/edit-beginnings-of-lines)
    ("C-c c C-e"   . mc/edit-ends-of-lines)
-   ("C-c c C-s" . mc/mark-all-in-region)))
+   ("C-c c C-s"   . mc/mark-all-in-region)))
 
 ;; Easy killing and marking on C-w
 (use-package easy-kill
