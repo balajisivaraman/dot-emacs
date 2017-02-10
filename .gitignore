@@ -14,3 +14,4 @@ ensime
 .mc-lists.el
 /.persistent-scratch
 /var
+/network-security.data
