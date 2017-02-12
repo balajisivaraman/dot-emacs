@@ -49,9 +49,7 @@
         ("C-c m e" . ensime)
         ("C-c m s" . ensime-shutdown)
    :map ensime-mode-map
-        ("C-c m E" . ensime-reload)
-        ("M-n"     . nil)
-        ("M-p"     . nil))
+        ("C-c m E" . ensime-reload))
   :init
   (put 'ensime-auto-generate-config 'safe-local-variable #'booleanp)
   (setq
@@ -74,6 +72,7 @@
   "Prettify symbols for scala-mode.")
 
 (defun balaji/scala-mode-hook ()
+  "Hooks for Scala Mode."
   (setq prettify-symbols-alist balaji/scala-mode-prettify-symbols)
   (company-mode t)
   (ensime-mode t)
