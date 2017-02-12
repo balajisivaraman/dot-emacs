@@ -31,11 +31,15 @@
 ;;; Code:
 
 (use-package yasnippet
+  :demand t
   :commands (yas-expand yas-minor-mode)
   :diminish (yas-minor-mode . " Ⓨ")
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
   :init
-  (yas-global-mode 1))
+  (yas-global-mode 1)
+  :config
+  (yas-reload-all)
+  (bind-key "C-<tab>" 'yas-expand))
 
 (provide 'init-snippets)
 ;;; init-snippets.el ends here
