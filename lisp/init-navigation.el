@@ -31,6 +31,10 @@
 ;;; Code:
 
 (use-package avy
+  :chords (("jj" . avy-goto-char)
+           ("jw" . avy-goto-word-1)
+           ("jb" . avy-pop-mark)
+           ("jl" . avy-goto-line))
   :bind
   (("C-c j j" . avy-goto-char)
    ("C-c j w" . avy-goto-word-1)
