@@ -68,5 +68,8 @@
    paradox-use-homepage-buttons nil ; Can type v instead
    paradox-hide-wiki-packages t))
 
+(use-package use-package-chords
+  :config (key-chord-mode 1))
+
 (provide 'init-package)
 ;;; init-package.el ends here
