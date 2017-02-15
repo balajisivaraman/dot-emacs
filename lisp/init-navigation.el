@@ -152,7 +152,7 @@ _d_: subtree
 
 (use-package iy-go-to-char
   :chords (("fg" . iy-go-to-char)
-           ("fF" . iy-go-to-char-backward)))
+           ("fd" . iy-go-to-char-backward)))
 
 (provide 'init-navigation)
 ;;; init-navigation.el ends here
