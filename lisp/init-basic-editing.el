@@ -109,5 +109,9 @@
     ("d" embrace-delete)
     ("q" nil)))
 
+(use-package crux
+  :bind
+  (([reamp move-beginning-of-line] . crux-move-beginning-of-line)))
+
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here
