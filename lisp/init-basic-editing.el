@@ -111,7 +111,10 @@
 
 (use-package crux
   :bind
-  (([reamp move-beginning-of-line] . crux-move-beginning-of-line)))
+  (("C-a" . crux-move-beginning-of-line)
+   ("C-c d" . crux-duplicate-current-line-or-region)
+   ("C-c D" . crux-delete-file-and-buffer)
+   ("C-c T" . crux-visit-term-buffer)))
 
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here
