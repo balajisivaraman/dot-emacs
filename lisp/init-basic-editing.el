@@ -114,7 +114,8 @@
   (("C-a" . crux-move-beginning-of-line)
    ("C-c d" . crux-duplicate-current-line-or-region)
    ("C-c D" . crux-delete-file-and-buffer)
-   ("C-c T" . crux-visit-term-buffer)))
+   ("C-c T" . crux-visit-term-buffer)
+   ("C-c f r" . crux-rename-buffer-and-file)))
 
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here
