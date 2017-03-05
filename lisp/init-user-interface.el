@@ -47,7 +47,6 @@
   :init (nyan-mode))
 
 (use-package which-func
-  :disabled t
   :init (which-function-mode)
   :config
   (setq
