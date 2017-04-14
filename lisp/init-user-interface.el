@@ -30,9 +30,44 @@
 
 ;;; Code:
 
-(use-package ujelly-theme
+(use-package solarized-theme
   :init
-  (load-theme 'ujelly t))
+  (defvar my-color-themes (list '(solarized-dark) '(solarized-light)))
+  (defvar my-current-theme nil)
+  (defvar my-theme-list my-color-themes)
+
+  (defun balaji/set-default-theme ()
+    (interactive)
+    (setq my-current-theme (car (car my-color-themes)))
+    (setq my-theme-list (cdr my-color-themes))
+    (load-theme my-current-theme t))
+
+  (setq solarized-use-variable-pitch nil
+        ;; Prefer italics over bold
+        solarized-use-less-bold t
+        solarized-use-more-italic t
+        solarized-distinct-doc-face t)
+
+  (defun balaji/cycle-themes ()
+    (interactive)
+    (cond
+     ((null my-theme-list)
+      (setq my-current-theme (car (car my-color-themes)))
+      (setq my-theme-list (cdr my-color-themes)))
+     ((listp my-theme-list)
+      (setq my-current-theme (car (car my-theme-list)))
+      (setq my-theme-list (cdr my-theme-list)))
+     ((t)
+      (setq my-current-theme (car (car my-theme-list)))
+      (setq my-theme-list (my-color-themes))))
+    (load-theme my-current-theme t)
+    (spaceline-spacemacs-theme)
+    (message "%S" my-current-theme))
+
+  :bind
+  ("C-c t t" . balaji/cycle-themes))
+
+(balaji/set-default-theme)
 
 (use-package spaceline-config
   :ensure spaceline
