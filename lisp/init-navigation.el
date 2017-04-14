@@ -31,10 +31,6 @@
 ;;; Code:
 
 (use-package avy
-  :chords (("jj" . avy-goto-char)
-           ("jw" . avy-goto-word-1)
-           ("jb" . avy-pop-mark)
-           ("jl" . avy-goto-line))
   :bind
   (("C-c j j" . avy-goto-char)
    ("C-c j w" . avy-goto-word-1)
@@ -151,6 +147,7 @@ _d_: subtree
 (global-set-key (kbd "C-c O") 'balaji-outline/body) ; by example
 
 (use-package iy-go-to-char
+  :disabled
   :chords (("fg" . iy-go-to-char)
            ("fd" . iy-go-to-char-backward)))
 
