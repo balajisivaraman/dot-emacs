@@ -65,7 +65,9 @@
 ;; General Keybindings
 (evil-leader/set-key
   "Tn" 'balaji/cycle-themes
-  "ir" 'indent-region)
+  "ir" 'indent-region
+  "." 'xref-find-definitions
+  "," 'xref-pop-marker-stack)
 
 ;; Evil Mode
 (bind-key "\C-c" 'evil-force-normal-state evil-insert-state-map)
