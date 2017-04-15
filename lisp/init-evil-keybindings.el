@@ -464,6 +464,28 @@
     "qr" 'restart-emacs
     "qq" 'save-buffers-kill-emacs)
 
+;; Scala Mode
+(evil-leader/set-key-for-mode 'scala-mode
+  "." 'ensime-edit-definition
+  "," 'ensime-pop-find-definition-stack
+  "mi" 'ensime-import-type-at-point
+  "me" 'ensime
+  "mE" 'ensime-reload
+  "ms" 'ensime-shutdown
+  "mto" 'ensime-sbt-do-test-only-dwim
+  "mtt"  'ensime-sbt-do-test-dwim
+ )
+
+(which-key-declare-prefixes-for-mode 'purescript-mode
+  "SPC m" "Ensime"
+  "SPC m e" "Ensime Start"
+  "SPC m E" "Ensime Reload"
+  "SPC m s" "Ensime Shutdown"
+  "SPC m i" "Import Type at Point"
+  "SPC m t" "Test"
+  "SPC m t o" "Run Current Test"
+  "SPC m t t" "Run Tests")
+
 ;; Toggle Bindings
 (evil-leader/set-key
   "tr" 'linum-relative-mode
