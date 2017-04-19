@@ -66,6 +66,7 @@
 (evil-leader/set-key
   "Tn" 'balaji/cycle-themes
   "ir" 'indent-region
+  "en" 'balaji-flycheck-errors/body
   "." 'xref-find-definitions
   "," 'xref-pop-marker-stack)
 
