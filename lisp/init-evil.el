@@ -77,6 +77,9 @@
   (use-package evil-mc)
   (use-package evil-mc-extras
     :after evil-mc)
+  (use-package evil-snipe
+    :config
+    (setq evil-snipe-repeat-scope 'buffer))
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
@@ -84,6 +87,8 @@
   (global-evil-visualstar-mode)
   (global-evil-mc-mode 1)
   (global-evil-mc-extras-mode 1)
+  (evil-snipe-mode 1)
+  (evil-snipe-override-mode 1)
   (require 'init-evil-keybindings))
 
 (use-package evil
