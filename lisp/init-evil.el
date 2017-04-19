@@ -74,11 +74,16 @@
     :diminish vi-tilde-fringe-mode
     :init
     (global-vi-tilde-fringe-mode))
+  (use-package evil-mc)
+  (use-package evil-mc-extras
+    :after evil-mc)
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
   (evil-escape-mode)
   (global-evil-visualstar-mode)
+  (global-evil-mc-mode 1)
+  (global-evil-mc-extras-mode 1)
   (require 'init-evil-keybindings))
 
 (use-package evil
