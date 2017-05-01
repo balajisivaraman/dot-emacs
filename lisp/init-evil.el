@@ -74,10 +74,12 @@
     :diminish vi-tilde-fringe-mode
     :init
     (global-vi-tilde-fringe-mode))
-  (use-package evil-mc)
+  (use-package evil-mc
+    :diminish evil-mc-mode)
   (use-package evil-mc-extras
     :after evil-mc)
   (use-package evil-snipe
+    :diminish evil-snipe-local-mode
     :config
     (setq evil-snipe-scope 'buffer))
   (evil-mode t)
