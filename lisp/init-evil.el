@@ -93,6 +93,8 @@
   (add-hook 'text-mode 'evil-snipe-local-mode)
   (add-hook 'prog-mode 'evil-snipe-override-local-mode)
   (add-hook 'text-mode 'evil-snipe-override-local-mode)
+  (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-mode)
+  (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-override-mode)
   (require 'init-evil-keybindings))
 
 (use-package evil
