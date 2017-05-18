@@ -41,8 +41,9 @@
   (use-package linum-relative
     :diminish linum-relative-mode
     :commands linum-relative-mode
-    :config
+    :init
     (linum-relative-mode)
+    :config
     (setq linum-relative-current-symbol "")))
 
 (defun balaji/init-evil-org ()
