@@ -307,7 +307,8 @@
   "oa" 'org-agenda
   "od" 'org-check-deadlines
   "ob" 'org-check-before-date
-  "oA" 'org-check-after-date)
+  "oA" 'org-check-after-date
+  "os" 'org-agenda-list-stuck-projects)
 
 ;; Org Agenda Bindings
 (evil-define-key 'normal org-agenda-mode-map

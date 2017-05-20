@@ -62,6 +62,8 @@
    org-archive-location "/Users/balajisivaraman/ownCloud/Personal Notes/archives.org::"
    org-default-notes-file "~/ownCloud/Personal Notes/notes.org"
    org-agenda-ndays 21
+   ;; below setting lists all unscheduled tasks as stuck
+   org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
    org-deadline-warning-days 14
    org-agenda-show-all-dates t
    org-agenda-skip-deadline-if-done t
