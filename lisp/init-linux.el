@@ -223,6 +223,7 @@
 (global-prettify-symbols-mode +1)
 
 (setq epa-pinentry-mode 'loopback)
+(pinentry-start)
 
 (provide 'init-linux)
 ;;; init-linux.el ends here
