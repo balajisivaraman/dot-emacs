@@ -70,7 +70,9 @@
    org-agenda-skip-scheduled-if-done t
    org-agenda-start-on-weekday nil
    org-reverse-note-order t
-   org-log-done 'note))
+   org-log-done 'note)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 130))
 
 (use-package org-bullets
   :after org
