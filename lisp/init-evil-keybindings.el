@@ -375,6 +375,7 @@
   "x" 'org-agenda-exit
   "y" 'org-agenda-year-view
   "z" 'org-agenda-add-note
+  "s" 'org-save-all-org-buffers
   "{" 'org-agenda-manipulate-query-add-re
   "|" 'org-agenda-filter-remove-all
   "}" 'org-agenda-manipulate-query-subtract-re
