@@ -88,6 +88,7 @@
 (require 'init-purescript)
 (require 'init-org)
 (require 'init-ruby)
+(require 'init-rust)
 (require 'init-web-modes)
 (require 'init-scripting-langs)
 (require 'init-latex)

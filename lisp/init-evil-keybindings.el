@@ -462,6 +462,14 @@
   "SPC m p" "psci"
   "SPC m s" "server")
 
+;; Rust Bindings
+(evil-leader/set-key-for-mode 'rust-mode
+  "mcb" 'cargo-process-build
+  "mcr" 'cargo-process-run)
+
+(which-key-declare-prefixes-for-mode 'rust-mode
+  "SPC m c" "cargo")
+
 ;; Quit Bindings
 (evil-leader/set-key
     "qr" 'restart-emacs
