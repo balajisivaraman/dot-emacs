@@ -30,7 +30,9 @@
 
 ;;; Code:
 
-(load-theme 'dracula t)
+(use-package dracula-theme
+  :init
+  (load-theme 'dracula t))
 
 (use-package spaceline-config
   :ensure spaceline
