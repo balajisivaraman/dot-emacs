@@ -69,15 +69,17 @@
   (use-package evil-escape
     :diminish evil-escape-mode
     :config
-    (setq evil-escape-key-sequence "ue"))
+    (setq evil-escape-key-sequence "fd"))
   (use-package evil-magit)
   (use-package vi-tilde-fringe
     :diminish vi-tilde-fringe-mode
     :init
     (global-vi-tilde-fringe-mode))
   (use-package evil-mc
+    :disabled t
     :diminish evil-mc-mode)
   (use-package evil-mc-extras
+    :disabled t
     :after evil-mc)
   (use-package evil-snipe
     :diminish evil-snipe-local-mode
@@ -88,8 +90,8 @@
   (balaji/init-evil-org)
   (evil-escape-mode)
   (global-evil-visualstar-mode)
-  (global-evil-mc-mode 1)
-  (global-evil-mc-extras-mode 1)
+  ;; (global-evil-mc-mode 1)
+  ;; (global-evil-mc-extras-mode 1)
   (add-hook 'prog-mode 'evil-snipe-local-mode)
   (add-hook 'text-mode 'evil-snipe-local-mode)
   (add-hook 'prog-mode 'evil-snipe-override-local-mode)
