@@ -94,6 +94,7 @@
 (require 'init-latex)
 (require 'init-version-control)
 (require 'init-project)
+(require 'init-pragmata-pro)
 ;; (require 'init-evil-keybindings)
 
 ;; Initialize OS specific bindings
