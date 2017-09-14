@@ -38,5 +38,9 @@
   :mode
   "\\(\\.yml\\|\\.yaml\\)")
 
+(use-package toml-mode
+  :mode
+  "\\.toml")
+
 (provide 'init-markup-languages)
 ;;; init-markup-languages.el ends here
