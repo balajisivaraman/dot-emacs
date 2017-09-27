@@ -72,7 +72,7 @@
    org-reverse-note-order t
    org-log-done 'note)
   (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 130))
+  (setq org-habit-graph-column 100))
 
 (use-package org-bullets
   :after org
