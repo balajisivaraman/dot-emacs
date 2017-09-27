@@ -84,7 +84,7 @@
 (require 'init-scala)
 (require 'init-haskell)
 (require 'init-idris)
-(require 'init-erlang)
+;; (require 'init-erlang)
 (require 'init-purescript)
 (require 'init-org)
 (require 'init-ruby)
