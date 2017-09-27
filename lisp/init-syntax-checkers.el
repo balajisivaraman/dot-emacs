@@ -56,6 +56,11 @@
 (use-package helm-flycheck
   :after flycheck)
 
+(use-package flycheck-pos-tip
+  :after flycheck
+  :init
+  (add-hook 'flycheck-mode-hook 'flycheck-pos-tip-mode))
+
 ;; Flyspell Mode
 (use-package flyspell
   :ensure nil
