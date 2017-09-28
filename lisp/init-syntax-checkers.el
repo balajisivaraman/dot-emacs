@@ -63,6 +63,7 @@
 
 ;; Flyspell Mode
 (use-package flyspell
+  :diminish (flyspell-mode . " Ⓕ")
   :ensure nil
   :bind (("C-c i b" . flyspell-buffer)
          ("C-c i f" . flyspell-mode))
