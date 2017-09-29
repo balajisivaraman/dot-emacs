@@ -42,6 +42,7 @@
    ensime-startup-snapshot-notification nil))
 
 (use-package ensime
+  :pin melpa-stable
   :commands ensime ensime-mode
   :after scala-mode
   :bind
