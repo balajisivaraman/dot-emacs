@@ -43,7 +43,8 @@
     ("l" flycheck-list-errors "list")
     ("w" flycheck-copy-errors-as-kill "copy message")
     ;; See `helm-flycheck' package below
-    ("h" helm-flycheck "list with helm"))
+    ("h" helm-flycheck "list with helm")
+    ("q" nil "leave"))
 
   (global-flycheck-mode)
   :config
