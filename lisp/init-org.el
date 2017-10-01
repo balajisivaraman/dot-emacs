@@ -74,10 +74,13 @@
   (add-to-list 'org-modules 'org-habit)
   (setq org-habit-graph-column 100))
 
+(defun balaji/org-mode-hook ()
+  "My hooks for Org Mode."
+  (org-bullets-mode t)
+  (company-mode t))
+
 (use-package org-bullets
-  :after org
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
+  :after org)
 
 (use-package org-capture
   :ensure nil
@@ -90,6 +93,8 @@
    org-capture-templates
    '(("t" "Todo" entry (file+headline "/Users/balajisivaraman/ownCloud/Personal Notes/todo.org" "Tasks"))
      ("n" "Note" entry (file "/Users/balajisivaraman/ownCloud/Personal Notes/notes.org")))))
+
+(add-hook 'org-mode-hook 'balaji/org-mode-hook)
 
 (provide 'init-org)
 ;;; init-org.el ends here
