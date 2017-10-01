@@ -38,7 +38,30 @@
 
 (use-package cargo
   :diminish cargo-minor-mode
-  :commands cargo-minor-mode)
+  :commands cargo-minor-mode
+  :bind
+  (:map rust-mode-map
+        ("C-c m d" . cargo-process-doc)
+        ("C-c m f" . cargo-process-fmt)
+        ("C-c m r r" . cargo-process-run)
+        ("C-c m r b" . cargo-process-run-bin)
+        ("C-c m r e" . cargo-process-run-example)
+        ("C-c m n" . cargo-process-new)
+        ("C-c m m" . cargo-process-mode)
+        ("C-c m i" . cargo-process-init)
+        ("C-c m t t" . cargo-process-test)
+        ("C-c m t c" . cargo-process-current-test)
+        ("C-c m t f" . cargo-process-current-file-tests)
+        ("C-c m b" . cargo-process-build)
+        ("C-c m c" . cargo-process-clean)
+        ("C-c m k" . cargo-process-check)
+        ("C-c m B" . cargo-process-bench)
+        ("C-c m u" . cargo-process-update)
+        ("C-c m R" . cargo-process-repeat)
+        ("C-c m C" . cargo-process-clippy)
+        ("C-c m s" . cargo-process-search)
+        ("C-c m D" . cargo-process-doc-open))
+  )
 
 (use-package racer
   :diminish racer-mode

@@ -112,5 +112,9 @@
   "C-c m w" "wrap"
   "C-c m e" "extract")
 
+(which-key-declare-prefixes-for-mode 'rust-mode
+  "C-c m t" "test"
+  "C-c m r" "run")
+
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
