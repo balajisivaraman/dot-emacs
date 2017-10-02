@@ -39,7 +39,9 @@
 
 (use-package helm-projectile
   :bind
-  ("C-c C-f" . helm-projectile))
+  ("C-c C-f" . helm-projectile)
+  :config
+  (setq projectile-switch-project-action 'helm-projectile))
 
 (use-package ignoramus
   :config
