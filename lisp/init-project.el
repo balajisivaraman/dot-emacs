@@ -56,5 +56,26 @@
   ("C-c b m" . bookmark-set)
   ("C-c b l" . bookmark-bmenu-list))
 
+(use-package org-projectile
+  :defer t
+  :config
+  (setq  org-projectile-projects-file "/media/backup/Owncloud/Personal Notes/projects.org")
+  (add-to-list
+   'org-capture-templates
+   (org-projectile-project-todo-entry
+    :capture-character "l"
+    :capture-template "* TODO %? %a\n"
+    :capture-heading "Linked Project TODO"))
+  (add-to-list
+   'org-capture-templates
+   (org-projectile-project-todo-entry
+    :capture-character "p"))
+  (setq org-confirm-elisp-link-function nil)
+  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
+
+(use-package org-projectile-helm
+  :after org-projectile
+  :bind (("C-c n p" . org-projectile-helm-template-or-project)))
+
 (provide 'init-project)
 ;;; init-project.el ends here
