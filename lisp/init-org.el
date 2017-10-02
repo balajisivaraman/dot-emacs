@@ -70,6 +70,7 @@
    org-agenda-skip-scheduled-if-done t
    org-agenda-start-on-weekday nil
    org-reverse-note-order t
+   org-confirm-elisp-link-function nil
    org-log-done 'note)
   (add-to-list 'org-modules 'org-habit)
   (setq org-habit-graph-column 100))

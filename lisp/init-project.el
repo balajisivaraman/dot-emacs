@@ -60,7 +60,8 @@
 
 (use-package org-projectile
   :config
-  (setq  org-projectile-projects-file "/media/backup/Owncloud/Personal Notes/projects.org")
+  (setq org-projectile-projects-file "/media/backup/Owncloud/Personal Notes/projects.org"
+        org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
   (add-to-list
    'org-capture-templates
    (org-projectile-project-todo-entry
@@ -70,9 +71,7 @@
   (add-to-list
    'org-capture-templates
    (org-projectile-project-todo-entry
-    :capture-character "p"))
-  (setq org-confirm-elisp-link-function nil)
-  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
+    :capture-character "p")))
 
 (use-package org-projectile-helm
   :after org-projectile
