@@ -25,24 +25,52 @@
 (require 'ert)
 (require 'use-package)
 
-(ert-deftest use-package-mplist-get ()
-  (let ((mplist '(:foo bar baz bal :blob plap plup :blam))
-        (tests '((:foo . (bar baz bal))
-                 (:blob . (plap plup))
-                 (:blam . t)
-                 (:blow . nil))))
-    (mapc (lambda (test)
-            (should
-             (equal
-              (use-package-mplist-get mplist
-                                      (car test))
-              (cdr test))))
-          tests)))
+(ert-deftest use-package-normalize-binder ()
+  (let ((good-values '(:map map-sym
+                       ("str" . sym) ("str" . "str")
+                       ([vec] . sym) ([vec] . "str"))))
+    (should (equal (use-package-normalize-binder
+                    'foopkg :bind good-values)
+                   good-values)))
+  (should-error (use-package-normalize-binder
+                 'foopkg :bind '("foo")))
+  (should-error (use-package-normalize-binder
+                 'foopkg :bind '("foo" . 99)))
+  (should-error (use-package-normalize-binder
+                 'foopkg :bind '(99 . sym))))
 
-(ert-deftest use-package-mplist-keys ()
-  (should (equal (use-package-mplist-keys
-                  '(:foo bar baz bal :blob plap plup :blam))
-                 '(:foo :blob :blam))))
+(ert-deftest use-package-normalize-mode ()
+  (should (equal (use-package-normalize-mode 'foopkg :mode '(".foo"))
+                 '((".foo" . foopkg))))
+  (should (equal (use-package-normalize-mode 'foopkg :mode '(".foo" ".bar"))
+                 '((".foo" . foopkg) (".bar" . foopkg))))
+  (should (equal (use-package-normalize-mode 'foopkg :mode '((".foo" ".bar")))
+                 '((".foo" . foopkg) (".bar" . foopkg))))
+  (should (equal (use-package-normalize-mode 'foopkg :mode '((".foo")))
+                 '((".foo" . foopkg))))
+  (should (equal (use-package-normalize-mode 'foopkg :mode '((".foo" . foo) (".bar" . bar)))
+                 '((".foo" . foo) (".bar" . bar)))))
+
+(ert-deftest use-package-normalize-delight ()
+  (should (equal `((foo-mode nil foo))
+                 (use-package-normalize/:delight 'foo :delight nil)))
+  (should (equal `((foo-mode nil foo-mode))
+                 (use-package-normalize/:delight 'foo-mode :delight nil)))
+  (should (equal `((bar-mode nil foo))
+                 (use-package-normalize/:delight 'foo :delight '(bar-mode))))
+  (should (equal `((bar-mode nil :major))
+                 (use-package-normalize/:delight 'foo :delight '((bar-mode nil :major)))))
+  (should (equal `((foo-mode "abc" foo))
+                 (use-package-normalize/:delight 'foo :delight '("abc"))))
+  (should (equal `((foo-mode (:eval 1) foo))
+                 (use-package-normalize/:delight 'foo :delight '('(:eval 1)))))
+  (should (equal `((a-mode nil foo)
+                   (b-mode " b" foo))
+                 (use-package-normalize/:delight 'foo :delight '((a-mode)
+                                                                 (b-mode " b")))))
+  (should-error (use-package-normalize/:delight 'foo :delight '((:eval 1))))
+
+  )
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
