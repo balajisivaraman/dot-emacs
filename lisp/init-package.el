@@ -31,7 +31,8 @@
 ;;; Code:
 
 (add-to-list 'load-path (expand-file-name "use-package" balaji/site-lisp-dir))
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 ;; Always install packages from Melpa, Elpa
 ;; Over-ridden when not used by setting (:ensure nil) in use-package declarations
 (setq use-package-always-ensure t)
