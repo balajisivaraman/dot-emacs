@@ -57,7 +57,6 @@
   ("C-c b l" . bookmark-bmenu-list))
 
 (use-package org-projectile
-  :defer t
   :config
   (setq  org-projectile-projects-file "/media/backup/Owncloud/Personal Notes/projects.org")
   (add-to-list
