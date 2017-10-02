@@ -208,7 +208,7 @@ new list."
     (-select-column 1 '((1 2 3) (a b c) (:a :b :c))) => '(2 b :b)))
 
 (def-example-group "List to list"
-  "Bag of various functions which modify input list."
+  "Functions returning a modified copy of the input list."
 
   (defexamples -keep
     (-keep 'cdr '((1 2 3) (4 5) (6))) => '((2 3) (5))
@@ -384,6 +384,8 @@ new list."
   (defexamples -any?
     (-any? 'even? '(1 2 3)) => t
     (-any? 'even? '(1 3 5)) => nil
+    (-any? 'null '(1 3 5)) => nil
+    (-any? 'null '(1 3 ())) => t
     (--any? (= 0 (% it 2)) '(1 2 3)) => t)
 
   (defexamples -all?
@@ -505,6 +507,37 @@ new list."
     (--partition-by-header (= it 1) '(1 2 3 1 2 1 2 3 4)) => '((1 2 3) (1 2) (1 2 3 4))
     (--partition-by-header (> it 0) '(1 2 0 1 0 1 2 3 0)) => '((1 2 0) (1 0) (1 2 3 0))
     (-partition-by-header 'even? '(2 1 1 1 4 1 3 5 6 6 1)) => '((2 1 1 1) (4 1 3 5) (6 6 1)))
+
+  (defexamples -partition-after-pred
+    (-partition-after-pred #'oddp '()) => '()
+    (-partition-after-pred #'oddp '(1)) => '((1))
+    (-partition-after-pred #'oddp '(0 1)) => '((0 1))
+    (-partition-after-pred #'oddp '(1 1)) => '((1) (1))
+    (-partition-after-pred #'oddp '(0 0 0 1 0 1 1 0 1)) => '((0 0 0 1) (0 1) (1) (0 1)))
+
+  (defexamples -partition-before-pred
+    (-partition-before-pred #'oddp '()) => '()
+    (-partition-before-pred #'oddp '(1)) => '((1))
+    (-partition-before-pred #'oddp '(0 1)) => '((0) (1))
+    (-partition-before-pred #'oddp '(1 1)) => '((1) (1))
+    (-partition-before-pred #'oddp '(0 1 0)) => '((0) (1 0))
+    (-partition-before-pred #'oddp '(0 0 0 1 0 1 1 0 1)) => '((0 0 0) (1 0) (1) (1 0) (1)))
+
+  (defexamples -partition-before-item
+    (-partition-before-item 3 '()) => '()
+    (-partition-before-item 3 '(1)) => '((1))
+    (-partition-before-item 3 '(3)) => '((3))
+    (-partition-before-item 3 '(1 3)) => '((1) (3))
+    (-partition-before-item 3 '(1 3 4)) => '((1) (3 4))
+    (-partition-before-item 3 '(1 2 3 2 3 3 4)) => '((1 2) (3 2) (3) (3 4)))
+
+  (defexamples -partition-after-item
+    (-partition-after-item 3 '()) => '()
+    (-partition-after-item 3 '(1)) => '((1))
+    (-partition-after-item 3 '(3)) => '((3))
+    (-partition-after-item 3 '(3 1)) => '((3) (1))
+    (-partition-after-item 3 '(3 1 3)) => '((3) (1 3))
+    (-partition-after-item 3 '(3 2 3 3 4 5 3 2)) => '((3) (2 3) (3) (4 5 3) (2)))
 
   (defexamples -group-by
     (-group-by 'even? '()) => '()
@@ -667,10 +700,14 @@ new list."
   (defexamples -first
     (-first 'even? '(1 2 3)) => 2
     (-first 'even? '(1 3 5)) => nil
+    (-first 'null '(1 3 5)) => nil
+    (-first 'null '(1 3 ())) => nil
     (--first (> it 2) '(1 2 3)) => 3)
 
   (defexamples -some
     (-some 'even? '(1 2 3)) => t
+    (-some 'null '(1 2 3)) => nil
+    (-some 'null '(1 2 ())) => t
     (--some (member 'foo it) '((foo bar) (baz))) => '(foo bar)
     (--some (plist-get it :bar) '((:foo 1 :bar 2) (:baz 3))) => 2)
 
@@ -801,7 +838,33 @@ new list."
   (defexamples -->
     (--> "def" (concat "abc" it "ghi")) => "abcdefghi"
     (--> "def" (concat "abc" it "ghi") (upcase it)) => "ABCDEFGHI"
-    (--> "def" (concat "abc" it "ghi") upcase) => "ABCDEFGHI")
+    (--> "def" (concat "abc" it "ghi") upcase) => "ABCDEFGHI"
+    (--> "def" upcase) => "DEF"
+    (--> 3 (car (list it))) => 3
+
+    (--> '(1 2 3 4) (--map (1+ it) it)) => '(2 3 4 5)
+    (--map (--> it (1+ it)) '(1 2 3 4)) => '(2 3 4 5)
+
+    (--filter (--> it (equal 0 (mod it 2))) '(1 2 3 4)) => '(2 4)
+    (--> '(1 2 3 4) (--filter (equal 0 (mod it 2)) it)) => '(2 4)
+
+    (--annotate (--> it (< 1 it)) '(0 1 2 3)) => '((nil . 0)
+                                                   (nil . 1)
+                                                   (t . 2)
+                                                   (t . 3))
+
+    (--> '(0 1 2 3) (--annotate (< 1 it) it)) => '((nil . 0)
+                                                   (nil . 1)
+                                                   (t . 2)
+                                                   (t . 3)))
+
+  (defexamples -as->
+    (-as-> 3 my-var (1+ my-var) (list my-var) (mapcar (lambda (ele) (* 2 ele)) my-var)) => '(8)
+    (-as-> 3 my-var 1+) => 4
+    (-as-> 3 my-var) => 3
+    (-as-> "def" string (concat "abc" string "ghi")) => "abcdefghi"
+    (-as-> "def" string (concat "abc" string "ghi") upcase) => "ABCDEFGHI"
+    (-as-> "def" string (concat "abc" string "ghi") (upcase string)) => "ABCDEFGHI")
 
   (defexamples -some->
     (-some-> '(2 3 5)) => '(2 3 5)
@@ -1149,10 +1212,10 @@ new list."
     (defexamples -prodfn
       (funcall (-prodfn '1+ '1- 'int-to-string) '(1 2 3)) => '(2 1 "3")
       (-map (-prodfn '1+ '1-) '((1 2) (3 4) (5 6) (7 8))) => '((2 1) (4 3) (6 5) (8 7))
-      (apply '+ (funcall (-prodfn 'length 'string-to-int) '((1 2 3) "15"))) => 18
+      (apply '+ (funcall (-prodfn 'length 'string-to-number) '((1 2 3) "15"))) => 18
       (let ((f '1+)
             (g '1-)
-            (ff 'string-to-int)
+            (ff 'string-to-number)
             (gg 'length)
             (input '(1 2))
             (input2 "foo")
