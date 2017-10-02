@@ -151,5 +151,11 @@ _d_: subtree
   :chords (("fg" . iy-go-to-char)
            ("fd" . iy-go-to-char-backward)))
 
+(use-package beginend
+  :diminish ((beginend-global-mode . "")
+             (beginend-prog-mode . ""))
+  :init
+  (beginend-global-mode))
+
 (provide 'init-navigation)
 ;;; init-navigation.el ends here
