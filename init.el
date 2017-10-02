@@ -51,6 +51,7 @@
 (defvar balaji/lisp-dir (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path balaji/lisp-dir)
 
+(require 'init-variables)
 (require 'init-package)
 (require 'init-lib)
 (require 'init-functions)

@@ -51,9 +51,9 @@
                "DONE(d@/!)"
                "DEFERRED(r@/!)"
                "CANCELLED(x@/!)"))
-   org-agenda-files (quote ("~/ownCloud/Personal Notes/todo.org"))
-   org-archive-location "/Users/balajisivaraman/ownCloud/Personal Notes/archives.org::"
-   org-default-notes-file "~/ownCloud/Personal Notes/notes.org"
+   org-agenda-files (-concat org-agenda-files (list (s-concat balaji/org-files-path "todo.org")))
+   org-archive-location (s-concat balaji/org-files-path "archives.org::")
+   org-default-notes-file (s-concat balaji/org-files-path "notes.org")
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
    org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
@@ -85,8 +85,8 @@
   :config
   (setq
    org-capture-templates
-   '(("t" "Todo" entry (file+headline "/Users/balajisivaraman/ownCloud/Personal Notes/todo.org" "Tasks"))
-     ("n" "Note" entry (file "/Users/balajisivaraman/ownCloud/Personal Notes/notes.org")))))
+   '(("t" "Todo" entry (file+headline (s-concat balaji/org-files-path "todo.org") "Tasks"))
+     ("n" "Note" entry (file (s-concat balaji/org-files-path "notes.org"))))))
 
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
 

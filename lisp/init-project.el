@@ -53,7 +53,7 @@
 
 (use-package org-projectile
   :config
-  (setq org-projectile-projects-file "/media/backup/Owncloud/Personal Notes/projects.org"
+  (setq org-projectile-projects-file (s-concat balaji/org-files-path "projects.org")
         org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
   (add-to-list
    'org-capture-templates
