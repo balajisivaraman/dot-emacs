@@ -147,7 +147,8 @@ _d_: subtree
 (use-package beginend
   :diminish ((beginend-global-mode . "")
              (beginend-prog-mode . "")
-             (beginend-magit-status-mode . ""))
+             (beginend-magit-status-mode . "")
+             (beginend-prodigy-mode . ""))
   :init
   (beginend-global-mode))
 
