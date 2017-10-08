@@ -83,6 +83,7 @@
 (require 'init-org)
 (require 'init-ruby)
 (require 'init-rust)
+(require 'init-recentf)
 (require 'init-web-modes)
 (require 'init-scripting-langs)
 (require 'init-latex)
