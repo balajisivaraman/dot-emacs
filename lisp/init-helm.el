@@ -28,6 +28,7 @@
   :demand t
   :bind
   (("M-x" . helm-M-x)
+   ("C-x b" . helm-mini)
    ("C-x C-f" . helm-find-files)
    ("C-c f f" . helm-find-files)
    ("C-c f F" . helm-multi-files)
