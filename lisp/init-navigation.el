@@ -145,12 +145,14 @@ _d_: subtree
            ("fd" . iy-go-to-char-backward)))
 
 (use-package beginend
-  :diminish ((beginend-global-mode . "")
-             (beginend-prog-mode . "")
-             (beginend-magit-status-mode . "")
-             (beginend-prodigy-mode . ""))
+  :diminish
+  (beginend-global-mode . "")
   :init
-  (beginend-global-mode))
+  (beginend-global-mode)
+  (-each (-distinct (-map
+             (lambda (item) (cdr item))
+             beginend-modes))
+  (lambda (item) (diminish item ""))))
 
 (provide 'init-navigation)
 ;;; init-navigation.el ends here
