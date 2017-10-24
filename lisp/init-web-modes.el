@@ -84,5 +84,8 @@
 
 (add-hook 'js2-mode-hook 'balaji-js2-mode-hooks)
 
+(use-package restclient
+  :mode ("\\.http$" . restclient-mode))
+
 (provide 'init-web-modes)
 ;;; init-web-modes.el ends here
