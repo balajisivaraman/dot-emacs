@@ -45,7 +45,6 @@
    dired-listing-switches "-alhF"
    dired-ls-F-marks-symlinks t
    dired-recursive-copies 'always
-   diredp-hide-details-initially-flag nil
    dired-dwim-target t)
   (unbind-key "M-g" dired-mode-map))
 
