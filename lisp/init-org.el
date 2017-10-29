@@ -64,7 +64,15 @@
    org-agenda-start-on-weekday nil
    org-reverse-note-order t
    org-confirm-elisp-link-function nil
-   org-log-done 'note)
+   org-log-done 'note
+   org-agenda-custom-commands
+   (quote
+    (("u" alltodo "Unscheduled"
+      ((org-agenda-skip-function
+        (lambda nil
+          (org-agenda-skip-entry-if (quote scheduled) (quote deadline)
+                                    (quote regexp) "\n]+>")))
+       (org-agenda-overriding-header "Unscheduled TODO entries: "))))))
   (add-to-list 'org-modules 'org-habit)
   (setq org-habit-graph-column 100))
 
