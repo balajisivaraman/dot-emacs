@@ -110,5 +110,7 @@
    ("C-c T" . crux-visit-term-buffer)
    ("C-c f r" . crux-rename-buffer-and-file)))
 
+(use-package iedit)
+
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here
