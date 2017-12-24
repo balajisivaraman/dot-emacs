@@ -25,8 +25,8 @@
 
 (defvar balaji/org-files-path)
 (cond
- ((eq system-type 'darwin) (setq balaji/org-files-path "/Users/balajisivaraman/ownCloud/Personal Notes/"))
- ((eq system-type 'gnu/linux) (setq balaji/org-files-path "/media/backup/Owncloud/Personal Notes/")))
+ ((eq system-type 'darwin) (setq balaji/org-files-path "/Users/balajisivaraman/ownCloud/Tasks/"))
+ ((eq system-type 'gnu/linux) (setq balaji/org-files-path "/media/backup/Owncloud/Tasks/")))
 
 (provide 'init-variables)
 ;;; init-variables.el ends here
