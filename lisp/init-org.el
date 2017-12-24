@@ -93,8 +93,8 @@
   :config
   (setq
    org-capture-templates
-   '(("t" "Todo" entry (file+headline (s-concat balaji/org-files-path "todo.org") "Tasks"))
-     ("n" "Note" entry (file (s-concat balaji/org-files-path "notes.org"))))))
+   `(("t" "Todo" entry (file+headline ,(s-concat balaji/org-files-path "todo.org") "Tasks"))
+     ("n" "Note" entry (file ,(s-concat balaji/org-files-path "notes.org"))))))
 
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
 
