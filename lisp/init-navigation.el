@@ -154,5 +154,16 @@ _d_: subtree
              beginend-modes))
   (lambda (item) (diminish item ""))))
 
+(use-package helm-swoop
+  :after helm
+  :bind
+  (("M-i" . helm-swoop)
+   ("C-c M-i" . helm-multi-swoop)
+   ("C-x M-i" . helm-multi-swoop-all))
+  :config
+  (setq
+   helm-multi-swoop-edit-save t
+   helm-swoop-use-fuzzy-match t))
+
 (provide 'init-navigation)
 ;;; init-navigation.el ends here
