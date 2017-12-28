@@ -29,7 +29,6 @@
 (defun balaji/haskell-mode-hook ()
   (haskell-indentation-mode)
   (interactive-haskell-mode)
-  (intero-mode t)
   (company-mode t)
   (flycheck-mode))
 
@@ -57,7 +56,11 @@
      haskell-process-log t)))
 
 (use-package intero
-  :commands (intero-mode))
+  :commands (intero-global-mode)
+  :init
+  (intero-global-mode t)
+  :config
+  (setq intero-blacklist '("/home/balaji/.xmonad")))
 
 (add-hook 'haskell-mode-hook 'balaji/haskell-mode-hook)
 
