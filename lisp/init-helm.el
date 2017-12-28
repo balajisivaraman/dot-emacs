@@ -32,6 +32,9 @@
    ("C-x C-f" . helm-find-files)
    ("C-c f f" . helm-find-files)
    ("C-c f F" . helm-multi-files)
+   ("C-c r r" . helm-do-ag)
+   ("C-c r b" . helm-do-ag-buffers)
+   ("C-c r p" . helm-do-ag-project-root)
    ("C-c j t" . helm-imenu))
   :config
   (use-package helm-files
@@ -52,7 +55,7 @@
    helm-autoresize-min-height 10
    helm-autoresize-max-height 35
    helm-split-window-in-side-p t
-
+   helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s"
    helm-M-x-fuzzy-match t
    helm-buffers-fuzzy-matching t
    helm-recentf-fuzzy-match t
