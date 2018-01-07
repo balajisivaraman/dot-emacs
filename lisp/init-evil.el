@@ -77,6 +77,11 @@
     :diminish evil-snipe-local-mode
     :config
     (setq evil-snipe-scope 'buffer))
+  (use-package evil-goggles
+    :diminish (evil-goggles-mode)
+    :config
+    (evil-goggles-mode)
+    (evil-goggles-use-diff-faces))
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
