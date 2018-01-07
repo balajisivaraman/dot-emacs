@@ -457,7 +457,9 @@
   "SPC m s" "server")
 
 ;; Rust Bindings
+(evil-define-key 'normal 'rust-mode-map "gd" 'racer-find-definition)
 (evil-leader/set-key-for-mode 'rust-mode
+  "." 'racer-find-definition
   "md" 'cargo-process-doc
   "mf" 'cargo-process-fmt
   "mrr" 'cargo-process-run
