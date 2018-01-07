@@ -37,7 +37,8 @@
   (("C-S-z" . undo-tree-redo)
    ("C-z" . undo-tree-undo))
   :config
-  (global-undo-tree-mode 1))
+  (global-undo-tree-mode 1)
+  (setq undo-tree-visualizer-timestamps t))
 
 ;; Rectangle Editing
 (bind-key "C-x r i" 'string-insert-rectangle)
