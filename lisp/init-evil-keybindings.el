@@ -481,6 +481,13 @@
   "ms" 'cargo-process-search
   "mD" 'cargo-process-doc-open)
 
+;; Ripgrep
+(evil-leader/set-key
+  "rr" 'helm-do-ag
+  "rb" 'helm-do-ag-buffers
+  "rp" 'helm-do-ag-project-root
+  )
+
 (which-key-declare-prefixes-for-mode 'rust-mode
   "SPC m c" "cargo")
 
