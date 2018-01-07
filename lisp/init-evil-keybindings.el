@@ -85,7 +85,9 @@
   "jc" 'avy-goto-char
   "jj" 'avy-goto-char
   "jl" 'avy-goto-line
-  "jw" 'avy-goto-word-1)
+  "jw" 'avy-goto-word-1
+  "jt" 'helm-imenu
+  )
 
 ;; Bookmarks
 (evil-leader/set-key
@@ -388,7 +390,7 @@
   "ph" 'helm-projectile
   "pi" 'projectile-invalidate-cache
   "pk" 'projectile-kill-buffers
-  "xo" 'helm-imenu)
+  )
 
 ;; Projectile Bindings
 (evil-leader/set-key
