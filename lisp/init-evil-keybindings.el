@@ -97,7 +97,7 @@
 ;; Buffer Keybindings
 (evil-leader/set-key
   "bd" 'kill-buffer
-  "bb" 'switch-to-buffer
+  "bb" 'helm-mini
   "bI" 'ibuffer
   "br" 'revert-buffer
   "bp" 'previous-buffer
