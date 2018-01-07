@@ -21,14 +21,16 @@
 
 ;; Emacs Configuration for Balaji Sivaraman that serves the following primary uses;
 ;;
-;;  - Scala
-;;  - Haskell
-;;  - Emacs (and other) Lisp
+;;  - Evil Mode
+;;  - Rust
 ;;  - Org Mode (Daily Agenda, Note Taking, Day Planner etc.)
 ;;  - Personal Finance (Ledger)
 ;;  - Javascript
 ;;  - Ruby
 ;;  - Markdown
+;;  - Scala (Not Regularly Used)
+;;  - Haskell (Not Regularly Used)
+;;  - Emacs (and other) Lisp (Not Regularly Used)
 
 ;;; Code:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
