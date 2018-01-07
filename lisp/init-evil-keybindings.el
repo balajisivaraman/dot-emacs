@@ -139,6 +139,7 @@
   "fd" 'balaji-dot-emacs
   "ff" 'helm-find-files
   "fs" 'save-buffer
+  "fr" 'crux-rename-buffer-and-file
   "fw" 'write-file)
 
 ;; Helm Ag
