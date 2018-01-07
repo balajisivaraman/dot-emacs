@@ -1,5 +1,4 @@
-;;; -*- lexical-binding: t -*-
-;;; init-evil.el --- Evil Mode configuration.
+;;; init-evil.el --- Evil Mode configuration.  -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017  Balaji Sivaraman
 
@@ -83,6 +82,7 @@
   (balaji/init-evil-org)
   (evil-escape-mode)
   (global-evil-visualstar-mode)
+  (setq evil-search-module 'evil-search)
   ;; (global-evil-mc-mode 1)
   ;; (global-evil-mc-extras-mode 1)
   (add-hook 'prog-mode 'evil-snipe-local-mode)

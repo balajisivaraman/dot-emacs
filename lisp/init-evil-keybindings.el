@@ -1,5 +1,4 @@
-;;; -*- lexical-binding: t -*-
-;;; init-evil-keybindings.el --- Loads all Evil related keybindings.
+;;; init-evil-keybindings.el --- Loads all Evil related keybindings. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017  Balaji Sivaraman
 
@@ -99,7 +98,7 @@
 (evil-leader/set-key
   "bd" 'kill-buffer
   "bb" 'switch-to-buffer
-  "bB" 'ibuffer
+  "bI" 'ibuffer
   "br" 'revert-buffer
   "bp" 'previous-buffer
   "bn" 'next-buffer)
@@ -168,40 +167,40 @@
   "h?" 'help-for-help)
 
 ;; Ibuffer Bindings
-(evil-define-key 'normal 'ibuffer-mode-map "A" 'ibuffer-do-view)
-(evil-define-key 'normal 'ibuffer-mode-map "D" 'ibuffer-do-delete)
-(evil-define-key 'normal 'ibuffer-mode-map "E" 'ibuffer-do-eval)
-(evil-define-key 'normal 'ibuffer-mode-map "F" 'ibuffer-do-shell-command-file)
-(evil-define-key 'normal 'ibuffer-mode-map "H" 'ibuffer-do-view-other-frame)
-(evil-define-key 'normal 'ibuffer-mode-map "I" 'ibuffer-do-query-replace-regexp)
-(evil-define-key 'normal 'ibuffer-mode-map "M" 'ibuffer-do-toggle-modified)
-(evil-define-key 'normal 'ibuffer-mode-map "N" 'ibuffer-do-shell-command-pipe-replace)
-(evil-define-key 'normal 'ibuffer-mode-map "O" 'ibuffer-do-occur)
-(evil-define-key 'normal 'ibuffer-mode-map "P" 'ibuffer-do-print)
-(evil-define-key 'normal 'ibuffer-mode-map "Q" 'ibuffer-do-query-replace)
-(evil-define-key 'normal 'ibuffer-mode-map "R" 'ibuffer-do-rename-uniquely)
-(evil-define-key 'normal 'ibuffer-mode-map "S" 'ibuffer-do-save)
-(evil-define-key 'normal 'ibuffer-mode-map "T" 'ibuffer-do-toggle-read-only)
-(evil-define-key 'normal 'ibuffer-mode-map "U" 'ibuffer-do-replace-regexp)
-(evil-define-key 'normal 'ibuffer-mode-map "V" 'ibuffer-do-revert)
-(evil-define-key 'normal 'ibuffer-mode-map "W" 'ibuffer-do-view-and-eval)
-(evil-define-key 'normal 'ibuffer-mode-map "X" 'ibuffer-do-shell-command-pipe)
-(evil-define-key 'normal 'ibuffer-mode-map "`" 'ibuffer-switch-format)
-(evil-define-key 'normal 'ibuffer-mode-map "b" 'ibuffer-bury-buffer)
-(evil-define-key 'normal 'ibuffer-mode-map "d" 'ibuffer-mark-for-delete)
-(evil-define-key 'normal 'ibuffer-mode-map "g" 'ibuffer-update)
-(evil-define-key 'normal 'ibuffer-mode-map "j" 'ibuffer-jump-to-buffer)
-(evil-define-key 'normal 'ibuffer-mode-map "k" 'ibuffer-do-kill-lines)
-(evil-define-key 'normal 'ibuffer-mode-map "l" 'ibuffer-redisplay)
-(evil-define-key 'normal 'ibuffer-mode-map "m" 'ibuffer-mark-forward)
-(evil-define-key 'normal 'ibuffer-mode-map "n" 'ibuffer-forward-line)
-(evil-define-key 'normal 'ibuffer-mode-map "o" 'ibuffer-visit-buffer-other-window)
-(evil-define-key 'normal 'ibuffer-mode-map "p" 'ibuffer-backward-line)
-(evil-define-key 'normal 'ibuffer-mode-map "t" 'ibuffer-toggle-marks)
-(evil-define-key 'normal 'ibuffer-mode-map "u" 'ibuffer-unmark-forward)
-(evil-define-key 'normal 'ibuffer-mode-map "v" 'ibuffer-do-view)
-(evil-define-key 'normal 'ibuffer-mode-map "w" 'ibuffer-copy-filename-as-kill)
-(evil-define-key 'normal 'ibuffer-mode-map "x" 'ibuffer-do-kill-on-deletion-marks)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "A" 'ibuffer-do-view)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "D" 'ibuffer-do-delete)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "E" 'ibuffer-do-eval)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "F" 'ibuffer-do-shell-command-file)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "H" 'ibuffer-do-view-other-frame)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "I" 'ibuffer-do-query-replace-regexp)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "M" 'ibuffer-do-toggle-modified)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "N" 'ibuffer-do-shell-command-pipe-replace)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "O" 'ibuffer-do-occur)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "P" 'ibuffer-do-print)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "Q" 'ibuffer-do-query-replace)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "R" 'ibuffer-do-rename-uniquely)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "S" 'ibuffer-do-save)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "T" 'ibuffer-do-toggle-read-only)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "U" 'ibuffer-do-replace-regexp)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "V" 'ibuffer-do-revert)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "W" 'ibuffer-do-view-and-eval)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "X" 'ibuffer-do-shell-command-pipe)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "`" 'ibuffer-switch-format)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "b" 'ibuffer-bury-buffer)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "d" 'ibuffer-mark-for-delete)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "g" 'ibuffer-update)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "j" 'ibuffer-jump-to-buffer)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "k" 'ibuffer-do-kill-lines)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "l" 'ibuffer-redisplay)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "m" 'ibuffer-mark-forward)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "n" 'ibuffer-forward-line)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "o" 'ibuffer-visit-buffer-other-window)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "p" 'ibuffer-backward-line)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "t" 'ibuffer-toggle-marks)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "u" 'ibuffer-unmark-forward)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "v" 'ibuffer-do-view)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "w" 'ibuffer-copy-filename-as-kill)
+(evil-define-minor-mode-key 'normal 'ibuffer-mode "x" 'ibuffer-do-kill-on-deletion-marks)
 
 ;; Idris Mode
 (evil-leader/set-key-for-mode 'idris-mode
@@ -457,8 +456,26 @@
 
 ;; Rust Bindings
 (evil-leader/set-key-for-mode 'rust-mode
-  "mcb" 'cargo-process-build
-  "mcr" 'cargo-process-run)
+  "md" 'cargo-process-doc
+  "mf" 'cargo-process-fmt
+  "mrr" 'cargo-process-run
+  "mrb" 'cargo-process-run-bin
+  "mre" 'cargo-process-run-example
+  "mn" 'cargo-process-new
+  "mm" 'cargo-process-mode
+  "mi" 'cargo-process-init
+  "mtt" 'cargo-process-test
+  "mtc" 'cargo-process-current-test
+  "mtf" 'cargo-process-current-file-tests
+  "mb" 'cargo-process-build
+  "mc" 'cargo-process-clean
+  "mk" 'cargo-process-check
+  "mB" 'cargo-process-bench
+  "mu" 'cargo-process-update
+  "mR" 'cargo-process-repeat
+  "mC" 'cargo-process-clippy
+  "ms" 'cargo-process-search
+  "mD" 'cargo-process-doc-open)
 
 (which-key-declare-prefixes-for-mode 'rust-mode
   "SPC m c" "cargo")
