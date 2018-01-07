@@ -68,7 +68,6 @@
     :init
     (global-vi-tilde-fringe-mode))
   (use-package evil-mc
-    :disabled t
     :diminish evil-mc-mode)
   (use-package evil-mc-extras
     :disabled t
@@ -82,14 +81,17 @@
     :config
     (evil-goggles-mode)
     (evil-goggles-use-diff-faces))
+  (use-package evil-multiedit
+    :config
+    (evil-multiedit-default-keybinds))
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
   (evil-escape-mode)
   (global-evil-visualstar-mode)
   (setq evil-search-module 'evil-search)
-  ;; (global-evil-mc-mode 1)
-  ;; (global-evil-mc-extras-mode 1)
+  (add-hook 'prog-mode-hook 'evil-mc-mode)
+  (add-hook 'text-mode-hook 'evil-mc-mode)
   (add-hook 'prog-mode-hook 'turn-on-evil-snipe-mode)
   (add-hook 'text-mode-hook 'turn-on-evil-snipe-mode)
   (add-hook 'prog-mode-hook 'turn-on-evil-snipe-override-mode)
