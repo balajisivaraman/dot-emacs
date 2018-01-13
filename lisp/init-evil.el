@@ -83,7 +83,12 @@
     (evil-goggles-use-diff-faces))
   (use-package evil-multiedit
     :config
-    (evil-multiedit-default-keybinds))
+    (evil-multiedit-default-keybinds)
+    (define-key evil-insert-state-map (kbd "M-d") 'kill-word))
+  (use-package evil-rsi
+    :diminish (evil-rsi-mode)
+    :init
+    (evil-rsi-mode))
   (evil-mode t)
   (balaji/init-linum-relative)
   (balaji/init-evil-org)
