@@ -40,8 +40,14 @@
 
 (defun balaji/init-evil-org ()
   (use-package evil-org
+    :after org
     :diminish
-    (evil-org-mode)))
+    (evil-org-mode)
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+              (lambda ()
+                (evil-org-set-key-theme '(navigation insert textobjects additional calendar))))))
 
 (defun balaji/init-evil-mode ()
   "initialize evil mode and all its plugins"
