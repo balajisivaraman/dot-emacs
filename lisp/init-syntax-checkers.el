@@ -46,6 +46,12 @@
    flycheck-scalastylerc "scalastyle_config.xml")
   :diminish (flycheck-mode . " Ⓢ"))
 
+(use-package flycheck-proselint
+  :ensure nil
+  :after flycheck
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-proselint-setup))
+
 (use-package helm-flycheck
   :after flycheck)
 

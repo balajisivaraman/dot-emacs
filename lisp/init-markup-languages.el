@@ -25,7 +25,9 @@
 
 (use-package markdown-mode
   :mode
-  ".md\\|.markdown")
+  ".md\\|.markdown"
+  :init
+  (add-hook 'markdown-mode-hook #'flycheck-mode))
 
 (use-package yaml-mode
   :mode
