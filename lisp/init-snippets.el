@@ -34,5 +34,8 @@
   (yas-reload-all)
   (bind-key "C-<tab>" 'yas-expand))
 
+(use-package yasnippet-snippets
+  :after yasnippet)
+
 (provide 'init-snippets)
 ;;; init-snippets.el ends here
