@@ -299,6 +299,17 @@
   "gL" 'magit-log
   "gc" 'magit-checkout)
 
+;; Markdown Mode
+(evil-leader/set-key-for-mode 'markdown-mode
+  "mil" 'markdown-insert-link
+  "mib" 'markdown-insert-bold
+  "mii" 'markdown-insert-italic
+  )
+
+(which-key-declare-prefixes-for-mode 'markdown-mode
+  "SPC m i" "insert"
+  )
+
 ;; Org Bindings
 (evil-leader/set-key
   "oa" 'org-agenda
