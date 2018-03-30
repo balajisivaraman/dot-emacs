@@ -27,8 +27,7 @@
   :defer t
   :diminish projectile-mode
   :init
-  (projectile-global-mode)
-  (setq projectile-enable-caching t))
+  (projectile-mode))
 
 (use-package helm-projectile
   :bind
