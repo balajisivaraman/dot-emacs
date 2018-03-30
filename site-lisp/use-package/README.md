@@ -153,7 +153,7 @@ For example:
 ``` elisp
 (use-package projectile
   :bind-keymap
-  ("C-c p" . projectile-command-map)
+  ("C-c p" . projectile-command-map))
 ```
 
 ### Binding within local keymaps
@@ -670,6 +670,20 @@ If you need to install a different package from the one named by
   :ensure auctex)
 ```
 
+Note that `:ensure` will install a package if it is not already installed, but
+it does not keep it up-to-date. If you want to keep your packages updated
+automatically, one option is to use
+[auto-package-update](https://github.com/rranelli/auto-package-update.el),
+like
+
+``` elisp
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+```
+
 Lastly, when running on Emacs 24.4 or later, use-package can pin a package to
 a specific archive, allowing you to mix and match packages from different
 archives.  The primary use-case for this is preferring packages from the
@@ -732,11 +746,12 @@ is [`straight.el`](https://github.com/raxod502/straight.el).
 ## Gathering Statistics
 
 If you'd like to see how many packages you've loaded, what stage of
-initialization they've reached, and how much aggregate time they've spent
-(roughly), you can enable `use-package-compute-statistics` after loading
-`use-package` but before any `use-package` forms, and then run the command
-`M-x use-package-report` to see the results. The buffer displayed is an Org
-table for now. You can use `C-c ^` in a column to sort it.
+initialization they've reached, and how much aggregate time they've
+spent (roughly), you can enable `use-package-compute-statistics` after
+loading `use-package` but before any `use-package` forms, and then run
+the command `M-x use-package-report` to see the results. The buffer
+displayed is a tabulated list. You can use `S` in a column to sort the
+rows based on it.
 
 ## Keyword Extensions
 
@@ -777,18 +792,30 @@ does not, it will use your system package manager (using the package
 attempt an install of a binary by the same name asyncronously. For
 example, for most `macOS` users this would call: `brew install rg`.
 
-What if you want to customize the install command?
+If the package is named differently than the binary, you can use a
+cons in the form of  `(binary . package-name)`, i.e.:
+
+``` emacs-lisp
+(use-package rg
+  :ensure-system-package
+  (rg . ripgrep))
+```
+
+In the previous `macOS` example, this would call: `brew install
+ripgrep` if `rg` was not found.
+
+What if you want to customize the install command further?
 
 ``` emacs-lisp
 (use-package tern
   :ensure-system-package (tern . "npm i -g tern"))
 ```
 
-`:ensure-system-package` can take a cons. In that case, its `cdr`
-should be a string that will get called by `(async-shell-command)` to
-install if it isn’t found.
+`:ensure-system-package` can also take a cons where its `cdr` is a
+string that will get called by `(async-shell-command)` to install if
+it isn’t found.
 
-Also you may also pass in a list of cons-es in the same format:
+You may also pass in a list of cons-es:
 
 ``` emacs-lisp
 (use-package ruby-mode
