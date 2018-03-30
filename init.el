@@ -76,6 +76,7 @@
 (require 'init-markup-languages)
 (require 'init-finance)
 (require 'init-lisp)
+(require 'init-lsp)
 (require 'init-scala)
 (require 'init-haskell)
 (require 'init-idris)

@@ -56,13 +56,10 @@
         ("C-c m D" . cargo-process-doc-open))
   )
 
-(use-package racer
-  :diminish racer-mode
-  :commands racer-mode
+(use-package lsp-rust
+  :after (lsp-mode)
   :config
-  (setq
-   racer-cmd "~/.cargo/bin/racer"
-   racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls")))
 
 (use-package flycheck-rust
   :commands flycheck-rust-setup)
@@ -70,10 +67,10 @@
 (defun balaji/rust-mode-hook ()
   "Hooks for Rust Mode."
   (cargo-minor-mode)
-  (racer-mode)
+  (lsp-rust-enable)
   (eldoc-mode)
   (company-mode)
-  (flycheck-rust-setup))
+  (flycheck-mode))
 
 (add-hook 'rust-mode-hook 'balaji/rust-mode-hook)
 
