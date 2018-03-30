@@ -49,6 +49,7 @@
   (unbind-key "M-g" dired-mode-map))
 
 (use-package dired+
+  :ensure nil
   :after dired)
 
 (use-package dired-x
