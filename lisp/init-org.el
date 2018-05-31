@@ -96,6 +96,23 @@
    `(("t" "Todo" entry (file+headline ,(s-concat balaji/org-files-path "todo.org") "Tasks"))
      ("n" "Note" entry (file ,(s-concat balaji/org-files-path "notes.org"))))))
 
+(use-package org-super-agenda
+  :init
+  (org-super-agenda-mode t)
+  (setq org-super-agenda-groups
+        '((:name "Important - Work"
+                 :and (:priority "A" :tag "work"))
+          (:name "Important"
+                 :priority "A")
+          (:name "Work"
+                 :and (:priority<= "B" :tag "work"))
+          (:name "Waiting"
+                 :todo "WAITING"
+                 :order 8)
+          (:name "Personal"
+                 :tag "Personal")
+          )))
+
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
 
 (provide 'init-org)
