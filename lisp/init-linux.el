@@ -23,8 +23,10 @@
 
 ;;; Code:
 
-(setq epa-pinentry-mode 'loopback)
-(pinentry-start)
+(use-package pinentry
+  :init
+  (setq epa-pinentry-mode 'loopback)
+  (pinentry-start))
 
 (provide 'init-linux)
 ;;; init-linux.el ends here
