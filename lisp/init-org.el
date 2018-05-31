@@ -74,7 +74,7 @@
                                     (quote regexp) "\n]+>")))
        (org-agenda-overriding-header "Unscheduled TODO entries: "))))))
   (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 100))
+  (setq org-agenda-tags-column 110))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
