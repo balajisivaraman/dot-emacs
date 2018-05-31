@@ -23,9 +23,10 @@
 
 ;;; Code:
 
-(use-package atom-one-dark-theme
+(use-package one-themes
+  :load-path "~/Projects/emacs-lisp/emacs-one-themes"
   :init
-  (load-theme 'atom-one-dark t))
+  (load-theme 'one-light t))
 
 (use-package spaceline-config
   :ensure spaceline
