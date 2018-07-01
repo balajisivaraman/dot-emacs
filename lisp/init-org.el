@@ -72,7 +72,9 @@
        (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
      ("h" "At Home" tags-todo "@home|@anywhere"
       ((org-agenda-overriding-header "Home")
-       (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first))))
+       (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+     ("W" "Waiting For" todo "WAITING"
+      ((org-agenda-overriding-header "Waiting For"))))
    org-tag-alist '(("@anywhere" . ?a)
                    ("@computer" . ?c)
                    ("@email" . ?e)
