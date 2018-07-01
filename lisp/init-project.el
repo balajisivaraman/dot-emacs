@@ -50,21 +50,6 @@
   ("C-c b m" . bookmark-set)
   ("C-c b l" . bookmark-bmenu-list))
 
-(use-package org-projectile
-  :config
-  (setq org-projectile-projects-file (s-concat balaji/org-files-path "projects.org")
-        org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-  (add-to-list
-   'org-capture-templates
-   (org-projectile-project-todo-entry
-    :capture-character "l"
-    :capture-template "* TODO %? %a\n"
-    :capture-heading "Linked Project TODO"))
-  (add-to-list
-   'org-capture-templates
-   (org-projectile-project-todo-entry
-    :capture-character "p")))
-
 (use-package org-projectile-helm
   :after org-projectile
   :bind (("C-c n p" . org-projectile-helm-template-or-project)))
