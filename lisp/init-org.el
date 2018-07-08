@@ -67,10 +67,10 @@
    org-confirm-elisp-link-function nil
    org-log-done 'note
    org-agenda-custom-commands
-   '(("w" "At Work" tags-todo "@work|@anywhere"
-      ((org-agenda-overriding-header "Work")
+   '(("w" "At Work" tags-todo "@work|@anywhere|@phone"
+      ((Org-agenda-overriding-header "Work")
        (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-     ("h" "At Home" tags-todo "@home|@anywhere"
+     ("h" "At Home" tags-todo "@home|@anywhere|@phone"
       ((org-agenda-overriding-header "Home")
        (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
      ("W" "Waiting For" todo "WAITING"
