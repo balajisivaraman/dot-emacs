@@ -23,16 +23,6 @@
 
 ;;; Code:
 
-(use-package "isearch"
-  :defer t
-  :ensure nil
-  :bind (("C-s"   . isearch-forward-regexp)
-         ("C-r"   . isearch-backward-regexp)
-         ("C-M-s" . isearch-forward)
-         ("C-M-r" . isearch-backward))
-  :init
-  (diminish 'isearch-mode))
-
 (use-package visual-regexp
   :bind (("C-c s r" . vr/query-replace)
          ("C-c s R" . vr/replace)))
