@@ -37,28 +37,7 @@
   :bind (("C-c s r" . vr/query-replace)
          ("C-c s R" . vr/replace)))
 
-(use-package helm-swoop
-  :ensure t
-  :bind (("C-c s s" . helm-swoop)
-         ("C-c s S" . helm-multi-swoop)
-         ("C-c s C-s" . helm-multi-swoop-all))
-  :config
-  (setq helm-swoop-speed-or-color t
-        ;; Split window like Helm does
-        helm-swoop-split-window-function #'helm-default-display-buffer))
-
-(use-package ag)
-
-(use-package helm-ag
-  :bind
-  (("C-c s a" . helm-ag)
-   ("C-c s A" . helm-do-ag))
-  :config
-  (setq
-   helm-ag-fuzzy-match t                   ; Fuzzy matching
-   helm-ag-insert-at-point 'symbol         ; Default to symbol at point
-   helm-ag-edit-save t                     ; save buffers after editing
-   ))
+(use-package ripgrep)
 
 (provide 'init-search)
 ;;; init-search.el ends here

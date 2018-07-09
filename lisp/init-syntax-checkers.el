@@ -34,10 +34,7 @@
     ("p" flycheck-previous-error "previous")
     ("f" flycheck-first-error "first")
     ("l" flycheck-list-errors "list")
-    ("w" flycheck-copy-errors-as-kill "copy message")
-    ;; See `helm-flycheck' package below
-    ("h" helm-flycheck "list with helm"))
-
+    ("w" flycheck-copy-errors-as-kill "copy message"))
   (global-flycheck-mode)
   :config
   (setq
@@ -51,9 +48,6 @@
   :after flycheck
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-proselint-setup))
-
-(use-package helm-flycheck
-  :after flycheck)
 
 (use-package flycheck-pos-tip
   :after flycheck

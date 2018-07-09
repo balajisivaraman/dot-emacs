@@ -31,7 +31,6 @@
 (use-package spaceline-config
   :ensure spaceline
   :config
-  (spaceline-helm-mode)
   (spaceline-spacemacs-theme)
   ;; (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (spaceline-toggle-window-number-on)

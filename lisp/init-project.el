@@ -27,13 +27,8 @@
   :defer t
   :diminish projectile-mode
   :init
-  (projectile-mode))
-
-(use-package helm-projectile
-  :bind
-  ("C-c C-f" . helm-projectile)
-  :config
-  (setq projectile-switch-project-action 'helm-projectile))
+  (projectile-mode)
+  (unbind-key "C-c p s r"))
 
 (use-package ignoramus
   :config
@@ -49,10 +44,6 @@
   ("C-c b b" . bookmark-jump)
   ("C-c b m" . bookmark-set)
   ("C-c b l" . bookmark-bmenu-list))
-
-(use-package org-projectile-helm
-  :after org-projectile
-  :bind (("C-c n p" . org-projectile-helm-template-or-project)))
 
 (provide 'init-project)
 ;;; init-project.el ends here
