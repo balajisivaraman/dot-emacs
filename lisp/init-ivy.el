@@ -57,5 +57,15 @@
         ("C-s" . swiper)
         ("C-r" . swiper)))
 
+(use-package historian
+  :after (ivy)
+  :init
+  (historian-mode t))
+
+(use-package ivy-historian
+  :after (ivy)
+  :config
+  (ivy-historian-mode t))
+
 (provide 'init-ivy)
 ;;; init-ivy.el ends here
