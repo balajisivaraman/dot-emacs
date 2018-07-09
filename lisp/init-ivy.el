@@ -33,6 +33,7 @@
    ivy-count-format ""
    projectile-completion-system 'ivy
    ivy-dynamic-exhibit-delay-ms 150
+   ivy-initial-inputs-alist nil
    ivy-height 10
    enable-recursive-minibuffers t))
 
