@@ -27,7 +27,5 @@
   :bind (("C-c s r" . vr/query-replace)
          ("C-c s R" . vr/replace)))
 
-(use-package ripgrep)
-
 (provide 'init-search)
 ;;; init-search.el ends here
