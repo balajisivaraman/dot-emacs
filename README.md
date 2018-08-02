@@ -133,6 +133,16 @@ Examples:
          ([S-f10] . helm-recentf)))
 ```
 
+Furthermore, [remapping commands](https://www.gnu.org/software/emacs/manual/html_node/elisp/Remapping-Commands.html)
+with `:bind` and `bind-key` works as expected, because when the
+binding is a vector, it is passed straight to `define-key`. So the
+following example will rebind `M-q` (originally `fill-paragraph`) to
+`unfill-toggle`:
+
+``` elisp
+(use-package unfill
+  :bind ([remap fill-paragraph] . unfill-toggle))
+```
 
 ### Binding to keymaps
 
@@ -826,6 +836,17 @@ You may also pass in a list of cons-es:
    (pry         . "gem install pry")))
 ```
 
+Finally, in case the package dependency does not provide a global
+executable, you can ensure packages exist by checking the presence of
+a file path by providing a string like so:
+
+``` emacs-lisp
+(use-package dash-at-point
+  :if (eq system-type 'darwin)
+  :ensure-system-package
+  ("/Applications/Dash.app" . "brew cask install dash"))
+```
+
 ### `(use-package-chords)`
 
 The `:chords` keyword allows you to define
@@ -917,9 +938,8 @@ body, so that only the minimum code necessary is emitted as the result of a
 
 After the keyword has been inserted into `use-package-keywords`, and a
 normalizer and a handler defined, you can now test it by seeing how usages of
-the keyword will expand.  For this, temporarily set `use-package-debug` to
-`t`, and just evaluate the `use-package` declaration.  The expansion will be
-shown in a special buffer called `*use-package*`.
+the keyword will expand.  For this, use `M-x pp-macroexpand-last-sexp` with
+the cursor set immediately after the `(use-package ...)` expression.
 
 ## Some timing results
 
