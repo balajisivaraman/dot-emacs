@@ -56,7 +56,7 @@
   (use-package evil-visualstar)
   (use-package evil-nerd-commenter
     :init
-    (evilnc-default-hotkeys))
+    (evilnc-default-hotkeys nil t))
   (use-package evil-indent-textobject)
   (use-package evil-matchit
     :init

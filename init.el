@@ -94,6 +94,7 @@
 (require 'init-project)
 (require 'init-pragmata-pro)
 (require 'init-evil-keybindings)
+(require 'init-general-keybindings)
 
 ;; Initialize OS specific bindings
 (cond
