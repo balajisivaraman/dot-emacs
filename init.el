@@ -60,7 +60,7 @@
 (require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
-;; (require 'init-evil)
+(require 'init-evil)
 (require 'init-navigation)
 (require 'init-user-interface)
 (require 'init-helm)
@@ -93,7 +93,7 @@
 (require 'init-version-control)
 (require 'init-project)
 (require 'init-pragmata-pro)
-;; (require 'init-evil-keybindings)
+(require 'init-evil-keybindings)
 
 ;; Initialize OS specific bindings
 (cond
