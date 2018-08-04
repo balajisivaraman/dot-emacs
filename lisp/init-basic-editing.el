@@ -25,10 +25,8 @@
 
 ;; Browse Kill Ring
 (use-package browse-kill-ring
-  :defer 10
-  :commands browse-kill-ring
-  :config
-  (browse-kill-ring-default-keybindings))
+  :bind
+  ("M-y" . browse-kill-ring))
 
 ;; Undo Tree
 (use-package undo-tree
