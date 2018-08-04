@@ -56,15 +56,6 @@
     ("C-c C-f" . helm-projectile)
     :config
     (setq projectile-switch-project-action 'helm-projectile))
-  (use-package helm-swoop
-    :ensure t
-    :bind (("C-c s s" . helm-swoop)
-           ("C-c s S" . helm-multi-swoop)
-           ("C-c s C-s" . helm-multi-swoop-all))
-    :config
-    (setq helm-swoop-speed-or-color t
-          ;; Split window like Helm does
-          helm-swoop-split-window-function #'helm-default-display-buffer))
   (helm-autoresize-mode 1)
   (setq-default
    helm-display-header-line nil
