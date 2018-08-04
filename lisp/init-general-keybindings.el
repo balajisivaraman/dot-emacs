@@ -129,7 +129,7 @@
   "/" 'helm-do-ag)
 
 ;; Help
-(evil-leader/set-key
+(balaji/general-bindings
   "hA" 'about-emacs
   "ha" 'apropos-command
   "hc" 'describe-copying
