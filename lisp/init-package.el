@@ -39,7 +39,9 @@
 (package-initialize)
 ;; package.el should not initialize our packages.
 ;; We're going to use use-package for that.
-(setq package-enable-at-startup nil)
+(setq package-enable-at-startup nil
+      ;; don't add that `custom-set-variables' block to my initl!
+      package--init-file-ensured t)
 
 (defun package-require (package)
   "Install `PACKAGE` only if it is not already installed."
