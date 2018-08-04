@@ -42,7 +42,8 @@
   :init
   (advice-add 'org-agenda :after #'delete-other-windows)
   :config
-  (evil-set-initial-state 'org-agenda-mode 'normal)
+  (when balaji-evil-mode-enabled
+    (evil-set-initial-state 'org-agenda-mode 'normal))
   (setq
    org-todo-keywords
    '((sequence "TODO(t@/!)"

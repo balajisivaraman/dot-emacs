@@ -49,6 +49,7 @@
 (setq file-name-handler-alist nil)
 
 (defconst emacs-start-time (current-time))
+(defconst balaji-evil-mode-enabled nil)
 
 ;;; Initial Setup
 (setq user-full-name "Balaji Sivaraman")
@@ -66,7 +67,8 @@
 (require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
-(require 'init-evil)
+(when balaji-evil-mode-enabled
+  (require 'init-evil))
 (require 'init-navigation)
 (require 'init-user-interface)
 (require 'init-helm)
@@ -99,7 +101,8 @@
 (require 'init-version-control)
 (require 'init-project)
 (require 'init-pragmata-pro)
-(require 'init-evil-keybindings)
+(when balaji-evil-mode-enabled
+  (require 'init-evil-keybindings))
 (require 'init-general-keybindings)
 
 ;; Initialize OS specific bindings

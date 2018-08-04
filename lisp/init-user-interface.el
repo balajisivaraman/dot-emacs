@@ -32,7 +32,8 @@
   :ensure spaceline
   :config
   (spaceline-spacemacs-theme)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (when balaji-evil-mode-enabled
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
   (spaceline-toggle-window-number-on)
   (setq spaceline-window-numbers-unicode t))
 

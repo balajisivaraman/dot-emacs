@@ -25,7 +25,8 @@
 
 (use-package ibuffer-vc
   :config
-  (evil-set-initial-state 'ibuffer-mode 'normal)
+  (when balaji-evil-mode-enabled
+    (evil-set-initial-state 'ibuffer-mode 'normal))
   (add-hook
    'ibuffer-hook
    (lambda ()

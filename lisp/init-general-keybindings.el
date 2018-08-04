@@ -50,10 +50,11 @@
      (my-emacs-local-leader-def
        :keymaps ,major-mode-map
        ,@args)
-     (my-evil-local-leader-def
-       :states 'normal
-       :keymaps ,major-mode-map
-       ,@args)
+     (when balaji-evil-mode-enabled
+       (my-evil-local-leader-def
+         :states 'normal
+         :keymaps ,major-mode-map
+         ,@args))
      )
   )
 
@@ -62,8 +63,9 @@
   `(progn
      (my-emacs-leader-def
        ,@args)
-     (my-evil-leader-def 'normal 'override
-       ,@args)
+     (when balaji-evil-mode-enabled
+       (my-evil-leader-def 'normal 'override
+         ,@args))
      )
   )
 
