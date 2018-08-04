@@ -45,9 +45,6 @@
       package--init-file-ensured t)
 
 (use-package paradox
-  :bind (("C-c a p" . paradox-list-packages)
-         ("C-c a P" . package-list-packages-no-fetch)
-         ("C-c a u" . paradox-upgrade-packages))
   :config
   (setq
    paradox-execute-asynchronously nil ; No async update, please
