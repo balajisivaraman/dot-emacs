@@ -23,7 +23,6 @@
 
 ;;; Code:
 
-(package-require 'haskell-mode)
 (load "haskell-mode-autoloads")
 
 (defun balaji/haskell-mode-hook ()

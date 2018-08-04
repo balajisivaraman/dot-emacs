@@ -43,11 +43,6 @@
       ;; don't add that `custom-set-variables' block to my initl!
       package--init-file-ensured t)
 
-(defun package-require (package)
-  "Install `PACKAGE` only if it is not already installed."
-  (unless (package-installed-p package)
-    (package-install package nil)))
-
 (use-package paradox
   :bind (("C-c a p" . paradox-list-packages)
          ("C-c a P" . package-list-packages-no-fetch)
