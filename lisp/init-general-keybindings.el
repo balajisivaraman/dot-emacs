@@ -366,6 +366,11 @@
     "qr" 'restart-emacs
     "qq" 'save-buffers-kill-emacs)
 
+;; Ripgrep
+(balaji/general-bindings
+ "rr" 'deadgrep
+  )
+
 ;; Rust Bindings
 ;; (evil-define-key 'normal 'rust-mode-map "gd" 'racer-find-definition)
 (balaji/general-mode-specific-bindings 'rust-mode-map

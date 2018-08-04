@@ -24,8 +24,12 @@
 ;;; Code:
 
 (use-package visual-regexp
+  :disabled t
   :bind (("C-c s r" . vr/query-replace)
          ("C-c s R" . vr/replace)))
+
+(use-package deadgrep
+  :commands (deadgrep))
 
 (provide 'init-search)
 ;;; init-search.el ends here

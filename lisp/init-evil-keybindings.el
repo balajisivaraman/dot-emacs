@@ -196,12 +196,13 @@
   "}" 'org-agenda-manipulate-query-subtract-re
   "~" 'org-agenda-limit-interactively)
 
-;; Ripgrep
-(evil-leader/set-key
-  "rr" 'helm-do-ag
-  "rb" 'helm-do-ag-buffers
-  "rp" 'helm-do-ag-project-root
-  )
+(evil-define-key 'normal deadgrep-mode-map
+  "RET" 'deadgrep-visit-result
+  "n" 'deadgrep-forward
+  "p" 'deadgrep-backward
+  "g" 'deadgrep-restart
+  "q" 'quit-window
+  (kbd "TAB") 'deadgrep-toggle-file-results)
 
 (provide 'init-evil-keybindings)
 ;;; init-evil-keybindings.el ends here
