@@ -80,8 +80,7 @@
 
 ;; Bookmarks
 (balaji/general-bindings
- "Bb" 'bookmark-jump
- "Bj" 'bookmark-jump
+ "fb" 'bookmark-jump
  "Bs" 'bookmark-set
  "Bl" 'bookmark-bmenu-list)
 
