@@ -197,7 +197,7 @@
   "~" 'org-agenda-limit-interactively)
 
 (evil-define-key 'normal deadgrep-mode-map
-  "RET" 'deadgrep-visit-result
+  (kbd "RET") 'deadgrep-visit-result
   "n" 'deadgrep-forward
   "p" 'deadgrep-backward
   "g" 'deadgrep-restart
