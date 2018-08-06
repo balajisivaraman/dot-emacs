@@ -49,7 +49,7 @@
 (setq file-name-handler-alist nil)
 
 (defconst emacs-start-time (current-time))
-(defconst balaji-evil-mode-enabled nil)
+(defconst balaji-evil-mode-enabled t)
 
 ;;; Initial Setup
 (setq user-full-name "Balaji Sivaraman")
