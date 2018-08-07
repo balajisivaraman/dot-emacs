@@ -270,6 +270,7 @@
 ;; Package Utils
 (balaji/general-bindings
   "Pu" 'paradox-upgrade-packages
+  "Pm" 'elpamr-create-mirror-for-installed
   "PP" 'package-list-packages-no-fetch
   "Pp" 'paradox-list-packages)
 
