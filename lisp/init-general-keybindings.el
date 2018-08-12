@@ -52,7 +52,7 @@
        ,@args)
      (when balaji-evil-mode-enabled
        (my-evil-local-leader-def
-         :states 'normal
+         :states '(normal visual)
          :keymaps ,major-mode-map
          ,@args))
      )
