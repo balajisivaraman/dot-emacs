@@ -261,6 +261,8 @@
   "oc" 'org-capture
   "od" 'org-check-deadlines
   "oA" 'org-check-after-date
+  "or" 'org-archive-subtree
+  "ol" 'balaji/org-insert-prop-for-current-entry
   "os" 'org-agenda-list-stuck-projects)
 
 ;; Outline Mode

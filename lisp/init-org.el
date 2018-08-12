@@ -147,7 +147,6 @@
   (interactive)
   (save-excursion
     (balaji/org-capture-hook)))
-(bind-key "C-c o l" 'balaji/org-insert-prop-for-current-entry)
 
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
