@@ -87,8 +87,6 @@
     (bind-key "C-k" 'company-select-previous company-active-map)))
 
 
-(evil-define-key 'motion 'help-mode-map (kbd "TAB") 'forward-button)
-
 ;; Ibuffer Bindings
 (evil-define-minor-mode-key 'normal 'ibuffer-mode "A" 'ibuffer-do-view)
 (evil-define-minor-mode-key 'normal 'ibuffer-mode "D" 'ibuffer-do-delete)
