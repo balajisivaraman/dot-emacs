@@ -53,7 +53,9 @@
   "initialize evil mode and all its plugins"
   (setq evil-default-cursor 'box)
   (balaji/init-evil-leader)
-  (use-package evil-visualstar)
+  (use-package evil-visualstar
+    :config
+    (setq evil-visualstar/persistent t))
   (use-package evil-nerd-commenter
     :init
     (evilnc-default-hotkeys nil t))
