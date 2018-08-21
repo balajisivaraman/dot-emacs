@@ -376,9 +376,7 @@
   )
 
 ;; Rust Bindings
-;; (evil-define-key 'normal 'rust-mode-map "gd" 'racer-find-definition)
 (balaji/general-mode-specific-bindings 'rust-mode-map
-  ;; "." 'racer-find-definition
   "d" 'cargo-process-doc
   "f" 'cargo-process-fmt
   "rr" 'cargo-process-run

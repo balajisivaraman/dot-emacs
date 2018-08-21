@@ -49,6 +49,47 @@
               (lambda ()
                 (evil-org-set-key-theme '(navigation insert textobjects additional calendar))))))
 
+(defun balaji/init-evil-collection ()
+  (use-package evil-collection
+    :after evil
+    :init
+    (setq
+     evil-collection-mode-list
+     '(
+       bookmark
+       calc
+       calendar
+       company
+       deadgrep
+       diff-mode
+       dired
+       doc-view
+       edebug
+       ediff
+       eldoc
+       elisp-mode
+       elisp-refs
+       ert
+       eshell
+       flycheck
+       git-timemachine
+       grep
+       helm
+       help
+       ibuffer
+       info
+       lsp-ui-imenu
+       macrostep
+       magit
+       man
+       outline
+       term
+       which-key
+       woman
+       ))
+    :config
+    (evil-collection-init)))
+
 (defun balaji/init-evil-mode ()
   "initialize evil mode and all its plugins"
   (setq evil-default-cursor 'box)
@@ -102,7 +143,6 @@
   (balaji/init-evil-org)
   (evil-escape-mode)
   (global-evil-visualstar-mode)
-  (setq evil-search-module 'evil-search)
   (add-hook 'prog-mode-hook 'evil-mc-mode)
   (add-hook 'text-mode-hook 'evil-mc-mode)
   (add-hook 'prog-mode-hook 'turn-on-evil-snipe-mode)
@@ -111,10 +151,13 @@
   (add-hook 'text-mode-hook 'turn-on-evil-snipe-override-mode)
   (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-mode)
   (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-override-mode)
+  (balaji/init-evil-collection)
   (require 'init-evil-keybindings))
 
 (use-package evil
   :init
+  (setq evil-want-integration nil)
+  :config
   (balaji/init-evil-mode))
 
 (provide 'init-evil)

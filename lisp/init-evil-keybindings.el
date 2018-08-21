@@ -87,42 +87,6 @@
     (bind-key "C-k" 'company-select-previous company-active-map)))
 
 
-;; Ibuffer Bindings
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "A" 'ibuffer-do-view)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "D" 'ibuffer-do-delete)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "E" 'ibuffer-do-eval)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "F" 'ibuffer-do-shell-command-file)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "H" 'ibuffer-do-view-other-frame)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "I" 'ibuffer-do-query-replace-regexp)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "M" 'ibuffer-do-toggle-modified)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "N" 'ibuffer-do-shell-command-pipe-replace)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "O" 'ibuffer-do-occur)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "P" 'ibuffer-do-print)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "Q" 'ibuffer-do-query-replace)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "R" 'ibuffer-do-rename-uniquely)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "S" 'ibuffer-do-save)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "T" 'ibuffer-do-toggle-read-only)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "U" 'ibuffer-do-replace-regexp)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "V" 'ibuffer-do-revert)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "W" 'ibuffer-do-view-and-eval)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "X" 'ibuffer-do-shell-command-pipe)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "`" 'ibuffer-switch-format)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "b" 'ibuffer-bury-buffer)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "d" 'ibuffer-mark-for-delete)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "g" 'ibuffer-update)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "j" 'ibuffer-jump-to-buffer)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "k" 'ibuffer-do-kill-lines)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "l" 'ibuffer-redisplay)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "m" 'ibuffer-mark-forward)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "n" 'ibuffer-forward-line)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "o" 'ibuffer-visit-buffer-other-window)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "p" 'ibuffer-backward-line)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "t" 'ibuffer-toggle-marks)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "u" 'ibuffer-unmark-forward)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "v" 'ibuffer-do-view)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "w" 'ibuffer-copy-filename-as-kill)
-(evil-define-minor-mode-key 'normal 'ibuffer-mode "x" 'ibuffer-do-kill-on-deletion-marks)
-
 ;; Org Agenda Bindings
 (evil-define-key 'normal org-agenda-mode-map
   "!" 'org-agenda-toggle-deadlines
@@ -193,14 +157,6 @@
   "|" 'org-agenda-filter-remove-all
   "}" 'org-agenda-manipulate-query-subtract-re
   "~" 'org-agenda-limit-interactively)
-
-(evil-define-key 'normal deadgrep-mode-map
-  (kbd "RET") 'deadgrep-visit-result
-  "n" 'deadgrep-forward
-  "p" 'deadgrep-backward
-  "g" 'deadgrep-restart
-  "q" 'quit-window
-  (kbd "TAB") 'deadgrep-toggle-file-results)
 
 (provide 'init-evil-keybindings)
 ;;; init-evil-keybindings.el ends here
