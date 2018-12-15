@@ -56,21 +56,14 @@
         ("C-c m D" . cargo-process-doc-open))
   )
 
-(use-package lsp-rust
-  :after (lsp-mode)
-  :config
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls")))
-
 (use-package flycheck-rust
   :commands flycheck-rust-setup)
 
 (defun balaji/rust-mode-hook ()
   "Hooks for Rust Mode."
+  (lsp)
   (cargo-minor-mode)
-  (lsp-rust-enable)
-  (eldoc-mode)
-  (company-mode)
-  (flycheck-mode))
+  (eldoc-mode))
 
 (add-hook 'rust-mode-hook 'balaji/rust-mode-hook)
 

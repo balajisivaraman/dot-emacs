@@ -23,16 +23,13 @@
 
 ;;; Code:
 
-(use-package lsp-mode)
+(use-package lsp-mode
+  :commands (lsp)
+ )
 
-(use-package lsp-ui
-  :after lsp-mode
-  :hook (lsp-mode . lsp-ui-mode))
-
-(use-package company-lsp
-  :after (lsp-mode company)
-  :config
-  (push 'company-lsp company-backends))
+(use-package lsp-clients
+  :ensure nil
+  :after lsp-mode)
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
