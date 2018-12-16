@@ -25,6 +25,9 @@
 
 (use-package lsp-mode
   :commands (lsp)
+  :config
+  (setq
+   lsp-auto-guess-root t)
  )
 
 (use-package lsp-clients
