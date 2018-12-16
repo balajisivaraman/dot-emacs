@@ -16,3 +16,4 @@ ensime
 /var
 /network-security.data
 /elpa-mirror
+.lsp-session
