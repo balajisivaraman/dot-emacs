@@ -19,14 +19,13 @@
 
 ;;; Commentary:
 
-;; Loads One Dark Theme, removes extraneous user-interface elements and makes Emacs more usable.
+;; Loads Dracula Theme, removes extraneous user-interface elements and makes Emacs more usable.
 
 ;;; Code:
 
-(use-package one-themes
-  :load-path "~/Projects/emacs-lisp/emacs-one-themes"
+(use-package dracula-theme
   :init
-  (load-theme 'one-light t))
+  (load-theme 'dracula t))
 
 (use-package spaceline-config
   :ensure spaceline
