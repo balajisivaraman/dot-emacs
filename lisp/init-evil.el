@@ -66,7 +66,6 @@
        doc-view
        edebug
        ediff
-       eldoc
        elisp-mode
        elisp-refs
        ert
