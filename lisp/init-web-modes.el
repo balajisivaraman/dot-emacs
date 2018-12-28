@@ -87,5 +87,13 @@
 (use-package restclient
   :mode ("\\.http$" . restclient-mode))
 
+(use-package emmet-mode
+  :after web-mode
+  :init
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook  'emmet-mode)
+  (add-hook 'web-mode-hook  'emmet-mode)
+  )
+
 (provide 'init-web-modes)
 ;;; init-web-modes.el ends here
