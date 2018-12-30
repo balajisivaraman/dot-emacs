@@ -1,4 +1,4 @@
-;;; init.el --- Emacs Configuration for Balaji Sivaraman -*- lexical-binding: t -*-
+;;; init-tasks.el --- Load Emacs Org Mode for Balaji Sivaraman -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017  Balaji Sivaraman
 
@@ -49,7 +49,7 @@
 (setq file-name-handler-alist nil)
 
 (defconst emacs-start-time (current-time))
-(defconst balaji-evil-mode-enabled t)
+(defconst balaji-evil-mode-enabled nil)
 
 ;;; Initial Setup
 (setq user-full-name "Balaji Sivaraman")
@@ -59,57 +59,28 @@
 (defvar balaji/lisp-dir (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path balaji/lisp-dir)
 
-(require 'init-variables)
 (require 'init-package)
 (require 'init-lib)
+(require 'init-functions)
 
 (defvar user-temp-directory)
-(setq user-temp-directory (s-concat user-emacs-directory ".temp/"))
+(setq user-temp-directory (s-concat user-emacs-directory ".org-temp/"))
 (unless (f-exists? user-temp-directory)
   (f-mkdir user-temp-directory))
 
-(require 'init-functions)
 (require 'init-defaults)
-(require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
-(when balaji-evil-mode-enabled
-  (require 'init-evil))
 (require 'init-navigation)
-(require 'init-user-interface)
-(require 'init-helm)
-;; (require 'init-ivy)
-(require 'init-buffers)
-(require 'init-files)
-(require 'init-search)
 (require 'init-basic-editing)
-(require 'init-fontification)
 (require 'init-codestyle)
 (require 'init-company)
 (require 'init-snippets)
-(require 'init-syntax-checkers)
-(require 'init-markup-languages)
-(require 'init-finance)
-(require 'init-lisp)
-(require 'init-lsp)
-;; (require 'init-scala)
-;; (require 'init-haskell)
-;; (require 'init-idris)
-;; (require 'init-erlang)
-;; (require 'init-purescript)
 (require 'init-org)
-;; (require 'init-ruby)
-(require 'init-rust)
-(require 'init-recentf)
-(require 'init-web-modes)
-(require 'init-scripting-langs)
-(require 'init-latex)
-(require 'init-version-control)
-(require 'init-project)
-(require 'init-pragmata-pro)
-(when balaji-evil-mode-enabled
-  (require 'init-evil-keybindings))
 (require 'init-general-keybindings)
+(use-package leuven-theme
+  :init
+  (load-theme 'leuven t))
 
 ;; Initialize OS specific bindings
 (cond
@@ -136,4 +107,4 @@
          gc-cons-percentage 0.1
          file-name-handler-alist balaji--file-name-handler-alist)))
 
-;;; init.el ends here
+;;; init-tasks.el ends here

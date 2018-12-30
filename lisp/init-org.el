@@ -24,9 +24,7 @@
 ;;; Code:
 
 (defvar balaji/gtd-files-path)
-(defvar balaji/gtd-notes-path)
 (setq balaji/gtd-files-path "/media/backup/Owncloud/gtd/")
-(setq balaji/gtd-notes-path "/media/backup/Owncloud/gtd/notes/")
 
 (use-package org
   :ensure org-plus-contrib
@@ -53,7 +51,8 @@
                "DONE(d@/!)"
                "CANCELLED(x@/!)"))
    org-agenda-files (list (s-concat balaji/gtd-files-path "inbox.org")
-                          (s-concat balaji/gtd-files-path "gtd.org")
+                          (s-concat balaji/gtd-files-path "routines.org")
+                          (s-concat balaji/gtd-files-path "projects.org")
                           (s-concat balaji/gtd-files-path "tickler.org"))
    org-archive-location (s-concat balaji/gtd-files-path "archives.org::")
    org-agenda-ndays 21
@@ -68,28 +67,23 @@
    org-confirm-elisp-link-function nil
    org-log-done 'note
    org-agenda-custom-commands
-   '(("w" "At Work" tags-todo "@work|@anywhere|@phone"
+   '(("w" "At Work" tags-todo "@work|@phone"
       ((Org-agenda-overriding-header "Work")
        (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-     ("h" "At Home" tags-todo "@home|@anywhere|@phone"
+     ("h" "At Home" tags-todo "@home|@phone"
       ((org-agenda-overriding-header "Home")
        (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
      ("W" "Waiting For" todo "WAITING"
       ((org-agenda-overriding-header "Waiting For"))))
-   org-tag-alist '(("@anywhere" . ?a)
-                   ("@computer" . ?c)
+   org-tag-alist '(("@computer" . ?c)
                    ("@email" . ?e)
-                   ("family" . ?f)
                    ("@home" . ?h)
-                   ("@internet" . ?i)
                    ("@phone" . ?p)
-                   ("personal" . ?P)
-                   ("reading" . ?r)
                    ("@work" . ?w))
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-use-outline-path 'file
    org-outline-path-complete-in-steps t
-   org-refile-targets `((,(s-concat balaji/gtd-files-path "gtd.org") :maxlevel . 3)
+   org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
                         (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2)))
   (add-to-list 'org-modules 'org-habit)
@@ -112,9 +106,7 @@
       "* TODO %i%?")
      ("T" "Tickler" entry
       (file ,(s-concat balaji/gtd-files-path "tickler.org"))
-      "* %i%?")
-     ("n" "Note" entry
-      (file ,(s-concat balaji/gtd-notes-path "notes.org"))))))
+      "* %i%?"))))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."

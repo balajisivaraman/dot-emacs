@@ -28,32 +28,36 @@
 (diminish 'auto-revert-mode)
 
 ;; Backup Directory Configuration
-(set-variable 'temporary-file-directory (s-concat user-emacs-directory "temp"))
+(set-variable 'temporary-file-directory user-temp-directory)
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
 ;; save minibuffer history across sessions
-(setq savehist-file (s-concat user-emacs-directory ".savehist"))
+(setq savehist-file (s-concat user-temp-directory ".savehist"))
 (savehist-mode 1)
 
-;; Enable Desktop Save Mode
-(desktop-save-mode 1)
+(require 'desktop)
+;; Set the location to save/load default desktop
+(setq desktop-path
+  (-snoc (-drop 2 desktop-path) user-temp-directory)
+  )
+(setq desktop-dirname user-temp-directory)
 ;; Restore 5 files eagerly, and the rest lazily, when Emacs idles.
 (setq desktop-restore-eager 5)
 ;; Load the saved desktop always, even if it is locked.
 (setq desktop-load-locked-desktop t)
-;; Set the location to save/load default desktop
-(setq desktop-dirname user-emacs-directory)
 ;; Delete files by moving them to trash
 (setq delete-by-moving-to-trash t)
+;; Enable Desktop Save Mode
+(desktop-save-mode 1)
 
 ;; Saveplace Mode - Saves Cursor Position Within Files
 (use-package saveplace
   :ensure nil
   :init
-  (setq save-place-file (s-concat user-emacs-directory ".saveplace"))
+  (setq save-place-file (s-concat user-temp-directory ".saveplace"))
   (setq-default save-place t))
 
 (provide 'init-customizations)
