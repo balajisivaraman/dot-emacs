@@ -123,7 +123,7 @@
 
 (defun balaji/org-capture-hook ()
   "My hooks for Org Capture."
-  (org-id-get-create)
+  ;; (org-id-get-create)
   (balaji/org-set-created-property))
 
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)

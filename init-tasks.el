@@ -50,6 +50,8 @@
 
 (defconst emacs-start-time (current-time))
 (defconst balaji-evil-mode-enabled nil)
+(defvar enable-desktop-save)
+(setq enable-desktop-save nil)
 
 ;;; Initial Setup
 (setq user-full-name "Balaji Sivaraman")
@@ -62,16 +64,12 @@
 (require 'init-package)
 (require 'init-lib)
 (require 'init-functions)
-
-(defvar user-temp-directory)
-(setq user-temp-directory (s-concat user-emacs-directory ".org-temp/"))
-(unless (f-exists? user-temp-directory)
-  (f-mkdir user-temp-directory))
-
 (require 'init-defaults)
+(require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
 (require 'init-navigation)
+(require 'init-helm)
 (require 'init-basic-editing)
 (require 'init-codestyle)
 (require 'init-company)
