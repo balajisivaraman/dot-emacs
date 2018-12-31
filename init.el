@@ -132,30 +132,3 @@
          file-name-handler-alist balaji--file-name-handler-alist)))
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(evil-search-module (quote evil-search))
- '(package-selected-packages
-   (quote
-    (company-lsp lsp-ui emmet-mode pinentry general git-timemachine gist company-auctex auctex fish-mode restclient web-beautify web-mode company-tern tern js2-refactor js2-mode flycheck-rust cargo rust-mode org-bullets org-plus-contrib lsp-mode paredit ledger-mode toml-mode yaml-mode markdown-mode flycheck-pos-tip yasnippet-snippets yasnippet company-quickhelp company ethan-wspace rainbow-delimiters crux embrace easy-kill change-inner expand-region browse-kill-ring deadgrep hardhat sudo-edit focus-autosave-mode persistent-scratch ibuffer-vc helm-projectile helm-flycheck helm-descbinds helm unicode-fonts page-break-lines restart-emacs nyan-mode spaceline dracula-theme beginend golden-ratio window-numbering ace-window avy evil-collection evil-org linum-relative evil-rsi evil-multiedit evil-goggles evil-snipe evil-mc vi-tilde-fringe evil-magit evil-escape evil-surround evil-matchit evil-indent-textobject evil-nerd-commenter evil-visualstar evil-leader evil which-key exec-path-from-shell use-package-chords paradox)))
- '(paradox-github-token t)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "PragmataPro" :foundry "FSD " :slant normal :weight normal :height 126 :width normal))))
- '(evil-goggles-change-face ((t (:inherit diff-removed))))
- '(evil-goggles-delete-face ((t (:inherit diff-removed))))
- '(evil-goggles-paste-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-add-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
- '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
- '(evil-goggles-yank-face ((t (:inherit diff-changed)))))
