@@ -19,17 +19,8 @@
 
 ;;; Commentary:
 
-;; Emacs Configuration for Balaji Sivaraman that serves the following primary uses;
+;; Separate Init file that loads my Org Mode Configuration
 ;;
-;;  - Rust
-;;  - Org Mode (Daily Agenda, Note Taking, Day Planner etc.)
-;;  - Personal Finance (Ledger)
-;;  - Javascript
-;;  - Ruby
-;;  - Markdown
-;;  - Scala (Not Regularly Used)
-;;  - Haskell (Not Regularly Used)
-;;  - Emacs (and other) Lisp (Not Regularly Used)
 
 ;;; Code:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
