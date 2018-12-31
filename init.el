@@ -107,9 +107,8 @@
 (require 'init-general-keybindings)
 
 ;; Initialize OS specific bindings
-(cond
- ((eq system-type 'darwin) (require 'init-osx))
- ((eq system-type 'gnu/linux) (require 'init-linux)))
+(when (eq system-type 'gnu/linux)
+  (require 'init-linux))
 
 ;;; Benchmarking Startup End
 (when (window-system)

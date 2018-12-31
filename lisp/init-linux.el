@@ -24,7 +24,6 @@
 ;;; Code:
 
 (use-package pinentry
-  :disabled t
   :init
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start))

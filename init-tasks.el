@@ -71,11 +71,6 @@
   :init
   (load-theme 'leuven t))
 
-;; Initialize OS specific bindings
-(cond
- ((eq system-type 'darwin) (require 'init-osx))
- ((eq system-type 'gnu/linux) (require 'init-linux)))
-
 ;;; Benchmarking Startup End
 (when (window-system)
   (let ((elapsed-time (float-time (time-subtract (current-time)
