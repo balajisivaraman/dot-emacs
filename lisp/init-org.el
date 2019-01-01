@@ -37,8 +37,6 @@
    :map org-mode-map
    ("C-c m l" . org-metaleft)
    ("C-c m r" . org-metaright))
-  :init
-  (advice-add 'org-agenda :after #'delete-other-windows)
   :config
   (when balaji-evil-mode-enabled
     (evil-set-initial-state 'org-agenda-mode 'normal))
@@ -85,7 +83,8 @@
    org-outline-path-complete-in-steps t
    org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
-                        (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2)))
+                        (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2))
+   org-agenda-window-setup 'only-window)
   (add-to-list 'org-modules 'org-habit)
   (setq org-agenda-tags-column 110))
 
