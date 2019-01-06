@@ -153,7 +153,11 @@
           (goto-char (point-max))))))
 
 (defun org-current-is-todo ()
-  (string= "TODO" (org-get-todo-state)))
+  (and
+   (string= "TODO" (org-get-todo-state))
+   (not (org-agenda-skip-entry-if
+         (quote scheduled) (quote deadline)
+         (quote regexp) "\n]+>"))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
