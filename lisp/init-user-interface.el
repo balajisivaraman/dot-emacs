@@ -1,6 +1,6 @@
 ;;; init-user-interface.el --- Better themes, modeline and usability for Emacs. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017  Balaji Sivaraman
+;; Copyright (C) 2019  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

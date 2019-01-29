@@ -1,6 +1,6 @@
 ;;; init-scripting-langs.el --- Better support for Fish, Bash, Batch Files. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017  Balaji Sivaraman
+;; Copyright (C) 2019  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

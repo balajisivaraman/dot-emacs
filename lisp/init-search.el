@@ -1,6 +1,6 @@
 ;;; init-search.el --- Better tools for search/replace. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017  Balaji Sivaraman
+;; Copyright (C) 2019  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

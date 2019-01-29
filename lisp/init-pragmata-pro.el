@@ -1,6 +1,6 @@
 ;;; init-pragmata-pro.el --- Enables beautiful ligatures for Pragmata Pro -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017  Balaji Sivaraman
+;; Copyright (C) 2019  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

@@ -1,6 +1,6 @@
 ;;; init-lisp.el --- Makes Emacs a better Lisp editor, if that is even possible. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017  Balaji Sivaraman
+;; Copyright (C) 2019  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

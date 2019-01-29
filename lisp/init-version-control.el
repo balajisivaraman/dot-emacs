@@ -1,6 +1,6 @@
 ;;; init-version-control.el ---  Make Emacs the best Git experience in the world. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017  Balaji Sivaraman
+;; Copyright (C) 2019  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 
