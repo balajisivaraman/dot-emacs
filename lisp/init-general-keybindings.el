@@ -135,75 +135,6 @@
   "h<return>" 'view-order-manuals
   "h?" 'help-for-help)
 
-;; Idris Mode
-(balaji/general-mode-specific-bindings 'idris-mode-map
- ;; Shorthands: rebind the standard evil-mode combinations to the local
- ;; leader for the keys not used as a prefix below.
- "c" 'idris-case-dwim
- "d" 'idris-add-clause
- "l" 'idris-make-lemma
- "p" 'idris-proof-search
- "r" 'idris-load-file
- "t" 'idris-type-at-point
- "w" 'idris-make-with-block
-
- ;; ipkg.
- "bc" 'idris-ipkg-build
- "bC" 'idris-ipkg-clean
- "bi" 'idris-ipkg-install
- "bp" 'idris-open-package-file
-
- ;; Interactive editing.
- "ia" 'idris-proof-search
- "ic" 'idris-case-dwim
- "ie" 'idris-make-lemma
- "im" 'idris-add-missing
- "ir" 'idris-refine
- "is" 'idris-add-clause
- "ip" 'idris-case-split
- "iw" 'idris-make-with-block
-
- ;; Documentation.
- "ha" 'idris-apropos
- "hd" 'idris-docs-at-point
- "hs" 'idris-type-search
- "ht" 'idris-type-at-point
-
- ;; Active term manipulations.
- "mn" 'idris-normalise-term
- "mi" 'idris-show-term-implicits
- "mh" 'idris-hide-term-implicits
- "mc" 'idris-show-core-term
-
- ;; Errors
- "en" 'idris-next-error
- "ep" 'idris-previous-error
-
- ;; REPL
- "'"  'idris-repl
- "sb" 'idris-load-file
- ;; "msB" 'spacemacs/idris-load-file-and-focus
- "si" 'idris-repl
- "sn" 'idris-load-forward-line
- ;; "msN" 'spacemacs/idris-load-forward-line-and-focus
- "sp" 'idris-load-backward-line
- ;; "msP" 'spacemacs/idris-load-backward-line-and-focus
- "ss" 'idris-pop-to-repl
- "sq" 'idris-quit)
-
-(balaji/general-mode-specific-bindings 'idris-prover-script-mode-map
-  "n" 'idris-prover-script-forward
-  "p" 'idris-prover-script-backward
-  "k" 'idris-prover-abandon
-  "q" 'idris-prover-script-qed)
-
-(which-key-declare-prefixes-for-mode 'idris-mode
-  "SPC m b" "ipkg"
-  "SPC m i" "interactive edit"
-  "SPC m h" "doc"
-  "SPC m m" "term manipulation"
-  "SPC m s" "repl")
-
 ;; Ledger Mode
 (balaji/general-mode-specific-bindings 'ledger-mode-map
   "r" 'balaji/insert-rupee-symbol
@@ -307,47 +238,6 @@
   "p4f" 'projectile-find-file-other-window
   "p4g" 'projectile-find-file-dwim-other-window
   "p4t" 'projectile-find-implementation-or-test-other-window)
-
-;; Purescipt Bindings
-(balaji/general-mode-specific-bindings 'purescript-mode-map
- "a" 'psc-ide-add-clause
- "b" 'psc-ide-rebuild
- "c" 'psc-ide-case-split
- "l" 'psc-ide-load-all
- "sq" 'psc-ide-server-quit
- "ss" 'psc-ide-server-start
- "t" 'psc-ide-show-type
- "L" 'psc-ide-load-module
- "g" 'psc-ide-goto-definition
- "b" 'psc-ide-goto-definition-impl
- "i" 'psc-ide-add-import
- "pr" 'psci)
-
-(which-key-declare-prefixes-for-mode 'purescript-mode
-  "SPC m p" "psci"
-  "SPC m s" "server")
-
-;; Scala Mode
-(balaji/general-mode-specific-bindings 'scala-mode-map
-  ;; "." 'ensime-edit-definition
-  ;; "," 'ensime-pop-find-definition-stack
-  "i" 'ensime-import-type-at-point
-  "e" 'ensime
-  "E" 'ensime-reload
-  "s" 'ensime-shutdown
-  "to" 'ensime-sbt-do-test-only-dwim
-  "tt"  'ensime-sbt-do-test-dwim
- )
-
-(which-key-declare-prefixes-for-mode 'purescript-mode
-  "SPC m" "Ensime"
-  "SPC m e" "Ensime Start"
-  "SPC m E" "Ensime Reload"
-  "SPC m s" "Ensime Shutdown"
-  "SPC m i" "Import Type at Point"
-  "SPC m t" "Test"
-  "SPC m t o" "Run Current Test"
-  "SPC m t t" "Run Tests")
 
 ;; Quit Bindings
 (balaji/general-bindings

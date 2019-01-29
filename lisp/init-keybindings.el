@@ -89,22 +89,6 @@
   "C-c m f" "file"
   "C-c m d" "debug")
 
-(which-key-declare-prefixes-for-mode 'js2-mode
-  "C-c m 3" "if-refactor"
-  "C-c m a" "add/args"
-  "C-c m b" "barf"
-  "C-c m c" "contract"
-  "C-c m d" "debug"
-  "C-c m i" "inject/introduce"
-  "C-c m l" "localize"
-  "C-c m r" "rename"
-  "C-c m s" "slurp/split"
-  "C-c m t" "toggle"
-  "C-c m u" "unwrap"
-  "C-c m v" "var"
-  "C-c m w" "wrap"
-  "C-c m e" "extract")
-
 (which-key-declare-prefixes-for-mode 'rust-mode
   "C-c m t" "test"
   "C-c m r" "run")

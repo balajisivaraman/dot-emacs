@@ -19,17 +19,7 @@
 
 ;;; Commentary:
 
-;; Emacs Configuration for Balaji Sivaraman that serves the following primary uses;
-;;
-;;  - Rust
-;;  - Org Mode (Daily Agenda, Note Taking, Day Planner etc.)
-;;  - Personal Finance (Ledger)
-;;  - Javascript
-;;  - Ruby
-;;  - Markdown
-;;  - Scala (Not Regularly Used)
-;;  - Haskell (Not Regularly Used)
-;;  - Emacs (and other) Lisp (Not Regularly Used)
+;; Emacs Configuration for Balaji Sivaraman
 
 ;;; Code:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -84,16 +74,9 @@
 (require 'init-finance)
 (require 'init-lisp)
 (require 'init-lsp)
-;; (require 'init-scala)
-;; (require 'init-haskell)
-;; (require 'init-idris)
-;; (require 'init-erlang)
-;; (require 'init-purescript)
 (require 'init-org)
-;; (require 'init-ruby)
 (require 'init-rust)
 (require 'init-recentf)
-(require 'init-web-modes)
 (require 'init-scripting-langs)
 (require 'init-latex)
 (require 'init-version-control)
