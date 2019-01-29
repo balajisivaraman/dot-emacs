@@ -59,7 +59,7 @@
  "jj" 'avy-goto-char
  "jl" 'avy-goto-line
  "jw" 'avy-goto-word-1
- "jt" 'helm-imenu
+ "jt" 'counsel-imenu
  )
 
 ;; Bookmarks
@@ -71,7 +71,6 @@
 ;; Buffer Keybindings
 (balaji/general-bindings
  "bd" 'kill-buffer
- "bb" 'helm-mini
  "bI" 'ibuffer
  "br" 'revert-buffer
  "bp" 'previous-buffer
@@ -103,14 +102,10 @@
 ;; File Keybindings
 (balaji/general-bindings
   "fd" 'balaji-dot-emacs
-  "ff" 'helm-find-files
+  "ff" 'counsel-find-file
   "fs" 'save-buffer
   "fr" 'crux-rename-buffer-and-file
   "fw" 'write-file)
-
-;; Helm Ag
-(balaji/general-bindings
-  "/" 'helm-do-ag)
 
 ;; Help
 (balaji/general-bindings
@@ -193,7 +188,7 @@
 
 ;; Projectile Bindings
 (balaji/general-bindings
-  "ph" 'helm-projectile
+  "ph" 'counsel-projectile
   "pi" 'projectile-invalidate-cache
   "pk" 'projectile-kill-buffers
   "p!" 'projectile-run-shell-command-in-root
@@ -213,7 +208,6 @@
   "pe" 'projectile-recentf
   "pf" 'projectile-find-file
   "pg" 'projectile-find-file-dwim
-  "ph" 'helm-projectile
   "pi" 'projectile-invalidate-cache
   "pj" 'projectile-find-tag
   "pk" 'projectile-kill-buffers

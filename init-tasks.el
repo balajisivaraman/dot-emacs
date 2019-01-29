@@ -59,7 +59,7 @@
 (require 'init-exec-path)
 (require 'init-keybindings)
 (require 'init-navigation)
-(require 'init-helm)
+(require 'init-ivy)
 (require 'init-basic-editing)
 (require 'init-codestyle)
 (require 'init-company)
