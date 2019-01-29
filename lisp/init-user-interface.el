@@ -57,9 +57,5 @@
   :init (global-page-break-lines-mode)
   :diminish page-break-lines-mode)
 
-(use-package unicode-fonts
-  :init
-  (unicode-fonts-setup))
-
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
