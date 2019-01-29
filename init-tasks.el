@@ -60,6 +60,7 @@
 (require 'init-keybindings)
 (require 'init-navigation)
 (require 'init-ivy)
+(require 'init-buffers)
 (require 'init-basic-editing)
 (require 'init-codestyle)
 (require 'init-company)
