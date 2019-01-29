@@ -35,7 +35,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org"   . "http://orgmode.org/elpa/") t)
-;; (setq package-archives '(("elpa-mirror" . "~/.emacs.d/elpa-mirror/")))
 (package-initialize)
 ;; package.el should not initialize our packages.
 ;; We're going to use use-package for that.
@@ -56,12 +55,6 @@
    ;; Hide download button, and wiki packages
    paradox-use-homepage-buttons nil ; Can type v instead
    paradox-hide-wiki-packages t))
-
-(add-to-list 'load-path (expand-file-name "elpa-mirror" balaji/site-lisp-dir))
-(use-package elpa-mirror
-  :ensure nil
-  :init
-  (setq elpamr-default-output-directory "~/.emacs.d/elpa-mirror"))
 
 (provide 'init-package)
 ;;; init-package.el ends here
