@@ -50,7 +50,7 @@
       (golden-ratio-mode)
       (golden-ratio)))
   :bind (("C-c t g" . balaji-toggle-golden-ratio))
-  :diminish (golden-ratio-mode . "ⓖ")
+  :diminish (golden-ratio-mode . " ⓖ")
   :config
   (setq
    golden-ratio-extra-commands '(windmove-up
