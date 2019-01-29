@@ -17,3 +17,5 @@ ensime
 /network-security.data
 /elpa-mirror
 .lsp-session
+.historian
+.lsp-session-v1
