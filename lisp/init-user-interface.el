@@ -27,13 +27,6 @@
   :init
   (load-theme 'dracula t))
 
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (spaceline-spacemacs-theme)
-  (spaceline-toggle-window-number-on)
-  (setq spaceline-window-numbers-unicode t))
-
 (use-package nyan-mode
   :init (nyan-mode))
 
