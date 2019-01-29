@@ -26,7 +26,6 @@
 (use-package s         :load-path "lib/s-el"         :ensure nil)
 (use-package dash      :load-path "lib/dash-el"      :ensure nil)
 (use-package f         :load-path "lib/f-el"         :ensure nil)
-(use-package key-chord :load-path "lib/key-chord.el" :ensure nil)
 
 (provide 'init-lib)
 ;;; init-lib.el ends here

@@ -139,11 +139,6 @@ _d_: subtree
 
 (global-set-key (kbd "C-c O") 'balaji-outline/body) ; by example
 
-(use-package iy-go-to-char
-  :disabled
-  :chords (("fg" . iy-go-to-char)
-           ("fd" . iy-go-to-char-backward)))
-
 (use-package beginend
   :diminish
   (beginend-global-mode . "")

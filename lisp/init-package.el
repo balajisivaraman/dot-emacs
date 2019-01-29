@@ -57,9 +57,6 @@
    paradox-use-homepage-buttons nil ; Can type v instead
    paradox-hide-wiki-packages t))
 
-(use-package use-package-chords
-  :config (key-chord-mode 1))
-
 (add-to-list 'load-path (expand-file-name "elpa-mirror" balaji/site-lisp-dir))
 (use-package elpa-mirror
   :ensure nil
