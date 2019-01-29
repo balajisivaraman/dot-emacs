@@ -82,7 +82,9 @@
                         (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2))
    org-agenda-window-setup 'only-window)
   (add-to-list 'org-modules 'org-habit)
-  (setq org-agenda-tags-column 110))
+  (add-to-list 'org-modules 'org-id)
+  (setq org-agenda-tags-column 110
+        org-id-locations-file (s-concat balaji/gtd-files-path ".org-id-locations")))
 
 (use-package org-bullets
   :after org)
@@ -118,7 +120,7 @@
 
 (defun balaji/org-capture-hook ()
   "My hooks for Org Capture."
-  ;; (org-id-get-create)
+  (org-id-get-create)
   (balaji/org-set-created-property))
 
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
