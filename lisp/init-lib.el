@@ -23,9 +23,9 @@
 
 ;;; Code:
 
-(use-package s         :load-path "lib/s-el"         :ensure nil)
-(use-package dash      :load-path "lib/dash-el"      :ensure nil)
-(use-package f         :load-path "lib/f-el"         :ensure nil)
+(use-package s)
+(use-package dash)
+(use-package f)
 
 (provide 'init-lib)
 ;;; init-lib.el ends here
