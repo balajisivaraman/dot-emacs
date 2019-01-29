@@ -38,8 +38,6 @@
    ("C-c m l" . org-metaleft)
    ("C-c m r" . org-metaright))
   :config
-  (when balaji-evil-mode-enabled
-    (evil-set-initial-state 'org-agenda-mode 'normal))
   (setq
    org-todo-keywords
    '((sequence "TODO(t@/!)"

@@ -49,7 +49,6 @@
 (setq file-name-handler-alist nil)
 
 (defconst emacs-start-time (current-time))
-(defconst balaji-evil-mode-enabled t)
 (defvar enable-desktop-save)
 (setq enable-desktop-save t)
 
@@ -68,8 +67,6 @@
 (require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
-(when balaji-evil-mode-enabled
-  (require 'init-evil))
 (require 'init-navigation)
 (require 'init-user-interface)
 (require 'init-helm)
@@ -102,8 +99,6 @@
 (require 'init-version-control)
 (require 'init-project)
 ;; (require 'init-pragmata-pro)
-(when balaji-evil-mode-enabled
-  (require 'init-evil-keybindings))
 (require 'init-general-keybindings)
 
 ;; Initialize OS specific bindings

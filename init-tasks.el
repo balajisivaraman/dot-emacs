@@ -40,7 +40,6 @@
 (setq file-name-handler-alist nil)
 
 (defconst emacs-start-time (current-time))
-(defconst balaji-evil-mode-enabled nil)
 (defvar enable-desktop-save)
 (setq enable-desktop-save nil)
 

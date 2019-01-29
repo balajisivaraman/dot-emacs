@@ -29,8 +29,6 @@
 
 (defconst my-emacs-leader "C-c")
 (defconst my-emacs-local-leader "C-c m")
-(defconst my-evil-leader "SPC")
-(defconst my-evil-local-leader "SPC m")
 
 (general-create-definer my-emacs-leader-def
   :prefix my-emacs-leader)
@@ -38,23 +36,12 @@
 (general-create-definer my-emacs-local-leader-def
   :prefix my-emacs-local-leader)
 
-(general-create-definer my-evil-leader-def
-  :prefix my-evil-leader)
-
-(general-create-definer my-evil-local-leader-def
-  :prefix my-evil-local-leader)
-
 (defmacro balaji/general-mode-specific-bindings (major-mode-map &rest args)
   "Macro to bind ARGS for MAJOR-MODE-MAP."
   `(progn
      (my-emacs-local-leader-def
        :keymaps ,major-mode-map
        ,@args)
-     (when balaji-evil-mode-enabled
-       (my-evil-local-leader-def
-         :states '(normal visual)
-         :keymaps ,major-mode-map
-         ,@args))
      )
   )
 
@@ -63,9 +50,6 @@
   `(progn
      (my-emacs-leader-def
        ,@args)
-     (when balaji-evil-mode-enabled
-       (my-evil-leader-def 'normal 'override
-         ,@args))
      )
   )
 
