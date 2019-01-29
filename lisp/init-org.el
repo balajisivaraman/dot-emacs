@@ -77,8 +77,6 @@
                    ("@phone" . ?p)
                    ("@work" . ?w))
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-use-outline-path 'file
-   org-outline-path-complete-in-steps t
    org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
                         (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2))
