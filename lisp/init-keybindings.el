@@ -89,6 +89,10 @@
   "C-c m f" "file"
   "C-c m d" "debug")
 
+(which-key-declare-prefixes-for-mode 'markdown-mode
+  "SPC m i" "insert"
+  )
+
 (which-key-declare-prefixes-for-mode 'rust-mode
   "C-c m t" "test"
   "C-c m r" "run")

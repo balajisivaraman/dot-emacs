@@ -26,6 +26,10 @@
 (use-package markdown-mode
   :mode
   ".md\\|.markdown"
+  :bind (:map markdown-mode-map
+              ("C-c i l" . markdown-insert-link)
+              ("C-c i b" . markdown-insert-bold)
+              ("C-c i i" . markdown-insert-italic))
   :init
   (add-hook 'markdown-mode-hook #'flycheck-mode))
 

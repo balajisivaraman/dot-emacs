@@ -81,7 +81,6 @@
 (require 'init-version-control)
 (require 'init-project)
 ;; (require 'init-pragmata-pro)
-(require 'init-general-keybindings)
 
 ;; Initialize OS specific bindings
 (when (eq system-type 'gnu/linux)

@@ -66,7 +66,6 @@
 (require 'init-company)
 (require 'init-snippets)
 (require 'init-org)
-(require 'init-general-keybindings)
 (use-package leuven-theme
   :init
   (load-theme 'leuven t))
