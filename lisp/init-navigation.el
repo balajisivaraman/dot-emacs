@@ -34,11 +34,6 @@
   :bind
   ("C-x o" . ace-window))
 
-(use-package window-numbering
-  :config
-  (setq window-numbering-auto-assign-0-to-minibuffer nil)
-  (window-numbering-mode 1))
-
 (use-package golden-ratio
   :init
   (defun balaji-toggle-golden-ratio ()
