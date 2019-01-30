@@ -77,7 +77,7 @@
                    ("@phone" . ?p)
                    ("@work" . ?w))
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
+   org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 2)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
                         (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2))
    org-agenda-window-setup 'only-window)
