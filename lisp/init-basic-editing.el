@@ -54,7 +54,6 @@
 
 ;; Multiple Cursors Code
 (use-package multiple-cursors
-  :disabled t
   :bind
   (
    ("C-c c <SPC>" . mc/vertical-align-with-space)
