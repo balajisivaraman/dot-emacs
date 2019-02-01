@@ -84,7 +84,7 @@
   (add-to-list 'org-modules 'org-habit)
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
-        org-id-locations-file (s-concat balaji/gtd-files-path ".org-id-locations")))
+        org-id-locations-file (s-concat balaji/gtd-files-path "org-id-locations.txt")))
 
 (use-package org-bullets
   :after org)
