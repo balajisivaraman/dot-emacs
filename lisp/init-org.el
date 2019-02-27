@@ -36,7 +36,8 @@
    ("C-c o r" . org-archive-subtree)
    :map org-mode-map
    ("C-c m l" . org-metaleft)
-   ("C-c m r" . org-metaright))
+   ("C-c m r" . org-metaright)
+   ("C-c o i" . balaji/org-insert-prop-for-current-entry))
   :config
   (setq
    org-todo-keywords
