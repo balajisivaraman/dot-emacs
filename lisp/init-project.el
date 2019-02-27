@@ -28,7 +28,9 @@
   :diminish projectile-mode
   :init
   (projectile-mode)
-  (unbind-key "C-c p s r"))
+  (unbind-key "C-c p s r")
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package ignoramus
   :config
