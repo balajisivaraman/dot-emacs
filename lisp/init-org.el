@@ -71,12 +71,14 @@
       ((org-agenda-overriding-header "Home")
        (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
      ("W" "Waiting For" todo "WAITING"
-      ((org-agenda-overriding-header "Waiting For"))))
-   org-tag-alist '(("@computer" . ?c)
-                   ("@email" . ?e)
-                   ("@home" . ?h)
-                   ("@phone" . ?p)
-                   ("@work" . ?w))
+      ((org-agenda-overriding-header "Waiting For")))
+     ("t" "Current TW Project" tags-todo "@twproject"
+      ((Org-agenda-overriding-header "Current TW Project"))))
+   org-tag-persistent-alist '(("@computer" . ?c)
+                              ("@email" . ?e)
+                              ("@home" . ?h)
+                              ("@phone" . ?p)
+                              ("@work" . ?w))
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 2)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
