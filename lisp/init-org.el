@@ -95,7 +95,6 @@
 (use-package org-capture
   :ensure nil
   :after org
-  :diminish (org-capture-mode . "ⓡ")
   :bind
   (("C-c o c" . org-capture))
   :config
