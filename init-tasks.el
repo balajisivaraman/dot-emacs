@@ -69,6 +69,7 @@
 (use-package leuven-theme
   :init
   (load-theme 'leuven t))
+(set-frame-font "-outline-monospace-normal-normal-normal-mono-16-*-*-*-c-*-iso8859-1")
 
 ;;; Benchmarking Startup End
 (when (window-system)
