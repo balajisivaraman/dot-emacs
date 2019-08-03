@@ -24,7 +24,7 @@
 ;;; Code:
 
 (defvar balaji/gtd-files-path)
-(setq balaji/gtd-files-path "/media/backup/Owncloud/gtd/")
+(setq balaji/gtd-files-path "/media/backup/Nextcloud/gtd/")
 
 (use-package org
   :ensure org-plus-contrib
@@ -47,7 +47,7 @@
                "|"
                "DONE(d@/!)"
                "CANCELLED(x@/!)"))
-   org-agenda-files (list (s-concat balaji/gtd-files-path "inbox.org")
+   org-agenda-files (list (s-concat balaji/gtd-files-path "todo.org")
                           (s-concat balaji/gtd-files-path "routines.org")
                           (s-concat balaji/gtd-files-path "projects.org")
                           (s-concat balaji/gtd-files-path "tickler.org"))
@@ -101,11 +101,18 @@
   (setq
    org-capture-templates
    `(("t" "Todo [inbox]" entry
-      (file ,(s-concat balaji/gtd-files-path "inbox.org"))
-      "* TODO %i%?")
+      (file ,(s-concat balaji/gtd-files-path "todo.org"))
+      "* TODO %?
+:PROPERTIES:
+:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:END:" :prepend t)
      ("T" "Tickler" entry
       (file ,(s-concat balaji/gtd-files-path "tickler.org"))
-      "* %i%?"))))
+      "* %i%?
+:PROPERTIES:
+:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:END:" :prepend t))
+   org-datetree-add-timestamp t))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
@@ -120,13 +127,7 @@
     (unless (org-entry-get (point) created) nil
            (org-set-property created now))))
 
-(defun balaji/org-capture-hook ()
-  "My hooks for Org Capture."
-  (org-id-get-create)
-  (balaji/org-set-created-property))
-
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
-(add-hook 'org-capture-prepare-finalize-hook 'balaji/org-capture-hook)
 
 (defun balaji/org-insert-props-for-all-entries ()
   "Insert my properties for all entries in the current file."
