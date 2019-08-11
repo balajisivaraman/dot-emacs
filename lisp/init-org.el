@@ -24,7 +24,7 @@
 ;;; Code:
 
 (defvar balaji/gtd-files-path)
-(setq balaji/gtd-files-path "/media/backup/Nextcloud/gtd/")
+(setq balaji/gtd-files-path "~/syncthing/gtd/")
 
 (use-package org
   :ensure org-plus-contrib
@@ -50,7 +50,9 @@
    org-agenda-files (list (s-concat balaji/gtd-files-path "todo.org")
                           (s-concat balaji/gtd-files-path "routines.org")
                           (s-concat balaji/gtd-files-path "projects.org")
-                          (s-concat balaji/gtd-files-path "tickler.org"))
+                          (s-concat balaji/gtd-files-path "tickler.org")
+                          (s-concat balaji/gtd-files-path "areas-of-focus.org")
+                          )
    org-archive-location (s-concat balaji/gtd-files-path "archives.org::")
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
@@ -80,9 +82,10 @@
                               ("@phone" . ?p)
                               ("@work" . ?w))
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 2)
+   org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
-                        (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2))
+                        (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2)
+                        (,(s-concat balaji/gtd-files-path "areas-of-focus.org") :maxlevel . 4))
    org-agenda-window-setup 'only-window)
   (add-to-list 'org-modules 'org-habit)
   (add-to-list 'org-modules 'org-id)
