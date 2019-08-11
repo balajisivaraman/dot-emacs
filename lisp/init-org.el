@@ -66,12 +66,10 @@
    org-confirm-elisp-link-function nil
    org-log-done 'note
    org-agenda-custom-commands
-   '(("w" "At Work" tags-todo "@work|@phone"
-      ((Org-agenda-overriding-header "Work")
-       (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-     ("h" "At Home" tags-todo "@home|@phone"
-      ((org-agenda-overriding-header "Home")
-       (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+   '(("w" "At Work" tags-todo "@work+@next_actions|@phone|"
+      ((Org-agenda-overriding-header "Work")))
+     ("h" "At Home" tags-todo "@home+@next_actions|@phone"
+      ((org-agenda-overriding-header "Home")))
      ("W" "Waiting For" todo "WAITING"
       ((org-agenda-overriding-header "Waiting For")))
      ("t" "Current TW Project" tags-todo "@twproject"
@@ -80,7 +78,8 @@
                               ("@email" . ?e)
                               ("@home" . ?h)
                               ("@phone" . ?p)
-                              ("@work" . ?w))
+                              ("@work" . ?w)
+                              ("@next_actions" . ?n))
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
