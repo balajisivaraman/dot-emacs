@@ -54,7 +54,7 @@
   :ensure nil
   :init
   (setq save-place-file (s-concat user-emacs-directory ".saveplace"))
-  (setq-default save-place t))
+  (save-place-mode))
 
 (provide 'init-customizations)
 ;;; init-customizations.el ends here
