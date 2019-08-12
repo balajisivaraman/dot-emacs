@@ -67,13 +67,13 @@
    org-log-done 'note
    org-agenda-custom-commands
    '(("w" "At Work" tags-todo "@work+@next_actions|@phone|"
-      ((Org-agenda-overriding-header "Work")))
+      ((org-agenda-overriding-header "Next Actions At Work")))
      ("h" "At Home" tags-todo "@home+@next_actions|@phone"
-      ((org-agenda-overriding-header "Home")))
+      ((org-agenda-overriding-header "Next Actions At Home")))
      ("W" "Waiting For" todo "WAITING"
       ((org-agenda-overriding-header "Waiting For")))
      ("t" "Current TW Project" tags-todo "@twproject"
-      ((Org-agenda-overriding-header "Current TW Project"))))
+      ((org-agenda-overriding-header "Current TW Project"))))
    org-tag-persistent-alist '(("@computer" . ?c)
                               ("@email" . ?e)
                               ("@home" . ?h)
@@ -85,7 +85,12 @@
                         (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
                         (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2)
                         (,(s-concat balaji/gtd-files-path "areas-of-focus.org") :maxlevel . 4))
-   org-agenda-window-setup 'only-window)
+   org-agenda-window-setup 'only-window
+   org-agenda-todo-ignore-scheduled t
+   org-agenda-tags-todo-honor-ignore-options t
+   org-agenda-hide-tags-regexp
+           (concat org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions\\|@computer\\|@email\\|@phone")
+   )
   (add-to-list 'org-modules 'org-habit)
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
