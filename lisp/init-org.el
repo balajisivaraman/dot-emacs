@@ -88,9 +88,7 @@
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
-   org-agenda-hide-tags-regexp
-           (concat org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions\\|@computer\\|@email\\|@phone")
-   )
+   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions\\|@computer\\|@email\\|@phone")
   (add-to-list 'org-modules 'org-habit)
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
