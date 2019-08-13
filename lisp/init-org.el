@@ -71,9 +71,7 @@
      ("h" "At Home" tags-todo "@home+@next_actions|@phone"
       ((org-agenda-overriding-header "Next Actions At Home")))
      ("W" "Waiting For" todo "WAITING"
-      ((org-agenda-overriding-header "Waiting For")))
-     ("t" "Current TW Project" tags-todo "@twproject"
-      ((org-agenda-overriding-header "Current TW Project"))))
+      ((org-agenda-overriding-header "Waiting For"))))
    org-tag-persistent-alist '(("@computer" . ?c)
                               ("@email" . ?e)
                               ("@home" . ?h)
