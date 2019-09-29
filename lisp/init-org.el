@@ -42,16 +42,18 @@
   (setq
    org-todo-keywords
    '((sequence "TODO(t@/!)"
-               "WAITING(w@/!)"
                "DELEGATED(D@/!)"
+               "PROJECT(P@/!)"
                "|"
                "DONE(d@/!)"
+               "DEFERRED(e@/!)"
+               "SOMEDAY(s@/!)"
                "CANCELLED(x@/!)"))
    org-agenda-files (list (s-concat balaji/gtd-files-path "todo.org")
-                          (s-concat balaji/gtd-files-path "routines.org")
+                          (s-concat balaji/gtd-files-path "habits.org")
                           (s-concat balaji/gtd-files-path "projects.org")
-                          (s-concat balaji/gtd-files-path "tickler.org")
-                          (s-concat balaji/gtd-files-path "areas-of-focus.org")
+                          (s-concat balaji/gtd-files-path "family.org")
+                          (s-concat balaji/gtd-files-path "tw.org")
                           )
    org-archive-location (s-concat balaji/gtd-files-path "archives.org::")
    org-agenda-ndays 21
@@ -79,10 +81,7 @@
                               ("@work" . ?w)
                               ("@next_actions" . ?n))
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets `((,(s-concat balaji/gtd-files-path "projects.org") :maxlevel . 3)
-                        (,(s-concat balaji/gtd-files-path "someday.org") :level . 1)
-                        (,(s-concat balaji/gtd-files-path "tickler.org") :maxlevel . 2)
-                        (,(s-concat balaji/gtd-files-path "areas-of-focus.org") :maxlevel . 4))
+   org-refile-targets (quote ((org-agenda-files :todo . "PROJECT")))
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
@@ -105,17 +104,7 @@
    org-capture-templates
    `(("t" "Todo [inbox]" entry
       (file ,(s-concat balaji/gtd-files-path "todo.org"))
-      "* TODO %?
-:PROPERTIES:
-:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
-:END:" :prepend t)
-     ("T" "Tickler" entry
-      (file ,(s-concat balaji/gtd-files-path "tickler.org"))
-      "* %i%?
-:PROPERTIES:
-:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
-:END:" :prepend t))
-   org-datetree-add-timestamp t))
+      "* TODO %i%?"))))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
@@ -130,7 +119,13 @@
     (unless (org-entry-get (point) created) nil
            (org-set-property created now))))
 
+(defun balaji/org-capture-hook ()
+  "My hooks for Org Capture."
+  (org-id-get-create)
+  (balaji/org-set-created-property))
+
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
+(add-hook 'org-capture-prepare-finalize-hook 'balaji/org-capture-hook)
 
 (defun balaji/org-insert-props-for-all-entries ()
   "Insert my properties for all entries in the current file."
