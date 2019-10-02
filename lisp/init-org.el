@@ -104,7 +104,10 @@
    org-capture-templates
    `(("t" "Todo [inbox]" entry
       (file ,(s-concat balaji/gtd-files-path "todo.org"))
-      "* TODO %i%?"))))
+      "* TODO %i%?")
+     ("p" "Project [inbox]" entry
+      (file ,(s-concat balaji/gtd-files-path "todo.org"))
+      "* PROJECT %i%?"))))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
