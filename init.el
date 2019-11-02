@@ -79,6 +79,7 @@
 (require 'init-scripting-langs)
 (require 'init-latex)
 (require 'init-version-control)
+(require 'init-web-modes)
 (require 'init-project)
 ;; (require 'init-pragmata-pro)
 
