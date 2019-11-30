@@ -19,13 +19,13 @@
 
 ;;; Commentary:
 
-;; Loads Srcery Theme, removes extraneous user-interface elements and makes Emacs more usable.
+;; Loads Dracula Theme, removes extraneous user-interface elements and makes Emacs more usable.
 
 ;;; Code:
 
-(use-package srcery-theme
+(use-package dracula-theme
   :init
-  (load-theme 'srcery t))
+  (load-theme 'dracula t))
 
 (use-package nyan-mode
   :init (nyan-mode))
