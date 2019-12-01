@@ -21,3 +21,5 @@ ensime
 .lsp-session-v1
 /transient
 /.saveplace
+cider-history
+url/
