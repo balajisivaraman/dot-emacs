@@ -39,7 +39,7 @@
   :hook
   (cider-mode . eldoc-mode)
   (cider-mode . company-mode)
-  (cider-mode . flycheck-clojure-setup)
+  ;; (cider-mode . flycheck-clojure-setup)
   (cider-repl-mode . company-mode)
   :config
   (setq
