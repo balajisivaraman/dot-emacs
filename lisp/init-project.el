@@ -30,7 +30,10 @@
   (projectile-mode)
   (unbind-key "C-c p s r")
   :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (setq
+   projectile-git-command "rg -0 --files --hidden --follow --glob '!.git/*'"
+   projectile-generic-command "rg -0 --files --hidden --follow --glob '!.git/*'"))
 
 (use-package ignoramus
   :config
