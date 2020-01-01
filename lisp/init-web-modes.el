@@ -28,15 +28,24 @@
 
 (use-package typescript-mode
   :commands (typescript-mode)
-  :hook ((typescript-mode . lsp)))
+  :hook ((typescript-mode . lsp)
+         (typescript-mode . company-mode))
+  :init
+  (setq typescript-indent-level 2))
 
-(use-package tide
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)))
+(setq lsp-clients-angular-language-server-command
+  '("node"
+    "/home/balaji/.nvm/versions/node/v13.1.0/lib/node_modules/@angular/language-server"
+    "--ngProbeLocations"
+    "/home/balaji/.nvm/versions/node/v13.1.0/lib/node_modules/"
+    "--tsProbeLocations"
+    "/home/balaji/.nvm/versions/node/v13.1.0/lib/node_modules/"
+    "--stdio"))
 
 (use-package ng2-mode
-  :commands (ng2-mode ng2-ts-mode ng2-html-mode))
+  :commands (ng2-mode ng2-ts-mode ng2-html-mode)
+  :hook (((ng2-mode ng2-html-mode ng2-ts-mode) . lsp)
+         ((ng2-mode ng2-html-mode ng2-ts-mode) . company-mode)))
 
 (provide 'init-web-modes)
 ;;; init-web-modes.el ends here

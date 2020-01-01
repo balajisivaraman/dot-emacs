@@ -24,25 +24,18 @@
 ;;; Code:
 
 (use-package lsp-mode
-  :commands lsp
+  :commands (lsp lsp-deferred)
   :config
   (setq
    lsp-auto-guess-root t
    lsp-auto-configure nil
    lsp-prefer-flymake nil)
- )
+  )
 
-(use-package lsp-clients
-  :ensure nil
-  :after lsp-mode)
+(use-package lsp-clients :ensure nil)
 
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode
-;;   :after lsp-mode)
-
-;; (use-package company-lsp
-;;   :commands company-lsp
-;;   :after lsp-mode)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
