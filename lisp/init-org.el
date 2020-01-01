@@ -49,13 +49,6 @@
                "DEFERRED(e@/!)"
                "SOMEDAY(s@/!)"
                "CANCELLED(x@/!)"))
-   org-agenda-files (list (s-concat balaji/gtd-files-path "todo.org")
-                          (s-concat balaji/gtd-files-path "habits.org")
-                          (s-concat balaji/gtd-files-path "projects.org")
-                          (s-concat balaji/gtd-files-path "family.org")
-                          (s-concat balaji/gtd-files-path "tw.org")
-                          )
-   org-archive-location (s-concat balaji/gtd-files-path "archives.org::")
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
    org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
