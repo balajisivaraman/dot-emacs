@@ -19,13 +19,13 @@
 
 ;;; Commentary:
 
-;; Loads Night Owl Theme, removes extraneous user-interface elements and makes Emacs more usable.
+;; Loads Dracula Theme, removes extraneous user-interface elements and makes Emacs more usable.
 
 ;;; Code:
 
-(use-package night-owl-theme
+(use-package dracula-theme
   :init
-  (load-theme 'night-owl t))
+  (load-theme 'dracula t))
 
 (use-package nyan-mode
   :init (nyan-mode))
