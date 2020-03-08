@@ -57,5 +57,13 @@
   :init (global-page-break-lines-mode)
   :diminish page-break-lines-mode)
 
+(use-package dimmer
+  :config
+  (dimmer-configure-which-key)
+  (dimmer-configure-magit)
+  (dimmer-configure-posframe)
+  (dimmer-mode t)
+  (setq dimmer-fraction 0.5))
+
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
