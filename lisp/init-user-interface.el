@@ -19,13 +19,13 @@
 
 ;;; Commentary:
 
-;; Loads Dracula Theme, removes extraneous user-interface elements and makes Emacs more usable.
+;; Loads One Dark Theme, removes extraneous user-interface elements and makes Emacs more usable.
 
 ;;; Code:
 
-(use-package dracula-theme
+(use-package one-themes
   :init
-  (load-theme 'dracula t))
+  (load-theme 'one-dark t))
 
 (use-package nyan-mode
   :init (nyan-mode))
