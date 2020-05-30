@@ -1,6 +1,6 @@
 ;;; init-customizations.el --- Settings that I prefer Emacs to have out of the box. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019  Balaji Sivaraman
+;; Copyright (C) 2020  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

@@ -1,6 +1,6 @@
 ;;; init-web-modes.el --- Initializes web (html, css, js, ts, restclient) modes -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 Balaji Sivaraman
+;; Copyright (C) 2020 Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

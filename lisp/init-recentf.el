@@ -1,6 +1,6 @@
 ;;; init-recentf.el --- Loads recentf mode -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 Balaji Sivaraman
+;; Copyright (C) 2020 Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 
