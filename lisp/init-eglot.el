@@ -1,4 +1,4 @@
-;;; init-lsp.el --- Language Server Protocol Support -*- lexical-binding: t -*-
+;;; init-eglot.el --- Language Server Protocol Support -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2020 Balaji Sivaraman
 
@@ -19,23 +19,12 @@
 
 ;;; Commentary:
 
-;; Basic LSP Mode Configuration
+;; Basic Eglot Mode Configuration
 
 ;;; Code:
 
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :config
-  (setq
-   lsp-auto-guess-root t
-   lsp-auto-configure nil
-   lsp-prefer-flymake nil)
-  )
+(use-package eglot)
+(add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer")))
 
-(use-package lsp-clients :ensure nil)
-
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
-
-(provide 'init-lsp)
-;;; init-lsp.el ends here
+(provide 'init-eglot)
+;;; init-eglot.el ends here

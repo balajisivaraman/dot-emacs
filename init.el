@@ -72,7 +72,7 @@
 (require 'init-markup-languages)
 (require 'init-finance)
 (require 'init-lisp)
-(require 'init-lsp)
+(require 'init-eglot)
 (require 'init-org)
 (require 'init-clojure)
 (require 'init-rust)
