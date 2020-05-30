@@ -82,7 +82,6 @@
 (require 'init-version-control)
 (require 'init-web-modes)
 (require 'init-project)
-(require 'init-pragmata-pro)
 
 ;; Initialize OS specific bindings
 (when (eq system-type 'gnu/linux)
