@@ -23,32 +23,29 @@
 
 ;;; Code:
 
-(defvar balaji/gtd-files-path)
-(setq balaji/gtd-files-path "~/syncthing/gtd/")
+(defvar balaji/nextcloud-path)
+(setq balaji/nextcloud-path "/media/backup/Nextcloud/")
 
 (use-package org
   :ensure org-plus-contrib
   :bind
-  (("C-c o a" . org-agenda)
-   ("C-c o d" . org-check-deadlines)
-   ("C-c o b" . org-check-before-date)
-   ("C-c o A" . org-check-after-date)
-   ("C-c o r" . org-archive-subtree)
+  (("C-. a" . org-agenda)
+   ("C-. r" . org-archive-subtree)
    :map org-mode-map
-   ("C-c m l" . org-metaleft)
-   ("C-c m r" . org-metaright)
-   ("C-c o i" . balaji/org-insert-prop-for-current-entry))
+   ("C-. i" . balaji/org-insert-prop-for-current-entry))
   :config
   (setq
    org-todo-keywords
    '((sequence "TODO(t@/!)"
-               "DELEGATED(D@/!)"
                "PROJECT(P@/!)"
                "|"
                "DONE(d@/!)"
-               "DEFERRED(e@/!)"
-               "SOMEDAY(s@/!)"
                "CANCELLED(x@/!)"))
+   org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")
+                          (s-concat balaji/nextcloud-path "gtd/routines.org")
+                          (s-concat balaji/nextcloud-path "gtd/projects.org")
+                          (s-concat balaji/nextcloud-path "gtd/family.org")
+                          (s-concat balaji/nextcloud-path "gtd/tw.org"))
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
    org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
@@ -64,13 +61,8 @@
    '(("w" "At Work" tags-todo "@work+@next_actions|@phone|"
       ((org-agenda-overriding-header "Next Actions At Work")))
      ("h" "At Home" tags-todo "@home+@next_actions|@phone"
-      ((org-agenda-overriding-header "Next Actions At Home")))
-     ("W" "Waiting For" todo "WAITING"
-      ((org-agenda-overriding-header "Waiting For"))))
-   org-tag-persistent-alist '(("@computer" . ?c)
-                              ("@email" . ?e)
-                              ("@home" . ?h)
-                              ("@phone" . ?p)
+      ((org-agenda-overriding-header "Next Actions At Home"))))
+   org-tag-persistent-alist '(("@home" . ?h)
                               ("@work" . ?w)
                               ("@next_actions" . ?n))
    org-refile-allow-creating-parent-nodes 'confirm
@@ -78,11 +70,9 @@
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
-   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions\\|@computer\\|@email\\|@phone")
-  (add-to-list 'org-modules 'org-habit)
+   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions")
   (add-to-list 'org-modules 'org-id)
-  (setq org-agenda-tags-column 110
-        org-id-locations-file (s-concat balaji/gtd-files-path "org-id-locations.txt")))
+  (setq org-agenda-tags-column 110))
 
 (use-package org-bullets
   :after org)
@@ -91,16 +81,27 @@
   :ensure nil
   :after org
   :bind
-  (("C-c o c" . org-capture))
+  (("C-. c" . org-capture))
   :config
   (setq
    org-capture-templates
    `(("t" "Todo [inbox]" entry
-      (file ,(s-concat balaji/gtd-files-path "todo.org"))
-      "* TODO %i%?")
-     ("p" "Project [inbox]" entry
-      (file ,(s-concat balaji/gtd-files-path "todo.org"))
-      "* PROJECT %i%?"))))
+      (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
+      "* TODO %i%?
+:PROPERTIES:
+:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:END:" :prepend t))))
+
+(use-package org-roam
+  :init
+  (add-hook 'after-init-hook 'org-roam-mode)
+  :bind
+  ("C-. i" . org-roam-insert)
+  :config
+  (setq
+   org-roam-directory (s-concat balaji/nextcloud-path "notes/")
+   org-roam-index-file "index.org"
+   org-roam-completion-system 'ivy))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
@@ -121,7 +122,6 @@
   (balaji/org-set-created-property))
 
 (add-hook 'org-mode-hook 'balaji/org-mode-hook)
-(add-hook 'org-capture-prepare-finalize-hook 'balaji/org-capture-hook)
 
 (defun balaji/org-insert-props-for-all-entries ()
   "Insert my properties for all entries in the current file."
