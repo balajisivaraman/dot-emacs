@@ -103,6 +103,16 @@
    org-roam-index-file "index.org"
    org-roam-completion-system 'ivy))
 
+(use-package org-journal
+  :bind
+  ("C-. C-j" . org-journal-new-entry)
+  :config
+  (setq
+   org-journal-dir (s-concat balaji/nextcloud-path "notes/")
+   org-journal-file-format "journal-%Y-%m-%d.org"
+   org-journal-file-header "#+TITLE: %Y-%m-%d"
+   org-journal-date-format "%x"))
+
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
   (org-bullets-mode t)
