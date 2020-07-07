@@ -110,8 +110,8 @@
   (setq
    org-journal-dir (s-concat balaji/nextcloud-path "notes/")
    org-journal-file-format "journal-%Y-%m-%d.org"
-   org-journal-file-header "#+TITLE: %Y-%m-%d"
-   org-journal-date-format "%x"))
+   org-journal-date-prefix "#+TITLE: "
+   org-journal-date-format "%d-%m-%Y"))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
