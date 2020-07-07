@@ -112,10 +112,11 @@
   ("C-. C-j" . org-journal-new-entry)
   :config
   (setq
-   org-journal-dir (s-concat balaji/nextcloud-path "notes/")
-   org-journal-file-format "journal-%Y-%m-%d.org"
+   org-journal-dir (s-concat balaji/nextcloud-path "notes/journal/")
+   org-journal-file-format "%Y-%m-%d.org"
    org-journal-date-prefix "#+TITLE: "
-   org-journal-date-format "%d-%m-%Y"))
+   org-journal-date-format "%d-%m-%Y"
+   org-journal-carryover-items nil))
 
 (defun balaji/org-mode-hook ()
   "My hooks for Org Mode."
