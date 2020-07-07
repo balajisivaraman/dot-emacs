@@ -101,6 +101,9 @@
   :config
   (setq
    org-roam-directory (s-concat balaji/nextcloud-path "notes/")
+   org-roam-db-location "~/.org-roam.db"
+   org-roam-db-gc-threshold most-positive-fixnum
+   org-roam-graph-exclude-matcher "journal"
    org-roam-index-file "index.org"
    org-roam-completion-system 'ivy))
 
