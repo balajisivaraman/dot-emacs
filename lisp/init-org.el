@@ -72,7 +72,8 @@
    org-agenda-tags-todo-honor-ignore-options t
    org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions")
   (add-to-list 'org-modules 'org-id)
-  (setq org-agenda-tags-column 110))
+  (setq org-agenda-tags-column 110
+        org-id-link-to-org-use-id t))
 
 (use-package org-bullets
   :after org)
