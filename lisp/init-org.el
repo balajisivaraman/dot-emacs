@@ -33,6 +33,8 @@
    ("C-. r" . org-archive-subtree)
    :map org-mode-map
    ("C-. i" . balaji/org-insert-prop-for-current-entry))
+  :hook ((org-mode . org-indent-mode)
+         (before-save . balaji/org-set-last-modified))
   :config
   (setq
    org-todo-keywords
@@ -116,18 +118,30 @@
 :END:" :prepend t))))
 
 (use-package org-roam
-  :init
-  (add-hook 'after-init-hook 'org-roam-mode)
+  :hook ((after-init . org-roam-mode))
   :bind
   ("C-. i" . org-roam-insert)
+  ("C-. C" . org-roam-capture)
   :config
   (setq
    org-roam-directory (s-concat balaji/nextcloud-path "notes/")
    org-roam-db-location "~/.org-roam.db"
    org-roam-db-gc-threshold most-positive-fixnum
-   org-roam-graph-exclude-matcher "journal"
+   org-roam-graph-exclude-matcher '("journal" "private")
    org-roam-index-file "index.org"
-   org-roam-completion-system 'ivy))
+   org-roam-completion-system 'ivy
+   org-roam-capture-templates
+   `(("d" "default" plain
+      (function org-roam-capture--get-point)
+      "%?"
+      :file-name "%<%Y%m%d%H%M%S>-${slug}"
+      :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n\n"
+      :unnarrowed t)
+     ("p" "private" plain (function org-roam-capture--get-point)
+      "%?"
+      :file-name "private/${slug}"
+      :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n\n"
+      :unnarrowed t))))
 
 (use-package org-journal
   :bind
@@ -151,7 +165,42 @@
   (let* ((created "CREATED")
          (now  (format-time-string (org-time-stamp-format t t))))
     (unless (org-entry-get (point) created) nil
-           (org-set-property created now))))
+            (org-set-property created now))))
+
+;; Below three functions are taken from: https://github.com/zaeph/.emacs.d/blob/master/init.el
+(defun balaji/org-find-time-file-property (property &optional anywhere)
+    "Return the position of the time file PROPERTY if it exists.
+When ANYWHERE is non-nil, search beyond the preamble."
+    (save-excursion
+      (goto-char (point-min))
+      (let ((first-heading
+             (save-excursion
+               (re-search-forward org-outline-regexp-bol nil t))))
+        (when (re-search-forward (format "^#\\+%s:" property)
+                                 (if anywhere nil first-heading)
+                                 t)
+          (point)))))
+
+(defun balaji/org-set-time-file-property (property &optional anywhere pos)
+  "Set the time file PROPERTY in the preamble.
+When ANYWHERE is non-nil, search beyond the preamble.
+If the position of the file PROPERTY has already been computed,
+it can be passed in POS."
+  (when-let ((pos (or pos
+                      (balaji/org-find-time-file-property property))))
+    (save-excursion
+      (goto-char pos)
+      (if (looking-at-p " ")
+          (forward-char)
+        (insert " "))
+      (delete-region (point) (line-end-position))
+      (let* ((now (format-time-string "[%Y-%m-%d %a %H:%M]")))
+        (insert now)))))
+
+(defun balaji/org-set-last-modified ()
+    "Update the LAST_MODIFIED file property in the preamble."
+    (when (derived-mode-p 'org-mode)
+      (balaji/org-set-time-file-property "LAST_MODIFIED")))
 
 (defun balaji/org-capture-hook ()
   "My hooks for Org Capture."
