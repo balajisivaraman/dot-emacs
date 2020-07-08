@@ -61,7 +61,10 @@
    '(("w" "At Work" tags-todo "@work+@next_actions|@phone|"
       ((org-agenda-overriding-header "Next Actions At Work")))
      ("h" "At Home" tags-todo "@home+@next_actions|@phone"
-      ((org-agenda-overriding-header "Next Actions At Home"))))
+      ((org-agenda-overriding-header "Next Actions At Home")))
+     ("t" "To Refile" todo "TODO"
+      ((org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")))
+       (org-agenda-overriding-header "To Refile"))))
    org-tag-persistent-alist '(("@home" . ?h)
                               ("@work" . ?w)
                               ("@next_actions" . ?n))
