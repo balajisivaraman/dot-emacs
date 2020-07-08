@@ -38,6 +38,7 @@
    org-todo-keywords
    '((sequence "TODO(t@/!)"
                "PROJECT(P@/!)"
+               "DELEGATED(D@/!)"
                "|"
                "DONE(d@/!)"
                "CANCELLED(x@/!)"))
@@ -62,6 +63,8 @@
       ((org-agenda-overriding-header "Next Actions At Work")))
      ("h" "At Home" tags-todo "@home+@next_actions|@phone"
       ((org-agenda-overriding-header "Next Actions At Home")))
+     ("D" "Delegated Tasks" todo "DELEGATED"
+      ((org-agenda-overriding-header "Delegated Tasks:")))
      ("t" "To Refile" todo "TODO"
       ((org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")))
        (org-agenda-overriding-header "To Refile"))))
@@ -76,7 +79,23 @@
    org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions")
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
-        org-id-link-to-org-use-id t))
+        org-id-link-to-org-use-id t
+        org-todo-keyword-faces
+        `(("TODO" :foreground ,(balaji/get-one-theme-color 'red1) :weight bold)
+          ("PROJECT" :foreground ,(balaji/get-one-theme-color 'orange1) :weight bold)
+          ("DELEGATED" :foreground ,(balaji/get-one-theme-color 'violet) :weight bold)
+          ("DONE" :foreground ,(balaji/get-one-theme-color 'green) :weight bold)
+          ("CANCELLED" :foreground ,(balaji/get-one-theme-color 'red2) :weight bold))))
+
+(defun balaji/get-one-theme-color (key)
+  "Gets hex code matching KEY."
+  (cdr
+   (assoc
+    key
+    (cdr
+     (assoc
+      'dark
+      (symbol-value 'one-themes-colors))))))
 
 (use-package org-bullets
   :after org)
