@@ -136,12 +136,12 @@
       (function org-roam-capture--get-point)
       "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n\n"
+      :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t)
      ("p" "private" plain (function org-roam-capture--get-point)
       "%?"
       :file-name "private/${slug}"
-      :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n\n"
+      :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t))))
 
 (use-package org-journal
