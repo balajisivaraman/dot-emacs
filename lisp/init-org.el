@@ -81,6 +81,7 @@
    org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions")
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
+        org-ellipsis "  "
         org-id-link-to-org-use-id t
         org-todo-keyword-faces
         `(("TODO" :foreground ,(balaji/get-one-theme-color 'red1) :weight bold)
