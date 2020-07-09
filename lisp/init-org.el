@@ -28,12 +28,16 @@
 
 (use-package org
   :ensure org-plus-contrib
+  :diminish
+  (org-indent-mode)
   :bind
   (("C-. a" . org-agenda)
    ("C-. r" . org-archive-subtree)
    :map org-mode-map
    ("C-. i" . balaji/org-insert-prop-for-current-entry))
   :hook ((org-mode . org-indent-mode)
+         (org-mode . org-bullets-mode)
+         (org-mode . company-mode)
          (before-save . balaji/org-set-last-modified))
   :config
   (setq
@@ -88,7 +92,9 @@
           ("PROJECT" :foreground ,(balaji/get-one-theme-color 'orange1) :weight bold)
           ("DELEGATED" :foreground ,(balaji/get-one-theme-color 'violet) :weight bold)
           ("DONE" :foreground ,(balaji/get-one-theme-color 'green) :weight bold)
-          ("CANCELLED" :foreground ,(balaji/get-one-theme-color 'red2) :weight bold))))
+          ("CANCELLED" :foreground ,(balaji/get-one-theme-color 'red2) :weight bold))
+        org-use-speed-commands t
+        org-hide-emphasis-markers t))
 
 (defun balaji/get-one-theme-color (key)
   "Gets hex code matching KEY."
@@ -119,6 +125,7 @@
 :END:" :prepend t))))
 
 (use-package org-roam
+  :diminish (org-roam-mode)
   :hook ((after-init . org-roam-mode))
   :bind
   ("C-. i" . org-roam-insert)
@@ -154,11 +161,6 @@
    org-journal-date-prefix "#+TITLE: "
    org-journal-date-format "%d-%m-%Y"
    org-journal-carryover-items nil))
-
-(defun balaji/org-mode-hook ()
-  "My hooks for Org Mode."
-  (org-bullets-mode t)
-  (company-mode t))
 
 (defun balaji/org-set-created-property ()
   "Set a property on the entry for creation time."
@@ -207,8 +209,6 @@ it can be passed in POS."
   "My hooks for Org Capture."
   (org-id-get-create)
   (balaji/org-set-created-property))
-
-(add-hook 'org-mode-hook 'balaji/org-mode-hook)
 
 (defun balaji/org-insert-props-for-all-entries ()
   "Insert my properties for all entries in the current file."
