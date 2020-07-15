@@ -71,7 +71,7 @@
       ((org-agenda-overriding-header "Next Actions At Home")))
      ("D" "Delegated Tasks" todo "DELEGATED"
       ((org-agenda-overriding-header "Delegated Tasks:")))
-     ("t" "To Refile" todo "TODO"
+     ("i" "Inbox" todo "TODO"
       ((org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")))
        (org-agenda-overriding-header "To Refile"))))
    org-tag-persistent-alist '(("@home" . ?h)
