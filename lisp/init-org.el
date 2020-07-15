@@ -94,7 +94,12 @@
           ("DONE" :foreground ,(balaji/get-one-theme-color 'green) :weight bold)
           ("CANCELLED" :foreground ,(balaji/get-one-theme-color 'red2) :weight bold))
         org-use-speed-commands t
-        org-hide-emphasis-markers t))
+        org-hide-emphasis-markers t
+        org-special-ctrl-k t
+        org-M-RET-may-split-line nil
+        org-ctrl-k-protect-subtree t
+        org-blank-before-new-entry '((heading) (plain-list-item)))
+  (diminish 'buffer-face-mode))
 
 (defun balaji/get-one-theme-color (key)
   "Gets hex code matching KEY."
