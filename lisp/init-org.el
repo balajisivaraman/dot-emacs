@@ -33,8 +33,10 @@
   :bind
   (("C-. a" . org-agenda)
    ("C-. r" . org-archive-subtree)
+   ("C-. l" . org-store-link)
    :map org-mode-map
-   ("C-. i" . balaji/org-insert-prop-for-current-entry))
+   ("C-. i" . balaji/org-insert-prop-for-current-entry)
+   ("C-. i" . org-insert-link))
   :hook ((org-mode . org-indent-mode)
          (org-mode . org-bullets-mode)
          (org-mode . company-mode)
