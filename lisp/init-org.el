@@ -127,6 +127,12 @@
       "* TODO %i%?
 :PROPERTIES:
 :ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:END:" :prepend t)
+     ("p" "Project" entry
+      (file ,(s-concat balaji/nextcloud-path "gtd/projects.org"))
+      "* PROJECT %i%?
+:PROPERTIES:
+:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
 :END:" :prepend t))))
 
 (use-package org-roam
