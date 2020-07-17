@@ -66,6 +66,7 @@
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
    org-log-done 'note
+   org-archive-location (s-concat balaji/nextcloud-path "gtd/archives.org::")
    org-agenda-custom-commands
    '(("w" "At Work" tags-todo "@work+@next_actions|@phone|"
       ((org-agenda-overriding-header "Next Actions At Work")))
