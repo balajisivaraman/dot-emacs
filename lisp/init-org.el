@@ -101,7 +101,7 @@
         org-special-ctrl-k t
         org-M-RET-may-split-line nil
         org-ctrl-k-protect-subtree t
-        org-blank-before-new-entry '((heading) (plain-list-item)))
+        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   (diminish 'buffer-face-mode))
 
 (defun balaji/get-one-theme-color (key)
