@@ -23,8 +23,11 @@
 
 ;;; Code:
 
+(defvar balaji/one-themes-path "~/code/emacs-one-themes/")
 (use-package one-themes
+  :load-path balaji/one-themes-path
   :init
+  (add-to-list 'custom-theme-load-path balaji/one-themes-path)
   (load-theme 'one-dark t))
 
 (use-package nyan-mode
