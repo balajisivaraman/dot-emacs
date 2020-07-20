@@ -72,7 +72,7 @@
 (require 'init-markup-languages)
 (require 'init-finance)
 (require 'init-lisp)
-(require 'init-eglot)
+(require 'init-lsp)
 (require 'init-org)
 (require 'init-clojure)
 (require 'init-rust)
@@ -103,8 +103,9 @@
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (setq gc-cons-threshold 16777216
+   (setq gc-cons-threshold 100000000
          gc-cons-percentage 0.1
+         read-process-output-max (* 1024 1024)
          file-name-handler-alist balaji--file-name-handler-alist)))
 
 ;;; init.el ends here
