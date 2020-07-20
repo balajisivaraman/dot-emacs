@@ -23,12 +23,15 @@
 
 ;;; Code:
 
+(define-prefix-command 'jump-map)
+(global-unset-key (kbd "M-j"))
+(global-set-key (kbd "M-j") 'jump-map)
 (use-package avy
   :bind
-  (("C-c j j" . avy-goto-char)
-   ("C-c j w" . avy-goto-word-1)
-   ("C-c j b" . avy-pop-mark)
-   ("C-c j l" . avy-goto-line)))
+  (("M-j j" . avy-goto-char)
+   ("M-j w" . avy-goto-word-1)
+   ("M-j b" . avy-pop-mark)
+   ("M-j l" . avy-goto-line)))
 
 (use-package ace-window
   :bind
