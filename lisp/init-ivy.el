@@ -58,15 +58,15 @@
         ("C-s" . swiper)
         ("C-r" . swiper)))
 
-(use-package historian
-  :after (ivy)
-  :init
-  (historian-mode t))
-
-(use-package ivy-historian
-  :after (ivy)
+(use-package amx
+  :after ivy
   :config
-  (ivy-historian-mode t))
+  (setq
+   amx-backend 'auto
+   amx-save-file "~/.emacs.d/temp/amx-items"
+   amx-history-length 50
+   amx-show-key-bindings nil)
+ (amx-mode t))
 
 (provide 'init-ivy)
 ;;; init-ivy.el ends here
