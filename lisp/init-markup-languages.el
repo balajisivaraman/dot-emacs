@@ -34,6 +34,8 @@
   (add-hook 'markdown-mode-hook #'flycheck-mode))
 
 (use-package yaml-mode
+  :hook
+  ((yaml-mode . lsp-deferred))
   :mode
   "\\(\\.yml\\|\\.yaml\\)")
 
