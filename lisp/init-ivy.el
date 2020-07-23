@@ -55,8 +55,7 @@
   :after (ivy)
   :bind
   (:map global-map
-        ("C-s" . swiper)
-        ("C-r" . swiper)))
+        ("C-S-s" . swiper)))
 
 (use-package amx
   :after ivy
