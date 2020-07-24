@@ -106,6 +106,7 @@
    (setq gc-cons-threshold 100000000
          gc-cons-percentage 0.1
          read-process-output-max (* 1024 1024)
-         file-name-handler-alist balaji--file-name-handler-alist)))
+         file-name-handler-alist balaji--file-name-handler-alist)
+   (server-start)))
 
 ;;; init.el ends here
