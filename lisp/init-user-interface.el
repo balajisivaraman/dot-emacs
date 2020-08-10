@@ -28,8 +28,10 @@
   :load-path balaji/one-themes-path
   :init
   (add-to-list 'custom-theme-load-path balaji/one-themes-path)
-  (load-theme 'one-dark t))
-
+  (load-theme 'one-dark t)
+  :config
+  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+  (add-to-list 'default-frame-alist '(alpha . (90 . 90))))
 (use-package nyan-mode
   :init (nyan-mode))
 
