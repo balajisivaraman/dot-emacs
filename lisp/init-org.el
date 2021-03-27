@@ -54,8 +54,8 @@
    org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")
                           (s-concat balaji/nextcloud-path "gtd/routines.org")
                           (s-concat balaji/nextcloud-path "gtd/projects.org")
-                          (s-concat balaji/nextcloud-path "gtd/family.org")
-                          (s-concat balaji/nextcloud-path "gtd/tw.org"))
+                          (s-concat balaji/nextcloud-path "gtd/personal.org")
+                          (s-concat balaji/nextcloud-path "gtd/work.org"))
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
    org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
@@ -69,9 +69,9 @@
    org-log-done 'note
    org-archive-location (s-concat balaji/nextcloud-path "gtd/archives.org::")
    org-agenda-custom-commands
-   '(("w" "At Work" tags-todo "@work+@next_actions|@phone|"
+   '(("w" "At Work" tags-todo "@work+@next|@phone|"
       ((org-agenda-overriding-header "Next Actions At Work")))
-     ("h" "At Home" tags-todo "@home+@next_actions|@phone"
+     ("h" "At Home" tags-todo "@home+@next|@phone"
       ((org-agenda-overriding-header "Next Actions At Home")))
      ("D" "Delegated Tasks" todo "DELEGATED"
       ((org-agenda-overriding-header "Delegated Tasks:")))
@@ -80,13 +80,13 @@
        (org-agenda-overriding-header "To Refile"))))
    org-tag-persistent-alist '(("@home" . ?h)
                               ("@work" . ?w)
-                              ("@next_actions" . ?n))
+                              ("@next" . ?n))
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets (quote ((org-agenda-files :todo . "PROJECT")))
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
-   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next_actions")
+   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next")
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
         org-ellipsis "  "
