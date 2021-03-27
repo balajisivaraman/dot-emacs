@@ -39,6 +39,7 @@
    ("C-. i" . org-insert-link))
   :hook ((org-mode . org-indent-mode)
          (org-mode . org-bullets-mode)
+         (org-mode . variable-pitch-mode)
          (org-mode . company-mode)
          (before-save . balaji/org-set-last-modified))
   :config
