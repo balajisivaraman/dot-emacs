@@ -90,12 +90,6 @@
   (setq org-agenda-tags-column 110
         org-ellipsis "  "
         org-id-link-to-org-use-id t
-        org-todo-keyword-faces
-        `(("TODO" :foreground ,(balaji/get-one-theme-color 'red1) :weight bold)
-          ("PROJECT" :foreground ,(balaji/get-one-theme-color 'orange1) :weight bold)
-          ("DELEGATED" :foreground ,(balaji/get-one-theme-color 'violet) :weight bold)
-          ("DONE" :foreground ,(balaji/get-one-theme-color 'green) :weight bold)
-          ("CANCELLED" :foreground ,(balaji/get-one-theme-color 'red2) :weight bold))
         org-use-speed-commands t
         org-hide-emphasis-markers t
         org-special-ctrl-k t
@@ -103,16 +97,6 @@
         org-ctrl-k-protect-subtree t
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   (diminish 'buffer-face-mode))
-
-(defun balaji/get-one-theme-color (key)
-  "Gets hex code matching KEY."
-  (cdr
-   (assoc
-    key
-    (cdr
-     (assoc
-      'dark
-      (symbol-value 'one-themes-colors))))))
 
 (use-package org-bullets
   :after org)
