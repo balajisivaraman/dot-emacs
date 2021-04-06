@@ -97,10 +97,45 @@
         org-M-RET-may-split-line nil
         org-ctrl-k-protect-subtree t
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+  (font-lock-add-keywords
+   'org-mode
+   '(("^ *\\([-]\\) "
+      (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+  (custom-theme-set-faces
+   'user
+   ;; configure overall variable pitch and fixed pitch fonts
+   '(variable-pitch ((t (:family "Gentium Book Basic" :height 130))))
+   '(fixed-pitch ((t (:family "NotoSansMono" :height 116))))
+
+   ;; configure fonts for org headings and document title
+   '(org-level-8 ((t (:inherit default))))
+   '(org-level-7 ((t (:inherit default))))
+   '(org-level-6 ((t (:inherit default))))
+   '(org-level-5 ((t (:inherit default))))
+   '(org-level-3 ((t (:inherit default :height 1.15))))
+   '(org-level-2 ((t (:inherit default :height 1.3))))
+   '(org-level-1 ((t (:inherit default :height 1.5))))
+   '(org-document-title ((t (:inherit default :height 1.75 :underline nil))))
+
+   ;; configure fonts for other org elements
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+   )
   (diminish 'buffer-face-mode))
 
 (use-package org-bullets
   :after org)
+
+(use-package org-protocol
+  :after org
+  :ensure nil)
 
 (use-package org-capture
   :ensure nil
@@ -121,20 +156,27 @@
       "* PROJECT %i%?
 :PROPERTIES:
 :ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
-:END:" :prepend t))))
+:END:" :prepend t)
+     ("c" "Org Protocol Capture" entry
+      (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
+      "* TODO Read: %:description
+:PROPERTIES:
+:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:URL: %l
+:END:"))))
 
 (use-package org-roam
   :diminish (org-roam-mode)
   :hook ((after-init . org-roam-mode))
   :bind
   ("C-. i" . org-roam-insert)
-  ("C-. C" . org-roam-capture)
+  ("C-. C" . org-roam-find-file)
   :config
   (setq
-   org-roam-directory (s-concat balaji/nextcloud-path "notes/")
+   org-roam-directory (s-concat balaji/nextcloud-path "Notes/")
    org-roam-db-location "~/.org-roam.db"
    org-roam-db-gc-threshold most-positive-fixnum
-   org-roam-graph-exclude-matcher '("journal" "private")
+   org-roam-graph-exclude-matcher '("private")
    org-roam-index-file "index.org"
    org-roam-completion-system 'ivy
    org-roam-capture-templates
@@ -142,24 +184,23 @@
       (function org-roam-capture--get-point)
       "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t)
      ("p" "private" plain (function org-roam-capture--get-point)
       "%?"
       :file-name "private/${slug}"
-      :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t))))
 
-(use-package org-journal
+(use-package deft
+  :after org
   :bind
-  ("C-. C-j" . org-journal-new-entry)
-  :config
-  (setq
-   org-journal-dir (s-concat balaji/nextcloud-path "notes/journal/")
-   org-journal-file-format "%Y-%m-%d.org"
-   org-journal-date-prefix "#+TITLE: "
-   org-journal-date-format "%d-%m-%Y"
-   org-journal-carryover-items nil))
+  ("C-. s" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory (s-concat balaji/nextcloud-path "Notes/")))
 
 (defun balaji/org-set-created-property ()
   "Set a property on the entry for creation time."
