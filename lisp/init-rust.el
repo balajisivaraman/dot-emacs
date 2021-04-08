@@ -61,7 +61,7 @@
 
 (defun balaji/rust-mode-hook ()
   "Hooks for Rust Mode."
-  (eglot-ensure)
+  (lsp)
   (company-mode)
   (cargo-minor-mode)
   (eldoc-mode))

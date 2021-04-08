@@ -25,11 +25,11 @@
 
 (defvar balaji/node-version (s-trim (shell-command-to-string "node -v")))
 
-(setq lsp-keymap-prefix "C-c l")
-
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :init
+  (setq lsp-keymap-prefix "C-c l")
   :config
   (setq lsp-prefer-capf t
         lsp-idle-delay 0.500
@@ -42,9 +42,6 @@
           ,(s-join "/" `(,(f-expand "~") ".nvm/versions/node" ,balaji/node-version "lib/node_modules"))
           "--stdio")))
 
-(use-package lsp-clients
-  :ensure nil
-  :after lsp-mode)
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
