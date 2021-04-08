@@ -71,6 +71,7 @@
 (require 'init-syntax-checkers)
 (require 'init-markup-languages)
 (require 'init-finance)
+(require 'init-treesitter)
 (require 'init-lisp)
 (require 'init-lsp)
 (require 'init-org)
