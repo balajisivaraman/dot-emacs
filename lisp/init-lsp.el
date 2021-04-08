@@ -42,7 +42,14 @@
           ,(s-join "/" `(,(f-expand "~") ".nvm/versions/node" ,balaji/node-version "lib/node_modules"))
           "--stdio")))
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :config
+  (setq
+   lsp-ui-doc-enable t
+   lsp-ui-doc-show-with-cursor nil
+   lsp-ui-doc-show-with-mouse t
+   lsp-ui-doc-position 'at-point))
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
