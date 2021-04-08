@@ -19,16 +19,24 @@
 
 ;;; Commentary:
 
-;; Loads Gruvbox Theme, removes extraneous user-interface elements and makes Emacs more usable.
+;; Loads Modus Operandi Theme, removes extraneous user-interface elements and makes Emacs more usable.
 
 ;;; Code:
 
-(use-package gruvbox-theme
+(use-package modus-operandi-theme
   :init
-  (load-theme 'gruvbox-dark-hard t)
+  (setq
+   modus-themes-syntax 'alt-syntax-yellow-comments
+   modus-themes-fringes 'subtle
+   modus-themes-headings '((t . no-bold))
+   modus-themes-scale-headings t
+   modus-themes-scale-1 1.15
+   modus-themes-scale-2 1.3
+   modus-themes-scale-3 1.45
+   modus-themes-scale-4 1.6
+   modus-themes-scale-5 1.75)
   :config
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
-  (add-to-list 'default-frame-alist '(alpha . (95 . 95))))
+  (load-theme 'modus-operandi t))
 
 (use-package nyan-mode
   :init (nyan-mode))
