@@ -23,7 +23,7 @@
 
 ;;; Code:
 
-(use-package modus-operandi-theme
+(use-package modus-themes
   :init
   (setq
    modus-themes-syntax 'alt-syntax-yellow-comments
