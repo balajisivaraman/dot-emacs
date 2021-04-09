@@ -40,6 +40,10 @@
   (setq-default magit-last-seen-setup-instructions "1.4.0")
   (advice-add 'magit-status :after #'delete-other-windows))
 
+(use-package magit-delta
+  :after magit
+  :hook ((magit-mode . (lambda () (magit-delta-mode +1)))))
+
 (use-package gist
   :bind (("C-c g g l" . gist-list)
          ("C-c g g b" . gist-region-or-buffer)))
