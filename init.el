@@ -64,7 +64,6 @@
 (require 'init-files)
 (require 'init-search)
 (require 'init-basic-editing)
-(require 'init-fontification)
 (require 'init-codestyle)
 (require 'init-company)
 (require 'init-snippets)

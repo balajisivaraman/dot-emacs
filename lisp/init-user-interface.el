@@ -76,5 +76,12 @@
   (dimmer-mode t)
   (setq dimmer-fraction 0.5))
 
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :init
+  (dolist (hook '(text-mode-hook prog-mode-hook))
+    (add-hook hook #'rainbow-delimiters-mode)))
+
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
