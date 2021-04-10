@@ -29,7 +29,7 @@
   :commands (lsp lsp-deferred)
   :hook ((lsp-mode . lsp-enable-which-key-integration))
   :init
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C-'")
   :config
   (setq lsp-prefer-capf t
         lsp-idle-delay 0.500
