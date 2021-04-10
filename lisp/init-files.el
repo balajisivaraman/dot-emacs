@@ -19,7 +19,7 @@
 
 ;;; Commentary:
 
-;; Make working with files in emacs easier than before.
+;; Make working with files in Emacs easier than before.
 
 ;;; Code:
 
@@ -70,6 +70,15 @@
 (use-package hardhat
   :init (global-hardhat-mode)
   :config (setq hardhat-mode-lighter " Ⓗ"))
+
+(use-package recentf
+  :ensure nil
+  :hook
+  ((after-init . (lambda () (recentf-mode 1))))
+  :init
+  (setq-default
+   recentf-max-saved-items 1000
+   recentf-exclude '("/tmp/" "/ssh:")))
 
 (provide 'init-files)
 ;;; init-files.el ends here

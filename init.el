@@ -76,7 +76,6 @@
 (require 'init-org)
 (require 'init-clojure)
 (require 'init-rust)
-(require 'init-recentf)
 (require 'init-scripting-langs)
 (require 'init-latex)
 (require 'init-version-control)
