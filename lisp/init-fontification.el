@@ -23,57 +23,6 @@
 
 ;;; Code:
 
-(defconst balaji/unicode-conversions
-  '(;;("[ (]\\(->\\)[) \n]"     . ?→)
-    ;;("[ (]\\(/=\\)[) ]"       . ?≠)
-    ;;("[ (]\\(<=\\)[) ]"       . ?≤)
-    ;;("[ (]\\(>=\\)[) ]"       . ?≥)
-    ;;("[ (]\\(=\\)[) ]"        . ?≡)
-    ("[ (]\\(\\.\\)[) ]"      . ?∘)
-    ("[ (]\\(&&\\)[) ]"       . ?∧)
-    ("[ (]\\(||\\)[) ]"       . ?∨)
-    ("[ (]\\(\\*\\)[) ]"      . ?×)
-    ("[ (]\\(\\\\\\)[(_a-z]"  . ?λ)
-    ;;(" \\(<-\\)[ \n]"         . ?←)
-    ;; (" \\(-<\\) "             . ?↢)
-    ;; (" \\(>-\\) "             . ?↣)
-    ;;(" \\(=>\\)[ \n]"         . ?⇒)
-    ;;(" \\(>=>\\) "           . ?↣)
-    ;;(" \\(<=<\\) "           . ?↢)
-    ;;(" \\(>>=\\) "           . ?↦)
-    ;;(" \\(=<<\\) "           . ?↤)
-    ("[ (]\\(\\<not\\>\\)[ )]" . ?¬)
-    ;;("[ (]\\(<<<\\)[ )]"      . ?⋘)
-    ;;("[ (]\\(>>>\\)[ )]"      . ?⋙)
-    (" \\(::\\) "             . ?∷)
-    ("\\(`union`\\)"          . ?⋃)
-    ("\\(`intersect`\\)"      . ?⋂)
-    ("\\(`elem`\\)"           . ?∈)
-    ("\\(`notElem`\\)"        . ?∉)
-    ;;("\\<\\(mempty\\)\\>"    . ??)
-    ;; ("\\(`mappend`\\)"        . ?⨂)
-    ;; ("\\(`msum`\\)"           . ?⨁)
-    ;; ("\\(\\<True\\>\\)"       . "𝗧𝗿𝘂𝗲")
-    ;; ("\\(\\<False\\>\\)"      . "𝗙𝗮𝗹𝘀𝗲")
-    ("\\(\\<undefined\\>\\)"  . ?⊥)
-    ("\\<\\(forall \\)\\>"   . ?∀)))
-
-(defun balaji/setup-unicode-conversions ()
-  (mapc (lambda (mode)
-          (font-lock-add-keywords
-           mode
-           (append (--map
-                    `(,(car it)
-                      ,(if (characterp (cdr it))
-                           `(0 (ignore
-                                (compose-region (match-beginning 1)
-                                                (match-end 1)
-                                                ,(cdr it))))
-                         `(0 ,(cdr it))))
-                    balaji/unicode-conversions)
-                   '(("(\\|)" . 'esk-paren-face)))))
-        '(haskell-mode literate-haskell-mode)))
-
 (use-package rainbow-delimiters
   :ensure t
   :defer t
