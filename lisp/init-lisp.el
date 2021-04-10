@@ -52,15 +52,15 @@
         (funcall current-mode))))
 
 (bind-keys :map emacs-lisp-mode-map
-           ("C-c m e b" . do-eval-buffer)
-           ("C-c m e r" . do-eval-region)
-           ("C-c m s" . scratch)
-           ("C-c m d c" . cancel-debug-on-entry)
-           ("C-c m d e" . debug-on-entry)
-           ("C-c m d r" . toggle-debug-on-error)
-           ("C-c m f b" . emacs-lisp-byte-compile-and-load)
-           ("C-c m f l" . find-library)
-           ("C-c m L" . elint-current-buffer))
+           ("C-, e b" . do-eval-buffer)
+           ("C-, e r" . do-eval-region)
+           ("C-, s" . scratch)
+           ("C-, d c" . cancel-debug-on-entry)
+           ("C-, d e" . debug-on-entry)
+           ("C-, d r" . toggle-debug-on-error)
+           ("C-, f b" . emacs-lisp-byte-compile-and-load)
+           ("C-, f l" . find-library)
+           ("C-, L" . elint-current-buffer))
 
 (defvar lisp-mode-hooks
   (--map (intern

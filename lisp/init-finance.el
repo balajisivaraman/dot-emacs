@@ -30,7 +30,7 @@
 
 (use-package ledger-mode
   :bind (:map ledger-mode-map
-              ("C-c m r" . balaji/insert-rupee-symbol))
+              ("C-, r" . balaji/insert-rupee-symbol))
   :mode
   "\\.ledger$")
 

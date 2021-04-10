@@ -33,6 +33,10 @@
 (define-prefix-command 'toggle-map)
 (bind-key "C-c t" #'toggle-map)
 
+(defvar major-mode-map)
+(define-prefix-command 'major-mode-map)
+(bind-key "C-," #'major-mode-map)
+
 (when (eq system-type 'gnu/linux)
   (setq x-super-keysym 'meta))
 
@@ -75,7 +79,7 @@
   "C-c g g" "gist"
   "C-c h" "helm/help"
   "C-c j" "jump"
-  "C-c m" "major mode"
+  "C-," "major mode"
   "C-c o" "org mode"
   "C-c O" "outline"
   "C-c p" "projects"
@@ -85,17 +89,17 @@
   "C-c t" "toggle")
 
 (which-key-declare-prefixes-for-mode 'emacs-lisp-mode
-  "C-c m e" "eval"
-  "C-c m f" "file"
-  "C-c m d" "debug")
+  "C-, e" "eval"
+  "C-, f" "file"
+  "C-, d" "debug")
 
 (which-key-declare-prefixes-for-mode 'markdown-mode
   "SPC m i" "insert"
   )
 
 (which-key-declare-prefixes-for-mode 'rust-mode
-  "C-c m t" "test"
-  "C-c m r" "run")
+  "C-, t" "test"
+  "C-, r" "run")
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
