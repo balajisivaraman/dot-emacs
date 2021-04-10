@@ -1,6 +1,6 @@
 ;;; init-exec-path.el --- Set the executable search path from the user shell. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2020  Balaji Sivaraman
+;; Copyright (C) 2021  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

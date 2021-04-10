@@ -1,6 +1,6 @@
 ;;; init-snippets.el --- Yasnippet, Custom Snippets and other stuff! -*- lexical-binding: t -*-
 
-;; Copyright (C) 2020  Balaji Sivaraman
+;; Copyright (C) 2021  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 

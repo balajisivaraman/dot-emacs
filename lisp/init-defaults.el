@@ -1,6 +1,6 @@
 ;;; init-defaults.el --- Settings/packages that should ideally be default in Emacs -*- lexical-binding: t -*-
 
-;; Copyright (C) 2020  Balaji Sivaraman
+;; Copyright (C) 2021  Balaji Sivaraman
 
 ;; Author: Balaji Sivaraman <balaji@balajisivaraman.com>
 
