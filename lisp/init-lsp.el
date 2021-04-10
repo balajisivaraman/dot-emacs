@@ -50,8 +50,15 @@
    lsp-ui-doc-show-with-cursor nil
    lsp-ui-doc-show-with-mouse t
    lsp-ui-doc-position 'at-point))
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol
+  :bind
+  (("M-j s" . lsp-ivy-workspace-symbol)))
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list
+  :bind
+  (("M-j t" . lsp-treemacs-symbols)
+   ("M-j e" . lsp-treemacs-errors-list)))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here

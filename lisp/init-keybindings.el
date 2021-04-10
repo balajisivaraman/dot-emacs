@@ -37,6 +37,11 @@
 (define-prefix-command 'major-mode-map)
 (bind-key "C-," #'major-mode-map)
 
+(defvar jump-map)
+(define-prefix-command 'jump-map)
+(global-unset-key (kbd "M-j"))
+(global-set-key (kbd "M-j") 'jump-map)
+
 (when (eq system-type 'gnu/linux)
   (setq x-super-keysym 'meta))
 
