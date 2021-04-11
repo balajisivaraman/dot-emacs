@@ -72,6 +72,7 @@
   :config
   (dimmer-configure-which-key)
   (dimmer-configure-magit)
+  (dimmer-configure-org)
   (dimmer-configure-posframe)
   (dimmer-mode t)
   (setq dimmer-fraction 0.5))
