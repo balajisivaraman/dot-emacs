@@ -75,7 +75,8 @@
   (dimmer-configure-org)
   (dimmer-configure-posframe)
   (dimmer-mode t)
-  (setq dimmer-fraction 0.5))
+  (setq dimmer-fraction 0.5)
+  (add-to-list 'dimmer-buffer-exclusion-regexps "^magit.*"))
 
 (use-package rainbow-delimiters
   :ensure t
