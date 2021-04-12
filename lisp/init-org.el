@@ -96,7 +96,8 @@
         org-special-ctrl-k t
         org-M-RET-may-split-line nil
         org-ctrl-k-protect-subtree t
-        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
+        org-bookmark-names-plist nil)
   (font-lock-add-keywords
    'org-mode
    '(("^ *\\([-]\\) "
