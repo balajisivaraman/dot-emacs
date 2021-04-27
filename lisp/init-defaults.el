@@ -57,6 +57,8 @@
 ;; Electric Pair Mode
 (electric-pair-mode t)
 (blink-cursor-mode -1)
+;; Allow Emacs to be closed without asking for open process confirmation
+(setq confirm-kill-processes nil)
 
 (setq x-select-enable-clipboard t
       save-interprogram-paste-before-kill t
