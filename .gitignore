@@ -1,5 +1,6 @@
 /auto-save-list/
 /bookmarks
+/.cache
 /cider-history
 /elpa/
 /.emacs.desktop
