@@ -80,7 +80,9 @@
        (org-agenda-overriding-header "To Refile"))))
    org-tag-persistent-alist '(("@home" . ?h)
                               ("@work" . ?w)
-                              ("@next" . ?n))
+                              ("@next" . ?n)
+                              ("@reading" . ?r)
+                              ("@quick" . ?q))
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets (quote ((org-agenda-files :todo . "PROJECT")))
    org-agenda-window-setup 'only-window
