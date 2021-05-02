@@ -60,5 +60,9 @@
   (("M-j t" . lsp-treemacs-symbols)
    ("M-j e" . lsp-treemacs-errors-list)))
 
+(use-package cc-mode
+  :ensure nil
+  :hook (c++-mode . lsp-deferred))
+
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
