@@ -140,7 +140,7 @@
 :END:" :prepend t)
      ("c" "Org Protocol Capture" entry
       (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
-      "* TODO Read: %:description
+      "* TODO Read: %:description    :@home@:@next:@reading:
 :PROPERTIES:
 :ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
 :URL: %l
