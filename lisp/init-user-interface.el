@@ -36,7 +36,9 @@
    modus-themes-scale-4 1.6
    modus-themes-scale-5 1.75)
   :config
-  (load-theme 'modus-operandi t))
+  (load-theme 'modus-operandi t)
+  (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
+  (add-to-list 'default-frame-alist '(alpha . (95 . 95))))
 
 (use-package nyan-mode
   :init (nyan-mode))
