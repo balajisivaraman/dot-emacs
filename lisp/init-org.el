@@ -171,25 +171,31 @@
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
       :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t)
+     ("a" "article" plain
+      (function org-roam-capture--get-point)
+      "%?"
+      :file-name "articles/${slug}"
+      :head "#+title: Article: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :unnarrowed t)
      ("b" "book" plain
       (function org-roam-capture--get-point)
       "%?"
       :file-name "books/${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+title: Book: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t)
      ("t" "talk" plain
       (function org-roam-capture--get-point)
       "%?"
       :file-name "talks/${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+title: Talk: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t)
      ("p" "paper" plain
       (function org-roam-capture--get-point)
       "%?"
       :file-name "papers/${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+title: Paper: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
       :unnarrowed t)
-     ("p" "private" plain (function org-roam-capture--get-point)
+     ("P" "private" plain (function org-roam-capture--get-point)
       "%?"
       :file-name "private/${slug}"
       :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
