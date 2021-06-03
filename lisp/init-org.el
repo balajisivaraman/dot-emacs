@@ -118,6 +118,10 @@
   :after org
   :ensure nil)
 
+(use-package org-checklist
+  :after org
+  :ensure nil)
+
 (use-package org-capture
   :ensure nil
   :after org
