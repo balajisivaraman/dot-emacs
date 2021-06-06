@@ -48,7 +48,8 @@
 ;; Typed text will replace the selection as in most modern editors
 (delete-selection-mode t)
 ;; Display line numbers to the left of the buffer
-(global-linum-mode t)
+(dolist (hook '(text-mode-hook prog-mode-hook))
+    (add-hook hook #'linum-mode))
 ;; When I grew up, sentences always ended with a single space.
 (setq sentence-end-double-space nil)
 ;; Prettify Symbols Mode in Emacs > 24.4 is awesome.

@@ -74,6 +74,7 @@
 (require 'init-lisp)
 (require 'init-lsp)
 (require 'init-org)
+(require 'init-note-taking)
 (require 'init-clojure)
 (require 'init-rust)
 (require 'init-scripting-langs)

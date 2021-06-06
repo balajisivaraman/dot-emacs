@@ -172,67 +172,6 @@
 :URL: %l
 :END:"))))
 
-(use-package org-roam
-  :diminish (org-roam-mode)
-  :hook ((after-init . org-roam-mode))
-  :bind
-  ("C-. i" . org-roam-insert)
-  ("C-. C" . org-roam-find-file)
-  :config
-  (setq
-   org-roam-directory (s-concat balaji/nextcloud-path "Notes/")
-   org-roam-db-location "~/.org-roam.db"
-   org-roam-db-gc-threshold most-positive-fixnum
-   org-roam-graph-exclude-matcher '("private")
-   org-roam-index-file "index.org"
-   org-roam-completion-system 'ivy
-   org-roam-capture-templates
-   `(("d" "default" plain
-      (function org-roam-capture--get-point)
-      "%?"
-      :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
-      :unnarrowed t)
-     ("a" "article" plain
-      (function org-roam-capture--get-point)
-      "%?"
-      :file-name "articles/${slug}"
-      :head "#+title: Article: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
-      :unnarrowed t)
-     ("b" "book" plain
-      (function org-roam-capture--get-point)
-      "%?"
-      :file-name "books/${slug}"
-      :head "#+title: Book: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
-      :unnarrowed t)
-     ("t" "talk" plain
-      (function org-roam-capture--get-point)
-      "%?"
-      :file-name "talks/${slug}"
-      :head "#+title: Talk: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
-      :unnarrowed t)
-     ("p" "paper" plain
-      (function org-roam-capture--get-point)
-      "%?"
-      :file-name "papers/${slug}"
-      :head "#+title: Paper: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
-      :unnarrowed t)
-     ("P" "private" plain (function org-roam-capture--get-point)
-      "%?"
-      :file-name "private/${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
-      :unnarrowed t))))
-
-(use-package deft
-  :after org
-  :bind
-  ("C-. s" . deft)
-  :custom
-  (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
-  (deft-default-extension "org")
-  (deft-directory (s-concat balaji/nextcloud-path "Notes/")))
-
 (defun balaji/org-set-created-property ()
   "Set a property on the entry for creation time."
   (interactive)
