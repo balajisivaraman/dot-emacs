@@ -108,7 +108,29 @@
    'user
    ;; configure overall variable pitch and fixed pitch fonts
    '(variable-pitch ((t (:family "Gentium Book Basic" :height 130))))
-   '(fixed-pitch ((t (:family "NotoSansMono" :height 116)))))
+   '(fixed-pitch ((t (:family "NotoSansMono" :height 116))))
+
+   ;; configure fonts for org headings and document title
+   '(org-level-8 ((t (:inherit default))))
+   '(org-level-7 ((t (:inherit default))))
+   '(org-level-6 ((t (:inherit default))))
+   '(org-level-5 ((t (:inherit default))))
+   '(org-level-3 ((t (:inherit default :height 1.15))))
+   '(org-level-2 ((t (:inherit default :height 1.3))))
+   '(org-level-1 ((t (:inherit default :height 1.5))))
+   '(org-document-title ((t (:inherit default :height 1.75 :underline nil))))
+
+   ;; configure fonts for other org elements
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+   )
   (diminish 'buffer-face-mode))
 
 (use-package org-bullets

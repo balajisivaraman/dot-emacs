@@ -42,7 +42,9 @@
 
 (use-package magit-delta
   :after magit
-  :hook ((magit-mode . (lambda () (magit-delta-mode +1)))))
+  :hook ((magit-mode . (lambda () (magit-delta-mode +1))))
+  :config
+  (setq magit-delta-default-dark-theme "gruvbox-dark"))
 
 (use-package gist
   :bind (("C-c g g l" . gist-list)
