@@ -34,6 +34,8 @@
   (pdf-tools-install))
 
 (use-package ivy-bibtex
+  :bind
+  ("C-. b" . ivy-bibtex)
   :config
   (setq
    bibtex-completion-notes-path balaji/notes-path
