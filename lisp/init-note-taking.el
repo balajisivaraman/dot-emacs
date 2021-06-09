@@ -105,9 +105,23 @@
    orb-preformat-keywords
    '("citekey" "entry-type" "date" "pdf?" "note?" "file" "author" "editor" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "keywords" "url")
    orb-templates
-      '(("r" "ref" plain (function org-roam-capture--get-point) ""
-         :file-name "bibliography/${citekey}"
-         :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
+   '(("u" "url" plain (function org-roam-capture--get-point) ""
+      :file-name "bibliography/${citekey}"
+      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
+
+- tags ::
+- keywords :: ${keywords}
+
+* ${title}
+  :PROPERTIES:
+  :Custom_ID: ${citekey}
+  :URL: ${url}
+  :AUTHOR: ${author}
+  :END:\n\n"
+      :unnarrowed t)
+     ("p" "pdf" plain (function org-roam-capture--get-point) ""
+      :file-name "bibliography/${citekey}"
+      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
 
 - tags ::
 - keywords :: ${keywords}
@@ -120,11 +134,12 @@
   :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")
   :NOTER_PAGE:
   :END:\n\n"
-         :unnarrowed t))))
+      :unnarrowed t))))
 
 (use-package org-noter
   :after (:any org pdf-view)
   :config
+
   (setq
    ;; The WM can handle splits
    org-noter-notes-window-location 'other-frame
