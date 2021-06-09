@@ -23,9 +23,6 @@
 
 ;;; Code:
 
-(defvar balaji/nextcloud-path)
-(setq balaji/nextcloud-path "/media/backup/Nextcloud/")
-
 (use-package org
   :ensure org-plus-contrib
   :diminish

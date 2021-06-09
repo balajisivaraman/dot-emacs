@@ -56,5 +56,11 @@
   (setq save-place-file (s-concat user-emacs-directory ".saveplace"))
   (save-place-mode))
 
+(defvar balaji/nextcloud-path)
+(setq balaji/nextcloud-path
+      (if (s-equals? (system-name) "Titan")
+          "/mnt/c/Users/BalajiSivaraman/Nextcloud/"
+        "/media/backup/Nextcloud/"))
+
 (provide 'init-customizations)
 ;;; init-customizations.el ends here
