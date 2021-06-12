@@ -138,19 +138,19 @@
 
 (use-package org-noter
   :after (:any org pdf-view)
+  :bind
+  ("C-. n" . org-noter)
   :config
-
   (setq
    ;; The WM can handle splits
-   org-noter-notes-window-location 'other-frame
+   org-noter-notes-window-location 'horizontal-split
    ;; Please stop opening frames
    org-noter-always-create-frame nil
    ;; I want to see the whole file
    org-noter-hide-other nil
    ;; Everything is relative to the main notes file
    org-noter-notes-search-path (list balaji/notes-path)
-   )
-  )
+   ))
 
 (provide 'init-note-taking)
 ;;; init-note-taking.el ends here
