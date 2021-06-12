@@ -105,7 +105,7 @@
    orb-preformat-keywords
    '("citekey" "entry-type" "date" "pdf?" "note?" "file" "author" "editor" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "keywords" "url")
    orb-templates
-   '(("u" "url" plain (function org-roam-capture--get-point) ""
+   '(("r" "ref" plain (function org-roam-capture--get-point) ""
       :file-name "bibliography/${citekey}"
       :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
 
@@ -119,7 +119,7 @@
   :AUTHOR: ${author}
   :END:\n\n"
       :unnarrowed t)
-     ("p" "pdf" plain (function org-roam-capture--get-point) ""
+     ("n" "ref + noter" plain (function org-roam-capture--get-point) ""
       :file-name "bibliography/${citekey}"
       :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
 
