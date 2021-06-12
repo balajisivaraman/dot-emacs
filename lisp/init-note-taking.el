@@ -73,18 +73,18 @@
       (function org-roam-capture--get-point)
       "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
       :unnarrowed t)
      ("t" "talk" plain
       (function org-roam-capture--get-point)
       "%?"
       :file-name "talks/${slug}"
-      :head "#+title: Talk: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+TITLE: Talk: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
       :unnarrowed t)
      ("p" "private" plain (function org-roam-capture--get-point)
       "%?"
       :file-name "private/${slug}"
-      :head "#+title: ${title}\n#+id: %(shell-command-to-string \"uuidgen\")#+created: %U\n#+last_modified: %U\n\n"
+      :head "#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
       :unnarrowed t))))
 
 (use-package deft
@@ -107,7 +107,7 @@
    orb-templates
    '(("r" "ref" plain (function org-roam-capture--get-point) ""
       :file-name "bibliography/${citekey}"
-      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
+      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n#+ROAM_REFS: ${ref}\n
 
 - tags ::
 - keywords :: ${keywords}
@@ -121,7 +121,7 @@
       :unnarrowed t)
      ("n" "ref + noter" plain (function org-roam-capture--get-point) ""
       :file-name "bibliography/${citekey}"
-      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
+      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n#+ROAM_REFS: ${ref}\n
 
 - tags ::
 - keywords :: ${keywords}
