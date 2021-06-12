@@ -104,7 +104,7 @@
   (custom-theme-set-faces
    'user
    ;; configure overall variable pitch and fixed pitch fonts
-   '(variable-pitch ((t (:family "Gentium Book Basic" :height 130))))
+   '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
    '(fixed-pitch ((t (:family "Iosevka Nerd Font Mono" :weight normal :height 124))))
 
    ;; configure fonts for org headings and document title
