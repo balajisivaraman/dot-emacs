@@ -71,11 +71,15 @@
   (add-to-list 'dimmer-buffer-exclusion-regexps "^magit.*"))
 
 (use-package rainbow-delimiters
-  :ensure t
   :defer t
   :init
   (dolist (hook '(text-mode-hook prog-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-height 10))
 
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
