@@ -142,7 +142,14 @@ _d_: subtree
   (-each (-distinct (-map
              (lambda (item) (cdr item))
              beginend-modes))
-  (lambda (item) (diminish item ""))))
+    (lambda (item) (diminish item ""))))
+
+(use-package bookmark
+  :ensure nil
+  :bind
+  ("C-c b b" . bookmark-jump)
+  ("C-c b m" . bookmark-set)
+  ("C-c b l" . bookmark-bmenu-list))
 
 (provide 'init-navigation)
 ;;; init-navigation.el ends here
