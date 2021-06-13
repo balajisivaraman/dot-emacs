@@ -73,18 +73,24 @@
       (function org-roam-capture--get-point)
       "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+      :head ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):END:
+#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
       :unnarrowed t)
      ("t" "talk" plain
       (function org-roam-capture--get-point)
       "%?"
       :file-name "talks/${slug}"
-      :head "#+TITLE: Talk: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+      :head ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):END:
+#+TITLE: Talk: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
       :unnarrowed t)
      ("p" "private" plain (function org-roam-capture--get-point)
       "%?"
       :file-name "private/${slug}"
-      :head "#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+      :head ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):END:
+#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
       :unnarrowed t))))
 
 (use-package deft
@@ -107,7 +113,10 @@
    orb-templates
    '(("r" "ref" plain (function org-roam-capture--get-point) ""
       :file-name "bibliography/${citekey}"
-      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n#+ROAM_REFS: ${ref}\n
+      :head ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
+:END:
+#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
 
 - tags ::
 - keywords :: ${keywords}
@@ -121,7 +130,10 @@
       :unnarrowed t)
      ("n" "ref + noter" plain (function org-roam-capture--get-point) ""
       :file-name "bibliography/${citekey}"
-      :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n#+ROAM_REFS: ${ref}\n
+      :head ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
+:END:
+#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
 
 - tags ::
 - keywords :: ${keywords}
