@@ -162,6 +162,8 @@
    org-noter-hide-other nil
    ;; Everything is relative to the main notes file
    org-noter-notes-search-path (list balaji/notes-path)
+   ;; Auto save location in PDF
+   org-noter-auto-save-last-location t
    ))
 
 (provide 'init-note-taking)
