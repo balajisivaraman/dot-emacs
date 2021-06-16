@@ -58,7 +58,7 @@
   :diminish (org-roam-mode)
   :hook ((after-init . org-roam-mode))
   :bind
-  ("C-. i" . org-roam-insert)
+  ("C-. I" . org-roam-insert)
   ("C-. C" . org-roam-find-file)
   :config
   (setq
