@@ -79,7 +79,9 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-height 10))
+  (doom-modeline-height 10)
+  :config
+  (setq all-the-icons-scale-factor 1))
 
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
