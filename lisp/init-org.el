@@ -63,7 +63,7 @@
    org-agenda-start-on-weekday nil
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
-   org-log-done 'note
+   org-log-done 'time
    org-archive-location (s-concat balaji/nextcloud-path "gtd/archives.org::")
    org-agenda-custom-commands
    '(("w" "At Work" tags-todo "@work+@next|@phone|"
@@ -92,11 +92,15 @@
         org-id-link-to-org-use-id t
         org-use-speed-commands t
         org-hide-emphasis-markers t
+        org-log-into-drawer "LOGBOOK-NOTES"
         org-special-ctrl-k t
         org-M-RET-may-split-line nil
         org-ctrl-k-protect-subtree t
-        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
-        org-bookmark-names-plist nil)
+        org-blank-before-new-entry (quote ((heading . auto)
+                                           (plain-list-item . auto)))
+        org-bookmark-names-plist nil
+        org-catch-invisible-edits 'error
+        org-cycle-separator-lines 0)
   (font-lock-add-keywords
    'org-mode
    '(("^ *\\([-]\\) "
