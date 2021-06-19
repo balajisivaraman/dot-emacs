@@ -85,5 +85,14 @@
   :custom
   (all-the-icons-scale-factor 1))
 
+(use-package beacon
+  :custom
+  (beacon-color "#fb4934")
+  (beacon-push-mark 10)
+  (beacon-blink-delay 0.3)
+  (beacon-blink-duration 0.3)
+  :config
+  (beacon-mode))
+
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
