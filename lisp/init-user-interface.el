@@ -27,8 +27,8 @@
   :init
   (load-theme 'gruvbox-dark-hard t)
   :config
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
-  (add-to-list 'default-frame-alist '(alpha . (95 . 95))))
+  (set-frame-parameter (selected-frame) 'alpha '(98 . 98))
+  (add-to-list 'default-frame-alist '(alpha . (98 . 98))))
 
 (use-package nyan-mode
   :init (nyan-mode))
