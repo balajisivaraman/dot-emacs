@@ -42,12 +42,8 @@
   :config
   (setq
    org-todo-keywords
-   '((sequence "TODO(t@/!)"
-               "PROJECT(P@/!)"
-               "DELEGATED(D@/!)"
-               "|"
-               "DONE(d@/!)"
-               "CANCELLED(x@/!)"))
+   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
+     (sequence "PROJ(p)" "|" "DONE(d!)"))
    org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")
                           (s-concat balaji/nextcloud-path "gtd/routines.org")
                           (s-concat balaji/nextcloud-path "gtd/projects.org")
@@ -70,8 +66,6 @@
       ((org-agenda-overriding-header "Next Actions At Work")))
      ("h" "At Home" tags-todo "@home+@next|@phone"
       ((org-agenda-overriding-header "Next Actions At Home")))
-     ("D" "Delegated Tasks" todo "DELEGATED"
-      ((org-agenda-overriding-header "Delegated Tasks:")))
      ("i" "Inbox" todo "TODO"
       ((org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")))
        (org-agenda-overriding-header "To Refile"))))
@@ -81,7 +75,7 @@
                               ("@reading" . ?r)
                               ("@quick" . ?q))
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets (quote ((org-agenda-files :todo . "PROJECT")))
+   org-refile-targets (quote ((org-agenda-files :todo . "PROJ")))
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
@@ -100,7 +94,14 @@
                                            (plain-list-item . auto)))
         org-bookmark-names-plist nil
         org-catch-invisible-edits 'error
-        org-cycle-separator-lines 0)
+        org-cycle-separator-lines 0
+        org-agenda-deadline-leaders '("!D!: " "D%02d: ")
+        org-agenda-use-time-grid nil
+        org-agenda-scheduled-leaders '("" "S%d: ")
+        org-enforce-todo-dependencies t
+        org-use-fast-todo-selection 'expert
+        org-use-fast-tag-selection t
+        org-fast-tag-selection-single-key 'expert)
   (font-lock-add-keywords
    'org-mode
    '(("^ *\\([-]\\) "
@@ -134,6 +135,17 @@
    )
   (diminish 'buffer-face-mode))
 
+(use-package org-habit
+  :ensure nil
+  :config
+  (add-to-list 'org-modules 'org-habit)
+
+  (setq org-habit-preceding-days 6
+        org-habit-following-days 7)
+
+  ;; Length of the habit graph
+  (setq org-habit-graph-column 65))
+
 (use-package org-bullets
   :after org)
 
@@ -157,19 +169,19 @@
       (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
       "* TODO %i%?
 :PROPERTIES:
-:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:CREATED:  %U
 :END:" :prepend t)
      ("p" "Project" entry
       (file ,(s-concat balaji/nextcloud-path "gtd/projects.org"))
       "* PROJECT %i%?
 :PROPERTIES:
-:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:CREATED:  %U
 :END:" :prepend t)
      ("c" "Org Protocol Capture" entry
       (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
       "* TODO Read: %:description    :@home@:@next:@reading:
 :PROPERTIES:
-:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:CREATED:  %U
 :URL: %l
 :END:"))))
 
