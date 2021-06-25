@@ -44,11 +44,7 @@
    org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
      (sequence "PROJ(p)" "|" "DONE(d!)"))
-   org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")
-                          (s-concat balaji/nextcloud-path "gtd/routines.org")
-                          (s-concat balaji/nextcloud-path "gtd/projects.org")
-                          (s-concat balaji/nextcloud-path "gtd/personal.org")
-                          (s-concat balaji/nextcloud-path "gtd/work.org"))
+   org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/life.org"))
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
    org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
@@ -75,7 +71,7 @@
                               ("@reading" . ?r)
                               ("@quick" . ?q))
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets (quote ((org-agenda-files :todo . "PROJ")))
+   org-refile-targets '((org-agenda-files :maxlevel . 9))
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
@@ -166,20 +162,20 @@
   (setq
    org-capture-templates
    `(("t" "Todo [inbox]" entry
-      (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
+      (file+headline ,(s-concat balaji/nextcloud-path "gtd/life.org") "Inbox")
       "* TODO %i%?
 :PROPERTIES:
 :CREATED:  %U
 :END:" :prepend t)
-     ("p" "Project" entry
-      (file ,(s-concat balaji/nextcloud-path "gtd/projects.org"))
+     ("i" "Idea" entry
+      (file+headline ,(s-concat balaji/nextcloud-path "gtd/life.org") "Ideas")
       "* PROJECT %i%?
 :PROPERTIES:
 :CREATED:  %U
 :END:" :prepend t)
      ("c" "Org Protocol Capture" entry
-      (file ,(s-concat balaji/nextcloud-path "gtd/inbox.org"))
-      "* TODO Read: %:description    :@home@:@next:@reading:
+      (file+headline ,(s-concat balaji/nextcloud-path "gtd/life.org") "Reading")
+      "* TODO Read: %:description
 :PROPERTIES:
 :CREATED:  %U
 :URL: %l
