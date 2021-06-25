@@ -38,16 +38,8 @@
 (setq savehist-file (s-concat user-emacs-directory ".savehist"))
 (savehist-mode 1)
 
-(when enable-desktop-save
-  (desktop-save-mode 1)
-  ;; Restore 5 files eagerly, and the rest lazily, when Emacs idles.
-  (setq desktop-restore-eager 5)
-  ;; Load the saved desktop always, even if it is locked.
-  (setq desktop-load-locked-desktop t)
-  ;; Set the location to save/load default desktop
-  (setq desktop-dirname user-emacs-directory)
-  ;; Delete files by moving them to trash
-  (setq delete-by-moving-to-trash t))
+(setq delete-by-moving-to-trash t)
+(desktop-save-mode 0)
 
 ;; Saveplace Mode - Saves Cursor Position Within Files
 (use-package saveplace
