@@ -59,7 +59,7 @@
 (require 'init-keybindings)
 (require 'init-navigation)
 (require 'init-user-interface)
-(require 'init-ivy)
+(require 'init-selections)
 (require 'init-buffers)
 (require 'init-files)
 (require 'init-search)

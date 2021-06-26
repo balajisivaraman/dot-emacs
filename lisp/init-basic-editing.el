@@ -23,11 +23,6 @@
 
 ;;; Code:
 
-;; Browse Kill Ring
-(use-package browse-kill-ring
-  :bind
-  ("M-y" . browse-kill-ring))
-
 ;; Undo Tree
 (use-package undo-tree
   :diminish undo-tree-mode
