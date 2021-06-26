@@ -32,19 +32,19 @@
    ("C-. r" . org-archive-subtree)
    ("C-. l" . org-store-link)
    :map org-mode-map
-   ("C-. i" . balaji/org-insert-prop-for-current-entry)
+   ("C-. i" . bs/org-insert-prop-for-current-entry)
    ("C-. i" . org-insert-link))
   :hook ((org-mode . org-indent-mode)
          (org-mode . org-bullets-mode)
          (org-mode . variable-pitch-mode)
          (org-mode . company-mode)
-         (before-save . balaji/org-set-last-modified))
+         (before-save . bs/org-set-last-modified))
   :config
   (setq
    org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
      (sequence "PROJ(p)" "|" "DONE(d!)"))
-   org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/life.org"))
+   org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
    org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
@@ -56,14 +56,14 @@
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
    org-log-done 'time
-   org-archive-location (s-concat balaji/nextcloud-path "gtd/archives.org::")
+   org-archive-location (s-concat bs/nextcloud-path "gtd/archives.org::")
    org-agenda-custom-commands
    '(("w" "At Work" tags-todo "@work+@next|@phone|"
       ((org-agenda-overriding-header "Next Actions At Work")))
      ("h" "At Home" tags-todo "@home+@next|@phone"
       ((org-agenda-overriding-header "Next Actions At Home")))
      ("i" "Inbox" todo "TODO"
-      ((org-agenda-files (list (s-concat balaji/nextcloud-path "gtd/inbox.org")))
+      ((org-agenda-files (list (s-concat bs/nextcloud-path "gtd/inbox.org")))
        (org-agenda-overriding-header "To Refile"))))
    org-tag-persistent-alist '(("@home" . ?h)
                               ("@work" . ?w)
@@ -162,26 +162,26 @@
   (setq
    org-capture-templates
    `(("t" "Todo [inbox]" entry
-      (file+headline ,(s-concat balaji/nextcloud-path "gtd/life.org") "Inbox")
+      (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Inbox")
       "* TODO %i%?
 :PROPERTIES:
 :CREATED:  %U
 :END:" :prepend t)
      ("i" "Idea" entry
-      (file+headline ,(s-concat balaji/nextcloud-path "gtd/life.org") "Ideas")
+      (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Ideas")
       "* PROJECT %i%?
 :PROPERTIES:
 :CREATED:  %U
 :END:" :prepend t)
      ("c" "Org Protocol Capture" entry
-      (file+headline ,(s-concat balaji/nextcloud-path "gtd/life.org") "Reading")
+      (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Reading")
       "* TODO Read: %:description
 :PROPERTIES:
 :CREATED:  %U
 :URL: %l
 :END:"))))
 
-(defun balaji/org-set-created-property ()
+(defun bs/org-set-created-property ()
   "Set a property on the entry for creation time."
   (interactive)
   (let* ((created "CREATED")
@@ -190,7 +190,7 @@
             (org-set-property created now))))
 
 ;; Below three functions are taken from: https://github.com/zaeph/.emacs.d/blob/master/init.el
-(defun balaji/org-find-time-file-property (property &optional anywhere)
+(defun bs/org-find-time-file-property (property &optional anywhere)
     "Return the position of the time file PROPERTY if it exists.
 When ANYWHERE is non-nil, search beyond the preamble."
     (save-excursion
@@ -203,13 +203,13 @@ When ANYWHERE is non-nil, search beyond the preamble."
                                  t)
           (point)))))
 
-(defun balaji/org-set-time-file-property (property &optional anywhere pos)
+(defun bs/org-set-time-file-property (property &optional anywhere pos)
   "Set the time file PROPERTY in the preamble.
 When ANYWHERE is non-nil, search beyond the preamble.
 If the position of the file PROPERTY has already been computed,
 it can be passed in POS."
   (when-let ((pos (or pos
-                      (balaji/org-find-time-file-property property))))
+                      (bs/org-find-time-file-property property))))
     (save-excursion
       (goto-char pos)
       (if (looking-at-p " ")
@@ -219,26 +219,26 @@ it can be passed in POS."
       (let* ((now (format-time-string "[%Y-%m-%d %a %H:%M]")))
         (insert now)))))
 
-(defun balaji/org-set-last-modified ()
+(defun bs/org-set-last-modified ()
     "Update the LAST_MODIFIED file property in the preamble."
     (when (derived-mode-p 'org-mode)
-      (balaji/org-set-time-file-property "LAST_MODIFIED")))
+      (bs/org-set-time-file-property "LAST_MODIFIED")))
 
-(defun balaji/org-capture-hook ()
+(defun bs/org-capture-hook ()
   "My hooks for Org Capture."
   (org-id-get-create)
-  (balaji/org-set-created-property))
+  (bs/org-set-created-property))
 
-(defun balaji/org-insert-props-for-all-entries ()
+(defun bs/org-insert-props-for-all-entries ()
   "Insert my properties for all entries in the current file."
   (interactive)
-  (org-map-entries 'balaji/org-capture-hook))
+  (org-map-entries 'bs/org-capture-hook))
 
-(defun balaji/org-insert-prop-for-current-entry ()
+(defun bs/org-insert-prop-for-current-entry ()
   "Insert ID and Created time for entry at point."
   (interactive)
   (save-excursion
-    (balaji/org-capture-hook)))
+    (bs/org-capture-hook)))
 
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."

@@ -74,8 +74,8 @@
   (bind-key "M-p" 'paredit-splice-sexp-killing-backward emacs-lisp-mode-map)
   (bind-key "M-n" 'paredit-splice-sexp-killing-forward emacs-lisp-mode-map))
 
-(defun balaji/lisp-mode-hook ()
-  "Functions to be called when entering Lisp mode"
+(defun bs/lisp-mode-hook ()
+  "Functions to be called when entering Lisp mode."
   (paredit-mode t)
   (company-mode t)
   (use-package eldoc
@@ -87,7 +87,7 @@
     (after elisp-rename-modeline activate)
   (setq mode-name "ELisp"))
 
-(apply #'hook-into-modes 'balaji/lisp-mode-hook lisp-mode-hooks)
+(apply #'hook-into-modes 'bs/lisp-mode-hook lisp-mode-hooks)
 
 (provide 'init-lisp)
 ;;; init-lisp-modes.el ends here

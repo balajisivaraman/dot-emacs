@@ -23,13 +23,13 @@
 
 ;;; Code:
 
-(defun balaji/network-connection-available-p ()
+(defun bs/network-connection-available-p ()
   "Check whether we have internet connectivity."
   (-any-p
    (lambda (interface) (s-starts-with-p "en" (car interface)))
    (network-interface-list)))
 
-(defun balaji/duplicate-line-or-region (&optional begin end)
+(defun bs/duplicate-line-or-region (&optional begin end)
   "If region is active, duplicates it. Othewise duplicates the current line."
   (interactive "r")
   (save-excursion
@@ -38,7 +38,7 @@
           (line-text))
       (if (not (region-active-p))
           (progn
-            (balaji/smarter-move-beginning-of-line nil)
+            (bs/smarter-move-beginning-of-line nil)
             (setq reg-begin (point))
             (move-end-of-line nil)
             (setq reg-end (point))))
@@ -47,7 +47,7 @@
       (move-end-of-line nil)
       (newline)
       (insert line-text))))
-(bind-key "C-c C-d" 'balaji/duplicate-line-or-region)
+(bind-key "C-c C-d" 'bs/duplicate-line-or-region)
 
 (defsubst hook-into-modes (func &rest modes)
   (dolist (mode-hook modes) (add-hook mode-hook func)))
@@ -84,7 +84,7 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
 
 (bind-key "M-Q" 'unfill-paragraph global-map)
 
-(defun balaji/kill-all-project-buffers ()
+(defun bs/kill-all-project-buffers ()
   "Kill all open buffers for the current project."
   (interactive)
   (let* ((project-root (f-filename (f-long (ffip-project-root))))
@@ -105,7 +105,7 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
                  (seq-length open-buffers-for-project)
                  project-root)))
       (-map 'kill-buffer open-buffers-for-project))))
-(bind-key "C-c f k" 'balaji/kill-all-project-buffers)
+(bind-key "C-c f k" 'bs/kill-all-project-buffers)
 
 (provide 'init-functions)
 ;;; init-functions.el ends here

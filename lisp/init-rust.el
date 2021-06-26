@@ -59,14 +59,14 @@
 (use-package flycheck-rust
   :commands flycheck-rust-setup)
 
-(defun balaji/rust-mode-hook ()
+(defun bs/rust-mode-hook ()
   "Hooks for Rust Mode."
   (lsp)
   (company-mode)
   (cargo-minor-mode)
   (eldoc-mode))
 
-(add-hook 'rust-mode-hook 'balaji/rust-mode-hook)
+(add-hook 'rust-mode-hook 'bs/rust-mode-hook)
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

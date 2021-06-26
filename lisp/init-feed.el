@@ -29,7 +29,7 @@
   ("C-x w" . elfeed)
   :config
   (setq
-   elfeed-db-directory (s-concat balaji/nextcloud-path "Feeds"))
+   elfeed-db-directory (s-concat bs/nextcloud-path "Feeds"))
   (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :before "2 weeks ago"
                                                        :remove 'unread))
   (setq-default elfeed-search-filter "@1-month-ago +unread +dev"))

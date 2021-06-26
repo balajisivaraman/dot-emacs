@@ -23,14 +23,14 @@
 
 ;;; Code:
 
-(defun balaji/insert-rupee-symbol ()
+(defun bs/insert-rupee-symbol ()
   "Insert Indian Rupee Symbol at point."
   (interactive)
   (insert "₹"))
 
 (use-package ledger-mode
   :bind (:map ledger-mode-map
-              ("C-, r" . balaji/insert-rupee-symbol))
+              ("C-, r" . bs/insert-rupee-symbol))
   :mode
   "\\.ledger$")
 

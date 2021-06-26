@@ -23,7 +23,7 @@
 
 ;;; Code:
 
-(defvar balaji/node-version (s-trim (shell-command-to-string "node -v")))
+(defvar bs/node-version (s-trim (shell-command-to-string "node -v")))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -35,11 +35,11 @@
         lsp-idle-delay 0.500
         lsp-clients-angular-language-server-command
         `("node"
-          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,balaji/node-version "installation/lib/node_modules/@angular/language-server"))
+          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules/@angular/language-server"))
           "--ngProbeLocations"
-          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,balaji/node-version "installation/lib/node_modules"))
+          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules"))
           "--tsProbeLocations"
-          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,balaji/node-version "installation/lib/node_modules"))
+          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules"))
           "--stdio")))
 
 (use-package lsp-ui

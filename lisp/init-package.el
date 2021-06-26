@@ -23,7 +23,7 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "use-package" balaji/site-lisp-dir))
+(add-to-list 'load-path (expand-file-name "use-package" bs/site-lisp-dir))
 (eval-when-compile
   (require 'use-package))
 ;; Always install packages from Melpa, Elpa

@@ -32,11 +32,11 @@
   :init
   (company-auctex-init))
 
-(defun balaji/auctex-mode-hook ()
+(defun bs/auctex-mode-hook ()
   "Hooks for Tex mode."
   (company-mode t))
 
-(add-hook 'LaTeX-mode-hook 'balaji/auctex-mode-hook)
+(add-hook 'LaTeX-mode-hook 'bs/auctex-mode-hook)
 
 (provide 'init-latex)
 ;;; init-latex.el ends here

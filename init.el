@@ -45,10 +45,10 @@
 ;;; Initial Setup
 (setq user-full-name "Balaji Sivaraman")
 (setq user-mail-address "balaji@balajisivaraman.com")
-(defvar balaji/site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory))
-(add-to-list 'load-path balaji/site-lisp-dir)
-(defvar balaji/lisp-dir (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'load-path balaji/lisp-dir)
+(defvar bs/site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory))
+(add-to-list 'load-path bs/site-lisp-dir)
+(defvar bs/lisp-dir (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'load-path bs/lisp-dir)
 
 (require 'init-package)
 (require 'init-lib)

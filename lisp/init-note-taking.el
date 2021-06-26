@@ -24,10 +24,10 @@
 
 ;;; Code:
 
-(defvar balaji/bibfile-path)
-(setq balaji/bibfile-path "~/.zotero/zotLib.bib")
-(defvar balaji/notes-path)
-(setq balaji/notes-path (s-concat balaji/nextcloud-path "Notes/bibliography"))
+(defvar bs/bibfile-path)
+(setq bs/bibfile-path "~/.zotero/zotLib.bib")
+(defvar bs/notes-path)
+(setq bs/notes-path (s-concat bs/nextcloud-path "Notes/bibliography"))
 
 (use-package pdf-tools
   :init
@@ -38,8 +38,8 @@
   ("C-. b" . ivy-bibtex)
   :config
   (setq
-   bibtex-completion-notes-path balaji/notes-path
-   bibtex-completion-bibliography balaji/bibfile-path
+   bibtex-completion-notes-path bs/notes-path
+   bibtex-completion-bibliography bs/bibfile-path
    bibtex-completion-pdf-field "file"))
 
 (use-package org-ref
@@ -47,10 +47,10 @@
   (setq
    org-ref-completion-library 'org-ref-ivy-cite
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename
-   org-ref-default-bibliography (list balaji/bibfile-path)
-   org-ref-bibliography-notes (s-concat balaji/notes-path "/bibnotes.org")
+   org-ref-default-bibliography (list bs/bibfile-path)
+   org-ref-bibliography-notes (s-concat bs/notes-path "/bibnotes.org")
    org-ref-note-title-format "* TODO %y - %t\n :PROPERTIES:\n  :Custom_ID: %k\n  :NOTER_DOCUMENT: %F\n :ROAM_KEY: cite:%k\n  :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
-   org-ref-notes-directory balaji/notes-path
+   org-ref-notes-directory bs/notes-path
    org-ref-notes-function 'orb-edit-notes
    ))
 
@@ -62,7 +62,7 @@
   ("C-. C" . org-roam-find-file)
   :config
   (setq
-   org-roam-directory (s-concat balaji/nextcloud-path "Notes/")
+   org-roam-directory (s-concat bs/nextcloud-path "Notes/")
    org-roam-db-location "~/.org-roam.db"
    org-roam-db-gc-threshold most-positive-fixnum
    org-roam-graph-exclude-matcher '("private")
@@ -101,7 +101,7 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory (s-concat balaji/nextcloud-path "Notes/")))
+  (deft-directory (s-concat bs/nextcloud-path "Notes/")))
 
 (use-package org-roam-bibtex
   :after (org-roam)
@@ -161,7 +161,7 @@
    ;; I want to see the whole file
    org-noter-hide-other nil
    ;; Everything is relative to the main notes file
-   org-noter-notes-search-path (list balaji/notes-path)
+   org-noter-notes-search-path (list bs/notes-path)
    ;; Auto save location in PDF
    org-noter-auto-save-last-location t
    ))
