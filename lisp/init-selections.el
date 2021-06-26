@@ -40,7 +40,12 @@
   ("C-x b"  . consult-buffer)
   ("M-y"    . consult-yank-pop)
   ("M-g g"    . consult-goto-line)
-  ("M-g M-g"    . consult-goto-line))
+  ("M-g M-g"    . consult-goto-line)
+  :config
+  (consult-customize
+   consult-buffer consult-ripgrep consult-bookmark
+   consult-recent-file
+   :preview-key (kbd "M-.")))
 
 (use-package marginalia
   :init
