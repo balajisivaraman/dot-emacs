@@ -84,28 +84,5 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
 
 (bind-key "M-Q" 'unfill-paragraph global-map)
 
-(defun bs/kill-all-project-buffers ()
-  "Kill all open buffers for the current project."
-  (interactive)
-  (let* ((project-root (f-filename (f-long (ffip-project-root))))
-         (open-buffers (buffer-list))
-         (project-file-names (ffip-project-search "" nil))
-         (open-buffers-for-project
-          (-filter (lambda (buffer)
-                     (let ((buffer-file-name (buffer-file-name buffer))
-                           (buffer-name (buffer-name buffer)))
-                       (or (and (s-present? buffer-file-name)
-                                (s-contains? project-root buffer-file-name))
-                           (and (s-present? buffer-name)
-                                (s-contains? project-root buffer-name))))) open-buffers)))
-    (when (and (not (seq-empty-p open-buffers-for-project))
-               (yes-or-no-p
-                (format
-                 "Are you sure you want to kill %d open buffers for project %s?"
-                 (seq-length open-buffers-for-project)
-                 project-root)))
-      (-map 'kill-buffer open-buffers-for-project))))
-(bind-key "C-c f k" 'bs/kill-all-project-buffers)
-
 (provide 'init-functions)
 ;;; init-functions.el ends here

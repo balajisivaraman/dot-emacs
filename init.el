@@ -82,6 +82,7 @@
 (require 'init-version-control)
 (require 'init-web-modes)
 (require 'init-feed)
+(require 'init-project)
 
 ;; Initialize OS specific bindings
 (when (eq system-type 'gnu/linux)
