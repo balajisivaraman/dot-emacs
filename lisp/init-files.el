@@ -89,11 +89,5 @@
     (add-to-list 'ignoramus-file-basename-exact-names name))
   (ignoramus-setup))
 
-(use-package find-file-in-project
-  :bind
-  ("C-c f f" . find-file-in-project)
-  :config
-  (setq ffip-use-rust-fd t))
-
 (provide 'init-files)
 ;;; init-files.el ends here

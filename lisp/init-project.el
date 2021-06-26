@@ -30,6 +30,12 @@
 (global-unset-key (kbd "C-c p"))
 (global-set-key (kbd "C-c p") 'bs/project-map)
 
+(use-package find-file-in-project
+  :bind
+  ("C-c p f" . find-file-in-project)
+  :config
+  (setq ffip-use-rust-fd t))
+
 (defun bs/kill-all-project-buffers ()
   "Kill all open buffers for the current project."
   (interactive)
