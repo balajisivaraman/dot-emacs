@@ -45,13 +45,6 @@
   :config
   (setq-default counsel-mode-override-describe-bindings t))
 
-(use-package counsel-projectile
-  :after (counsel projectile)
-  :bind
-  (("C-c p h" . counsel-projectile-find-file)
-   :map projectile-mode-map
-   ("C-c p s r" . counsel-projectile-rg)))
-
 (use-package swiper
   :after (ivy)
   :bind
