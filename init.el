@@ -49,6 +49,10 @@
 (add-to-list 'load-path bs/site-lisp-dir)
 (defvar bs/lisp-dir (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path bs/lisp-dir)
+(defvar bs/emacs-cache-directory)
+(setq bs/emacs-cache-directory (concat user-emacs-directory ".cache/"))
+(when (not (file-exists-p bs/emacs-cache-directory))
+  (mkdir bs/emacs-cache-directory))
 
 (require 'init-package)
 (require 'init-lib)

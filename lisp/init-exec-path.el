@@ -31,5 +31,11 @@
   (when (not (string-equal system-type "windows-nt"))
     (exec-path-from-shell-initialize)))
 
+(use-package eshell
+  :ensure nil
+  :config
+  (setq
+   eshell-directory-name (concat bs/emacs-cache-directory "eshell")))
+
 (provide 'init-exec-path)
 ;;; init-exec-path.el ends here

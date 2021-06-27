@@ -78,7 +78,9 @@
   :init
   (setq-default
    recentf-max-saved-items 1000
-   recentf-exclude '("/tmp/" "/ssh:")))
+   recentf-exclude '("/tmp/" "/ssh:"))
+  (setq
+   recentf-save-file (concat bs/emacs-cache-directory "recentf")))
 
 (use-package ignoramus
   :config

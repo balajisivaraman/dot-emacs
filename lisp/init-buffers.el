@@ -34,7 +34,9 @@
 (bind-key "C-x C-b" 'ibuffer)
 
 (use-package persistent-scratch
-  :config (persistent-scratch-setup-default))
+  :config
+  (persistent-scratch-setup-default)
+  (setq persistent-scratch-save-file (concat bs/emacs-cache-directory ".persistent-scratch")))
 
 (provide 'init-buffers)
 ;;; init-buffers.el ends here

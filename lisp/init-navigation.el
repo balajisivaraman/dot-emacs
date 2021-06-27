@@ -147,7 +147,9 @@ _d_: subtree
 (use-package bookmark
   :ensure nil
   :bind
-  ("C-c b l" . bookmark-bmenu-list))
+  ("C-c b l" . bookmark-bmenu-list)
+  :config
+  (setq bookmark-file (concat bs/emacs-cache-directory "bookmarks")))
 
 (provide 'init-navigation)
 ;;; init-navigation.el ends here

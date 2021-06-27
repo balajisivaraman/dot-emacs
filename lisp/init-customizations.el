@@ -28,14 +28,16 @@
 (diminish 'auto-revert-mode)
 
 ;; Backup Directory Configuration
-(set-variable 'temporary-file-directory (s-concat user-emacs-directory "temp"))
+(set-variable 'temporary-file-directory (concat bs/emacs-cache-directory "temp"))
+(when (not (file-exists-p temporary-file-directory))
+  (mkdir temporary-file-directory))
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
 ;; save minibuffer history across sessions
-(setq savehist-file (s-concat user-emacs-directory ".savehist"))
+(setq savehist-file (concat bs/emacs-cache-directory ".savehist"))
 (savehist-mode 1)
 
 (setq delete-by-moving-to-trash t)
@@ -45,7 +47,7 @@
 (use-package saveplace
   :ensure nil
   :init
-  (setq save-place-file (s-concat user-emacs-directory ".saveplace"))
+  (setq save-place-file (concat bs/emacs-cache-directory ".saveplace"))
   (save-place-mode))
 
 (defvar bs/nextcloud-path)
