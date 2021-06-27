@@ -60,16 +60,6 @@
   :init (global-page-break-lines-mode)
   :diminish page-break-lines-mode)
 
-(use-package dimmer
-  :config
-  (dimmer-configure-which-key)
-  (dimmer-configure-magit)
-  (dimmer-configure-org)
-  (dimmer-configure-posframe)
-  (dimmer-mode t)
-  (setq dimmer-fraction 0.5)
-  (add-to-list 'dimmer-buffer-exclusion-regexps "^magit.*"))
-
 (use-package rainbow-delimiters
   :defer t
   :init
@@ -84,15 +74,6 @@
 (use-package all-the-icons
   :custom
   (all-the-icons-scale-factor 1))
-
-(use-package beacon
-  :custom
-  (beacon-color "#fb4934")
-  (beacon-push-mark 10)
-  (beacon-blink-delay 0.3)
-  (beacon-blink-duration 0.3)
-  :config
-  (beacon-mode))
 
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
