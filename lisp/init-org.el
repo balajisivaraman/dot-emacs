@@ -58,13 +58,10 @@
    org-log-done 'time
    org-archive-location (s-concat bs/nextcloud-path "gtd/archives.org::")
    org-agenda-custom-commands
-   '(("w" "At Work" tags-todo "@work+@next|@phone|"
-      ((org-agenda-overriding-header "Next Actions At Work")))
-     ("h" "At Home" tags-todo "@home+@next|@phone"
-      ((org-agenda-overriding-header "Next Actions At Home")))
-     ("i" "Inbox" todo "TODO"
-      ((org-agenda-files (list (s-concat bs/nextcloud-path "gtd/inbox.org")))
-       (org-agenda-overriding-header "To Refile"))))
+   '(("p" "Projects" todo "NEXT"
+      ((org-agenda-overriding-header "Project Next Actions")))
+     ("i" "Inbox" tags-todo "CATEGORY=\"Inbox\"TODO=\"TODO\""
+      ((org-agenda-overriding-header "To Refile"))))
    org-tag-persistent-alist '(("@home" . ?h)
                               ("@work" . ?w)
                               ("@next" . ?n)
