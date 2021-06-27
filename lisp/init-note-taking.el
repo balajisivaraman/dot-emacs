@@ -106,6 +106,7 @@
 (use-package org-roam-bibtex
   :after (org-roam)
   :hook (org-roam-mode . org-roam-bibtex-mode)
+  :diminish (org-roam-bibtex-mode)
   :config
   (setq
    orb-preformat-keywords
