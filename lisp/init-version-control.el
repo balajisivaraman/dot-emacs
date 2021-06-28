@@ -37,8 +37,7 @@
    ("C-c g L" . magit-log)
    ("C-c g c" . magit-checkout))
   :init
-  (setq-default magit-last-seen-setup-instructions "1.4.0")
-  (advice-add 'magit-status :after #'delete-other-windows))
+  (setq-default magit-last-seen-setup-instructions "1.4.0"))
 
 (use-package magit-delta
   :after magit
