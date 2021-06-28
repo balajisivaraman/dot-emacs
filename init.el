@@ -33,6 +33,8 @@
 ;; (package-initialize)
 
 ;; Startup Optimizations
+(when (string-match ".Emacs 28." (emacs-version))
+  (setq native-comp-deferred-compilation t))
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
 (defvar balaji--file-name-handler-alist file-name-handler-alist)
