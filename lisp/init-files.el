@@ -36,7 +36,7 @@
   :diminish focus-autosave-mode)
 
 (use-package dired
-  :diminish (dired-omit-mode . " Ⓞ")
+  :diminish (dired-omit-mode)
   :ensure nil
   :defer t
   :config
