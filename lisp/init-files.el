@@ -61,7 +61,6 @@
 
 ;; Edit files as root, through Tramp
 (use-package sudo-edit
-  :defer t
   :bind
   (("C-c f s" . sudo-edit)
    ("C-c f S" . sudo-edit-current-file)))
