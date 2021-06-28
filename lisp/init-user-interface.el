@@ -56,10 +56,6 @@
     ("-" text-scale-decrease "Scale Down")
     ("q" nil "Quit" :exit t )))
 
-(use-package page-break-lines
-  :init (global-page-break-lines-mode)
-  :diminish page-break-lines-mode)
-
 (use-package rainbow-delimiters
   :defer t
   :init
