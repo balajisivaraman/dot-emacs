@@ -32,6 +32,7 @@
     (exec-path-from-shell-initialize)))
 
 (use-package eshell
+  :commands (eshell)
   :ensure nil
   :config
   (setq
