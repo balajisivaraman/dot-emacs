@@ -55,7 +55,13 @@
   :bind
   ("C-h B" . embark-bindings)
   (:map minibuffer-local-map
-   ("C-;" . embark-act)))
+   ("C-;" . embark-act))
+  :config
+  (setq embark-action-indicator
+      (lambda (map &optional _target)
+        (which-key--show-keymap "Embark" map nil nil 'no-paging)
+        #'which-key--hide-popup-ignore-command)
+      embark-become-indicator embark-action-indicator))
 
 (provide 'init-selections)
 ;;; init-selections.el ends here
