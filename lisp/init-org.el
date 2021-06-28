@@ -77,6 +77,7 @@
   (setq org-agenda-tags-column 110
         org-ellipsis "  "
         org-id-link-to-org-use-id t
+        org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations")
         org-use-speed-commands t
         org-hide-emphasis-markers t
         org-log-into-drawer "LOGBOOK-NOTES"

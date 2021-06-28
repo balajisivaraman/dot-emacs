@@ -29,6 +29,7 @@
 
 ;; Backup Directory Configuration
 (set-variable 'temporary-file-directory (concat bs/emacs-cache-directory "temp"))
+(setq auto-save-list-file-prefix (concat bs/emacs-cache-directory "auto-save-list/.saves-"))
 (when (not (file-exists-p temporary-file-directory))
   (mkdir temporary-file-directory))
 (setq backup-directory-alist
