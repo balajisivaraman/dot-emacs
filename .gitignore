@@ -2,6 +2,7 @@
 /bookmarks
 /.cache
 /cider-history
+/eln-cache
 /elpa/
 /.emacs.desktop
 /.emacs.desktop.lock
