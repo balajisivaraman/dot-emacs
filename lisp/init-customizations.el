@@ -53,7 +53,7 @@
 
 (defvar bs/nextcloud-path)
 (setq bs/nextcloud-path
-      (if (s-equals? (system-name) "Titan")
+      (if (s-equals? (system-name) "AlphaCentauri")
           "/mnt/c/Users/BalajiSivaraman/Nextcloud/"
         "/media/backup/Nextcloud/"))
 
