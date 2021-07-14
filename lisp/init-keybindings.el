@@ -75,7 +75,7 @@
           ("helm-"          . "h-")
           ("magit-"         . "ma-"))))
 
-(which-key-declare-prefixes
+(which-key-add-key-based-replacements
   "C-c a" "applications"
   "C-c b" "bookmarks"
   "C-c B" "buffer"
@@ -93,16 +93,16 @@
   "C-c s" "search"
   "C-c t" "toggle")
 
-(which-key-declare-prefixes-for-mode 'emacs-lisp-mode
+(which-key-add-major-mode-key-based-replacements 'emacs-lisp-mode
   "C-, e" "eval"
   "C-, f" "file"
   "C-, d" "debug")
 
-(which-key-declare-prefixes-for-mode 'markdown-mode
+(which-key-add-major-mode-key-based-replacements 'markdown-mode
   "SPC m i" "insert"
   )
 
-(which-key-declare-prefixes-for-mode 'rust-mode
+(which-key-add-major-mode-key-based-replacements 'rust-mode
   "C-, t" "test"
   "C-, r" "run")
 
