@@ -49,7 +49,7 @@
   "Extensions for the minibuffer."
   :group 'minibuffer)
 
-(defcustom bs/minibuffer-live-update-delay 0.3
+(defcustom bs/minibuffer-live-update-delay 0.2
   "Delay with which *Completions* buffer must be updated."
   :type 'number
   :group 'bs/minibuffer)

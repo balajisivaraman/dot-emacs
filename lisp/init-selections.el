@@ -24,15 +24,12 @@
 ;;; Code:
 
 (use-package selectrum
+  :disabled t
   :commands (selectrum-mode)
   :init
   (selectrum-mode t))
 
-(use-package orderless
-  :config
-  (setq completion-styles '(orderless)
-        orderless-skip-highlighting (lambda () selectrum-is-active)
-        selectrum-highlight-candidates-function #'orderless-highlight-matches))
+(use-package orderless)
 
 (use-package consult
   :bind

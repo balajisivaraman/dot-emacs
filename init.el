@@ -66,6 +66,7 @@
 (require 'init-navigation)
 (require 'init-user-interface)
 (require 'init-selections)
+(require 'init-minibuffer)
 (require 'init-buffers)
 (require 'init-files)
 (require 'init-search)
