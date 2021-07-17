@@ -56,14 +56,12 @@
         ("C-, D" . cargo-process-doc-open))
   )
 
-(use-package flycheck-rust
-  :commands flycheck-rust-setup)
-
 (defun bs/rust-mode-hook ()
   "Hooks for Rust Mode."
   (eglot-ensure)
   (company-mode)
   (cargo-minor-mode)
+  (flymake-mode)
   (eldoc-mode))
 
 (add-hook 'rust-mode-hook 'bs/rust-mode-hook)

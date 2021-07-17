@@ -19,40 +19,30 @@
 
 ;;; Commentary:
 
-;; Load `flycheck' and `flyspell' for enhanced syntax checking in Emacs.
+;; Load `flymake' and `flyspell' for enhanced syntax checking in Emacs.
 
 ;;; Code:
 
-(use-package flycheck
-  :defer 5
-  :bind (("C-c e" . balaji-flycheck-errors/body)
+(use-package flymake
+  :ensure nil
+  :bind (("M-g n" . bs/flymake-errors/flymake-goto-next-error)
+         ("M-g p" . bs/flymake-errors/flymake-goto-prev-error)
          ("C-c t f" . flycheck-mode))
   :init
-  (defhydra balaji-flycheck-errors ()
+  (defhydra bs/flymake-errors ()
     "Flycheck errors."
-    ("n" flycheck-next-error "next")
-    ("p" flycheck-previous-error "previous")
-    ("f" flycheck-first-error "first")
-    ("l" flycheck-list-errors "list")
-    ("w" flycheck-copy-errors-as-kill "copy message"))
-  (global-flycheck-mode)
-  :config
-  (setq
-   flycheck-standard-error-navigation nil
-   flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list
-   flycheck-scalastylerc "scalastyle_config.xml")
-  :diminish (flycheck-mode . " Ⓢ"))
+    ("n" flymake-goto-next-error "next")
+    ("p" flymake-goto-prev-error "previous")
+    ("q" nil "Quit" :exit t )))
 
-(use-package flycheck-proselint
-  :ensure nil
-  :after flycheck
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-proselint-setup))
-
-(use-package flycheck-pos-tip
-  :after flycheck
+(use-package flymake-proselint
+  :after flymake
+  :hook (text-mode . bs/flymake-proselint-setup)
   :init
-  (add-hook 'flycheck-mode-hook 'flycheck-pos-tip-mode))
+  (defun bs/flymake-proselint-setup ()
+    "Setup Flymake Proselint."
+    (flymake-mode +1)
+    (flymake-proselint-setup)))
 
 ;; Flyspell Mode
 (use-package flyspell
@@ -70,18 +60,6 @@
            ("C-c i r" . ispell-region)))
   :config
   (unbind-key "C-." flyspell-mode-map))
-
-(use-package simple
-  :ensure nil
-  :bind (("M-g n" . balaji-errors/next-error)
-         ("M-g p" . balaji-errors/previous-error))
-  :init
-  (defhydra balaji-errors ()
-    "Errors."
-    ("n" next-error "next")
-    ("p" previous-error "previous")
-    ("f" first-error "first")
-    ("q" nil "Quit" :exit t )))
 
 (provide 'init-syntax-checkers)
 ;;; init-syntax-checkers.el ends here
