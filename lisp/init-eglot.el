@@ -29,7 +29,9 @@
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(rust-mode . ("~/bin/rust-analyzer-wrapper")))
-  (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper"))))
+  (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper")))
+  (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server"))))
 
 (use-package cc-mode
   :ensure nil
