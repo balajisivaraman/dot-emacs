@@ -61,7 +61,7 @@
 
 (defun bs/rust-mode-hook ()
   "Hooks for Rust Mode."
-  (lsp)
+  (eglot-ensure)
   (company-mode)
   (cargo-minor-mode)
   (eldoc-mode))

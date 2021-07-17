@@ -1,4 +1,4 @@
-;;; init-web-modes.el --- Initializes web (html, css, js, ts, restclient) modes -*- lexical-binding: t -*-
+;;; init-eglot.el --- Language Server Protocol Support -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021 Balaji Sivaraman
 
@@ -19,25 +19,21 @@
 
 ;;; Commentary:
 
-;; Initializes packages needed for working with REST APIs and front-end applications
+;; Eglot Mode Configuration
 
 ;;; Code:
 
-(use-package restclient
-  :mode "\\.http\\$")
+(defvar bs/node-version (s-trim (shell-command-to-string "node -v")))
 
-(use-package typescript-mode
-  :commands (typescript-mode)
-  :hook ((typescript-mode . eglot-ensure)
-         (typescript-mode . company-mode))
-  :init
-  (setq typescript-indent-level 2))
+(use-package eglot
+  :commands (eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs '(rust-mode . ("~/bin/rust-analyzer-wrapper")))
+  (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper"))))
 
-(use-package ng2-mode
-  :mode ("\\.page\\.html" . ng2-html-mode)
-  :commands (ng2-mode ng2-ts-mode ng2-html-mode)
-  :hook (((ng2-mode ng2-html-mode ng2-ts-mode) . eglot-ensure)
-         ((ng2-mode ng2-html-mode ng2-ts-mode) . company-mode)))
+(use-package cc-mode
+  :ensure nil
+  :hook (c++-mode . eglot-ensure))
 
-(provide 'init-web-modes)
-;;; init-web-modes.el ends here
+(provide 'init-eglot)
+;;; init-eglot.el ends here

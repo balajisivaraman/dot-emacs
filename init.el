@@ -78,7 +78,7 @@
 (require 'init-finance)
 (require 'init-treesitter)
 (require 'init-lisp)
-(require 'init-lsp)
+(require 'init-eglot)
 (require 'init-org)
 (require 'init-note-taking)
 (require 'init-clojure)
