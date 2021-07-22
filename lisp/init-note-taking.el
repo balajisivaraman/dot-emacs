@@ -56,10 +56,12 @@
 
 (use-package org-roam
   :diminish (org-roam-mode)
+  :init
+  (setq org-roam-v2-ack t)
   :hook ((after-init . org-roam-mode))
   :bind
-  ("C-. I" . org-roam-insert)
-  ("C-. C" . org-roam-find-file)
+  ("C-. I" . org-roam-node-insert)
+  ("C-. C" . org-roam-node-find)
   :config
   (setq
    org-roam-directory (s-concat bs/nextcloud-path "Notes/")
@@ -70,27 +72,73 @@
    org-roam-completion-system 'ivy
    org-roam-capture-templates
    `(("d" "default" plain
-      (function org-roam-capture--get-point)
       "%?"
-      :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head ":PROPERTIES:
+      :if-new
+      (file+head
+       "%<%Y%m%d%H%M%S>-${slug}.org"
+       ":PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t)
      ("t" "talk" plain
-      (function org-roam-capture--get-point)
       "%?"
-      :file-name "talks/${slug}"
-      :head ":PROPERTIES:
+      :if-new
+      (file+head
+       "talks/${slug}.org"
+       ":PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: Talk: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+#+TITLE: Talk: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t)
-     ("p" "private" plain (function org-roam-capture--get-point)
+     ("n" "ref + noter" plain
       "%?"
-      :file-name "private/${slug}"
-      :head ":PROPERTIES:
+      :if-new
+      (file+head
+       "bibliography/${citekey}.org"
+       ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
+:END:
+#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
+
+- tags ::
+- keywords :: ${keywords}
+
+* ${title}
+  :PROPERTIES:
+  :Custom_ID: ${citekey}
+  :URL: ${url}
+  :AUTHOR: ${author}
+  :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")
+  :NOTER_PAGE:
+  :END:\n\n")
+      :unnarrowed t)
+     ("r" "ref" plain
+      "%?"
+      :if-new
+      (file+head
+       "bibliography/${citekey}.org"
+       ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
+:END:
+#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
+
+- tags ::
+- keywords :: ${keywords}
+
+* ${title}
+  :PROPERTIES:
+  :Custom_ID: ${citekey}
+  :URL: ${url}
+  :AUTHOR: ${author}
+  :END:\n\n")
+      :unnarrowed t)
+     ("p" "private" plain
+      "%?"
+      :if-new
+      (file+head
+       "private/${slug}.org"
+       ":PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t))))
 
 (use-package deft
@@ -110,44 +158,7 @@
   :config
   (setq
    orb-preformat-keywords
-   '("citekey" "entry-type" "date" "pdf?" "note?" "file" "author" "editor" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "keywords" "url")
-   orb-templates
-   '(("r" "ref" plain (function org-roam-capture--get-point) ""
-      :file-name "bibliography/${citekey}"
-      :head ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
-:END:
-#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
-
-- tags ::
-- keywords :: ${keywords}
-
-* ${title}
-  :PROPERTIES:
-  :Custom_ID: ${citekey}
-  :URL: ${url}
-  :AUTHOR: ${author}
-  :END:\n\n"
-      :unnarrowed t)
-     ("n" "ref + noter" plain (function org-roam-capture--get-point) ""
-      :file-name "bibliography/${citekey}"
-      :head ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
-:END:
-#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
-
-- tags ::
-- keywords :: ${keywords}
-
-* ${title}
-  :PROPERTIES:
-  :Custom_ID: ${citekey}
-  :URL: ${url}
-  :AUTHOR: ${author}
-  :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")
-  :NOTER_PAGE:
-  :END:\n\n"
-      :unnarrowed t))))
+   '("citekey" "entry-type" "date" "pdf?" "note?" "file" "author" "editor" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "keywords" "url")))
 
 (use-package org-noter
   :after (:any org pdf-view)
