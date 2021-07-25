@@ -58,11 +58,11 @@
   :diminish (org-roam-mode)
   :init
   (setq org-roam-v2-ack t)
-  :hook ((after-init . org-roam-mode))
   :bind
   ("C-. I" . org-roam-node-insert)
   ("C-. C" . org-roam-node-find)
   :config
+  (org-roam-setup)
   (setq
    org-roam-directory (s-concat bs/nextcloud-path "Notes/")
    org-roam-db-location "~/.org-roam.db"
