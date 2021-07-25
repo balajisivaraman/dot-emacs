@@ -167,7 +167,7 @@
 :END:" :prepend t)
      ("i" "Idea" entry
       (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Ideas")
-      "* PROJECT %i%?
+      "* TODO %i%?
 :PROPERTIES:
 :CREATED:  %U
 :END:" :prepend t)
