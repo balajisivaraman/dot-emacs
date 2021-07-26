@@ -53,8 +53,8 @@
 
 (defvar bs/nextcloud-path)
 (setq bs/nextcloud-path
-      (if (s-equals? (system-name) "AlphaCentauri")
-          "/mnt/c/Users/BalajiSivaraman/Nextcloud/"
+      (if (s-equals? (system-name) "alphacentauri")
+          "/mnt/c/Users/Balaji Sivaraman/Nextcloud/"
         "/media/backup/Nextcloud/"))
 
 (provide 'init-customizations)
