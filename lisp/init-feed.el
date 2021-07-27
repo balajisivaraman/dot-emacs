@@ -23,10 +23,28 @@
 
 ;;; Code:
 
+(defun bs/open-link-in-firefox-container (container url)
+  "Opens URL in a new Firefox CONTAINER tab."
+  (let ((arg (format "ext+container:name=%s&url=%s" container url)))
+    (call-process "/opt/firefox/firefox" nil nil nil arg)))
+
+(defun bs/elfeed-open-feed-link-in-firefox-container ()
+  (interactive)
+  (let ((entry (elfeed-search-selected :single))
+        (buffer (current-buffer)))
+    (bs/open-link-in-firefox-container "Work" (elfeed-entry-link entry))
+    (elfeed-untag entry 'unread)
+    (with-current-buffer buffer
+      (elfeed-search-update-entry entry)
+      (unless (or elfeed-search-remain-on-entry (use-region-p))
+        (forward-line)))))
+
 (use-package elfeed
   :commands (elfeed)
   :bind
-  ("C-x w" . elfeed)
+  (("C-x w" . elfeed)
+   :map elfeed-search-mode-map
+   ("B" . bs/elfeed-open-feed-link-in-firefox-container))
   :config
   (setq
    elfeed-db-directory (s-concat bs/nextcloud-path "Feeds"))
