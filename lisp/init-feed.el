@@ -76,26 +76,34 @@
   `(setf elfeed-feeds (mapcar #'elfeed--expand ',feeds)))
 
 (elfeed-config
- ;; Individual Blogs
- ("https://charity.wtf/feed/" dev blog)
- ("https://medium.com/feed/@copyconstruct" dev blog)
- ("https://martinfowler.com/feed.atom" dev blog)
- ("http://dtrace.org/blogs/bmc/feed/" dev blog)
- ("https://www.allthingsdistributed.com/atom.xml" dev blog)
+  ;; Individual Blogs
+  ("https://fasterthanli.me/index.xml" dev blog) ;; Amos
+  ("http://dtrace.org/blogs/bmc/feed/" dev blog) ;; Bryan Cantrill
+  ("https://www.elidedbranches.com/feeds/posts/default" dev blog) ;; Camille Fournier
+  ("https://charity.wtf/feed/" dev blog) ;; Charity Majors
+  ("https://medium.com/feed/@copyconstruct" dev blog) ;; Cindy Sridharan
+  ("https://larahogan.me/feed" dev blog) ;; Lara Hogan
+  ("https://martinfowler.com/feed.atom" dev blog) ;; Martin Fowler
+  ("https://blog.acolyer.org/feed" dev blog) ;; Morning Paper
+  ("https://blog.jessfraz.com/index.xml" dev blog) ;; Jessie Frazelle
+  ("https://jvns.ca/atom.xml" dev blog) ;; Julia Evans
+  ("https://www.allthingsdistributed.com/atom.xml" dev blog) ;; Werner Vogels
 
- ;; Company Engineering Blogs
- ("https://engineering.linkedin.com/blog.rss.html" dev blog)
- ("https://engineering.atspotify.com/feed" dev blog)
- ("https://www.thoughtworks.com/rss/insights.xml" dev blog)
- ("https://cacm.acm.org/blogs/blog-cacm.rss" )
+  ;; Company Engineering Blogs
+  ("https://cacm.acm.org/blogs/blog-cacm.rss" ) ;; ACM Blog
+  ("https://queue.acm.org/rss/feeds/queuecontent.xml" dev blog) ;; ACM Queue
+  ("https://www.cncf.io/blog/feed" dev blog) ;; Cloud Native Computing Foundation Blog
+  ("https://engineering.linkedin.com/blog.rss.html" dev blog) ;; LinkedIn Engineering
+  ("https://engineering.atspotify.com/feed" dev blog) ;; Spotify Engineering
+  ("https://www.thoughtworks.com/rss/insights.xml" dev blog) ;; ThoughtWorks Insights
 
- ;; Company News Feeds
- ("https://cacm.acm.org/magazine.rss" dev release)
+  ;; Company News Feeds
+  ("https://cacm.acm.org/magazine.rss" dev release)
 
- ;; Youtube
- ("UC_QIfHvN9auy2CoOdSfMWDw" youtube) ;; Strange Loop
- ("UCs_tLP3AiwYKwdUHpltJPuA" youtube) ;; Goto Conferences
- )
+  ;; Youtube
+  ("UC_QIfHvN9auy2CoOdSfMWDw" youtube) ;; Strange Loop
+  ("UCs_tLP3AiwYKwdUHpltJPuA" youtube) ;; Goto Conferences
+  )
 
 (provide 'init-feed)
 ;;; init-feed.el ends here
