@@ -58,11 +58,6 @@
   :diminish (org-roam-mode)
   :init
   (setq org-roam-v2-ack t)
-  :bind
-  ("C-. I" . org-roam-node-insert)
-  ("C-. C" . org-roam-node-find)
-  :config
-  (org-roam-setup)
   (setq
    org-roam-directory (s-concat bs/nextcloud-path "Notes/")
    org-roam-db-location "~/.org-roam.db"
@@ -139,7 +134,13 @@
        ":PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):END:
 #+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
-      :unnarrowed t))))
+      :unnarrowed t)))
+  :bind
+  ("C-. I" . org-roam-node-insert)
+  ("C-. C" . org-roam-node-find)
+  :config
+  (org-roam-setup)
+  )
 
 (use-package deft
   :after org
