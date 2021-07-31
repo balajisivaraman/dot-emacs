@@ -29,9 +29,7 @@
   :bind (:map markdown-mode-map
               ("C-c i l" . markdown-insert-link)
               ("C-c i b" . markdown-insert-bold)
-              ("C-c i i" . markdown-insert-italic))
-  :init
-  (add-hook 'markdown-mode-hook #'flycheck-mode))
+              ("C-c i i" . markdown-insert-italic)))
 
 (use-package yaml-mode
   :hook
