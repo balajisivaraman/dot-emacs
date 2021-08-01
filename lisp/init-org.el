@@ -103,7 +103,7 @@
    'user
    ;; configure overall variable pitch and fixed pitch fonts
    '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
-   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 124))))
+   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 109))))
 
    ;; configure fonts for org headings and document title
    '(org-level-8 ((t (:inherit default))))
