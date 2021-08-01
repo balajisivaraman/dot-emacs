@@ -36,13 +36,11 @@
 
 (use-package flymake-proselint
   :after flymake
-  :hook (text-mode . bs/flymake-proselint-setup)
   :init
   (defun bs/flymake-proselint-setup ()
     "Setup Flymake Proselint."
-    (when (not (s-contains-p "gtd" (buffer-file-name (current-buffer))))
-      (flymake-mode +1)
-      (flymake-proselint-setup))))
+    (flymake-mode +1)
+    (flymake-proselint-setup)))
 
 ;; Flyspell Mode
 (use-package flyspell

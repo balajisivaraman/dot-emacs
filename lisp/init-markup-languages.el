@@ -24,6 +24,7 @@
 ;;; Code:
 
 (use-package markdown-mode
+  :hook (markdown-mode . bs/flymake-proselint-setup)
   :mode
   ".md\\|.markdown"
   :bind (:map markdown-mode-map
