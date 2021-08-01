@@ -38,6 +38,7 @@
          (org-mode . org-bullets-mode)
          (org-mode . variable-pitch-mode)
          (org-mode . company-mode)
+         (org-agenda-mode . (lambda () (setq-local line-spacing 3)))
          (before-save . bs/org-set-last-modified))
   :config
   ;; Basic Configuration
@@ -50,7 +51,7 @@
    org-archive-location (s-concat bs/nextcloud-path "gtd/archives.org::")
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets '((org-agenda-files :maxlevel . 9))
-   org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h"))
+   org-global-properties '(("Effort_ALL" . "5min 10min 15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h"))
    org-ellipsis "  "
    org-use-speed-commands t
    org-hide-emphasis-markers t
@@ -88,7 +89,12 @@
       ((org-agenda-overriding-header "Project Next Actions")))
      ("i" "Inbox" tags-todo "CATEGORY=\"Inbox\"TODO=\"TODO\""
       ((org-agenda-overriding-header "To Refile"))))
-   org-agenda-category-icon-alist `(("Amma" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
+   org-agenda-prefix-format '((agenda . "  %i   %-10c   鬒%-6e   %-6s")
+                              (todo . "  %i   %-10c   鬒%-6e")
+                              (tags . "  %i   %-10c   鬒%-6e")
+                              (search . "  %i   %-10c   鬒%-6e"))
+   org-agenda-category-icon-alist `(("Account" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Amma" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
                                     ("Appa" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
                                     ("ATP" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Backstage" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
@@ -104,6 +110,7 @@
                                     ("Metrics" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("OrgMode" ,(s-concat bs/org-agenda-icons-path "orgmode.png") nil nil :ascent center)
                                     ("Personal" ,(s-concat bs/org-agenda-icons-path "personal.png") nil nil :ascent center)
+                                    ("PLConcepts" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)
                                     ("Programming" ,(s-concat bs/org-agenda-icons-path "programming.png") nil nil :ascent center)
                                     ("Royale" ,(s-concat bs/org-agenda-icons-path "building.png") nil nil :ascent center)
                                     ("Reading" ,(s-concat bs/org-agenda-icons-path "reading.png") nil nil :ascent center)
