@@ -40,30 +40,54 @@
          (org-mode . company-mode)
          (before-save . bs/org-set-last-modified))
   :config
+  ;; Basic Configuration
   (setq
    org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)"))
-   org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
-   org-agenda-ndays 21
    org-deadline-warning-days 14
-   org-agenda-show-all-dates t
-   org-agenda-skip-deadline-if-done t
-   org-agenda-skip-scheduled-if-done t
-   org-agenda-start-on-weekday nil
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
    org-log-done 'time
    org-archive-location (s-concat bs/nextcloud-path "gtd/archives.org::")
+   org-refile-allow-creating-parent-nodes 'confirm
+   org-refile-targets '((org-agenda-files :maxlevel . 9))
+   org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h"))
+   org-ellipsis "  "
+   org-use-speed-commands t
+   org-hide-emphasis-markers t
+   org-log-into-drawer "LOGBOOK-NOTES"
+   org-special-ctrl-k t
+   org-M-RET-may-split-line nil
+   org-ctrl-k-protect-subtree t
+   org-blank-before-new-entry (quote ((heading . auto)
+                                      (plain-list-item . auto)))
+   org-bookmark-names-plist nil
+   org-catch-invisible-edits 'error
+   org-cycle-separator-lines 0
+   org-enforce-todo-dependencies t
+   org-use-fast-todo-selection 'expert
+   org-use-fast-tag-selection t
+   org-fast-tag-selection-single-key 'expert
+   )
+  ;; Agenda Configuration
+  (setq
+   org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
+   org-agenda-ndays 21
+   org-agenda-show-all-dates t
+   org-agenda-skip-deadline-if-done t
+   org-agenda-skip-scheduled-if-done t
+   org-agenda-start-on-weekday nil
+   org-agenda-tags-column 110
+   org-agenda-window-setup 'only-window
+   org-agenda-todo-ignore-scheduled t
+   org-agenda-tags-todo-honor-ignore-options t
+   org-agenda-deadline-leaders '("!D!: " "D%02d: ")
+   org-agenda-use-time-grid nil
+   org-agenda-scheduled-leaders '("" "S%d: ")
    org-agenda-custom-commands
    '(("p" "Projects" todo "NEXT"
       ((org-agenda-overriding-header "Project Next Actions")))
      ("i" "Inbox" tags-todo "CATEGORY=\"Inbox\"TODO=\"TODO\""
       ((org-agenda-overriding-header "To Refile"))))
-   org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets '((org-agenda-files :maxlevel . 9))
-   org-agenda-window-setup 'only-window
-   org-agenda-todo-ignore-scheduled t
-   org-agenda-tags-todo-honor-ignore-options t
-   org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h"))
    org-agenda-category-icon-alist `(("Amma" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
                                     ("Appa" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
                                     ("ATP" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
@@ -89,29 +113,11 @@
                                     ("Vacation" ,(s-concat bs/org-agenda-icons-path "vacation.png") nil nil :ascent center)
                                     ("Work" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Writing" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)))
+  ;; Org Id Configuration
   (add-to-list 'org-modules 'org-id)
-  (setq org-agenda-tags-column 110
-        org-ellipsis "  "
-        org-id-link-to-org-use-id t
-        org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations")
-        org-use-speed-commands t
-        org-hide-emphasis-markers t
-        org-log-into-drawer "LOGBOOK-NOTES"
-        org-special-ctrl-k t
-        org-M-RET-may-split-line nil
-        org-ctrl-k-protect-subtree t
-        org-blank-before-new-entry (quote ((heading . auto)
-                                           (plain-list-item . auto)))
-        org-bookmark-names-plist nil
-        org-catch-invisible-edits 'error
-        org-cycle-separator-lines 0
-        org-agenda-deadline-leaders '("!D!: " "D%02d: ")
-        org-agenda-use-time-grid nil
-        org-agenda-scheduled-leaders '("" "S%d: ")
-        org-enforce-todo-dependencies t
-        org-use-fast-todo-selection 'expert
-        org-use-fast-tag-selection t
-        org-fast-tag-selection-single-key 'expert)
+  (setq org-id-link-to-org-use-id t
+        org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations"))
+  ;; Look and Feel Configuration
   (font-lock-add-keywords
    'org-mode
    '(("^ *\\([-]\\) "
@@ -205,17 +211,17 @@
 
 ;; Below three functions are taken from: https://github.com/zaeph/.emacs.d/blob/master/init.el
 (defun bs/org-find-time-file-property (property &optional anywhere)
-    "Return the position of the time file PROPERTY if it exists.
+  "Return the position of the time file PROPERTY if it exists.
 When ANYWHERE is non-nil, search beyond the preamble."
-    (save-excursion
-      (goto-char (point-min))
-      (let ((first-heading
-             (save-excursion
-               (re-search-forward org-outline-regexp-bol nil t))))
-        (when (re-search-forward (format "^#\\+%s:" property)
-                                 (if anywhere nil first-heading)
-                                 t)
-          (point)))))
+  (save-excursion
+    (goto-char (point-min))
+    (let ((first-heading
+           (save-excursion
+             (re-search-forward org-outline-regexp-bol nil t))))
+      (when (re-search-forward (format "^#\\+%s:" property)
+                               (if anywhere nil first-heading)
+                               t)
+        (point)))))
 
 (defun bs/org-set-time-file-property (property &optional anywhere pos)
   "Set the time file PROPERTY in the preamble.
@@ -234,9 +240,9 @@ it can be passed in POS."
         (insert now)))))
 
 (defun bs/org-set-last-modified ()
-    "Update the LAST_MODIFIED file property in the preamble."
-    (when (derived-mode-p 'org-mode)
-      (bs/org-set-time-file-property "LAST_MODIFIED")))
+  "Update the LAST_MODIFIED file property in the preamble."
+  (when (derived-mode-p 'org-mode)
+    (bs/org-set-time-file-property "LAST_MODIFIED")))
 
 (defun bs/org-capture-hook ()
   "My hooks for Org Capture."
