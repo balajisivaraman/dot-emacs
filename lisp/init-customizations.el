@@ -51,9 +51,12 @@
   (setq save-place-file (concat bs/emacs-cache-directory ".saveplace"))
   (save-place-mode))
 
+(defvar bs/at-work)
+(setq bs/at-work (s-equals? (system-name) "alphacentauri"))
+
 (defvar bs/nextcloud-path)
 (setq bs/nextcloud-path
-      (if (s-equals? (system-name) "alphacentauri")
+      (if bs/at-work
           "/mnt/c/Users/Balaji Sivaraman/Nextcloud/"
         "/media/backup/Nextcloud/"))
 
