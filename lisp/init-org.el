@@ -117,7 +117,7 @@
       ((org-agenda-overriding-header "To Refile")))
      (" " "Agenda"
       ((agenda "" ((org-agenda-span 1)))
-       (todo "NEXT"
+       (tags-todo "todo=\"NEXT\"-CATEGORY=\"Reading\""
              ((org-agenda-overriding-header "Next Actions")
               (org-agenda-skip-function 'bs/org-skip-based-on-context)))
        (tags-todo "todo=\"NEXT\"+CATEGORY=\"Reading\""
