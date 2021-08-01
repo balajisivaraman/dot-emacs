@@ -42,8 +42,7 @@
   :config
   (setq
    org-todo-keywords
-   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
-     (sequence "PROJ(p)" "|" "DONE(d!)"))
+   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)"))
    org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
    org-agenda-ndays 21
    ;; below setting lists all unscheduled tasks as stuck
