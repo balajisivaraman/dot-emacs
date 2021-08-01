@@ -40,8 +40,9 @@
   :init
   (defun bs/flymake-proselint-setup ()
     "Setup Flymake Proselint."
-    (flymake-mode +1)
-    (flymake-proselint-setup)))
+    (when (not (s-contains-p "gtd" (buffer-file-name (current-buffer))))
+      (flymake-mode +1)
+      (flymake-proselint-setup))))
 
 ;; Flyspell Mode
 (use-package flyspell
