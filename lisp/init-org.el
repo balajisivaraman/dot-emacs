@@ -41,12 +41,9 @@
          (before-save . bs/org-set-last-modified))
   :config
   (setq
-   org-todo-keywords
-   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)"))
+   org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)"))
    org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
    org-agenda-ndays 21
-   ;; below setting lists all unscheduled tasks as stuck
-   org-stuck-projects '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:")
    org-deadline-warning-days 14
    org-agenda-show-all-dates t
    org-agenda-skip-deadline-if-done t
@@ -61,17 +58,11 @@
       ((org-agenda-overriding-header "Project Next Actions")))
      ("i" "Inbox" tags-todo "CATEGORY=\"Inbox\"TODO=\"TODO\""
       ((org-agenda-overriding-header "To Refile"))))
-   org-tag-persistent-alist '(("@home" . ?h)
-                              ("@work" . ?w)
-                              ("@next" . ?n)
-                              ("@reading" . ?r)
-                              ("@quick" . ?q))
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets '((org-agenda-files :maxlevel . 9))
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
-   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next"
    org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h")))
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
