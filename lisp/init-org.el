@@ -52,6 +52,10 @@
                             ("HOLD" . (:inherit org-todo))
                             ("NEXT" . (:inherit org-todo))
                             ("CXLD" . (:inherit org-todo)))
+   org-tag-alist (quote ((:startgroup)
+                         ("@home" . ?h)
+                         ("@work" . ?w)
+                         (:endgroup)))
    org-deadline-warning-days 14
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
@@ -110,7 +114,14 @@
    '(("p" "Projects" todo "NEXT"
       ((org-agenda-overriding-header "Project Next Actions")))
      ("i" "Inbox" tags-todo "CATEGORY=\"Inbox\"TODO=\"TODO\""
-      ((org-agenda-overriding-header "To Refile"))))
+      ((org-agenda-overriding-header "To Refile")))
+     (" " "Agenda"
+      ((agenda "" ((org-agenda-span 1)))
+       (todo "NEXT"
+             ((org-agenda-overriding-header "Next Actions")
+              (org-agenda-skip-function 'bs/org-skip-based-on-context)))
+       (tags-todo "todo=\"NEXT\"+CATEGORY=\"Reading\""
+             ((org-agenda-overriding-header "Reading List"))))))
    org-agenda-prefix-format '((agenda . "  %i   %-10c   鬒%-6e   %-6s")
                               (todo . "  %i   %-10c   鬒%-6e")
                               (tags . "  %i   %-10c   鬒%-6e")
@@ -304,6 +315,20 @@ it can be passed in POS."
    (not (org-agenda-skip-entry-if
          (quote scheduled) (quote deadline)
          (quote regexp) "\n]+>"))))
+
+(defun bs/org-skip-based-on-context ()
+  "Skips an entry based on whether I'm at work or home."
+  (save-restriction
+    (widen)
+    (let* ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
+           (tags (mapcar (lambda (tag) (when tag (progn (remove-text-properties 0 (length tag) '(inherited) tag) tag))) (org-get-tags))))
+      (when tags
+        (cond
+         ((and bs/at-work (-contains? tags "@work")) nil)
+         ((and bs/at-work (-contains? tags "@home")) next-headline)
+         ((and (not bs/at-work) (-contains? tags "@home")) nil)
+         ((and (not bs/at-work) (-contains? tags "@work")) next-headline)
+         (t nil))))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
