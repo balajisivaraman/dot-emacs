@@ -1,6 +1,5 @@
 # Flat Icon Acknowledgements
 
-|--------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------|
 | Icon File                            | Created By                                                        | Downloaded From                                                 |
 |--------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------|
 | [building.png](./building.png)       | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/premium-icon/skyscraper_562460) |
@@ -16,4 +15,3 @@
 | [reading.png](./reading.png)         | ![monkik](https://www.flaticon.com/authors/monkik)                | [Link](https://www.flaticon.com/free-icon/reading_3749948)      |
 | [vacation.png](./vacation.png)       | [wanicon](https://www.flaticon.com/authors/wanicon)               | [Link](https://www.flaticon.com/premium-icon/vacation_3628028)  |
 | [writing.png](./writing.png)         | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/free-icon/pencil_3075908)       |
-|--------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------|
