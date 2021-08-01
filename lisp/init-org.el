@@ -194,12 +194,6 @@
 :PROPERTIES:
 :CREATED:  %U
 :END:" :prepend t)
-     ("i" "Idea" entry
-      (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Ideas")
-      "* TODO %i%?
-:PROPERTIES:
-:CREATED:  %U
-:END:" :prepend t)
      ("c" "Org Protocol Capture" entry
       (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Reading")
       "* TODO Read: %:description
