@@ -69,6 +69,20 @@
    org-use-fast-tag-selection t
    org-fast-tag-selection-single-key 'expert
    )
+  ;; Clock Configuration
+  (org-clock-persistence-insinuate)
+  (setq
+   org-clock-history-length 20
+   org-clock-in-resume t
+   org-clock-out-remove-zero-time-clocks t
+   org-clock-out-when-done t
+   org-clock-persist t
+   org-clock-persist-file (s-concat bs/emacs-cache-directory "org-clock-save.el")
+   org-clock-persist-query-resume nil
+   org-clock-into-drawer "TIME_SPENT_LOG"
+   ;; if there is an org clock out hook active, then org does not
+   ;; resume clocking in the previous task, so we remove it
+   org-clock-out-hook nil)
   ;; Agenda Configuration
   (setq
    org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
