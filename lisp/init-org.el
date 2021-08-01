@@ -110,6 +110,11 @@
    org-agenda-deadline-leaders '("!D!: " "D%02d: ")
    org-agenda-use-time-grid nil
    org-agenda-scheduled-leaders '("" "S%d: ")
+   org-agenda-sorting-strategy
+   (quote ((agenda habit-down time-up effort-up category-keep)
+           (todo effort-up category-up)
+           (tags effort-up category-up)
+           (search category-up)))
    org-agenda-custom-commands
    '(("p" "Projects" todo "NEXT"
       ((org-agenda-overriding-header "Project Next Actions")))
