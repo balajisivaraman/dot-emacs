@@ -30,9 +30,7 @@
 
 (use-package orderless
   :config
-  (setq completion-styles '(orderless)
-        orderless-skip-highlighting (lambda () selectrum-is-active)
-        selectrum-highlight-candidates-function #'orderless-highlight-matches))
+  (setq completion-styles '(orderless)))
 
 (use-package consult
   :bind
