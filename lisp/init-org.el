@@ -63,7 +63,32 @@
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
-   org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h")))
+   org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h"))
+   org-agenda-category-icon-alist `(("Amma" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
+                                    ("Appa" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
+                                    ("ATP" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Backstage" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Blog" ,(s-concat bs/org-agenda-icons-path "programming.png") nil nil :ascent center)
+                                    ("Divya" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
+                                    ("Dora" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Emacs" ,(s-concat bs/org-agenda-icons-path "emacs.png") nil nil :ascent center)
+                                    ("Habit" ,(s-concat bs/org-agenda-icons-path "habit.png") nil nil :ascent center)
+                                    ("Home" ,(s-concat bs/org-agenda-icons-path "home.png") nil nil :ascent center)
+                                    ("Inbox" ,(s-concat bs/org-agenda-icons-path "inbox.png") nil nil :ascent center)
+                                    ("Leadership" ,(s-concat bs/org-agenda-icons-path "leadership.png") nil nil :ascent center)
+                                    ("Linux" ,(s-concat bs/org-agenda-icons-path "linux.png") nil nil :ascent center)
+                                    ("Metrics" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("OrgMode" ,(s-concat bs/org-agenda-icons-path "orgmode.png") nil nil :ascent center)
+                                    ("Personal" ,(s-concat bs/org-agenda-icons-path "personal.png") nil nil :ascent center)
+                                    ("Programming" ,(s-concat bs/org-agenda-icons-path "programming.png") nil nil :ascent center)
+                                    ("Royale" ,(s-concat bs/org-agenda-icons-path "building.png") nil nil :ascent center)
+                                    ("Reading" ,(s-concat bs/org-agenda-icons-path "reading.png") nil nil :ascent center)
+                                    ("RLedger" ,(s-concat bs/org-agenda-icons-path "ledger.png") nil nil :ascent center)
+                                    ("Team" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("TW" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Vacation" ,(s-concat bs/org-agenda-icons-path "vacation.png") nil nil :ascent center)
+                                    ("Work" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Writing" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)))
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
         org-ellipsis "  "

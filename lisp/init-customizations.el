@@ -57,5 +57,8 @@
           "/mnt/c/Users/Balaji Sivaraman/Nextcloud/"
         "/media/backup/Nextcloud/"))
 
+(defvar bs/org-agenda-icons-path)
+(setq bs/org-agenda-icons-path (s-concat user-emacs-directory "icons/"))
+
 (provide 'init-customizations)
 ;;; init-customizations.el ends here
