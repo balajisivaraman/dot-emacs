@@ -43,7 +43,15 @@
   :config
   ;; Basic Configuration
   (setq
-   org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)"))
+   org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
+                       (sequence "WAIT(w)" "HOLD(h)" "|" "DONE(d!)" "CXLD(x!)" "MEETING" "PHONECALL" "INTERRUPTION"))
+   org-todo-keyword-faces '(("MEETING" . (:inherit org-todo))
+                            ("PHONECALL" . (:inherit org-todo))
+                            ("INTERRUPTION" . (:inherit org-todo))
+                            ("WAIT" . (:inherit org-todo))
+                            ("HOLD" . (:inherit org-todo))
+                            ("NEXT" . (:inherit org-todo))
+                            ("CXLD" . (:inherit org-todo)))
    org-deadline-warning-days 14
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
@@ -204,17 +212,19 @@
    org-capture-templates
    `(("t" "Todo [inbox]" entry
       (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Inbox")
-      "* TODO %i%?
-:PROPERTIES:
-:CREATED:  %U
-:END:" :prepend t)
+      "* TODO %i%? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :prepend t)
      ("c" "Org Protocol Capture" entry
       (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Reading")
-      "* TODO Read: %:description
-:PROPERTIES:
-:CREATED:  %U
-:URL: %l
-:END:"))))
+      "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:")
+     ("i" "Interruption" entry
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Interruptions")
+      "* INTERRUPTION By %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t)
+     ("m" "Meeting" entry
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Meetings")
+      "* MEETING With %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t)
+     ("p" "Phone call" entry
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Phone Calls")
+      "* PHONE With %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t))))
 
 (defun bs/org-set-created-property ()
   "Set a property on the entry for creation time."
