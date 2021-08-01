@@ -71,7 +71,8 @@
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
-   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next")
+   org-agenda-hide-tags-regexp "\\|@work\\|@home\\|@next"
+   org-global-properties '(("Effort_ALL" . "15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h")))
   (add-to-list 'org-modules 'org-id)
   (setq org-agenda-tags-column 110
         org-ellipsis "  "
