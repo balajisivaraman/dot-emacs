@@ -127,10 +127,10 @@
               (org-agenda-skip-function 'bs/org-skip-based-on-context)))
        (tags-todo "todo=\"NEXT\"+CATEGORY=\"Reading\""
              ((org-agenda-overriding-header "Reading List"))))))
-   org-agenda-prefix-format '((agenda . "  %i   %-12c   鬒%-6e   %-6s")
-                              (todo . "  %i   %-12c   鬒%-6e")
-                              (tags . "  %i   %-12c   鬒%-6e")
-                              (search . "  %i   %-12c   鬒%-6e"))
+   org-agenda-prefix-format '((agenda . "  %i   %-12c   鬒%-6e   %-6s %-8(bs/format-entry-scheduled-deadline-time)")
+                              (todo . "  %i   %-12c   鬒%-6e   ")
+                              (tags . "  %i   %-12c   鬒%-6e   ")
+                              (search . "  %i   %-12c   鬒%-6e   "))
    org-agenda-category-icon-alist `(("Account" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Amma" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
                                     ("Appa" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
@@ -334,6 +334,17 @@ it can be passed in POS."
          ((and (not bs/at-work) (-contains? tags "@home")) nil)
          ((and (not bs/at-work) (-contains? tags "@work")) next-headline)
          (t nil))))))
+
+(defun bs/format-entry-scheduled-deadline-time ()
+  "Formats scheduled/deadline time of current entry, if present, in
+HH:MM format. Deadline time gets preference if it exists."
+  (interactive)
+  (let ((deadline (org-get-deadline-time (point)))
+        (scheduled (org-get-scheduled-time (point))))
+    (cond
+     (scheduled (format-time-string "%H:%M" scheduled))
+     (deadline (format-time-string "%H:%M" deadline))
+     (t ""))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
