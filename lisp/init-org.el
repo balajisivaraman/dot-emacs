@@ -115,6 +115,7 @@
            (todo effort-up category-up)
            (tags effort-up category-up)
            (search category-up)))
+   org-agenda-block-separator 126
    org-agenda-custom-commands
    '(("p" "Projects" todo "NEXT"
       ((org-agenda-overriding-header "Project Next Actions")))
