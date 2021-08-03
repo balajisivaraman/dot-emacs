@@ -103,7 +103,7 @@
    org-agenda-skip-deadline-if-done t
    org-agenda-skip-scheduled-if-done t
    org-agenda-start-on-weekday nil
-   org-agenda-tags-column 110
+   org-agenda-tags-column -180
    org-agenda-window-setup 'only-window
    org-agenda-todo-ignore-scheduled t
    org-agenda-tags-todo-honor-ignore-options t
