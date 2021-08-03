@@ -52,13 +52,14 @@
   (save-place-mode))
 
 (defvar bs/at-work)
-(setq bs/at-work (s-equals? (system-name) "alphacentauri"))
+(setq bs/at-work (string-equal (downcase (system-name)) "alphacentauri"))
 
 (defvar bs/nextcloud-path)
 (setq bs/nextcloud-path
-      (if bs/at-work
-          "/mnt/c/Users/Balaji Sivaraman/Nextcloud/"
-        "/media/backup/Nextcloud/"))
+      (cond
+       ((and bs/at-work (eq system-type 'windows-nt)) "C:/Users/Balaji Sivaraman/Nextcloud/")
+       (bs/at-work "/mnt/c/Users/Balaji Sivaraman/Nextcloud/")
+       (t "/media/backup/Nextcloud/")))
 
 (defvar bs/org-agenda-icons-path)
 (setq bs/org-agenda-icons-path (s-concat user-emacs-directory "icons/"))
