@@ -31,6 +31,8 @@
   (("C-. a" . org-agenda)
    ("C-. r" . org-archive-subtree)
    ("C-. l" . org-store-link)
+   ("C-. p" . bs/punch-in)
+   ("C-. o" . bs/punch-out)
    :map org-mode-map
    ("C-. i" . bs/org-insert-prop-for-current-entry)
    ("C-. i" . org-insert-link))
@@ -335,6 +337,44 @@ it can be passed in POS."
          ((and (not bs/at-work) (-contains? tags "@home")) nil)
          ((and (not bs/at-work) (-contains? tags "@work")) next-headline)
          (t nil))))))
+
+;; Below ideas borrowed and modified from
+;; http://doc.norang.ca/org-mode.html#Clocking
+
+(setq bs/keep-clock-running nil)
+
+(defun bs/punch-in ()
+  (interactive)
+  (setq bs/keep-clock-running t)
+  (bs/clock-in-organization-task-as-default))
+
+(defun bs/punch-out ()
+  (interactive)
+  (setq bs/keep-clock-running nil)
+  (when (org-clock-is-active)
+    (org-clock-out))
+  (org-agenda-remove-restriction-lock))
+
+(defvar bs/organization-task-id "459d3dcc-a976-4c10-8bc1-fa63ad1cdb73")
+(defun bs/clock-in-organization-task-as-default ()
+  (interactive)
+  (org-with-point-at (org-id-find bs/organization-task-id 'marker)
+    (org-clock-in '(16))))
+
+(defun bs/clock-out-maybe ()
+  (when (and bs/keep-clock-running
+             (not org-clock-clocking-in)
+             (marker-buffer org-clock-default-task)
+             (not org-clock-resolving-clocks-due-to-idleness))
+    (cond
+     ((marker-buffer org-clock-interrupted-task)
+           (org-with-point-at org-clock-interrupted-task
+             (org-clock-in '(16))))
+      ((marker-buffer org-clock-default-task)
+       (bs/clock-in-organization-task-as-default))
+      (t t))))
+
+(add-hook 'org-clock-out-hook 'bs/clock-out-maybe 'append)
 
 (defun bs/format-entry-scheduled-deadline-time ()
   "Formats scheduled/deadline time of current entry, if present, in
