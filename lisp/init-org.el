@@ -235,13 +235,13 @@
       "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:")
      ("i" "Interruption" entry
       (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Interruptions")
-      "* INTERRUPTION By %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t)
+      "* INTERRUPTION By %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
      ("m" "Meeting" entry
       (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Meetings")
-      "* MEETING With %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t)
+      "* MEETING With %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
      ("p" "Phone call" entry
       (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Phone Calls")
-      "* PHONE With %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t))))
+      "* PHONE With %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t))))
 
 (defun bs/org-set-created-property ()
   "Set a property on the entry for creation time."
