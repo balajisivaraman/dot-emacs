@@ -8,6 +8,7 @@
 | [home.png](./home.png)               | [Vectors Market](https://www.flaticon.com/authors/vectors-market) | [Link](https://www.flaticon.com/free-icon/house_609803)         |
 | [inbox.png](./inbox.png)             | [srip](https://www.flaticon.com/authors/srip)                     | [Link](https://www.flaticon.com/free-icon/inbox_1265899)        |
 | [leadership.png](./leadership.png)   | [becris](https://www.flaticon.com/authors/becris)                 | [Link](https://www.flaticon.com/free-icon/leadership_860472)    |
+| [learning.png](./learning.png)       | [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs)     | [Link](https://www.flaticon.com/free-icon/brain_3617186)        |
 | [ledger.png](./ledger.png)           | [Eucalyp](https://www.flaticon.com/authors/eucalyp)               | [Link](https://www.flaticon.com/premium-icon/ledger_3201111)    |
 | [linux.png](./linux.png)             | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/premium-icon/linux_2333187)     |
 | [personal.png](./personal.png)       | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/premium-icon/worker_2813832)    |

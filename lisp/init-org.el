@@ -147,6 +147,7 @@
                                     ("Home" ,(s-concat bs/org-agenda-icons-path "home.png") nil nil :ascent center)
                                     ("Inbox" ,(s-concat bs/org-agenda-icons-path "inbox.png") nil nil :ascent center)
                                     ("Leadership" ,(s-concat bs/org-agenda-icons-path "leadership.png") nil nil :ascent center)
+                                    ("Learning" ,(s-concat bs/org-agenda-icons-path "learning.png") nil nil :ascent center)
                                     ("Linux" ,(s-concat bs/org-agenda-icons-path "linux.png") nil nil :ascent center)
                                     ("Metrics" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("OrgMode" ,(s-concat bs/org-agenda-icons-path "orgmode.png") nil nil :ascent center)
@@ -159,6 +160,7 @@
                                     ("Team" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("TW" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Vacation" ,(s-concat bs/org-agenda-icons-path "vacation.png") nil nil :ascent center)
+                                    ("Watching" ,(s-concat bs/org-agenda-icons-path "learning.png") nil nil :ascent center)
                                     ("Work" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Writing" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)))
   ;; Org Id Configuration
