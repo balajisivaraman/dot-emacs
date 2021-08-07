@@ -125,11 +125,12 @@
       ((org-agenda-overriding-header "To Refile")))
      (" " "Agenda"
       ((agenda "" ((org-agenda-span 1)))
-       (tags-todo "todo=\"NEXT\"-CATEGORY=\"Reading\""
+       (tags-todo "todo=\"NEXT\""
              ((org-agenda-overriding-header "Next Actions")
-              (org-agenda-skip-function 'bs/org-skip-based-on-context)))
-       (tags-todo "todo=\"NEXT\"+CATEGORY=\"Reading\""
-             ((org-agenda-overriding-header "Reading List"))))))
+              (org-agenda-skip-function #'bs/org-skip-learning-and-based-on-context)))
+       (tags-todo "todo=\"NEXT\""
+             ((org-agenda-overriding-header "Learning List")
+              (org-agenda-skip-function (lambda () (bs/org-include-or-skip-learning-actions-only t))))))))
    org-agenda-prefix-format '((agenda . "  %i   %-12c   鬒%-6e   %-6s %-8(bs/format-entry-scheduled-deadline-time)")
                               (todo . "  %i   %-12c   鬒%-6e   ")
                               (tags . "  %i   %-12c   鬒%-6e   ")
@@ -325,6 +326,35 @@ it can be passed in POS."
    (not (org-agenda-skip-entry-if
          (quote scheduled) (quote deadline)
          (quote regexp) "\n]+>"))))
+
+(defun bs/org-skip-learning-and-based-on-context ()
+  "Skips all tasks in Learning category and based on context."
+  (save-restriction
+    (widen)
+    (let* ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
+      (if (or (bs/org-include-or-skip-learning-actions-only nil)
+              (bs/org-skip-based-on-context))
+          next-headline
+        nil))))
+
+(defun bs/org-include-or-skip-learning-actions-only (include)
+  "Includes only Learning actions when INCLUDE is t. Skips them if
+INCLUDE is nil."
+  (save-restriction
+    (widen)
+    (let* ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
+           (category (org-get-category))
+           (learning-category-list '("Learning" "Reading" "Watching")))
+      (cond
+       ((and include (-contains? learning-category-list category))
+        nil)
+       ((and include (not (-contains? learning-category-list category)))
+        next-headline)
+       ((and (not include) (not (-contains? learning-category-list category)))
+        nil)
+       ((and (not include) (-contains? learning-category-list category))
+        next-headline)
+       (t nil)))))
 
 (defun bs/org-skip-based-on-context ()
   "Skips an entry based on whether I'm at work or home."
