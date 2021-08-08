@@ -166,6 +166,7 @@
                                     ("Writing" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)))
   ;; Org Id Configuration
   (add-to-list 'org-modules 'org-id)
+  (add-to-list 'org-modules 'org-depend)
   (setq org-id-link-to-org-use-id t
         org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations"))
   ;; Look and Feel Configuration
