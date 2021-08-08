@@ -34,7 +34,7 @@
 
 (use-package yaml-mode
   :hook
-  ((yaml-mode . eglot-ensure))
+  ((yaml-mode . lsp-deferred))
   :mode
   "\\(\\.yml\\|\\.yaml\\)")
 

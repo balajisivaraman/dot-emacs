@@ -28,7 +28,7 @@
 
 (use-package typescript-mode
   :commands (typescript-mode)
-  :hook ((typescript-mode . eglot-ensure)
+  :hook ((typescript-mode . lsp-deferred)
          (typescript-mode . company-mode))
   :init
   (setq typescript-indent-level 2))
@@ -36,7 +36,7 @@
 (use-package ng2-mode
   :mode ("\\.page\\.html" . ng2-html-mode)
   :commands (ng2-mode ng2-ts-mode ng2-html-mode)
-  :hook (((ng2-mode ng2-html-mode ng2-ts-mode) . eglot-ensure)
+  :hook (((ng2-mode ng2-html-mode ng2-ts-mode) . lsp-deferred)
          ((ng2-mode ng2-html-mode ng2-ts-mode) . company-mode)))
 
 (provide 'init-web-modes)
