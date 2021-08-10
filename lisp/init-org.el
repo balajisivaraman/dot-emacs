@@ -384,11 +384,21 @@ INCLUDE is nil."
     (org-clock-out))
   (org-agenda-remove-restriction-lock))
 
-(defvar bs/organization-task-id "459d3dcc-a976-4c10-8bc1-fa63ad1cdb73")
+(defvar bs/regular-work-task-id "459d3dcc-a976-4c10-8bc1-fa63ad1cdb73")
 (defun bs/clock-in-organization-task-as-default ()
   (interactive)
-  (org-with-point-at (org-id-find bs/organization-task-id 'marker)
-    (org-clock-in '(16))))
+  (org-with-point-at (org-id-find bs/regular-work-task-id 'marker)
+    (let* ((today (format-time-string "%A, %B %e, %Y"))
+           (next-headline (save-excursion (or (org-forward-heading-same-level 1 t) (point-max))))
+           (today-clock-position
+            (re-search-forward (format "^[\\*]* %s$" today) next-headline t)))
+      (if today-clock-position
+          (org-with-point-at today-clock-position
+            (org-clock-in '(16)))
+        (org-insert-heading-respect-content)
+        (org-cycle)
+        (insert today)
+        (org-clock-in '(16))))))
 
 (defun bs/clock-out-maybe ()
   (when (and bs/keep-clock-running
