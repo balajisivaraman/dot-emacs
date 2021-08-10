@@ -47,13 +47,6 @@
   (setq
    org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
                        (sequence "WAIT(w)" "HOLD(h)" "|" "DONE(d!)" "CXLD(x!)" "BREAK" "MEETING" "PHONECALL" "INTERRUPTION"))
-   org-todo-keyword-faces '(("MEETING" . (:inherit org-todo))
-                            ("PHONECALL" . (:inherit org-todo))
-                            ("INTERRUPTION" . (:inherit org-todo))
-                            ("WAIT" . (:inherit org-todo))
-                            ("HOLD" . (:inherit org-todo))
-                            ("NEXT" . (:inherit org-todo))
-                            ("CXLD" . (:inherit org-todo)))
    org-tag-alist (quote ((:startgroup)
                          ("@home" . ?h)
                          ("@work" . ?w)
