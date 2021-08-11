@@ -396,7 +396,7 @@ INCLUDE is nil."
           (org-with-point-at today-clock-position
             (org-clock-in '(16)))
         (org-insert-heading-respect-content)
-        (org-cycle)
+        (org-metaright)
         (insert today)
         (org-clock-in '(16))))))
 
