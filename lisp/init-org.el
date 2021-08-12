@@ -388,6 +388,7 @@ INCLUDE is nil."
 (defun bs/clock-in-organization-task-as-default ()
   (interactive)
   (org-with-point-at (org-id-find bs/regular-work-task-id 'marker)
+    (org-show-subtree)
     (let* ((today (format-time-string "%A, %B %e, %Y"))
            (next-headline (save-excursion (or (org-forward-heading-same-level 1 t) (point-max))))
            (today-clock-position
