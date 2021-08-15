@@ -143,6 +143,7 @@
                                     ("Leadership" ,(s-concat bs/org-agenda-icons-path "leadership.png") nil nil :ascent center)
                                     ("Learning" ,(s-concat bs/org-agenda-icons-path "learning.png") nil nil :ascent center)
                                     ("Linux" ,(s-concat bs/org-agenda-icons-path "linux.png") nil nil :ascent center)
+                                    ("MarcoTL" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Metrics" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("OrgMode" ,(s-concat bs/org-agenda-icons-path "orgmode.png") nil nil :ascent center)
                                     ("Personal" ,(s-concat bs/org-agenda-icons-path "personal.png") nil nil :ascent center)
