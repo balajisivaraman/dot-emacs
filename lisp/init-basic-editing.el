@@ -29,8 +29,9 @@
   :bind
   (("C-S-z" . undo-tree-redo)
    ("C-z" . undo-tree-undo))
-  :config
+  :init
   (global-undo-tree-mode 1)
+  :config
   (setq undo-tree-visualizer-timestamps t))
 
 ;; Rectangle Editing
