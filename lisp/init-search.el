@@ -32,5 +32,13 @@
   :bind (("C-c r r" . deadgrep))
   :commands (deadgrep))
 
+(use-package rg
+  :commands (rg rg-literal)
+  :init
+  (rg-enable-default-bindings))
+
+(use-package wgrep
+  :commands (wgrep))
+
 (provide 'init-search)
 ;;; init-search.el ends here
