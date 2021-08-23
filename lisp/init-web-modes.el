@@ -36,7 +36,7 @@
 (use-package ng2-mode
   :mode ("\\.page\\.html" . ng2-html-mode)
   :commands (ng2-mode ng2-ts-mode ng2-html-mode)
-  :hook (((ng2-mode ng2-html-mode ng2-ts-mode) . eglot-ensure)
+  :hook (((ng2-ts-mode) . eglot-ensure)
          ((ng2-mode ng2-html-mode ng2-ts-mode) . company-mode)))
 
 (provide 'init-web-modes)

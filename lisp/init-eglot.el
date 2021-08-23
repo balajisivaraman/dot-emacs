@@ -28,12 +28,15 @@
 (use-package eglot
   :commands (eglot-ensure)
   :bind (:map eglot-mode-map
-         ("C-' a" . eglot-code-actions))
+         (("C-' a" . eglot-code-actions)
+          ("C-' r" . eglot-rename)
+          ("C-' w r" . eglot-reconnect)))
   :config
   (add-to-list 'eglot-server-programs '(rust-mode . ("~/bin/rust-analyzer-wrapper")))
   (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper")))
   (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server"))))
+  (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server")))
+  (setq eglot-confirm-server-initiated-edits nil))
 
 (use-package cc-mode
   :ensure nil
