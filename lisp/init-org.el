@@ -151,6 +151,7 @@
                                     ("Papers" ,(s-concat bs/org-agenda-icons-path "reading.png") nil nil :ascent center)
                                     ("Personal" ,(s-concat bs/org-agenda-icons-path "personal.png") nil nil :ascent center)
                                     ("PLConcepts" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)
+                                    ("PolarisDeco" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Programming" ,(s-concat bs/org-agenda-icons-path "programming.png") nil nil :ascent center)
                                     ("Royale" ,(s-concat bs/org-agenda-icons-path "building.png") nil nil :ascent center)
                                     ("Reading" ,(s-concat bs/org-agenda-icons-path "reading.png") nil nil :ascent center)
