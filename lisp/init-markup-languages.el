@@ -34,7 +34,7 @@
 
 (use-package yaml-mode
   :hook
-  ((yaml-mode . eglot-ensure))
+  ((yaml-mode . bs/initialize-chosen-lsp-server))
   :mode
   "\\(\\.yml\\|\\.yaml\\)")
 

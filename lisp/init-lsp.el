@@ -1,4 +1,4 @@
-;;; init-eglot.el --- Language Server Protocol Support -*- lexical-binding: t -*-
+;;; init-lsp.el --- Language Server Protocol Support -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021 Balaji Sivaraman
 
@@ -19,11 +19,29 @@
 
 ;;; Commentary:
 
-;; Eglot Mode Configuration
+;; LSP and Eglot Mode Configuration
 
 ;;; Code:
 
 (defvar bs/node-version (s-trim (shell-command-to-string "node -v")))
+
+(use-package lsp-mode
+  :disabled t
+  :commands (lsp lsp-deferred)
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :init
+  (setq lsp-keymap-prefix "C-'")
+  :config
+  (setq lsp-prefer-capf t
+        lsp-idle-delay 0.500
+        lsp-clients-angular-language-server-command
+        `("node"
+          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules/@angular/language-server"))
+          "--ngProbeLocations"
+          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules"))
+          "--tsProbeLocations"
+          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules"))
+          "--stdio")))
 
 (use-package eglot
   :commands (eglot-ensure)
@@ -36,11 +54,22 @@
   (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper")))
   (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server")))
+  (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
   (setq eglot-confirm-server-initiated-edits nil))
+
+(defvar bs/lsp-server-to-use nil)
+(setq bs/lsp-server-to-use 'eglot)
+
+(defun bs/initialize-chosen-lsp-server ()
+  "Initializes either Eglot or Lsp Mode."
+  (interactive)
+  (if (eq bs/lsp-server-to-use 'lsp)
+      (lsp-deferred)
+    (eglot-ensure)))
 
 (use-package cc-mode
   :ensure nil
-  :hook (c++-mode . eglot-ensure))
+  :hook (c++-mode . bs/initialize-chosen-lsp-server))
 
-(provide 'init-eglot)
-;;; init-eglot.el ends here
+(provide 'init-lsp)
+;;; init-lsp.el ends here
