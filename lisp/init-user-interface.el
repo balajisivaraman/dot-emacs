@@ -28,13 +28,13 @@
   (setq
    modus-themes-syntax 'alt-syntax-yellow-comments
    modus-themes-fringes 'subtle
-   modus-themes-headings '((t . no-bold))
+   modus-themes-headings '((t . (rainbow no-bold)))
    modus-themes-scale-headings t
-   modus-themes-scale-1 1.15
-   modus-themes-scale-2 1.3
-   modus-themes-scale-3 1.45
-   modus-themes-scale-4 1.6
-   modus-themes-scale-5 1.75)
+   modus-themes-scale-1 1.1
+   modus-themes-scale-2 1.15
+   modus-themes-scale-3 1.21
+   modus-themes-scale-4 1.27
+   modus-themes-scale-5 1.33)
   :config
   (load-theme 'modus-operandi t))
 
