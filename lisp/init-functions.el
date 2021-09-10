@@ -52,14 +52,14 @@
 (defsubst hook-into-modes (func &rest modes)
   (dolist (mode-hook modes) (add-hook mode-hook func)))
 
-(defun balaji-dot-emacs ()
+(defun bs/dot-emacs ()
   "Go directly to .emacs, do not pass Go, do not collect $200."
   (interactive)
   (message "Stop procrastinating and do some work!")
   (find-file (s-concat user-emacs-directory "init.el")))
-(bind-key "C-c f d" 'balaji-dot-emacs)
+(bind-key "C-c f d" 'bs/dot-emacs)
 
-(defun balaji-indent-region-or-buffer (&optional begin end)
+(defun bs/indent-region-or-buffer (&optional begin end)
   "Indent a region or the whole file.
 
 If called after a region is marked, indents the region between BEGIN and END.
@@ -71,8 +71,7 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
     (if (region-active-p)
         (indent-region begin end nil)
       (indent-region (point-min) (point-max) nil))))
-(bind-key "C-c B i" 'balaji-indent-region-or-buffer)
-
+(bind-key "C-c B i" 'bs/indent-region-or-buffer)
 
 (defun unfill-paragraph (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."

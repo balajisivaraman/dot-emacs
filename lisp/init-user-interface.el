@@ -57,10 +57,10 @@
 (use-package face-remap
   :ensure nil
   :bind
-  (("C-+" . balaji-font-scaling/text-scale-increase)
-   ("C--" . balaji-font-scaling/text-scale-decrease))
+  (("C-+" . bs/font-scaling/text-scale-increase)
+   ("C--" . bs/font-scaling/text-scale-decrease))
   :init
-  (defhydra balaji-font-scaling ()
+  (defhydra bs/font-scaling ()
     "Font scaling"
     ("+" text-scale-increase "Scale Up")
     ("-" text-scale-decrease "Scale Down")

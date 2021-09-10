@@ -69,7 +69,7 @@
 
 ;; General Bindings
 (bs/general-bindings
- "fd" 'balaji-dot-emacs
+ "fd" 'bs/dot-emacs
  "hA" 'about-emacs
  "ha" 'apropos-command
  "hc" 'describe-copying
@@ -89,7 +89,8 @@
  "hv" 'describe-variable
  "hw" 'describe-no-warranty
  "h<return>" 'view-order-manuals
- "h?" 'help-for-help)
+ "h?" 'help-for-help
+ "ib" 'bs/indent-region-or-buffer)
 
 ;; Package Bindings
 (bs/general-bindings

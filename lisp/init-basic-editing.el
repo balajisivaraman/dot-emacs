@@ -61,13 +61,13 @@
    ("C-c c e"     . mc/mark-more-like-this-extended)
    ("C-c c h"     . mc/mark-all-like-this-dwim)
    ("C-c c l"     . mc/edit-lines)
-   ("C-c c n"     . balaji-multiple-cursors/body)
+   ("C-c c n"     . bs/multiple-cursors/body)
    ("C-c c r"     . vr/mc-mark)
    ("C-c c C-a"   . mc/edit-beginnings-of-lines)
    ("C-c c C-e"   . mc/edit-ends-of-lines)
    ("C-c c C-s"   . mc/mark-all-in-region))
   :init
-  (defhydra balaji-multiple-cursors ()
+  (defhydra bs/multiple-cursors ()
     "Multiple cursors."
     ("n" mc/mark-next-like-this "mark")
     ("N" mc/unmark-next-like-this "unmark")
@@ -94,10 +94,10 @@
          ("C-c x r" . align-regexp)))
 
 (use-package embrace
-  :bind (("C-c y" . balaji-embrace/body)
-         ("C-c x e" . balaji-embrace/body))
+  :bind (("C-c y" . bs/embrace/body)
+         ("C-c x e" . bs/embrace/body))
   :init
-  (defhydra balaji-embrace (:hint nil)
+  (defhydra bs/embrace (:hint nil)
     "
     Add (_a_), change (_c_) or delete (_d_) a pair.  Quit with _q_.
     "

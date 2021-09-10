@@ -37,7 +37,7 @@
   (setq native-comp-deferred-compilation t))
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
-(defvar balaji--file-name-handler-alist file-name-handler-alist)
+(defvar bs/file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
 
 (defconst emacs-start-time (current-time))
@@ -117,7 +117,7 @@
    (setq gc-cons-threshold 100000000
          gc-cons-percentage 0.1
          read-process-output-max (* 1024 1024)
-         file-name-handler-alist balaji--file-name-handler-alist)
+         file-name-handler-alist bs/file-name-handler-alist)
    (server-start)))
 
 ;;; init.el ends here

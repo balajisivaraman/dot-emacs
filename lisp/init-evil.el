@@ -23,13 +23,13 @@
 
 ;;; Code:
 
-(defun balaji/init-evil-leader ()
+(defun bs/init-evil-leader ()
   (use-package evil-leader
     :init
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")))
 
-(defun balaji/init-linum-relative ()
+(defun bs/init-linum-relative ()
   (use-package linum-relative
     :diminish linum-relative-mode
     :commands linum-relative-mode
@@ -38,7 +38,7 @@
     :config
     (setq linum-relative-current-symbol "")))
 
-(defun balaji/init-evil-org ()
+(defun bs/init-evil-org ()
   (use-package evil-org
     :after org
     :diminish
@@ -49,7 +49,7 @@
               (lambda ()
                 (evil-org-set-key-theme '(navigation insert textobjects additional calendar))))))
 
-(defun balaji/init-evil-collection ()
+(defun bs/init-evil-collection ()
   (use-package evil-collection
     :after evil
     :init
@@ -100,10 +100,10 @@
     :config
     (evil-collection-init)))
 
-(defun balaji/init-evil-mode ()
+(defun bs/init-evil-mode ()
   "initialize evil mode and all its plugins"
   (setq evil-default-cursor 'box)
-  (balaji/init-evil-leader)
+  (bs/init-evil-leader)
   (use-package evil-visualstar
     :config
     (setq evil-visualstar/persistent t))
@@ -148,8 +148,8 @@
     :init
     (evil-rsi-mode))
   (evil-mode t)
-  (balaji/init-linum-relative)
-  (balaji/init-evil-org)
+  (bs/init-linum-relative)
+  (bs/init-evil-org)
   (evil-escape-mode)
   (global-evil-visualstar-mode)
   (add-hook 'prog-mode-hook 'evil-mc-mode)
@@ -160,7 +160,7 @@
   (add-hook 'text-mode-hook 'turn-on-evil-snipe-override-mode)
   (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-mode)
   (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-override-mode)
-  (balaji/init-evil-collection)
+  (bs/init-evil-collection)
   (require 'init-evil-keybindings))
 
 (use-package evil
@@ -170,7 +170,7 @@
   (setq evil-undo-system 'undo-redo)
   (setq evil-search-module 'evil-search)
   :config
-  (balaji/init-evil-mode))
+  (bs/init-evil-mode))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

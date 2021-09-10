@@ -70,7 +70,7 @@
           ;; Prettify hydra entry points
           ("/body\\'"       . "|=")
           ;; Drop/shorten package prefixes
-          ("\\`balaji-"     . "b-")
+          ("\\`bs/"     . "b-")
           ("projectile-"    . "proj-")
           ("helm-"          . "h-")
           ("magit-"         . "ma-"))))

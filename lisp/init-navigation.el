@@ -40,7 +40,7 @@
 
 (use-package golden-ratio
   :init
-  (defun balaji-toggle-golden-ratio ()
+  (defun bs/toggle-golden-ratio ()
     (interactive)
     (if (bound-and-true-p golden-ratio-mode)
         (progn
@@ -51,7 +51,7 @@
   :diminish (golden-ratio-mode . " ⓖ")
   :init
   (bs/general-bindings
-   "tg" 'balaji-toggle-golden-ratio)
+   "tg" 'bs/toggle-golden-ratio)
   :config
   (setq
    golden-ratio-extra-commands '(windmove-up
@@ -88,10 +88,10 @@
 
 (use-package page                       ; Page navigation
   :ensure nil
-  :bind (("C-x ]" . balaji-pages/forward-page)
-         ("C-x [" . balaji-pages/backward-page))
+  :bind (("C-x ]" . bs/pages/forward-page)
+         ("C-x [" . bs/pages/backward-page))
   :init
-  (defhydra balaji-pages ()
+  (defhydra bs/pages ()
     "Pages"
     ("[" backward-page "backward")
     ("]" forward-page "forward")
