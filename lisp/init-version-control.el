@@ -63,7 +63,10 @@
    "ggb" 'gist-region-or-buffer))
 
 (use-package git-timemachine
-  :bind (("C-c g t" . git-timemachine)))
+  :commands (git-timemachine)
+  :init
+  (bs/general-bindings
+   "gt" 'git-timemachine))
 
 (provide 'init-version-control)
 ;;; init-version-control.el ends here
