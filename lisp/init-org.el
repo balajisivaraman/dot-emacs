@@ -42,6 +42,18 @@
          (org-mode . company-mode)
          (org-agenda-mode . (lambda () (setq-local line-spacing 3)))
          (before-save . bs/org-set-last-modified))
+  :init
+  (bs/general-bindings
+   "A" 'org-agenda
+   "oA" 'org-check-after-date
+   "ob" 'org-check-before-date
+   "oc" 'org-capture
+   "od" 'org-check-deadlines
+   "oi" 'org-insert-link
+   "ol" 'org-store-link
+   "op" 'bs/org-insert-prop-for-current-entry
+   "or" 'org-archive-subtree
+   "os" 'org-agenda-list-stuck-projects)
   :config
   ;; Basic Configuration
   (setq
@@ -119,11 +131,11 @@
      (" " "Agenda"
       ((agenda "" ((org-agenda-span 1)))
        (tags-todo "todo=\"NEXT\""
-             ((org-agenda-overriding-header "Next Actions")
-              (org-agenda-skip-function #'bs/org-skip-learning-and-based-on-context)))
+                  ((org-agenda-overriding-header "Next Actions")
+                   (org-agenda-skip-function #'bs/org-skip-learning-and-based-on-context)))
        (tags-todo "todo=\"NEXT\""
-             ((org-agenda-overriding-header "Learning List")
-              (org-agenda-skip-function (lambda () (bs/org-include-or-skip-learning-actions-only t))))))))
+                  ((org-agenda-overriding-header "Learning List")
+                   (org-agenda-skip-function (lambda () (bs/org-include-or-skip-learning-actions-only t))))))))
    org-agenda-prefix-format '((agenda . "  %i   %-12c   鬒%-6e   %-6s %-8(bs/format-entry-scheduled-deadline-time)")
                               (todo . "  %i   %-12c   鬒%-6e   ")
                               (tags . "  %i   %-12c   鬒%-6e   ")
@@ -178,16 +190,7 @@
    ;; configure overall variable pitch and fixed pitch fonts
    '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
    '(fixed-pitch ((t (:family "Monospace" :weight normal :height 109)))))
-  (diminish 'buffer-face-mode)
-  (bs/general-bindings
-   "oa" 'org-agenda
-   "ob" 'org-check-before-date
-   "oc" 'org-capture
-   "od" 'org-check-deadlines
-   "oA" 'org-check-after-date
-   "or" 'org-archive-subtree
-   "ol" 'bs/org-insert-prop-for-current-entry
-   "os" 'org-agenda-list-stuck-projects))
+  (diminish 'buffer-face-mode))
 
 (use-package org-habit
   :ensure nil
@@ -401,11 +404,11 @@ INCLUDE is nil."
              (not org-clock-resolving-clocks-due-to-idleness))
     (cond
      ((marker-buffer org-clock-interrupted-task)
-           (org-with-point-at org-clock-interrupted-task
-             (org-clock-in '(16))))
-      ((marker-buffer org-clock-default-task)
-       (bs/clock-in-organization-task-as-default))
-      (t t))))
+      (org-with-point-at org-clock-interrupted-task
+        (org-clock-in '(16))))
+     ((marker-buffer org-clock-default-task)
+      (bs/clock-in-organization-task-as-default))
+     (t t))))
 
 (add-hook 'org-clock-out-hook 'bs/clock-out-maybe 'append)
 
