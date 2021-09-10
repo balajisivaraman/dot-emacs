@@ -36,6 +36,9 @@
 (use-package ivy-bibtex
   :bind
   ("C-. b" . ivy-bibtex)
+  :init
+  (bs/general-bindings
+   "ob" 'ivy-bibtex)
   :config
   (setq
    bibtex-completion-notes-path bs/notes-path
@@ -138,14 +141,20 @@
   :bind
   ("C-. I" . org-roam-node-insert)
   ("C-. C" . org-roam-node-find)
+  :init
+  (bs/general-bindings
+   "oI" 'org-roam-node-insert
+   "oC" 'org-roam-node-find)
   :config
-  (org-roam-setup)
-  )
+  (org-roam-setup))
 
 (use-package deft
   :after org
   :bind
   ("C-. s" . deft)
+  :init
+  (bs/general-bindings
+   "os" 'deft)
   :custom
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
@@ -165,6 +174,9 @@
   :after (:any org pdf-view)
   :bind
   ("C-. n" . org-noter)
+  :init
+  (bs/general-bindings
+   "on" 'org-noter)
   :config
   (setq
    ;; The WM can handle splits
@@ -176,8 +188,7 @@
    ;; Everything is relative to the main notes file
    org-noter-notes-search-path (list bs/notes-path)
    ;; Auto save location in PDF
-   org-noter-auto-save-last-location t
-   ))
+   org-noter-auto-save-last-location t))
 
 (provide 'init-note-taking)
 ;;; init-note-taking.el ends here
