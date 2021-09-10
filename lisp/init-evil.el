@@ -85,7 +85,7 @@
        magit
        man
        markdown-mode
-       minibuffer
+       ;; minibuffer
        outline
        pdf
        restclient
