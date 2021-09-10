@@ -107,9 +107,9 @@
   (use-package evil-visualstar
     :config
     (setq evil-visualstar/persistent t))
-  (use-package evil-nerd-commenter
+  (use-package evil-commentary
     :init
-    (evilnc-default-hotkeys nil t))
+    (evil-commentary-mode))
   (use-package evil-indent-textobject)
   (use-package evil-matchit
     :init
