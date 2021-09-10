@@ -79,12 +79,6 @@
   "sr" 'rg)
 (bind-key ";" 'evil-ex evil-normal-state-map)
 
-;; Company Mode
-(eval-after-load "company"
-  (lambda ()
-    (bind-key "C-j" 'company-select-next company-active-map)
-    (bind-key "C-k" 'company-select-previous company-active-map)))
-
 ;; Org Agenda Bindings
 (evil-define-key 'normal org-agenda-mode-map
   "!" 'org-agenda-toggle-deadlines

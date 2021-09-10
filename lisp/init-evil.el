@@ -66,25 +66,36 @@
        doc-view
        edebug
        ediff
+       eglot
+       elfeed
        elisp-mode
        elisp-refs
+       embark
        ert
        eshell
-       flycheck
+       flymake
        git-timemachine
        grep
-       helm
        help
        ibuffer
+       imenu
+       indent
        info
-       lsp-ui-imenu
        macrostep
        magit
        man
+       markdown-mode
+       minibuffer
        outline
+       pdf
+       restclient
+       rg
        term
+       typescript-mode
+       unimpaired
        which-key
        woman
+       xref
        ))
     :config
     (evil-collection-init)))

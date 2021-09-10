@@ -120,5 +120,6 @@
  "7" 'select-window-7
  "8" 'select-window-8
  "9" 'select-window-9)
+
 (provide 'init-general)
 ;;; init-general.el ends here
