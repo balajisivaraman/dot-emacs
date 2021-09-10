@@ -25,12 +25,15 @@
 
 (use-package markdown-mode
   :hook (markdown-mode . bs/flymake-proselint-setup)
-  :mode
-  ".md\\|.markdown"
-  :bind (:map markdown-mode-map
-              ("C-c i l" . markdown-insert-link)
-              ("C-c i b" . markdown-insert-bold)
-              ("C-c i i" . markdown-insert-italic)))
+  :mode ".md\\|.markdown"
+  :init
+  (bs/general-mode-specific-bindings
+   'markdown-mode-map
+   "il" 'markdown-insert-link
+   "ib" 'markdown-insert-bold
+   "ii" 'markdown-insert-italic)
+  (which-key-add-major-mode-key-based-replacements 'markdown-mode
+    "spc m i" "insert"))
 
 (use-package yaml-mode
   :hook

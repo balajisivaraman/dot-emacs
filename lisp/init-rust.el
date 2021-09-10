@@ -31,30 +31,53 @@
 
 (use-package cargo
   :diminish cargo-minor-mode
-  :commands cargo-minor-mode
-  :bind
-  (:map rust-mode-map
-        ("C-, d" . cargo-process-doc)
-        ("C-, f" . cargo-process-fmt)
-        ("C-, r r" . cargo-process-run)
-        ("C-, r b" . cargo-process-run-bin)
-        ("C-, r e" . cargo-process-run-example)
-        ("C-, n" . cargo-process-new)
-        ("C-, m" . cargo-process-mode)
-        ("C-, i" . cargo-process-init)
-        ("C-, t t" . cargo-process-test)
-        ("C-, t c" . cargo-process-current-test)
-        ("C-, t f" . cargo-process-current-file-tests)
-        ("C-, b" . cargo-process-build)
-        ("C-, c" . cargo-process-clean)
-        ("C-, k" . cargo-process-check)
-        ("C-, B" . cargo-process-bench)
-        ("C-, u" . cargo-process-update)
-        ("C-, R" . cargo-process-repeat)
-        ("C-, C" . cargo-process-clippy)
-        ("C-, s" . cargo-process-search)
-        ("C-, D" . cargo-process-doc-open))
-  )
+  :commands
+  (cargo-minor-mode
+   cargo-process-doc
+   cargo-process-fmt
+   cargo-process-run
+   cargo-process-run-bin
+   cargo-process-run-example
+   cargo-process-new
+   cargo-process-mode
+   cargo-process-init
+   cargo-process-test
+   cargo-process-current-test
+   cargo-process-current-file-tests
+   cargo-process-build
+   cargo-process-clean
+   cargo-process-check
+   cargo-process-bench
+   cargo-process-update
+   cargo-process-repeat
+   cargo-process-clippy
+   cargo-process-search
+   cargo-process-doc-open)
+  :init
+  (bs/general-mode-specific-bindings
+   'rust-mode-map
+   "d" 'cargo-process-doc
+   "f" 'cargo-process-fmt
+   "rr" 'cargo-process-run
+   "rb" 'cargo-process-run-bin
+   "re" 'cargo-process-run-example
+   "n" 'cargo-process-new
+   "m" 'cargo-process-mode
+   "i" 'cargo-process-init
+   "tt" 'cargo-process-test
+   "tc" 'cargo-process-current-test
+   "tf" 'cargo-process-current-file-tests
+   "b" 'cargo-process-build
+   "c" 'cargo-process-clean
+   "k" 'cargo-process-check
+   "B" 'cargo-process-bench
+   "u" 'cargo-process-update
+   "R" 'cargo-process-repeat
+   "C" 'cargo-process-clippy
+   "s" 'cargo-process-search
+   "D" 'cargo-process-doc-open)
+  (which-key-add-major-mode-key-based-replacements 'rust-mode
+    "SPC m c" "cargo"))
 
 (defun bs/rust-mode-hook ()
   "Hooks for Rust Mode."

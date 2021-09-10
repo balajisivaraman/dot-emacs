@@ -63,6 +63,8 @@
 (require 'init-customizations)
 (require 'init-exec-path)
 (require 'init-keybindings)
+(require 'init-evil)
+(require 'init-general)
 (require 'init-navigation)
 (require 'init-user-interface)
 (require 'init-selections)
@@ -90,6 +92,7 @@
 (require 'init-feed)
 (require 'init-project)
 (require 'init-kubernetes)
+(require 'init-evil-keybindings)
 
 ;; Initialize OS specific bindings
 (when (eq system-type 'gnu/linux)

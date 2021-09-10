@@ -24,11 +24,15 @@
 ;;; Code:
 
 (use-package avy
-  :bind
-  (("M-j c" . avy-goto-char)
-   ("M-j w" . avy-goto-word-1)
-   ("M-j b" . avy-pop-mark)
-   ("M-j l" . avy-goto-line)))
+  :commands (avy-goto-char avy-goto-word-1 avy-pop-mark avy-goto-line)
+  :init
+  (bs/general-bindings
+   "jc" 'avy-goto-char
+   "jj" 'avy-goto-char
+   "jl" 'avy-goto-line
+   "jw" 'avy-goto-word-1
+   "jt" 'consult-imenu
+   ))
 
 (use-package ace-window
   :bind
@@ -44,8 +48,10 @@
           (balance-windows))
       (golden-ratio-mode)
       (golden-ratio)))
-  :bind (("C-c t g" . balaji-toggle-golden-ratio))
   :diminish (golden-ratio-mode . " ⓖ")
+  :init
+  (bs/general-bindings
+   "tg" 'balaji-toggle-golden-ratio)
   :config
   (setq
    golden-ratio-extra-commands '(windmove-up
@@ -99,7 +105,7 @@
           (add-hook hook #'outline-minor-mode))
   :diminish outline-minor-mode)
 
-(defhydra balaji-outline (:color pink :hint nil)
+(defhydra bs/outline (:color pink :hint nil)
   "
 ^Hide^             ^Show^           ^Move
 ^^^^^^------------------------------------------------------
@@ -132,7 +138,8 @@ _d_: subtree
   ("b" outline-backward-same-level)       ; Backward - same level
   ("z" nil "leave"))
 
-(global-set-key (kbd "C-c O") 'balaji-outline/body) ; by example
+(bs/general-bindings
+ "O" 'bs/outline/body)
 
 (use-package beginend
   :diminish
@@ -146,8 +153,12 @@ _d_: subtree
 
 (use-package bookmark
   :ensure nil
-  :bind
-  ("C-c b l" . bookmark-bmenu-list)
+  :commands (bookmark-jump bookmark-set bookmark-bmenu-list)
+  :init
+  (bs/general-bindings
+   "fb" 'bookmark-jump
+   "Bs" 'bookmark-set
+   "Bl" 'bookmark-bmenu-list)
   :config
   (setq bookmark-file (concat bs/emacs-cache-directory "bookmarks")))
 

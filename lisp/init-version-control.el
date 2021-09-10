@@ -24,20 +24,30 @@
 ;;; Code:
 
 (use-package magit
-  :bind
-  (("C-c g s" . magit-status)
-   ("C-c g m" . magit-branch)
-   ("C-c g M" . magit-merge)
-   ("C-c g S" . magit-stash)
-   ("C-c g a" . magit-stash-apply)
-   ("C-c g p" . magit-pull)
-   ("C-c g r" . magit-reset-head)
-   ("C-c g R" . magit-reset-hard)
-   ("C-c g l" . magit-log-all)
-   ("C-c g L" . magit-log)
-   ("C-c g c" . magit-checkout))
+  :commands
+  (magit-status
+   magit-branch
+   magit-merge
+   magit-stash
+   magit-stash-apply
+   magit-pull
+   magit-reset-head
+   magit-reset-hard
+   magit-log-all
+   magit-log
+   magit-checkout)
   :init
-  (setq-default magit-last-seen-setup-instructions "1.4.0"))
+  (setq-default magit-last-seen-setup-instructions "1.4.0")
+  (bs/general-bindings
+   "gs" 'magit-status
+   "gb" 'magit-branch
+   "gp" 'magit-pull
+   "gr" 'magit-reset-head
+   "gR" 'magit-reset-head-hard
+   "gf" 'magit-fetch
+   "gl" 'magit-log-all
+   "gL" 'magit-log
+   "gc" 'magit-checkout))
 
 (use-package magit-delta
   :after magit
@@ -46,8 +56,11 @@
   (setq magit-delta-default-dark-theme "gruvbox-dark"))
 
 (use-package gist
-  :bind (("C-c g g l" . gist-list)
-         ("C-c g g b" . gist-region-or-buffer)))
+  :commands (gist-list gist-region-or-buffer)
+  :config
+  (bs/general-bindings
+   "ggl" 'gist-list
+   "ggb" 'gist-region-or-buffer))
 
 (use-package git-timemachine
   :bind (("C-c g t" . git-timemachine)))

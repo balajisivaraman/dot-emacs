@@ -31,5 +31,13 @@
   :config
   (persistent-scratch-setup-default))
 
+(bs/general-bindings
+ "bd" 'kill-buffer
+ "bb" 'consult-buffer
+ "bI" 'ibuffer
+ "br" 'revert-buffer
+ "bp" 'previous-buffer
+ "bn" 'next-buffer)
+
 (provide 'init-buffers)
 ;;; init-buffers.el ends here

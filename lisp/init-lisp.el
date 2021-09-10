@@ -51,16 +51,22 @@
     (if (memq current-mode lisp-modes)
         (funcall current-mode))))
 
-(bind-keys :map emacs-lisp-mode-map
-           ("C-, e b" . do-eval-buffer)
-           ("C-, e r" . do-eval-region)
-           ("C-, s" . scratch)
-           ("C-, d c" . cancel-debug-on-entry)
-           ("C-, d e" . debug-on-entry)
-           ("C-, d r" . toggle-debug-on-error)
-           ("C-, f b" . emacs-lisp-byte-compile-and-load)
-           ("C-, f l" . find-library)
-           ("C-, L" . elint-current-buffer))
+(bs/general-mode-specific-bindings 'emacs-lisp-mode-map
+                                   "eb" 'do-eval-buffer
+                                   "er" 'do-eval-region
+                                   "es" 'eval-last-sexp
+                                   "s"  'scratch
+                                   "dc" 'cancel-debug-on-entry
+                                   "de" 'debug-on-entry
+                                   "dr" 'toggle-debug-on-error
+                                   "fb" 'emacs-lisp-byte-compile-and-load
+                                   "fl" 'find-library
+                                   "L"  'elint-current-buffer)
+
+(which-key-add-major-mode-key-based-replacements 'emacs-lisp-mode
+  "SPC m e" "eval"
+  "SPC m f" "file"
+  "SPC m d" "debug")
 
 (defvar lisp-mode-hooks
   (--map (intern

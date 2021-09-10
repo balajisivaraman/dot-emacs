@@ -25,11 +25,16 @@
 
 (use-package files
   :ensure nil
-  :bind (("C-c f z" . revert-buffer)
-         ("C-c f /" . revert-buffer))
+  :commands (revert-buffer)
+  :init
+  (bs/general-bindings
+   "ff" 'find-file
+   "fs" 'save-buffer
+   "fw" 'write-file
+   "fz" 'reverbuffer
+   "f/" 'reverbuffer)
   :config
-  (setq
-   revert-without-query '("")))
+  (setq revert-without-query '("")))
 
 (use-package focus-autosave-mode
   :init (focus-autosave-mode)
@@ -62,9 +67,11 @@
 
 ;; Edit files as root, through Tramp
 (use-package sudo-edit
-  :bind
-  (("C-c f s" . sudo-edit)
-   ("C-c f S" . sudo-edit-current-file)))
+  :commands (sudo-edit sudo-edit-current-file)
+  :init
+  (bs/general-bindings
+   "fs" 'sudo-edit
+   "fS" 'sudo-edit-current-file))
 
 ;; Hardhat prevents us from editing user-protected files
 (use-package hardhat

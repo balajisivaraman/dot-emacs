@@ -178,7 +178,16 @@
    ;; configure overall variable pitch and fixed pitch fonts
    '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
    '(fixed-pitch ((t (:family "Monospace" :weight normal :height 109)))))
-  (diminish 'buffer-face-mode))
+  (diminish 'buffer-face-mode)
+  (bs/general-bindings
+   "oa" 'org-agenda
+   "ob" 'org-check-before-date
+   "oc" 'org-capture
+   "od" 'org-check-deadlines
+   "oA" 'org-check-after-date
+   "or" 'org-archive-subtree
+   "ol" 'bs/org-insert-prop-for-current-entry
+   "os" 'org-agenda-list-stuck-projects))
 
 (use-package org-habit
   :ensure nil

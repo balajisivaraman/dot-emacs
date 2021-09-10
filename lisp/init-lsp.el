@@ -45,10 +45,11 @@
 
 (use-package eglot
   :commands (eglot-ensure)
-  :bind (:map eglot-mode-map
-         (("C-' a" . eglot-code-actions)
-          ("C-' r" . eglot-rename)
-          ("C-' w r" . eglot-reconnect)))
+  :init
+  (bs/general-bindings
+   "ma" 'eglot-code-actions
+   "mr" 'eglot-rename
+   "mwr" 'eglot-reconnect)
   :config
   (add-to-list 'eglot-server-programs '(rust-mode . ("~/bin/rust-analyzer-wrapper")))
   (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper")))

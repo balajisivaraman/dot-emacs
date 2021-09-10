@@ -29,8 +29,10 @@
          ("C-c s R" . vr/replace)))
 
 (use-package deadgrep
-  :bind (("C-c r r" . deadgrep))
-  :commands (deadgrep))
+  :commands (deadgrep)
+  :init
+  (bs/general-bindings
+   "rr" 'deadgrep))
 
 (use-package rg
   :commands (rg rg-literal)

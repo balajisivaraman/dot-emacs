@@ -29,10 +29,16 @@
   (insert "₹"))
 
 (use-package ledger-mode
-  :bind (:map ledger-mode-map
-              ("C-, r" . bs/insert-rupee-symbol))
-  :mode
-  "\\.ledger$")
+  :mode "\\.ledger$"
+  :init
+  (bs/general-mode-specific-bindings 'ledger-mode-map
+                                     "r" 'bs/insert-rupee-symbol
+                                     "a" 'ledger-add-transaction
+                                     "bp" 'ledger-display-balance-at-point)
+  (which-key-add-major-mode-key-based-replacements 'ledger-mode
+    "SPC m r" "rupee-symbol"
+    "SPC m a" "add transaction"
+    "SPC m b" "balance"))
 
 (add-hook 'ledger-mode-hook 'company-mode)
 

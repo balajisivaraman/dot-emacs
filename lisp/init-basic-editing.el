@@ -41,7 +41,11 @@
 (use-package expand-region
   :bind
   (("C-c C-e" . er/expand-region)
-   ("C-c C-c" . er/contract-region)))
+   ("C-c C-c" . er/contract-region))
+  :init
+  (bs/general-bindings
+   "ce" 'er/expand-region
+   "cc" 'er/contract-region))
 
 (use-package change-inner
   :bind
@@ -103,12 +107,15 @@
     ("q" nil)))
 
 (use-package crux
+  :commands (crux-duplicate-current-line-or-region crux-delete-file-and-buffer crux-visit-term-buffer crux-rename-buffer-and-file)
   :bind
-  (("C-a" . crux-move-beginning-of-line)
-   ("C-c d" . crux-duplicate-current-line-or-region)
-   ("C-c D" . crux-delete-file-and-buffer)
-   ("C-c T" . crux-visit-term-buffer)
-   ("C-c f r" . crux-rename-buffer-and-file)))
+  (("C-a" . crux-move-beginning-of-line))
+  :init
+  (bs/general-bindings
+   "d" 'crux-duplicate-current-line-or-region
+   "D" 'crux-delete-file-and-buffer
+   "T" 'crux-visit-term-buffer
+   "fr" 'crux-rename-buffer-and-file))
 
 (use-package iedit)
 
