@@ -70,8 +70,7 @@
   :commands (sudo-edit sudo-edit-current-file)
   :init
   (bs/general-bindings
-   "fs" 'sudo-edit
-   "fS" 'sudo-edit-current-file))
+   "fS" 'sudo-edit))
 
 ;; Hardhat prevents us from editing user-protected files
 (use-package hardhat
