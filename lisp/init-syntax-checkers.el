@@ -52,8 +52,8 @@
   :commands (flyspell-buffer flyspell-mode)
   :init
   (bs/general-bindings
-   "ib" 'flyspell-buffer
-   "if" 'flyspell-mode)
+   "Ib" 'flyspell-buffer
+   "If" 'flyspell-mode)
   (use-package ispell
     :ensure nil
     :commands (ispell-comments-and-strings
@@ -63,11 +63,11 @@
                ispell-region)
     :init
     (bs/general-bindings
-     "ic" 'ispell-comments-and-strings
-     "id" 'ispell-change-dictionary
-     "ik" 'ispell-kill-ispell
-     "im" 'ispell-message
-     "ir" 'ispell-region))
+     "Ic" 'ispell-comments-and-strings
+     "Id" 'ispell-change-dictionary
+     "Ik" 'ispell-kill-ispell
+     "Im" 'ispell-message
+     "Ir" 'ispell-region))
   :config
   (unbind-key "C-." flyspell-mode-map))
 
