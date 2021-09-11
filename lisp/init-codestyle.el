@@ -37,7 +37,7 @@
   :init
   (global-ethan-wspace-mode t)
   (bs/general-bindings
-   "wc" 'ethan-wspace-clean-all))
+   "fc" 'ethan-wspace-clean-all))
 
 (provide 'init-codestyle)
 ;;; init-codestyle.el ends here
