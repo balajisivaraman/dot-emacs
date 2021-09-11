@@ -161,6 +161,7 @@
   (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-mode)
   (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-override-mode)
   (bs/init-evil-collection)
+  (evil-set-initial-state 'messages-mode 'normal)
   (require 'init-evil-keybindings))
 
 (use-package evil
