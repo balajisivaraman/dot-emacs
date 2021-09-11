@@ -55,6 +55,7 @@
    "or" 'org-archive-subtree
    "os" 'org-agenda-list-stuck-projects)
   :config
+  (evil-set-initial-state 'org-agenda-mode 'normal)
   ;; Basic Configuration
   (setq
    org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
