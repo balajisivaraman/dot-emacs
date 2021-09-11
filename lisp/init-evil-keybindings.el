@@ -26,26 +26,22 @@
 ;; Which Key Configuration
 
 (which-key-add-key-based-replacements
-  "SPC a"   "applications"
   "SPC b"   "buffer"
   "SPC B"   "bookmarks"
   "SPC c"   "ex/co region"
   "SPC f"   "files"
   "SPC g"   "git"
-  "SPC g g" "gist"
-  "SPC h"   "helm/help"
+  "SPC h"   "help"
   "SPC i"   "indent"
   "SPC j"   "jump"
   "SPC m"   "major mode"
   "SPC o"   "org mode"
   "SPC O"   "outline"
   "SPC p"   "projects"
-  "SPC p s" "projects/search"
   "SPC P"   "packages"
   "SPC q"   "quit/restart"
   "SPC s"   "search"
   "SPC t"   "toggle"
-  "SPC T"   "transpose"
   "SPC w"   "window")
 
 ;; Universal Argument
