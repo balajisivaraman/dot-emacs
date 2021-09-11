@@ -92,7 +92,6 @@
 (require 'init-feed)
 (require 'init-project)
 (require 'init-kubernetes)
-(require 'init-evil-keybindings)
 
 ;; Initialize OS specific bindings
 (when (eq system-type 'gnu/linux)
