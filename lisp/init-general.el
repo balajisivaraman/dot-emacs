@@ -94,10 +94,10 @@
 
 ;; Package Bindings
 (bs/general-bindings
- "Pu" 'paradox-upgrade-packages
- "Pm" 'elpamr-create-mirror-for-installed
+ "Pr" 'package-refresh-contents
+ "Pp" 'paradox-list-packages
  "PP" 'package-list-packages-no-fetch
- "Pp" 'paradox-list-packages)
+ "Pu" 'paradox-upgrade-packages)
 
 (bs/general-bindings
  "tr" 'linum-relative-mode)
