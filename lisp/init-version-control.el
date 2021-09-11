@@ -55,13 +55,6 @@
   :config
   (setq magit-delta-default-dark-theme "gruvbox-dark"))
 
-(use-package gist
-  :commands (gist-list gist-region-or-buffer)
-  :config
-  (bs/general-bindings
-   "ggl" 'gist-list
-   "ggb" 'gist-region-or-buffer))
-
 (use-package git-timemachine
   :commands (git-timemachine)
   :init
