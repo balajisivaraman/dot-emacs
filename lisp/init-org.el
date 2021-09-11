@@ -25,17 +25,7 @@
 
 (use-package org
   :ensure org-plus-contrib
-  :diminish
-  (org-indent-mode)
-  :bind
-  (("C-. a" . org-agenda)
-   ("C-. r" . org-archive-subtree)
-   ("C-. l" . org-store-link)
-   ("C-. p" . bs/punch-in)
-   ("C-. o" . bs/punch-out)
-   :map org-mode-map
-   ("C-. i" . bs/org-insert-prop-for-current-entry)
-   ("C-. i" . org-insert-link))
+  :diminish (org-indent-mode)
   :hook ((org-mode . org-indent-mode)
          (org-mode . org-bullets-mode)
          (org-mode . variable-pitch-mode)
@@ -44,12 +34,13 @@
          (before-save . bs/org-set-last-modified))
   :init
   (bs/general-bindings
-   "A" 'org-agenda
+   "oa" 'org-agenda
    "oA" 'org-check-after-date
    "ob" 'org-check-before-date
    "oc" 'org-capture
    "od" 'org-check-deadlines
    "oi" 'org-insert-link
+   "oI" 'bs/org-insert-prop-for-current-entry
    "ol" 'org-store-link
    "oo" 'bs/punch-out
    "op" 'bs/punch-in
