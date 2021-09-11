@@ -51,7 +51,8 @@
    "od" 'org-check-deadlines
    "oi" 'org-insert-link
    "ol" 'org-store-link
-   "op" 'bs/org-insert-prop-for-current-entry
+   "oo" 'bs/punch-out
+   "op" 'bs/punch-in
    "or" 'org-archive-subtree
    "os" 'org-agenda-list-stuck-projects)
   :config
