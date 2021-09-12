@@ -58,6 +58,7 @@
     (setq
      evil-collection-mode-list
      '(
+       beginend
        bookmark
        calc
        calendar
@@ -87,11 +88,12 @@
        magit
        man
        markdown-mode
-       ;; minibuffer
+       minibuffer
        outline
        pdf
        restclient
        rg
+       selectrum
        term
        typescript-mode
        unimpaired
