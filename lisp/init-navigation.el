@@ -101,8 +101,6 @@
 (use-package outline
   :ensure nil
   :defer t
-  :init (dolist (hook '(text-mode-hook prog-mode-hook))
-          (add-hook hook #'outline-minor-mode))
   :diminish outline-minor-mode)
 
 (defhydra bs/outline (:color pink :hint nil)
