@@ -52,6 +52,12 @@
 (defun bs/init-evil-collection ()
   (use-package evil-collection
     :after evil
+    :custom
+    (evil-collection-want-find-usages-bindings t)
+    (evil-collection-term-sync-state-and-mode-p t)
+    (evil-collection-setup-minibuffer t)
+    (evil-collection-want-unimpaired-p t)
+    (evil-collection-outline-bind-tab-p t)
     :init
     (setq
      evil-collection-mode-list
