@@ -35,6 +35,12 @@
   (which-key-add-major-mode-key-based-replacements 'markdown-mode
     "spc m i" "insert"))
 
+(use-package evil-markdown
+  :load-path "~/.emacs.d/site-lisp/evil-markdown"
+  :ensure nil
+  :after markdown-mode
+  :hook (markdown-mode . evil-markdown-mode))
+
 (use-package yaml-mode
   :hook
   ((yaml-mode . bs/initialize-chosen-lsp-server))
