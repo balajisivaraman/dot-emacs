@@ -123,6 +123,7 @@
   "d" 'org-agenda-day-view
   "e" 'org-agenda-set-effort
   "f" 'org-agenda-later
+  "gr" 'org-agenda-redo-all
   "h" 'org-agenda-holidays
   "i" 'org-agenda-diary-entry
   "J" 'org-agenda-goto-date
