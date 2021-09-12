@@ -31,8 +31,8 @@
    "ff" 'find-file
    "fs" 'save-buffer
    "fw" 'write-file
-   "fz" 'reverbuffer
-   "f/" 'reverbuffer)
+   "fz" 'revert-buffer
+   "f/" 'revert-buffer)
   :config
   (setq revert-without-query '("")))
 
