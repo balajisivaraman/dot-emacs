@@ -30,6 +30,7 @@
 
 (use-package ledger-mode
   :mode "\\.ledger$"
+  :hook (ledger-mode . company-mode)
   :init
   (bs/general-mode-specific-bindings 'ledger-mode-map
                                      "r" 'bs/insert-rupee-symbol
@@ -40,7 +41,10 @@
     "SPC m a" "add transaction"
     "SPC m b" "balance"))
 
-(add-hook 'ledger-mode-hook 'company-mode)
+(use-package evil-ledger
+  :after ledger-mode
+  :hook (ledger-mode . evil-ledger-mode)
+  :config (setq evil-ledger-sort-key "S"))
 
 (provide 'init-finance)
 ;;; init-finance.el ends here
