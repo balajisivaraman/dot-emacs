@@ -41,13 +41,9 @@
 (defun bs/init-evil-org ()
   (use-package evil-org
     :after org
-    :diminish
-    (evil-org-mode)
-    :config
-    (add-hook 'org-mode-hook 'evil-org-mode)
-    (add-hook 'evil-org-mode-hook
-              (lambda ()
-                (evil-org-set-key-theme '(navigation insert textobjects additional calendar))))))
+    :diminish (evil-org-mode)
+    :hook (org-mode . evil-org-mode)
+    :custom (evil-org-set-key-theme '(textobjects insert navigation additional shift heading))))
 
 (defun bs/init-evil-collection ()
   (use-package evil-collection
