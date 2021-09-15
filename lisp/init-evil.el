@@ -174,6 +174,8 @@
   (setq evil-want-integration nil)
   (setq evil-undo-system 'undo-redo)
   (setq evil-search-module 'evil-search)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-d-scroll t)
   :config
   (bs/init-evil-mode))
 
