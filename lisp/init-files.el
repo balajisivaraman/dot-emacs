@@ -65,6 +65,10 @@
   (("C-c f j" . dired-jump)
    ("C-x C-j" . dired-jump)))
 
+(use-package all-the-icons-dired
+  :after (all-the-icons dired)
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 ;; Edit files as root, through Tramp
 (use-package sudo-edit
   :commands (sudo-edit sudo-edit-current-file)
