@@ -76,5 +76,9 @@
 ;; instead of asking you if you want to save.
 (setq compilation-ask-about-save nil)
 
+(setq
+ warning-suppress-log-types '((comp) (comp) (:warning))
+ warning-suppress-types '((comp) (:warning)))
+
 (provide 'init-defaults)
 ;;; init-defaults.el ends here
