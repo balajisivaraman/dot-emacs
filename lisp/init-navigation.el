@@ -32,7 +32,10 @@
    "jl" 'avy-goto-line
    "jw" 'avy-goto-word-1
    "jt" 'consult-imenu
-   ))
+   )
+  (evil-define-key 'normal global-map
+    "s" 'evil-avy-goto-char-2-below
+    "S" 'evil-avy-goto-char-2-above))
 
 (use-package ace-window
   :bind

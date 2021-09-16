@@ -134,10 +134,6 @@
   (use-package evil-mc-extras
     :disabled t
     :after evil-mc)
-  (use-package evil-snipe
-    :diminish evil-snipe-local-mode
-    :config
-    (setq evil-snipe-scope 'buffer))
   (use-package evil-goggles
     :diminish (evil-goggles-mode)
     :config
@@ -158,12 +154,6 @@
   (global-evil-visualstar-mode)
   (add-hook 'prog-mode-hook 'evil-mc-mode)
   (add-hook 'text-mode-hook 'evil-mc-mode)
-  (add-hook 'prog-mode-hook 'turn-on-evil-snipe-mode)
-  (add-hook 'text-mode-hook 'turn-on-evil-snipe-mode)
-  (add-hook 'prog-mode-hook 'turn-on-evil-snipe-override-mode)
-  (add-hook 'text-mode-hook 'turn-on-evil-snipe-override-mode)
-  (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-mode)
-  (add-hook 'org-agenda-mode-hook 'turn-off-evil-snipe-override-mode)
   (bs/init-evil-collection)
   (evil-set-initial-state 'messages-mode 'normal)
   (require 'init-evil-keybindings))
