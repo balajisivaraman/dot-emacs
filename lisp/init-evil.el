@@ -93,6 +93,7 @@
        restclient
        rg
        selectrum
+       simple
        term
        typescript-mode
        unimpaired
