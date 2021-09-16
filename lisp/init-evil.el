@@ -89,7 +89,6 @@
        man
        markdown-mode
        minibuffer
-       outline
        pdf
        restclient
        rg
