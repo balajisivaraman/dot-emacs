@@ -24,6 +24,7 @@
 ;;; Code:
 
 (use-package avy
+  :demand t
   :commands (avy-goto-char avy-goto-word-1 avy-pop-mark avy-goto-line)
   :init
   (bs/general-bindings
@@ -33,9 +34,80 @@
    "jw" 'avy-goto-word-1
    "jt" 'consult-imenu
    )
+  :config
+  (defun bs/avy-goto-word-2 (char1 char2 &optional arg beg end symbol)
+    "Jump to the currently visible CHAR1 followed by CHAR2.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+BEG and END narrow the scope where candidates are searched."
+    (interactive (list (let ((c1 (read-char "char 1: " t)))
+                         (if (memq c1 '(? ?\b))
+                             (keyboard-quit)
+                           c1))
+                       (let ((c2 (read-char "char 2: " t)))
+                         (cond ((eq c2 ?)
+                                (keyboard-quit))
+                               ((memq c2 avy-del-last-char-by)
+                                (keyboard-escape-quit)
+                                (call-interactively 'avy-goto-char-2))
+                               (t
+                                c2)))
+                       current-prefix-arg
+                       nil nil))
+    (when (eq char1 ?)
+      (setq char1 ?\n))
+    (when (eq char2 ?)
+      (setq char2 ?\n))
+    (avy-with bs/avy-goto-word-2
+      (let* ((str (string char1 char2))
+             (regex (cond ((string= str ".")
+                           "\\.")
+                          ((and avy-word-punc-regexp
+                                (string-match avy-word-punc-regexp str))
+                           (regexp-quote str))
+                          ((and (<= char1 26) (<= char2 26))
+                           str)
+                          (t
+                           (concat
+                            (if symbol "\\_<" "\\b")
+                            str)))))
+        (avy-jump regex
+                  :window-flip arg
+                  :beg beg
+                  :end end))))
+
+  (defun bs/avy-goto-word-2-above (char1 char2 &optional arg)
+    "Jump to the currently visible CHAR1 followed by CHAR2 at a word
+start. This is a scoped version of `bs/avy-goto-word-2', where the scope
+is the visible part of the current buffer up to point. The window
+scope is determined by `avy-all-windows'. When ARG is non-nil, do the
+opposite of `avy-all-windows'."
+    (interactive (list (read-char "char 1: " t)
+                       (read-char "char 2: " t)
+                       current-prefix-arg))
+    (avy-with bs/avy-goto-word-2-above
+      (bs/avy-goto-word-2 char1 char2 arg (window-start) (point))))
+
+  (defun bs/avy-goto-word-2-below (char1 char2 &optional arg)
+    "Jump to the currently visible CHAR1 followed by CHAR2. This is a
+scoped version of `bs/avy-goto-word-2', where the scope is the visible
+part of the current buffer following point. The window scope is
+determined by `avy-all-windows'. When ARG is non-nil, do the opposite
+of `avy-all-windows'."
+    (interactive (list (read-char "char 1: " t)
+                       (read-char "char 2: " t)
+                       current-prefix-arg))
+    (avy-with bs/avy-goto-word-2-below
+      (bs/avy-goto-word-2
+       char1 char2 arg
+       (point) (window-end (selected-window) t))))
+
+  (evil-define-avy-motion bs/avy-goto-word-2-below inclusive)
+  (evil-define-avy-motion bs/avy-goto-word-2-above inclusive)
+
   (evil-define-key 'normal global-map
-    "s" 'evil-avy-goto-char-2-below
-    "S" 'evil-avy-goto-char-2-above))
+    "s" 'evil-bs/avy-goto-word-2-below
+    "S" 'evil-bs/avy-goto-word-2-above))
 
 (use-package ace-window
   :bind
@@ -148,8 +220,8 @@ _d_: subtree
   :init
   (beginend-global-mode)
   (-each (-distinct (-map
-             (lambda (item) (cdr item))
-             beginend-modes))
+                     (lambda (item) (cdr item))
+                     beginend-modes))
     (lambda (item) (diminish item ""))))
 
 (use-package bookmark
