@@ -79,7 +79,7 @@
 ;; Hardhat prevents us from editing user-protected files
 (use-package hardhat
   :init (global-hardhat-mode)
-  :config (setq hardhat-mode-lighter " Ⓗ"))
+  :config (setq hardhat-mode-lighter ""))
 
 (use-package recentf
   :ensure nil

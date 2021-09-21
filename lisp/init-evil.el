@@ -102,7 +102,8 @@
        xref
        ))
     :config
-    (evil-collection-init)))
+    (evil-collection-init)
+    (diminish 'evil-collection-unimpaired-mode)))
 
 (defun bs/init-evil-mode ()
   "initialize evil mode and all its plugins"
@@ -112,8 +113,8 @@
     :config
     (setq evil-visualstar/persistent t))
   (use-package evil-commentary
-    :init
-    (evil-commentary-mode))
+    :diminish (evil-commentary-mode)
+    :init (evil-commentary-mode))
   (use-package evil-indent-textobject)
   (use-package evil-matchit
     :init
