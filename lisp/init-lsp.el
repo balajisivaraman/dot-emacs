@@ -25,24 +25,6 @@
 
 (defvar bs/node-version (s-trim (shell-command-to-string "node -v")))
 
-(use-package lsp-mode
-  :disabled t
-  :commands (lsp lsp-deferred)
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
-  :init
-  (setq lsp-keymap-prefix "C-'")
-  :config
-  (setq lsp-prefer-capf t
-        lsp-idle-delay 0.500
-        lsp-clients-angular-language-server-command
-        `("node"
-          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules/@angular/language-server"))
-          "--ngProbeLocations"
-          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules"))
-          "--tsProbeLocations"
-          ,(s-join "/" `(,(f-expand "~") ".fnm/node-versions" ,bs/node-version "installation/lib/node_modules"))
-          "--stdio")))
-
 (use-package eglot
   :commands (eglot-ensure)
   :init
@@ -58,19 +40,9 @@
   (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
   (setq eglot-confirm-server-initiated-edits nil))
 
-(defvar bs/lsp-server-to-use nil)
-(setq bs/lsp-server-to-use 'eglot)
-
-(defun bs/initialize-chosen-lsp-server ()
-  "Initializes either Eglot or Lsp Mode."
-  (interactive)
-  (if (eq bs/lsp-server-to-use 'lsp)
-      (lsp-deferred)
-    (eglot-ensure)))
-
 (use-package cc-mode
   :ensure nil
-  :hook (c++-mode . bs/initialize-chosen-lsp-server))
+  :hook (c++-mode . eglot-ensure))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here

@@ -25,7 +25,7 @@
 
 (use-package shell-script-mode
   :ensure nil
-  :hook (shell-script-mode . bs/initialize-chosen-lsp-server)
+  :hook (shell-script-mode . eglot-ensure)
   :mode
   "\\(.sh\\|.bash\\|.zsh\\)\\(_history\\|_profile\\|rc\\)")
 

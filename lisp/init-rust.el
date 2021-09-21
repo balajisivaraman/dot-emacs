@@ -81,7 +81,7 @@
 
 (defun bs/rust-mode-hook ()
   "Hooks for Rust Mode."
-  (bs/initialize-chosen-lsp-server)
+  (eglot-ensure)
   (company-mode)
   (cargo-minor-mode)
   (flymake-mode)
