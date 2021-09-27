@@ -28,5 +28,8 @@
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start))
 
+(use-package nix-mode
+  :mode ("\\.nix\\'" . nix-mode))
+
 (provide 'init-linux)
 ;;; init-linux.el ends here
