@@ -41,12 +41,6 @@
 (use-package nyan-mode
   :init (nyan-mode))
 
-(use-package which-func
-  :init (which-function-mode)
-  :config
-  (setq
-   which-func-unknown "⊥"))
-
 (use-package restart-emacs
   :commands (restart-emacs save-buffers-kill-emacs)
   :init
