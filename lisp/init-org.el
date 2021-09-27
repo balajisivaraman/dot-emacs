@@ -26,8 +26,7 @@
 (use-package org
   :ensure org-plus-contrib
   :diminish (org-indent-mode)
-  :hook ((org-mode . org-indent-mode)
-         (org-mode . org-bullets-mode)
+  :hook ((org-mode . org-bullets-mode)
          (org-mode . variable-pitch-mode)
          (org-mode . company-mode)
          (org-agenda-mode . (lambda () (setq-local line-spacing 3)))
@@ -208,6 +207,13 @@
 (use-package org-checklist
   :after org
   :ensure nil)
+
+(use-package org-indent
+  :after org
+  :ensure nil
+  :commands (org-indent-mode)
+  :hook (org-mode . org-indent-mode)
+  :diminish (org-indent-mode))
 
 (use-package org-capture
   :ensure nil

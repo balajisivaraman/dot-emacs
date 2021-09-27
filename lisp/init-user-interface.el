@@ -56,6 +56,7 @@
 
 (use-package face-remap
   :ensure nil
+  :diminish (buffer-face-mode)
   :bind
   (("C-+" . bs/font-scaling/text-scale-increase)
    ("C--" . bs/font-scaling/text-scale-decrease))
