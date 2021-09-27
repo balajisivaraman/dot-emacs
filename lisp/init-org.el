@@ -51,10 +51,8 @@
   (setq
    org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
                        (sequence "WAIT(w)" "HOLD(h)" "|" "DONE(d!)" "CXLD(x!)" "BREAK" "MEETING" "PHONECALL" "INTERRUPTION"))
-   org-tag-alist (quote ((:startgroup)
-                         ("@home" . ?h)
-                         ("@work" . ?w)
-                         (:endgroup)))
+   org-tag-alist (quote (("@home" . ?h)
+                         ("@work" . ?w)))
    org-deadline-warning-days 14
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
