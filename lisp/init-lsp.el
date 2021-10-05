@@ -40,6 +40,12 @@
   (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
   (setq eglot-confirm-server-initiated-edits nil))
 
+(use-package direnv
+  :init
+  (add-hook 'prog-mode-hook #'direnv-update-environment)
+  :config
+  (direnv-mode))
+
 (use-package cc-mode
   :ensure nil
   :hook (c++-mode . eglot-ensure))
