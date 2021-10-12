@@ -29,6 +29,7 @@
    modus-themes-syntax 'alt-syntax-yellow-comments
    modus-themes-fringes 'subtle
    modus-themes-headings '((t . (rainbow no-bold)))
+   modus-themes-mixed-fonts t
    modus-themes-scale-headings t
    modus-themes-scale-1 1.1
    modus-themes-scale-2 1.15
