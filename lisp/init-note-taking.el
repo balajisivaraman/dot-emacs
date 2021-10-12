@@ -85,7 +85,7 @@
        "talks/${slug}.org"
        ":PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: Talk: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+#+TITLE: Talk: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t)
      ("n" "ref + noter" plain
       "%?"
@@ -136,7 +136,7 @@
        "private/${slug}.org"
        ":PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: ${title}\n#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t)))
   :bind
   ("C-. I" . org-roam-node-insert)
