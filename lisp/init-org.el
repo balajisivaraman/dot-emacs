@@ -228,16 +228,16 @@
       (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Reading")
       "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:")
      ("b" "Break" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Breaks")
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Breaks")
       "* BREAK %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
      ("i" "Interruption" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Interruptions")
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Interruptions")
       "* INTERRUPTION %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
      ("m" "Meeting" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Meetings")
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Meetings")
       "* MEETING %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
      ("p" "Phone call" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Time Keeping" "Phone Calls")
+      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Phone Calls")
       "* PHONECALL %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t))))
 
 (defun bs/org-set-created-property ()
