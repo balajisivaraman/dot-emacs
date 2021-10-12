@@ -25,6 +25,7 @@
 
 (use-package flymake
   :ensure nil
+  :diminish (flymake-mode)
   :bind (("M-g n" . bs/flymake-errors/flymake-goto-next-error)
          ("M-g p" . bs/flymake-errors/flymake-goto-prev-error))
   :init
