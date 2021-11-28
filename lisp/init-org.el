@@ -24,7 +24,6 @@
 ;;; Code:
 
 (use-package org
-  :ensure org-plus-contrib
   :diminish (org-indent-mode)
   :hook ((org-mode . org-bullets-mode)
          (org-mode . variable-pitch-mode)
@@ -185,6 +184,8 @@
    '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
    '(fixed-pitch ((t (:family "Monospace" :weight normal :height 109)))))
   (diminish 'buffer-face-mode))
+
+(use-package org-contrib)
 
 (use-package org-habit
   :ensure nil
