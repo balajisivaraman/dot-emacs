@@ -181,11 +181,6 @@
    'org-mode
    '(("^ *\\([-]\\) "
       (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-  (custom-theme-set-faces
-   'user
-   ;; configure overall variable pitch and fixed pitch fonts
-   '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
-   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 109)))))
   (diminish 'buffer-face-mode))
 
 (use-package org-contrib)
