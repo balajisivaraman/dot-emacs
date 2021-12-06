@@ -90,7 +90,6 @@
 (require 'init-latex)
 (require 'init-version-control)
 (require 'init-web-modes)
-(require 'init-feed)
 (require 'init-project)
 (require 'init-kubernetes)
 
