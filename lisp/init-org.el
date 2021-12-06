@@ -139,6 +139,7 @@
                                     ("Books" ,(s-concat bs/org-agenda-icons-path "reading.png") nil nil :ascent center)
                                     ("Blog" ,(s-concat bs/org-agenda-icons-path "programming.png") nil nil :ascent center)
                                     ("Cl/Platform" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
+                                    ("Demystified" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)
                                     ("Divya" ,(s-concat bs/org-agenda-icons-path "family.png") nil nil :ascent center)
                                     ("Dora" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("Emacs" ,(s-concat bs/org-agenda-icons-path "emacs.png") nil nil :ascent center)
