@@ -45,9 +45,16 @@
 (use-package restart-emacs
   :commands (restart-emacs save-buffers-kill-emacs)
   :init
+  (defun bs/close-emacs ()
+    (interactive)
+    "Quit Emacs or Delete Frame depending on where we're running
+      Emacs."
+    (if bs/at-work
+        (save-buffers-kill-emacs)
+      (delete-frame)))
   (bs/general-bindings
    "qr" 'restart-emacs
-   "qq" 'save-buffers-kill-emacs))
+   "qq" 'bs/close-emacs))
 
 (use-package face-remap
   :ensure nil

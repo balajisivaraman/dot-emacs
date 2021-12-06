@@ -27,7 +27,9 @@
 
 (use-package exec-path-from-shell
   :init
-  (setenv "SHELL" "/bin/bash")
+  (if bs/at-work
+      (setenv "SHELL" "/bin/bash")
+    (setenv "SHELL" "/run/current-system/sw/bin/bash"))
   (when (not (string-equal system-type "windows-nt"))
     (exec-path-from-shell-initialize)))
 
