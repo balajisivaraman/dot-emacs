@@ -59,7 +59,7 @@
    org-archive-location (s-concat bs/nextcloud-path "gtd/archives.org::")
    org-refile-allow-creating-parent-nodes 'confirm
    org-refile-targets '((org-agenda-files :maxlevel . 9))
-   org-global-properties '(("Effort_ALL" . "5min 10min 15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h"))
+   org-global-properties '(("Effort_ALL" . "5min 10min 15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h 12h 16h 24h"))
    org-ellipsis "  "
    org-use-speed-commands t
    org-hide-emphasis-markers t
