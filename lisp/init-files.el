@@ -54,7 +54,6 @@
   (unbind-key "M-g" dired-mode-map))
 
 (use-package dired+
-  :disabled t
   :ensure nil
   :after dired)
 
