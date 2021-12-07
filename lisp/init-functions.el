@@ -89,8 +89,34 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
    'user
    ;; configure overall variable pitch and fixed pitch fonts
    '(default ((t (:family "Monospace" :weight normal :height 101))))
-   '(variable-pitch ((t (:family "SF Pro Text" :height 160))))
-   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 101))))))
+   '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
+   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 101))))
+
+   ;; configure fonts for org headings and document title
+   '(org-level-8 ((t (:inherit default))))
+   '(org-level-7 ((t (:inherit default))))
+   '(org-level-6 ((t (:inherit default))))
+   '(org-level-5 ((t (:inherit default :height 1.1))))
+   '(org-level-3 ((t (:inherit default :height 1.15))))
+   '(org-level-2 ((t (:inherit default :height 1.21))))
+   '(org-level-1 ((t (:inherit default :height 1.27))))
+   '(org-document-title ((t (:inherit default :height 1.33 :underline nil))))
+
+   ;; configure fonts for other org elements
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+   '(org-table ((t (:inherit (shadow fixed-pitch)))))
+   '(org-table-header ((t (:inherit (shadow fixed-pitch)))))
+   '(org-property-value ((t (:inherit (shadow fixed-pitch)))))
+   '(org-drawer ((t (:inherit (shadow fixed-pitch)))))
+   ))
 
 (defun bs/frame-functions (frame)
   "Configure custom settings given initial non-daemon FRAME. Intended
