@@ -58,9 +58,9 @@
 
 (require 'init-package)
 (require 'init-lib)
-(require 'init-functions)
 (require 'init-defaults)
 (require 'init-customizations)
+(require 'init-functions)
 (require 'init-exec-path)
 (require 'init-keybindings)
 (require 'init-evil)
@@ -117,16 +117,5 @@
          gc-cons-percentage 0.1
          read-process-output-max (* 1024 1024)
          file-name-handler-alist bs/file-name-handler-alist)))
-
-(defun bs/frame-functions (frame)
-  "Configure custom settings given initial non-daemon FRAME. Intended
-for `after-make-frame-functions'."
-  (custom-theme-set-faces
-   'user
-   ;; configure overall variable pitch and fixed pitch fonts
-   '(default ((t (:family "Monospace" :weight normal :height 125))))
-   '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
-   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 125))))))
-(add-hook 'after-make-frame-functions #'bs/frame-functions)
 
 ;;; init.el ends here

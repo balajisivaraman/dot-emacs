@@ -83,5 +83,23 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
 
 (bind-key "M-Q" 'unfill-paragraph global-map)
 
+(defun bs/font-configuration ()
+  "Configure custom fonts."
+  (custom-theme-set-faces
+   'user
+   ;; configure overall variable pitch and fixed pitch fonts
+   '(default ((t (:family "Monospace" :weight normal :height 101))))
+   '(variable-pitch ((t (:family "SF Pro Text" :height 160))))
+   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 101))))))
+
+(defun bs/frame-functions (frame)
+  "Configure custom settings given initial non-daemon FRAME. Intended
+for `after-make-frame-functions'."
+  (bs/font-configuration))
+
+(if bs/at-work
+    (bs/font-configuration)
+  (add-hook 'after-make-frame-functions #'bs/frame-functions))
+
 (provide 'init-functions)
 ;;; init-functions.el ends here
