@@ -53,7 +53,7 @@
   :after magit
   :hook ((magit-mode . (lambda () (magit-delta-mode +1))))
   :config
-  (setq magit-delta-default-dark-theme "gruvbox-dark"))
+  (setq magit-delta-default-dark-theme "OneHalfDark"))
 
 (use-package git-timemachine
   :commands (git-timemachine)
