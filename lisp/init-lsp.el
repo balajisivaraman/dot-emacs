@@ -34,7 +34,6 @@
    "mwr" 'eglot-reconnect)
   :config
   (add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer")))
-  (add-to-list 'eglot-server-programs '(ng2-html-mode . ("~/bin/ng-langserver-wrapper")))
   (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server")))
   (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
