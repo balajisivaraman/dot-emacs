@@ -24,11 +24,16 @@
 ;;; Code:
 
 (use-package haskell-mode
-  :mode ("\\.hs\\'" . haskell-mode)
-  :hook (haskell-mode . eglot-ensure))
+  :mode ("\\.hs\\'" . haskell-mode))
 
-(use-package lsp-haskell
-  :disabled t)
+(defun bs/haskell-mode-hook ()
+  "Hooks for Haskell Mode."
+  (eglot-ensure)
+  (company-mode)
+  (flymake-mode)
+  (eldoc-mode))
+
+(add-hook 'haskell-mode-hook 'bs/haskell-mode-hook)
 
 (provide 'init-haskell)
 ;;; init-haskell.el ends here
