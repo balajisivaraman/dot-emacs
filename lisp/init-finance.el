@@ -39,12 +39,24 @@
   (which-key-add-major-mode-key-based-replacements 'ledger-mode
     "SPC m r" "rupee-symbol"
     "SPC m a" "add transaction"
-    "SPC m b" "balance"))
+    "SPC m b" "balance")
+  :config
+  (setq ledger-binary-path "hledger"
+        ledger-mode-should-check-version nil
+        ledger-init-file-name " "
+        ledger-post-amount-alignment-column 75))
 
 (use-package evil-ledger
   :after ledger-mode
   :hook (ledger-mode . evil-ledger-mode)
   :config (setq evil-ledger-sort-key "S"))
+
+(defun bs/ledger-mode-hook ()
+  "Hooks for Ledger Mode."
+  (company-mode)
+  (outline-minor-mode))
+
+(add-hook 'ledger-mode-hook 'bs/ledger-mode-hook)
 
 (provide 'init-finance)
 ;;; init-finance.el ends here
