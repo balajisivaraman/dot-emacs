@@ -85,6 +85,7 @@
 (require 'init-note-taking)
 (require 'init-clojure)
 (require 'init-haskell)
+(require 'init-python)
 (require 'init-rust)
 (require 'init-scripting-langs)
 (require 'init-latex)
