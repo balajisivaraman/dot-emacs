@@ -26,7 +26,7 @@
 (use-package modus-themes
   :init
   (setq
-   modus-themes-syntax 'alt-syntax-yellow-comments
+   modus-themes-syntax '(alt-syntax yellow-comments)
    modus-themes-fringes 'subtle
    modus-themes-headings '((t . (rainbow no-bold)))
    modus-themes-mixed-fonts t
