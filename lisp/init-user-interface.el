@@ -23,24 +23,12 @@
 
 ;;; Code:
 
-(use-package modus-themes
+(use-package gruvbox-theme
   :init
-  (setq
-   modus-themes-syntax '(alt-syntax yellow-comments)
-   modus-themes-fringes 'subtle
-   modus-themes-headings '((t . (rainbow no-bold)))
-   modus-themes-mixed-fonts t
-   modus-themes-scale-headings t
-   modus-themes-scale-1 1.1
-   modus-themes-scale-2 1.15
-   modus-themes-scale-3 1.21
-   modus-themes-scale-4 1.27
-   modus-themes-scale-5 1.33)
-  (modus-themes-load-themes)
+  (load-theme 'gruvbox-dark-hard t)
   :config
-  (modus-themes-load-vivendi)
-  (set-frame-parameter (selected-frame) 'alpha '(96 . 96))
-  (add-to-list 'default-frame-alist '(alpha . (96 . 96))))
+  (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
+  (add-to-list 'default-frame-alist '(alpha . (95 . 95))))
 
 (use-package nyan-mode
   :init (nyan-mode))
