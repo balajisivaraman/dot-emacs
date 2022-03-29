@@ -32,7 +32,8 @@
   :init
   (global-undo-tree-mode 1)
   :config
-  (setq undo-tree-visualizer-timestamps t))
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-history-directory-alist `(("." . ,(concat bs/emacs-cache-directory "undo-tree")))))
 
 ;; Rectangle Editing
 (bind-key "C-x r i" 'string-insert-rectangle)
