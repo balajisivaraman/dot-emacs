@@ -105,7 +105,10 @@ of `avy-all-windows'."
   (evil-define-avy-motion bs/avy-goto-word-2-below inclusive)
   (evil-define-avy-motion bs/avy-goto-word-2-above inclusive)
 
-  (evil-define-key 'normal global-map
+  (evil-define-key 'normal text-mode-map
+    "s" 'evil-bs/avy-goto-word-2-below
+    "S" 'evil-bs/avy-goto-word-2-above)
+  (evil-define-key 'normal prog-mode-map
     "s" 'evil-bs/avy-goto-word-2-below
     "S" 'evil-bs/avy-goto-word-2-above))
 
