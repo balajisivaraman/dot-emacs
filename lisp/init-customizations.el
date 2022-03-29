@@ -59,7 +59,7 @@
 (setq bs/nextcloud-path
       (cond
        ((and bs/at-work (eq system-type 'windows-nt)) "C:/Users/Balaji Sivaraman/Nextcloud/")
-       ((string-equal (downcase (system-name)) "helix-nebula") "/home/balaji/Nextcloud/")
+       ((string-equal (downcase (system-name)) "tatooine") "/home/balaji/Nextcloud/")
        (bs/at-work "/mnt/c/Users/Balaji Sivaraman/Nextcloud/")
        (t "/media/backup/Nextcloud/")))
 
