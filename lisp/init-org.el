@@ -168,6 +168,7 @@
                                     ("RLedger" ,(s-concat bs/org-agenda-icons-path "ledger.png") nil nil :ascent center)
                                     ("Rust101" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)
                                     ("RustChennai" ,(s-concat bs/org-agenda-icons-path "rust.png") nil nil :ascent center)
+                                    ("RustyOrg" ,(s-concat bs/org-agenda-icons-path "rust.png") nil nil :ascent center)
                                     ("Slides" ,(s-concat bs/org-agenda-icons-path "reading.png") nil nil :ascent center)
                                     ("Team" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
                                     ("TW" ,(s-concat bs/org-agenda-icons-path "tw.png") nil nil :ascent center)
