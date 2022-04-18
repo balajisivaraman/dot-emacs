@@ -53,7 +53,7 @@
 
 (defvar bs/at-work)
 (setq bs/at-work (or (string-equal (downcase (system-name)) "alphacentauri")
-                     (string-equal (downcase (system-name)) "helix-nebula")))
+                     (string-equal (downcase (system-name)) "tatooine")))
 
 (defvar bs/nextcloud-path)
 (setq bs/nextcloud-path
