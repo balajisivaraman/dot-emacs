@@ -25,23 +25,17 @@
 
 (defvar bs/node-version (s-trim (shell-command-to-string "node -v")))
 
-(use-package eglot
-  :commands (eglot-ensure)
+(use-package lsp-mode
+  :commands (lsp-deferred)
   :init
-  (bs/general-bindings
-   "ma" 'eglot-code-actions
-   "mr" 'eglot-rename
-   "mwr" 'eglot-reconnect)
-  :config
-  (add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer")))
-  (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server")))
-  (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
-  (setq eglot-confirm-server-initiated-edits nil))
+  (evil-define-key 'normal lsp-mode-map (kbd "SPC l") lsp-command-map)
+  (setq lsp-keymap-prefix "C-c l")
+  :hook
+  ((lsp-mode . lsp-enable-which-key-integration)))
 
 (use-package cc-mode
   :ensure nil
-  :hook (c++-mode . eglot-ensure))
+  :hook (c++-mode . lsp-deferred))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here

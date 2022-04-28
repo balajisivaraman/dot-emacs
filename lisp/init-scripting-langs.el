@@ -25,7 +25,7 @@
 
 (use-package shell-script-mode
   :ensure nil
-  :hook (shell-script-mode . eglot-ensure)
+  :hook (shell-script-mode . lsp-deferred)
   :mode
   "\\(.sh\\|.bash\\|.zsh\\)\\(_history\\|_profile\\|rc\\)")
 

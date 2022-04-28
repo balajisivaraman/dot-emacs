@@ -28,7 +28,7 @@
 
 (defun bs/haskell-mode-hook ()
   "Hooks for Haskell Mode."
-  (eglot-ensure)
+  (lsp-deferred)
   (company-mode)
   (flymake-mode)
   (eldoc-mode))
