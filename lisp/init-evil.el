@@ -163,7 +163,7 @@
   :init
   (setq evil-want-keybinding nil)
   (setq evil-want-integration nil)
-  (setq evil-undo-system 'undo-redo)
+  (setq evil-undo-system 'undo-tree)
   (setq evil-search-module 'evil-search)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-d-scroll t)
