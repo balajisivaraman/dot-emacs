@@ -23,12 +23,24 @@
 
 ;;; Code:
 
-(use-package gruvbox-theme
+(use-package modus-themes
   :init
-  (load-theme 'gruvbox-dark-hard t)
+  (setq
+   modus-themes-syntax '(alt-syntax yellow-comments)
+   modus-themes-fringes 'subtle
+   modus-themes-headings '((t . (rainbow no-bold)))
+   modus-themes-mixed-fonts t
+   modus-themes-org-agenda ; this is an alist: read the manual or its doc string
+      '((header-block . (variable-pitch 1.3))
+        (header-date . (workaholic bold-today 1.1))
+        (event . (accented varied))
+        (scheduled . rainbow)
+        (habit . traffic-light)))
+  (modus-themes-load-themes)
   :config
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
-  (add-to-list 'default-frame-alist '(alpha . (95 . 95))))
+  (modus-themes-load-vivendi)
+  (set-frame-parameter (selected-frame) 'alpha '(96 . 96))
+  (add-to-list 'default-frame-alist '(alpha . (96 . 96))))
 
 (use-package nyan-mode
   :init (nyan-mode))
