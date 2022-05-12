@@ -71,5 +71,14 @@
   (dolist (hook '(text-mode-hook prog-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-height 35))
+
+(use-package all-the-icons
+  :custom
+  (all-the-icons-scale-factor 1))
+
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here
