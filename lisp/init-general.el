@@ -62,7 +62,9 @@
   `(progn
      (my-emacs-leader-def
        ,@args)
-     (my-evil-leader-def 'normal 'override
+     (my-evil-leader-def
+       :states '(normal visual)
+       :keymaps 'override
        ,@args)
      )
   )
