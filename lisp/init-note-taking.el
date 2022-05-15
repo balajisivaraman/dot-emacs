@@ -38,7 +38,7 @@
   ("C-. b" . ivy-bibtex)
   :init
   (bs/general-bindings
-   "ob" 'ivy-bibtex)
+   "nb" 'ivy-bibtex)
   :config
   (setq
    bibtex-completion-notes-path bs/notes-path
@@ -143,8 +143,9 @@
   ("C-. C" . org-roam-node-find)
   :init
   (bs/general-bindings
-   "oI" 'org-roam-node-insert
-   "oC" 'org-roam-node-find)
+   "nc" 'org-roam-node-find
+   "ni" 'org-roam-node-insert
+   "nr" 'org-roam-node-random)
   :config
   (org-roam-setup))
 
@@ -154,7 +155,7 @@
   ("C-. s" . deft)
   :init
   (bs/general-bindings
-   "os" 'deft)
+   "ns" 'deft)
   :custom
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
@@ -176,7 +177,7 @@
   ("C-. n" . org-noter)
   :init
   (bs/general-bindings
-   "on" 'org-noter)
+   "nn" 'org-noter)
   :config
   (setq
    ;; The WM can handle splits
