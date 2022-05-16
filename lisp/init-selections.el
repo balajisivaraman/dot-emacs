@@ -34,11 +34,12 @@
 
 (use-package consult
   :bind
-  ("C-c b b"  . consult-bookmark)
-  ("C-x b"  . consult-buffer)
-  ("M-y"    . consult-yank-pop)
-  ("M-g g"    . consult-goto-line)
-  ("M-g M-g"    . consult-goto-line)
+  (("C-c b b"  . consult-bookmark)
+   ("C-x b"  . consult-buffer)
+   ("M-y"    . consult-yank-pop)
+   ("M-g g"    . consult-goto-line)
+   ("M-g M-g"    . consult-goto-line)
+   ("C-j t". consult-imenu))
   :config
   (consult-customize
    consult-buffer consult-ripgrep consult-bookmark

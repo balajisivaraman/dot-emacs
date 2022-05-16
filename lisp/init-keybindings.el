@@ -35,12 +35,7 @@
 
 (defvar major-mode-map)
 (define-prefix-command 'major-mode-map)
-(bind-key "C-," #'major-mode-map)
-
-(defvar jump-map)
-(define-prefix-command 'jump-map)
-(global-unset-key (kbd "M-j"))
-(global-set-key (kbd "M-j") 'jump-map)
+(bind-key "M-m" #'major-mode-map)
 
 (when (eq system-type 'gnu/linux)
   (setq x-super-keysym 'meta))
@@ -84,7 +79,7 @@
   "C-c g g" "gist"
   "C-c h" "helm/help"
   "C-c j" "jump"
-  "C-," "major mode"
+  "M-m" "major mode"
   "C-c o" "org mode"
   "C-c O" "outline"
   "C-c p" "projects"
@@ -94,17 +89,17 @@
   "C-c t" "toggle")
 
 (which-key-add-major-mode-key-based-replacements 'emacs-lisp-mode
-  "C-, e" "eval"
-  "C-, f" "file"
-  "C-, d" "debug")
+  "M-m e" "eval"
+  "M-m f" "file"
+  "M-m d" "debug")
 
 (which-key-add-major-mode-key-based-replacements 'markdown-mode
   "SPC m i" "insert"
   )
 
 (which-key-add-major-mode-key-based-replacements 'rust-mode
-  "C-, t" "test"
-  "C-, r" "run")
+  "M-m t" "test"
+  "M-m r" "run")
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

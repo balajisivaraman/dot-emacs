@@ -28,8 +28,7 @@
 (use-package lsp-mode
   :commands (lsp-deferred)
   :init
-  (evil-define-key 'normal lsp-mode-map (kbd "SPC l") lsp-command-map)
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C-l")
   :hook
   ((lsp-mode . lsp-enable-which-key-integration)))
 

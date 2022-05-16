@@ -23,6 +23,10 @@
 
 ;;; Code:
 
+(defvar bs/org-map)
+(define-prefix-command 'bs/org-map)
+(global-set-key (kbd "M-o") 'bs/org-map)
+
 (use-package org
   :diminish (org-indent-mode)
   :hook ((org-mode . org-bullets-mode)
@@ -30,22 +34,14 @@
          (org-mode . company-mode)
          (org-agenda-mode . (lambda () (setq-local line-spacing 3)))
          (before-save . bs/org-set-last-modified))
-  :init
-  (bs/general-bindings
-   "oa" 'org-agenda
-   "oA" 'org-check-after-date
-   "ob" 'org-check-before-date
-   "oc" 'org-capture
-   "od" 'org-check-deadlines
-   "oi" 'org-insert-link
-   "oI" 'bs/org-insert-prop-for-current-entry
-   "ol" 'org-store-link
-   "oo" 'bs/punch-out
-   "op" 'bs/punch-in
-   "or" 'org-archive-subtree
-   "os" 'org-agenda-list-stuck-projects)
+  :bind
+  (("M-o a" . org-agenda)
+   ("M-o c" . org-capture)
+   ("M-o r" . org-archive-subtree)
+   ("M-o l" . org-store-link))
   :config
-  (evil-set-initial-state 'org-agenda-mode 'normal)
+  (define-key org-mode-map (kbd "M-o") nil)
+  (define-key org-mode-map (kbd "C-j") nil)
   ;; Basic Configuration
   (setq
    org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
@@ -236,7 +232,7 @@
   :ensure nil
   :after org
   :bind
-  (("C-. c" . org-capture))
+  (("M-o c" . org-capture))
   :config
   (setq
    org-capture-templates

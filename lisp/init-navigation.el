@@ -23,17 +23,19 @@
 
 ;;; Code:
 
+(defvar jump-map)
+(define-prefix-command 'jump-map)
+(global-unset-key (kbd "C-j"))
+(global-set-key (kbd "C-j") 'jump-map)
+
 (use-package avy
   :demand t
   :commands (avy-goto-char avy-goto-word-1 avy-pop-mark avy-goto-line)
-  :init
-  (bs/general-bindings
-   "jc" 'avy-goto-char
-   "jj" 'avy-goto-char
-   "jl" 'avy-goto-line
-   "jw" 'avy-goto-word-1
-   "jt" 'consult-imenu
-   )
+  :bind
+  (("C-j j". bs/avy-goto-word-2-below)
+   ("C-j k". bs/avy-goto-word-2-above)
+   ("C-j c". avy-goto-char)
+   ("C-j l". avy-goto-line))
   :config
   (defun bs/avy-goto-word-2 (char1 char2 &optional arg beg end symbol)
     "Jump to the currently visible CHAR1 followed by CHAR2.
@@ -100,17 +102,7 @@ of `avy-all-windows'."
     (avy-with bs/avy-goto-word-2-below
       (bs/avy-goto-word-2
        char1 char2 arg
-       (point) (window-end (selected-window) t))))
-
-  (evil-define-avy-motion bs/avy-goto-word-2-below inclusive)
-  (evil-define-avy-motion bs/avy-goto-word-2-above inclusive)
-
-  (evil-define-key 'normal text-mode-map
-    "s" 'evil-bs/avy-goto-word-2-below
-    "S" 'evil-bs/avy-goto-word-2-above)
-  (evil-define-key 'normal prog-mode-map
-    "s" 'evil-bs/avy-goto-word-2-below
-    "S" 'evil-bs/avy-goto-word-2-above))
+       (point) (window-end (selected-window) t)))))
 
 (use-package ace-window
   :bind
@@ -127,9 +119,7 @@ of `avy-all-windows'."
       (golden-ratio-mode)
       (golden-ratio)))
   :diminish (golden-ratio-mode . " ⓖ")
-  :init
-  (bs/general-bindings
-   "tg" 'bs/toggle-golden-ratio)
+  :bind (("C-c t g" . balaji-toggle-golden-ratio))
   :config
   (setq
    golden-ratio-extra-commands '(windmove-up
@@ -214,8 +204,7 @@ _d_: subtree
   ("b" outline-backward-same-level)       ; Backward - same level
   ("z" nil "leave"))
 
-(bs/general-bindings
- "O" 'bs/outline/body)
+(global-set-key (kbd "C-c O") 'balaji-outline/body) ; by example
 
 (use-package beginend
   :diminish
@@ -230,11 +219,10 @@ _d_: subtree
 (use-package bookmark
   :ensure nil
   :commands (bookmark-jump bookmark-set bookmark-bmenu-list)
-  :init
-  (bs/general-bindings
-   "fb" 'bookmark-jump
-   "Bs" 'bookmark-set
-   "Bl" 'bookmark-bmenu-list)
+  :bind
+  (("C-c B l" . bookmark-bmenu-list)
+   ("C-c B s" . bookmark-set)
+   ("C-j b"   . bookmark-jump))
   :config
   (setq bookmark-file (concat bs/emacs-cache-directory "bookmarks")))
 

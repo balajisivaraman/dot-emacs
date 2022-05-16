@@ -47,10 +47,9 @@
 
 (use-package restart-emacs
   :commands (restart-emacs save-buffers-kill-emacs)
-  :init
-  (bs/general-bindings
-   "qr" 'restart-emacs
-   "qq" 'save-buffers-kill-emacs))
+  :bind
+  ("C-c q r" . restart-emacs)
+  ("C-c q q" . save-buffers-kill-emacs))
 
 (use-package face-remap
   :ensure nil

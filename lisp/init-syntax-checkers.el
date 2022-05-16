@@ -33,10 +33,7 @@
     "Flycheck errors."
     ("n" flymake-goto-next-error "next")
     ("p" flymake-goto-prev-error "previous")
-    ("q" nil "Quit" :exit t ))
-  (bs/general-bindings
-   "ep" 'bs/flymake-errors/flymake-goto-prev-error
-   "en" 'bs/flymake-errors/flymake-goto-next-error))
+    ("q" nil "Quit" :exit t )))
 
 (use-package flymake-proselint
   :after flymake
@@ -51,10 +48,9 @@
   :diminish (flyspell-mode . " Ⓕ")
   :ensure nil
   :commands (flyspell-buffer flyspell-mode)
+  :bind (("C-c i b" . flyspell-buffer)
+         ("C-c i f" . flyspell-mode))
   :init
-  (bs/general-bindings
-   "Ib" 'flyspell-buffer
-   "If" 'flyspell-mode)
   (use-package ispell
     :ensure nil
     :commands (ispell-comments-and-strings
@@ -62,13 +58,11 @@
                ispell-kill-ispell
                ispell-message
                ispell-region)
-    :init
-    (bs/general-bindings
-     "Ic" 'ispell-comments-and-strings
-     "Id" 'ispell-change-dictionary
-     "Ik" 'ispell-kill-ispell
-     "Im" 'ispell-message
-     "Ir" 'ispell-region))
+    :bind (("C-c i c" . ispell-comments-and-strings)
+           ("C-c i d" . ispell-change-dictionary)
+           ("C-c i k" . ispell-kill-ispell)
+           ("C-c i m" . ispell-message)
+           ("C-c i r" . ispell-region)))
   :config
   (unbind-key "C-." flyspell-mode-map))
 

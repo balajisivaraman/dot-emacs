@@ -38,16 +38,18 @@
    magit-checkout)
   :init
   (setq-default magit-last-seen-setup-instructions "1.4.0")
-  (bs/general-bindings
-   "gs" 'magit-status
-   "gb" 'magit-branch
-   "gp" 'magit-pull
-   "gr" 'magit-reset-head
-   "gR" 'magit-reset-head-hard
-   "gf" 'magit-fetch
-   "gl" 'magit-log-all
-   "gL" 'magit-log
-   "gc" 'magit-checkout))
+  :bind
+  (("C-c g s" . magit-status)
+   ("C-c g m" . magit-branch)
+   ("C-c g M" . magit-merge)
+   ("C-c g S" . magit-stash)
+   ("C-c g a" . magit-stash-apply)
+   ("C-c g p" . magit-pull)
+   ("C-c g r" . magit-reset-head)
+   ("C-c g R" . magit-reset-hard)
+   ("C-c g l" . magit-log-all)
+   ("C-c g L" . magit-log)
+   ("C-c g c" . magit-checkout)))
 
 (use-package magit-delta
   :after magit
@@ -57,9 +59,7 @@
 
 (use-package git-timemachine
   :commands (git-timemachine)
-  :init
-  (bs/general-bindings
-   "gt" 'git-timemachine))
+   :bind (("C-c g t" . git-timemachine)))
 
 (provide 'init-version-control)
 ;;; init-version-control.el ends here

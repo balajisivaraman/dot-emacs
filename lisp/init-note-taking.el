@@ -29,16 +29,17 @@
 (defvar bs/notes-path)
 (setq bs/notes-path (s-concat bs/nextcloud-path "Notes/bibliography"))
 
+(defvar bs/org-roam-map)
+(define-prefix-command 'bs/org-roam-map)
+(global-set-key (kbd "M-n") 'bs/org-roam-map)
+
 (use-package pdf-tools
   :init
   (pdf-tools-install))
 
 (use-package ivy-bibtex
   :bind
-  ("C-. b" . ivy-bibtex)
-  :init
-  (bs/general-bindings
-   "nb" 'ivy-bibtex)
+  ("M-n b" . ivy-bibtex)
   :config
   (setq
    bibtex-completion-notes-path bs/notes-path
@@ -139,23 +140,17 @@
 #+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t)))
   :bind
-  ("C-. I" . org-roam-node-insert)
-  ("C-. C" . org-roam-node-find)
-  :init
-  (bs/general-bindings
-   "nc" 'org-roam-node-find
-   "ni" 'org-roam-node-insert
-   "nr" 'org-roam-node-random)
+  ("M-n c" . org-roam-capture)
+  ("M-n i" . org-roam-node-insert)
+  ("M-n f" . org-roam-node-find)
+  ("M-n r" . org-roam-node-random)
   :config
   (org-roam-setup))
 
 (use-package deft
   :after org
   :bind
-  ("C-. s" . deft)
-  :init
-  (bs/general-bindings
-   "ns" 'deft)
+  ("M-n s" . deft)
   :custom
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
@@ -174,10 +169,7 @@
 (use-package org-noter
   :after (:any org pdf-view)
   :bind
-  ("C-. n" . org-noter)
-  :init
-  (bs/general-bindings
-   "nn" 'org-noter)
+  ("M-n n" . org-noter)
   :config
   (setq
    ;; The WM can handle splits

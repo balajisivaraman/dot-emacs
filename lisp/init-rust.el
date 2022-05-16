@@ -53,31 +53,30 @@
    cargo-process-clippy
    cargo-process-search
    cargo-process-doc-open)
+  :bind
+  (:map rust-mode-map
+        ("M-m d" . cargo-process-doc)
+        ("M-m f" . cargo-process-fmt)
+        ("M-m r r" . cargo-process-run)
+        ("M-m r b" . cargo-process-run-bin)
+        ("M-m r e" . cargo-process-run-example)
+        ("M-m n" . cargo-process-new)
+        ("M-m i" . cargo-process-init)
+        ("M-m t t" . cargo-process-test)
+        ("M-m t c" . cargo-process-current-test)
+        ("M-m t f" . cargo-process-current-file-tests)
+        ("M-m b" . cargo-process-build)
+        ("M-m c" . cargo-process-clean)
+        ("M-m k" . cargo-process-check)
+        ("M-m B" . cargo-process-bench)
+        ("M-m u" . cargo-process-update)
+        ("M-m R" . cargo-process-repeat)
+        ("M-m C" . cargo-process-clippy)
+        ("M-m s" . cargo-process-search)
+        ("M-m D" . cargo-process-doc-open))
   :init
-  (bs/general-mode-specific-bindings
-   'rust-mode-map
-   "d" 'cargo-process-doc
-   "f" 'cargo-process-fmt
-   "rr" 'cargo-process-run
-   "rb" 'cargo-process-run-bin
-   "re" 'cargo-process-run-example
-   "n" 'cargo-process-new
-   "m" 'cargo-process-mode
-   "i" 'cargo-process-init
-   "tt" 'cargo-process-test
-   "tc" 'cargo-process-current-test
-   "tf" 'cargo-process-current-file-tests
-   "b" 'cargo-process-build
-   "c" 'cargo-process-clean
-   "k" 'cargo-process-check
-   "B" 'cargo-process-bench
-   "u" 'cargo-process-update
-   "R" 'cargo-process-repeat
-   "C" 'cargo-process-clippy
-   "s" 'cargo-process-search
-   "D" 'cargo-process-doc-open)
   (which-key-add-major-mode-key-based-replacements 'rust-mode
-    "SPC m c" "cargo"))
+    "M-m c" "cargo"))
 
 (defun bs/rust-mode-hook ()
   "Hooks for Rust Mode."

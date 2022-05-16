@@ -26,20 +26,10 @@
 (use-package markdown-mode
   :hook (markdown-mode . bs/flymake-proselint-setup)
   :mode ".md\\|.markdown"
-  :init
-  (bs/general-mode-specific-bindings
-   'markdown-mode-map
-   "il" 'markdown-insert-link
-   "ib" 'markdown-insert-bold
-   "ii" 'markdown-insert-italic)
-  (which-key-add-major-mode-key-based-replacements 'markdown-mode
-    "spc m i" "insert"))
-
-(use-package evil-markdown
-  :load-path "~/.emacs.d/site-lisp/evil-markdown"
-  :ensure nil
-  :after markdown-mode
-  :hook (markdown-mode . evil-markdown-mode))
+  :bind (:map markdown-mode-map
+              ("M-m l" . markdown-insert-link)
+              ("M-m b" . markdown-insert-bold)
+              ("M-m i" . markdown-insert-italic)))
 
 (use-package yaml-mode
   :hook

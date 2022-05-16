@@ -32,9 +32,8 @@
 
 (use-package find-file-in-project
   :commands (find-file-in-project)
-  :init
-  (bs/general-bindings
-   "pf" 'find-file-in-project)
+  :bind
+  ("C-c p f" . find-file-in-project)
   :config
   (setq ffip-use-rust-fd t))
 
@@ -74,9 +73,8 @@
   (interactive)
   (bs/open-project "~/projects"))
 
-(bs/general-bindings
- "pk" 'bs/kill-all-project-buffers
- "pp" 'bs/open-my-projects)
+(bind-key "C-c p p" 'bs/open-my-projects)
+(bind-key "C-c p k" 'bs/kill-all-project-buffers)
 
 (provide 'init-project)
 ;;; init-project.el ends here

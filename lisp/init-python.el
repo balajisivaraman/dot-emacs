@@ -38,8 +38,6 @@
   :init
   (add-to-list 'exec-path "~/.pyenv/shims")
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
-  (bs/general-mode-specific-bindings 'python-mode-map
-   "e" 'pyenv-activate-current-project)
   :config
   (pyenv-mode t))
 

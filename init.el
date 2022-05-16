@@ -63,8 +63,6 @@
 (require 'init-functions)
 (require 'init-exec-path)
 (require 'init-keybindings)
-(require 'init-evil)
-(require 'init-general)
 (require 'init-navigation)
 (require 'init-user-interface)
 (require 'init-selections)

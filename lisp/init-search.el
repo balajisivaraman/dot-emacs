@@ -30,14 +30,13 @@
 
 (use-package deadgrep
   :commands (deadgrep)
-  :init
-  (bs/general-bindings
-   "rr" 'deadgrep))
+  :bind (("M-s r" . deadgrep)))
 
 (use-package rg
   :commands (rg rg-literal)
   :init
-  (rg-enable-default-bindings))
+  (rg-enable-default-bindings)
+  :bind (("M-s s" . rg)))
 
 (use-package wgrep
   :commands (wgrep))

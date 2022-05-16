@@ -51,22 +51,21 @@
     (if (memq current-mode lisp-modes)
         (funcall current-mode))))
 
-(bs/general-mode-specific-bindings 'emacs-lisp-mode-map
-                                   "eb" 'do-eval-buffer
-                                   "er" 'do-eval-region
-                                   "es" 'eval-last-sexp
-                                   "s"  'scratch
-                                   "dc" 'cancel-debug-on-entry
-                                   "de" 'debug-on-entry
-                                   "dr" 'toggle-debug-on-error
-                                   "fb" 'emacs-lisp-byte-compile-and-load
-                                   "fl" 'find-library
-                                   "L"  'elint-current-buffer)
+(bind-keys :map emacs-lisp-mode-map
+           ("M-m e b" . do-eval-buffer)
+           ("M-m e r" . do-eval-region)
+           ("M-m s" . scratch)
+           ("M-m d c" . cancel-debug-on-entry)
+           ("M-m d e" . debug-on-entry)
+           ("M-m d r" . toggle-debug-on-error)
+           ("M-m f b" . emacs-lisp-byte-compile-and-load)
+           ("M-m f l" . find-library)
+           ("M-m L" . elint-current-buffer))
 
 (which-key-add-major-mode-key-based-replacements 'emacs-lisp-mode
-  "SPC m e" "eval"
-  "SPC m f" "file"
-  "SPC m d" "debug")
+  "M-m e" "eval"
+  "M-m f" "file"
+  "M-m d" "debug")
 
 (defvar lisp-mode-hooks
   (--map (intern
@@ -82,7 +81,6 @@
 
 (defun bs/lisp-mode-hook ()
   "Functions to be called when entering Lisp mode."
-  (paredit-mode t)
   (company-mode t)
   (use-package eldoc
     :ensure nil

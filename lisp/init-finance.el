@@ -31,25 +31,13 @@
 (use-package ledger-mode
   :mode "\\.ledger$"
   :hook (ledger-mode . company-mode)
-  :init
-  (bs/general-mode-specific-bindings 'ledger-mode-map
-                                     "r" 'bs/insert-rupee-symbol
-                                     "a" 'ledger-add-transaction
-                                     "bp" 'ledger-display-balance-at-point)
-  (which-key-add-major-mode-key-based-replacements 'ledger-mode
-    "SPC m r" "rupee-symbol"
-    "SPC m a" "add transaction"
-    "SPC m b" "balance")
+  :bind (:map ledger-mode-map
+              ("M-m r" . bs/insert-rupee-symbol))
   :config
   (setq ledger-binary-path "hledger"
         ledger-mode-should-check-version nil
         ledger-init-file-name " "
         ledger-post-amount-alignment-column 75))
-
-(use-package evil-ledger
-  :after ledger-mode
-  :hook (ledger-mode . evil-ledger-mode)
-  :config (setq evil-ledger-sort-key "S"))
 
 (defun bs/ledger-mode-hook ()
   "Hooks for Ledger Mode."
