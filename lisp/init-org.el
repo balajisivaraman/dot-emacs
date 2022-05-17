@@ -67,7 +67,7 @@
                                       (plain-list-item . auto)))
    org-bookmark-names-plist nil
    org-catch-invisible-edits 'error
-   org-cycle-separator-lines 0
+   org-cycle-separator-lines -1
    org-enforce-todo-dependencies t
    org-use-fast-todo-selection 'expert
    org-use-fast-tag-selection t
