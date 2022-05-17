@@ -148,6 +148,9 @@
     :diminish (evil-rsi-mode)
     :init
     (evil-rsi-mode))
+  (use-package evil-lion
+    :config
+    (evil-lion-mode))
   (evil-mode t)
   (bs/init-linum-relative)
   (bs/init-evil-org)
