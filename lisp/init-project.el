@@ -27,13 +27,13 @@
 
 (defvar bs/project-map)
 (define-prefix-command 'bs/project-map)
-(global-unset-key (kbd "C-c p"))
-(global-set-key (kbd "C-c p") 'bs/project-map)
+(global-unset-key (kbd "M-p"))
+(global-set-key (kbd "M-p") 'bs/project-map)
 
 (use-package find-file-in-project
   :commands (find-file-in-project)
   :bind
-  ("C-c p f" . find-file-in-project)
+  ("M-p f" . find-file-in-project)
   :config
   (setq ffip-use-rust-fd t))
 
@@ -73,8 +73,8 @@
   (interactive)
   (bs/open-project "~/projects"))
 
-(bind-key "C-c p p" 'bs/open-my-projects)
-(bind-key "C-c p k" 'bs/kill-all-project-buffers)
+(bind-key "M-p p" 'bs/open-my-projects)
+(bind-key "M-p k" 'bs/kill-all-project-buffers)
 
 (provide 'init-project)
 ;;; init-project.el ends here
