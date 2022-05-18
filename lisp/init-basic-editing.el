@@ -37,6 +37,7 @@
 
 ;; Rectangle Editing
 (bind-key "C-x r i" 'string-insert-rectangle)
+(bind-key "C-x r r" 'replace-rectangle)
 
 ;; Expand Region and Change Inner
 (use-package expand-region
