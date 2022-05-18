@@ -42,6 +42,9 @@
       package--init-file-ensured t)
 
 (use-package paradox
+  :bind
+  (("M-P u" . paradox-upgrade-packages)
+   ("M-P r" . package-refresh-contents))
   :config
   (setq
    paradox-execute-asynchronously nil ; No async update, please
