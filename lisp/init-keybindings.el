@@ -29,6 +29,9 @@
 (bind-key "<RET>" 'newline-and-indent)
 (unbind-key "C-x C-c")
 
+(define-key input-decode-map [?\C-m] [C-m])
+(define-key input-decode-map [?\C-i] [C-i])
+
 (defvar toggle-map)
 (define-prefix-command 'toggle-map)
 (bind-key "C-c t" #'toggle-map)

@@ -50,26 +50,57 @@
   (("C-c C-i" . change-inner)
    ("C-c C-o" . change-outer)))
 
+(use-package selected
+  :demand t
+  :diminish selected-minor-mode
+  :bind (:map selected-keymap
+              ("[" . align-code)
+              ("f" . fill-region)
+              ("U" . unfill-region)
+              ("d" . downcase-region)
+              ("u" . upcase-region)
+              ("r" . reverse-region)
+              ("s" . sort-lines)
+              ("q" . selected-off))
+  :config
+  (selected-global-mode 1))
+
 ;; Multiple Cursors Code
 (use-package multiple-cursors
-  :bind
-  (
-   ("C-c c <SPC>" . mc/vertical-align-with-space)
-   ("C-c c a"     . mc/vertical-align)
-   ("C-c c e"     . mc/mark-more-like-this-extended)
-   ("C-c c h"     . mc/mark-all-like-this-dwim)
-   ("C-c c l"     . mc/edit-lines)
-   ("C-c c n"     . bs/multiple-cursors/body)
-   ("C-c c r"     . vr/mc-mark)
-   ("C-c c C-a"   . mc/edit-beginnings-of-lines)
-   ("C-c c C-e"   . mc/edit-ends-of-lines)
-   ("C-c c C-s"   . mc/mark-all-in-region))
-  :init
-  (defhydra bs/multiple-cursors ()
-    "Multiple cursors."
-    ("n" mc/mark-next-like-this "mark")
-    ("N" mc/unmark-next-like-this "unmark")
-    ("q" nil "Quit" :exit t )))
+  :bind (("<C-m> ^"     . mc/edit-beginnings-of-lines)
+         ("<C-m> `"     . mc/edit-beginnings-of-lines)
+         ("<C-m> $"     . mc/edit-ends-of-lines)
+         ("<C-m> '"     . mc/edit-ends-of-lines)
+         ("<C-m> R"     . mc/reverse-regions)
+         ("<C-m> S"     . mc/sort-regions)
+         ("<C-m> W"     . mc/mark-all-words-like-this)
+         ("<C-m> Y"     . mc/mark-all-symbols-like-this)
+         ("<C-m> a"     . mc/mark-all-like-this-dwim)
+         ("<C-m> c"     . mc/mark-all-dwim)
+         ("<C-m> l"     . mc/insert-letters)
+         ("<C-m> n"     . mc/insert-numbers)
+         ("<C-m> r"     . mc/mark-all-in-region)
+         ("<C-m> s"     . set-rectangular-region-anchor)
+         ("<C-m> %"     . mc/mark-all-in-region-regexp)
+         ("<C-m> t"     . mc/mark-sgml-tag-pair)
+         ("<C-m> w"     . mc/mark-next-like-this-word)
+         ("<C-m> x"     . mc/mark-more-like-this-extended)
+         ("<C-m> y"     . mc/mark-next-like-this-symbol)
+         ("<C-m> C-x"   . reactivate-mark)
+         ("<C-m> C-SPC" . mc/mark-pop)
+         ("<C-m> ("     . mc/mark-all-symbols-like-this-in-defun)
+         ("<C-m> C-("   . mc/mark-all-words-like-this-in-defun)
+         ("<C-m> M-("   . mc/mark-all-like-this-in-defun)
+         ("<C-m> ["     . mc/vertical-align-with-space)
+         ("<C-m> {"     . mc/vertical-align))
+  :bind (:map selected-keymap
+              ("c"   . mc/edit-lines)
+              ("."   . mc/mark-next-like-this)
+              ("C->" . mc/unmark-next-like-this)
+              ("C-." . mc/skip-to-next-like-this)
+              (","   . mc/mark-previous-like-this)
+              ("C-," . mc/unmark-previous-like-this)
+              ("C-<" . mc/skip-to-previous-like-this)))
 
 ;; Easy killing and marking on C-w
 (use-package easy-kill
