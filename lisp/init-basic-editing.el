@@ -47,7 +47,7 @@
 
 (use-package change-inner
   :bind
-  (("C-c C-i" . change-inner)
+  (("C-c <C-i>" . change-inner)
    ("C-c C-o" . change-outer)))
 
 (use-package selected
