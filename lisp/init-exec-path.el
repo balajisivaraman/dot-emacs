@@ -26,10 +26,9 @@
 ;;; Code:
 
 (use-package exec-path-from-shell
-  :init
-  (setenv "SHELL" "/bin/bash")
-  (when (not (string-equal system-type "windows-nt"))
-    (exec-path-from-shell-initialize)))
+  :if (not (string-equal system-type "windows-nt"))
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package eshell
   :commands (eshell)
