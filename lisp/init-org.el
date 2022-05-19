@@ -59,6 +59,7 @@
    org-ellipsis "  "
    org-use-speed-commands t
    org-hide-emphasis-markers t
+   org-pretty-entities t
    org-log-into-drawer "LOGBOOK-NOTES"
    org-special-ctrl-k t
    org-M-RET-may-split-line nil
@@ -66,12 +67,14 @@
    org-blank-before-new-entry (quote ((heading . auto)
                                       (plain-list-item . auto)))
    org-bookmark-names-plist nil
-   org-catch-invisible-edits 'error
+   org-catch-invisible-edits 'show-and-error
    org-cycle-separator-lines -1
    org-enforce-todo-dependencies t
    org-use-fast-todo-selection 'expert
    org-use-fast-tag-selection t
    org-fast-tag-selection-single-key 'expert
+   org-auto-align-tags nil
+   org-tags-column 0
    )
   ;; Clock Configuration
   (org-clock-persistence-insinuate)
@@ -227,6 +230,9 @@
   :commands (org-indent-mode)
   :hook (org-mode . org-indent-mode)
   :diminish (org-indent-mode))
+
+(use-package org-modern
+  :hook (org-mode . org-modern-mode))
 
 (use-package org-capture
   :ensure nil
