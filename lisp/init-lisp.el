@@ -75,13 +75,20 @@
 (use-package paredit
   :diminish paredit-mode
   :commands paredit-mode
-  :config
-  (bind-key "M-p" 'paredit-splice-sexp-killing-backward emacs-lisp-mode-map)
-  (bind-key "M-n" 'paredit-splice-sexp-killing-forward emacs-lisp-mode-map))
+  :hook (paredit-mode
+         . (lambda ()
+             (unbind-key "M-r" paredit-mode-map)
+             (unbind-key "M-s" paredit-mode-map)))
+  :bind (:map paredit-mode-map
+              ("M-p" .  paredit-splice-sexp-killing-backward)
+              ("M-n" .  paredit-splice-sexp-killing-forward))
+  :bind (:map lisp-mode-map ("<return>" . paredit-newline))
+  :bind (:map emacs-lisp-mode-map ("<return>" . paredit-newline)))
 
 (defun bs/lisp-mode-hook ()
   "Functions to be called when entering Lisp mode."
   (company-mode t)
+  (paredit-mode t)
   (use-package eldoc
     :ensure nil
     :diminish eldoc-mode
