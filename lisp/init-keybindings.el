@@ -85,8 +85,8 @@
   "M-m" "major mode"
   "C-c o" "org mode"
   "C-c O" "outline"
-  "M-p" "projects"
-  "M-p s" "projects/search"
+  "C-c p" "projects"
+  "C-c p s" "projects/search"
   "C-c q" "quit/restart"
   "C-c s" "search"
   "C-c t" "toggle")
