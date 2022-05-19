@@ -26,16 +26,17 @@
 (use-package clojure-mode
   :hook
   (clojure-mode . company-mode)
-  (clojure-mode . paredit-mode)
+  (clojure-mode . eglot-ensure)
   :mode "\\.clj\\$")
 
 (use-package clj-refactor
   :hook
   (clojure-mode . clj-refactor-mode)
   :config
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
+  (cljr-add-keybindings-with-prefix "C-c <C-m>"))
 
 (use-package cider
+  :disabled t
   :hook
   (cider-mode . eldoc-mode)
   (cider-mode . company-mode)
