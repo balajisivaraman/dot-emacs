@@ -23,16 +23,18 @@
 
 ;;; Code:
 
+(use-package elpy
+  :disabled t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+  :config
+  (setq elpy-rpc-backend "jedi"))
+
 (use-package python
   :mode ("\\.py" . python-mode)
   :config
-  (setq python-indent-offset 4))
-
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp-deferred))))
+  (setq python-indent-offset 4)
+  (elpy-enable))
 
 (use-package pyenv-mode
   :init
