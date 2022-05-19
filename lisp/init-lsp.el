@@ -36,6 +36,7 @@
   (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server")))
   (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
+  (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
   (setq eglot-confirm-server-initiated-edits nil))
 
 (use-package cc-mode
