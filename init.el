@@ -91,6 +91,7 @@
 (require 'init-web-modes)
 (require 'init-project)
 (require 'init-kubernetes)
+(require 'init-mail)
 
 ;; Initialize OS specific bindings
 (when (eq system-type 'gnu/linux)
