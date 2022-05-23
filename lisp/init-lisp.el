@@ -78,7 +78,8 @@
   :hook (paredit-mode
          . (lambda ()
              (unbind-key "M-r" paredit-mode-map)
-             (unbind-key "M-s" paredit-mode-map)))
+             (unbind-key "M-s" paredit-mode-map)
+             (unbind-key "C-j" paredit-mode-map)))
   :bind (:map paredit-mode-map
               ("M-p" .  paredit-splice-sexp-killing-backward)
               ("M-n" .  paredit-splice-sexp-killing-forward))
