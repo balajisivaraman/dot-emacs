@@ -59,7 +59,6 @@
    org-ellipsis "  "
    org-use-speed-commands t
    org-hide-emphasis-markers t
-   org-pretty-entities t
    org-log-into-drawer "LOGBOOK-NOTES"
    org-special-ctrl-k t
    org-M-RET-may-split-line nil
