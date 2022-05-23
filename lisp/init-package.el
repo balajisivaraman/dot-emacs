@@ -23,7 +23,8 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "use-package" bs/site-lisp-dir))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
 ;; Always install packages from Melpa, Elpa
