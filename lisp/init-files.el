@@ -52,6 +52,10 @@
    dired-dwim-target t)
   (unbind-key "M-g" dired-mode-map))
 
+(use-package diredfl
+  :config
+  (diredfl-global-mode t))
+
 (use-package dired+
   :disabled t
   :ensure nil
