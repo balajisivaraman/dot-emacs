@@ -23,6 +23,16 @@
 
 ;;; Code:
 
+(use-package grep
+  :ensure nil
+  :custom
+  (find-program "fd"))
+
+(use-package xref
+  :ensure nil
+  :custom
+  (xref-search-program "ripgrep"))
+
 (use-package visual-regexp
   :disabled t
   :bind (("C-c s r" . vr/query-replace)

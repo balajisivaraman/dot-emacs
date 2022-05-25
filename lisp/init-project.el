@@ -25,56 +25,28 @@
 
 ;;; Code:
 
-(defvar bs/project-map)
-(define-prefix-command 'bs/project-map)
-(global-unset-key (kbd "C-c p"))
-(global-set-key (kbd "C-c p") 'bs/project-map)
-
-(use-package find-file-in-project
-  :commands (find-file-in-project)
+(use-package project
+  :ensure nil
   :bind
-  ("C-c p f" . find-file-in-project)
+  (("C-x p C" . project-compile))
+  :init
+  (defun bs/project-vterm ()
+  "Opens a new vterm buffer at project root."
+  (interactive)
+  (defvar vterm-buffer-name)
+  (let* ((default-directory (project-root (project-current)))
+         (project-root-name (s-replace-all '(("." . "")) (f-filename default-directory)))
+         (vterm-buffer-name (format "*%s-vterm*" project-root-name)))
+    (vterm)))
   :config
-  (setq ffip-use-rust-fd t))
+  (setq project--list (mapcar (lambda (path) (list (f-short path))) (f-directories "~/projects"))
+        project-switch-commands '((project-find-file "Find file")
+                                  (project-find-regexp "Find regexp")
+                                  (project-find-dir "Find directory")
+                                  (project-vc-dir "VC-Dir")
+                                  (bs/project-vterm "Vterm"))))
 
-(defun bs/kill-all-project-buffers ()
-  "Kill all open buffers for the current project."
-  (interactive)
-  (let* ((project-root (f-filename (f-long (ffip-project-root))))
-         (open-buffers (buffer-list))
-         (project-file-names (ffip-project-search "" nil))
-         (open-buffers-for-project
-          (-filter (lambda (buffer)
-                     (let ((buffer-file-name (buffer-file-name buffer))
-                           (buffer-name (buffer-name buffer)))
-                       (or (and (s-present? buffer-file-name)
-                                (s-contains? project-root buffer-file-name))
-                           (and (s-present? buffer-name)
-                                (s-contains? project-root buffer-name))))) open-buffers)))
-    (when (and (not (seq-empty-p open-buffers-for-project))
-               (yes-or-no-p
-                (format
-                 "Are you sure you want to kill %d open buffers for project %s?"
-                 (seq-length open-buffers-for-project)
-                 project-root)))
-      (-map 'kill-buffer open-buffers-for-project))))
-
-(defun bs/open-project (base-path)
-  "Opens a project within BASE-PATH and provides embark actions also."
-  (interactive)
-  (let* ((find-command (format "fd '' -t d --base-directory %s -d 1" base-path))
-         (find-command-output (shell-command-to-string find-command))
-         (project-list (-list (s-split "\n" find-command-output)))
-         (selected-project (completing-read "Open project: " project-list)))
-    (dired (format "%s/%s" base-path selected-project))))
-
-(defun bs/open-my-projects ()
-  "Opens a project within ~/projects."
-  (interactive)
-  (bs/open-project "~/projects"))
-
-(bind-key "C-c p p" 'bs/open-my-projects)
-(bind-key "C-c p k" 'bs/kill-all-project-buffers)
+(bind-key "C-x p t" 'bs/project-vterm)
 
 (provide 'init-project)
 ;;; init-project.el ends here
