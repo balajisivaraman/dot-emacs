@@ -56,11 +56,6 @@
   :config
   (diredfl-global-mode t))
 
-(use-package dired+
-  :disabled t
-  :ensure nil
-  :after dired)
-
 (use-package dired-x
   :after dired
   :ensure nil
