@@ -31,5 +31,17 @@
 (use-package nix-mode
   :mode ("\\.nix\\'" . nix-mode))
 
+(use-package vterm
+  :bind
+  ("M-T" . bs/scratch-vterm-buffer)
+  :init
+  (defun bs/scratch-vterm-buffer ()
+  "Open a *scratch* vterm buffer for misc operations."
+  (interactive)
+  (defvar vterm-buffer-name)
+  (let* ((vterm-buffer-name "*scratch-term*")
+         (default-directory "~"))
+    (vterm))))
+
 (provide 'init-linux)
 ;;; init-linux.el ends here
