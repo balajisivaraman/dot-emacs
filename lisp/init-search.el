@@ -31,7 +31,7 @@
 (use-package xref
   :ensure nil
   :custom
-  (xref-search-program "ripgrep"))
+  (xref-search-program 'ripgrep))
 
 (use-package visual-regexp
   :disabled t
