@@ -25,6 +25,8 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+(unless (package-installed-p 'diminish)
+  (package-install 'diminish))
 (eval-when-compile
   (require 'use-package))
 ;; Always install packages from Melpa, Elpa
