@@ -29,7 +29,9 @@
   :ensure nil
   :bind
   (("C-x p C" . project-compile)
-   ("C-x p p" . bs/open-my-projects))
+   ("C-x p g" . magit-project-status)
+   ("C-x p p" . bs/open-my-projects)
+   ("C-x p s" . project-find-regexp))
   :init
   (defun bs/project-vterm ()
   "Opens a new vterm buffer at project root."
@@ -48,7 +50,7 @@
   (setq project-switch-commands '((project-find-file "Find file")
                                   (project-find-regexp "Find regexp")
                                   (project-find-dir "Find directory")
-                                  (project-vc-dir "VC-Dir")
+                                  (magit-project-status "Magit")
                                   (bs/project-vterm "Vterm"))))
 
 (bind-key "C-x p t" 'bs/project-vterm)
