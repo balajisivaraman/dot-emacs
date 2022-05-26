@@ -53,6 +53,8 @@
 (use-package selected
   :demand t
   :diminish selected-minor-mode
+  :custom
+  (selected-ignore-modes '(magit-status-mode))
   :bind (:map selected-keymap
               ("[" . align-code)
               ("f" . fill-region)
