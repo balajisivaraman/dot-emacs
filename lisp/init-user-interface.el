@@ -30,12 +30,14 @@
    modus-themes-fringes 'subtle
    modus-themes-headings '((t . (rainbow no-bold)))
    modus-themes-mixed-fonts t
-   modus-themes-org-agenda ; this is an alist: read the manual or its doc string
-      '((header-block . (variable-pitch 1.3))
-        (header-date . (workaholic bold-today 1.1))
-        (event . (accented varied))
-        (scheduled . rainbow)
-        (habit . traffic-light)))
+   modus-themes-org-agenda '((header-block . (variable-pitch 1.3))
+                             (header-date . (workaholic bold-today 1.1))
+                             (event . (accented varied))
+                             (scheduled . rainbow)
+                             (habit . traffic-light))
+   modus-themes-completions '((matches . (extrabold background))
+                              (selection . (semibold accented))
+                              (popup . (extrabold))))
   (modus-themes-load-themes)
   :config
   (modus-themes-load-vivendi)
