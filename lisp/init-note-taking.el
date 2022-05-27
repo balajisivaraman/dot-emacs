@@ -37,26 +37,37 @@
   :init
   (pdf-tools-install))
 
-(use-package ivy-bibtex
-  :bind
-  ("M-n b" . ivy-bibtex)
-  :config
-  (setq
-   bibtex-completion-notes-path bs/notes-path
-   bibtex-completion-bibliography bs/bibfile-path
-   bibtex-completion-pdf-field "file"))
+(use-package bibtex-completion
+  :defer t
+  :custom
+  (bibtex-completion-notes-path bs/notes-path)
+  (bibtex-completion-bibliography bs/bibfile-path)
+  (bibtex-completion-pdf-field "file"))
 
-(use-package org-ref
-  :config
-  (setq
-   org-ref-completion-library 'org-ref-ivy-cite
-   org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename
-   org-ref-default-bibliography (list bs/bibfile-path)
-   org-ref-bibliography-notes (s-concat bs/notes-path "/bibnotes.org")
-   org-ref-note-title-format "* TODO %y - %t\n :PROPERTIES:\n  :Custom_ID: %k\n  :NOTER_DOCUMENT: %F\n :ROAM_KEY: cite:%k\n  :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
-   org-ref-notes-directory bs/notes-path
-   org-ref-notes-function 'orb-edit-notes
-   ))
+(use-package citar
+  :custom
+  (org-cite-global-bibliography `(bs/bibfile-path))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography)
+  (citar-at-point-function 'embark-act)
+  (citar-open-note-functions '(orb-citar-edit-note))
+  (citar-templates '((main . "${author editor:30}     ${date year issued:4}     ${title:48}")
+                     (suffix . "          ${=key= id:15}    ${=type=:12}    ${tags keywords:*}")
+                     (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
+                     (note . "Notes on ${author editor}, ${title}")))
+  (citar-notes-paths `(,bs/notes-path))
+  (bibtex-dialect 'biblatex)
+  (citar-symbols `((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
+                   (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-blue :v-adjust -0.3) . " ")
+                   (link ,(all-the-icons-octicon "link" :face 'all-the-icons-orange :v-adjust 0.01) . " ")))
+  (citar-symbol-separator "  ")
+  :bind
+  (("C-c b" . citar-insert-citation)
+   (:map org-mode-map :package org ("C-c b" . #'org-cite-insert))
+   :map minibuffer-local-map
+   ("M-b" . citar-insert-preset)))
 
 (use-package org-roam
   :diminish (org-roam-mode)
@@ -161,6 +172,8 @@
   :after (org-roam)
   :hook (org-roam-mode . org-roam-bibtex-mode)
   :diminish (org-roam-bibtex-mode)
+  :custom
+  (orb-roam-ref-format 'org-cite)
   :config
   (setq
    orb-preformat-keywords
