@@ -34,7 +34,7 @@
 
 (use-package consult
   :bind
-  (("C-c b b"  . consult-bookmark)
+  (("C-c f b"  . consult-bookmark)
    ("C-x b"  . consult-buffer)
    ("M-y"    . consult-yank-pop)
    ("M-g g"    . consult-goto-line)
@@ -52,9 +52,10 @@
 
 (use-package embark
   :bind
-  ("C-h B" . embark-bindings)
+  (("C-h B" . embark-bindings)
+   ("C-." . embark-act))
   (:map minibuffer-local-map
-   ("C-;" . embark-act))
+   ("C-." . embark-act))
   :config
   (setq embark-action-indicator
       (lambda (map &optional _target)
