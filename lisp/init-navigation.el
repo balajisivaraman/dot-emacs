@@ -34,6 +34,10 @@
   :bind
   ("C-j j". avy-goto-char-timer))
 
+(use-package ctrlf
+  :config
+  (ctrlf-mode t))
+
 (use-package ace-window
   :bind
   ("C-x o" . ace-window))
