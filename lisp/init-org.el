@@ -28,9 +28,7 @@
 (global-set-key (kbd "M-o") 'bs/org-map)
 
 (use-package org
-  :diminish (org-indent-mode)
-  :hook ((org-mode . org-bullets-mode)
-         (org-mode . variable-pitch-mode)
+  :hook ((org-mode . variable-pitch-mode)
          (org-mode . company-mode)
          (org-agenda-mode . (lambda () (setq-local line-spacing 3)))
          (before-save . bs/org-set-last-modified))
@@ -176,7 +174,6 @@
                                     ("Writing" ,(s-concat bs/org-agenda-icons-path "writing.png") nil nil :ascent center)))
   ;; Org Id Configuration
   (add-to-list 'org-modules 'org-id)
-  (add-to-list 'org-modules 'org-depend)
   (setq org-id-link-to-org-use-id t
         org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations"))
   ;; Look and Feel Configuration
@@ -196,24 +193,16 @@
    '(org-level-4 ((t (:height 1.15))))
    '(org-level-3 ((t (:height 1.21))))
    '(org-level-2 ((t (:height 1.27))))
-   '(org-level-1 ((t (:height 1.33)))))
-  (diminish 'buffer-face-mode))
+   '(org-level-1 ((t (:height 1.33))))))
 
-(use-package org-contrib)
-
-(use-package org-habit
-  :ensure nil
+(use-package org-contrib
+  :after org
   :config
-  (add-to-list 'org-modules 'org-habit)
-
-  (setq org-habit-preceding-days 6
-        org-habit-following-days 7)
-
-  ;; Length of the habit graph
-  (setq org-habit-graph-column 65))
+  (add-to-list 'org-modules 'org-depend))
 
 (use-package org-bullets
-  :after org)
+  :after org
+  :hook ((org-mode . org-bullets-mode)))
 
 (use-package org-protocol
   :after org
@@ -227,8 +216,7 @@
   :after org
   :ensure nil
   :commands (org-indent-mode)
-  :hook (org-mode . org-indent-mode)
-  :diminish (org-indent-mode))
+  :hook (org-mode . org-indent-mode))
 
 (use-package org-modern
   :hook (org-mode . org-modern-mode))

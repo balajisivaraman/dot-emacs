@@ -24,20 +24,6 @@
 ;;; Code:
 
 (use-package magit
-  :commands
-  (magit-status
-   magit-branch
-   magit-merge
-   magit-stash
-   magit-stash-apply
-   magit-pull
-   magit-reset-head
-   magit-reset-hard
-   magit-log-all
-   magit-log
-   magit-checkout)
-  :init
-  (setq-default magit-last-seen-setup-instructions "1.4.0")
   :bind
   (("C-x g" . magit-status)
    ("C-c g s" . magit-status)
@@ -49,12 +35,11 @@
 (use-package magit-delta
   :after magit
   :hook ((magit-mode . (lambda () (magit-delta-mode +1))))
-  :config
-  (setq magit-delta-default-dark-theme "TwoDark"))
+  :custom
+  (magit-delta-default-dark-theme "TwoDark"))
 
 (use-package git-timemachine
-  :commands (git-timemachine)
-   :bind (("C-c g t" . git-timemachine)))
+  :bind (("C-c g t" . git-timemachine)))
 
 (provide 'init-version-control)
 ;;; init-version-control.el ends here

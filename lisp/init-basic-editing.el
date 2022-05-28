@@ -25,19 +25,21 @@
 
 ;; Undo Tree
 (use-package undo-tree
-  :diminish undo-tree-mode
   :bind
   (("C-S-z" . undo-tree-redo)
    ("C-z" . undo-tree-undo))
-  :init
-  (global-undo-tree-mode 1)
+  :custom
+  (undo-tree-visualizer-timestamps t)
+  (undo-tree-history-directory-alist `(("." . ,(concat bs/emacs-cache-directory "undo-tree"))))
   :config
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-history-directory-alist `(("." . ,(concat bs/emacs-cache-directory "undo-tree")))))
+  (global-undo-tree-mode 1))
 
 ;; Rectangle Editing
-(bind-key "C-x r i" 'string-insert-rectangle)
-(bind-key "C-x r r" 'replace-rectangle)
+(use-package rect
+  :ensure nil
+  :bind
+  (("C-x r i" . string-insert-rectangle)
+   ("C-x r r" . replace-rectangle)))
 
 ;; Expand Region and Change Inner
 (use-package expand-region
@@ -52,7 +54,6 @@
 
 (use-package selected
   :demand t
-  :diminish selected-minor-mode
   :custom
   (selected-ignore-modes '(magit-status-mode))
   :bind (:map selected-keymap
@@ -127,7 +128,7 @@
 (use-package embrace
   :bind (("C-c y" . bs/embrace/body)
          ("C-c x e" . bs/embrace/body))
-  :init
+  :config
   (defhydra bs/embrace (:hint nil)
     "
     Add (_a_), change (_c_) or delete (_d_) a pair.  Quit with _q_.
@@ -138,15 +139,14 @@
     ("q" nil)))
 
 (use-package crux
-  :commands (crux-duplicate-current-line-or-region crux-delete-file-and-buffer crux-visit-term-buffer crux-rename-buffer-and-file)
   :bind
   (("C-a" . crux-move-beginning-of-line)
    ("C-c d" . crux-duplicate-current-line-or-region)
    ("C-c D" . crux-delete-file-and-buffer)
-   ("C-c T" . crux-visit-term-buffer)
    ("C-c f r" . crux-rename-buffer-and-file)))
 
-(use-package iedit)
+(use-package iedit
+  :bind (("C-;" . iedit-mode)))
 
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here

@@ -33,11 +33,10 @@
 
 ;; Cleanup unnecessary whitespace
 (use-package ethan-wspace
-  :diminish ethan-wspace-mode
-  :init
-  (global-ethan-wspace-mode t)
   :bind
-  ("C-c f c" . ethan-wspace-clean-all))
+  (("C-c f c" . ethan-wspace-clean-all))
+  :config
+  (global-ethan-wspace-mode t))
 
 (provide 'init-codestyle)
 ;;; init-codestyle.el ends here

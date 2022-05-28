@@ -31,29 +31,28 @@
   (("C-x p C" . project-compile)
    ("C-x p g" . magit-project-status)
    ("C-x p p" . bs/open-my-projects)
-   ("C-x p s" . project-find-regexp))
-  :init
-  (defun bs/project-vterm ()
-  "Opens a new vterm buffer at project root."
-  (interactive)
-  (defvar vterm-buffer-name)
-  (let* ((default-directory (project-root (project-current)))
-         (project-root-name (s-replace-all '(("." . "")) (f-filename default-directory)))
-         (vterm-buffer-name (format "*%s-vterm*" project-root-name)))
-    (vterm)))
+   ("C-x p s" . project-find-regexp)
+   ("C-x p t" . bs/project-vterm))
+  :custom
+  (project-switch-commands '((project-find-file "Find file")
+                             (project-find-regexp "Find regexp")
+                             (project-find-dir "Find directory")
+                             (magit-project-status "Magit")
+                             (bs/project-vterm "Vterm")))
   :config
+  (defun bs/project-vterm ()
+    "Opens a new vterm buffer at project root."
+    (interactive)
+    (defvar vterm-buffer-name)
+    (let* ((default-directory (project-root (project-current)))
+           (project-root-name (s-replace-all '(("." . "")) (f-filename default-directory)))
+           (vterm-buffer-name (format "*%s-vterm*" project-root-name)))
+      (vterm)))
   (defun bs/open-my-projects ()
-  "Opens a project within ~/projects/costa."
-  (interactive)
-  (let* ((project--list (mapcar (lambda (path) (list (f-short path))) (f-directories "~/projects/"))))
-    (call-interactively 'project-switch-project)))
-  (setq project-switch-commands '((project-find-file "Find file")
-                                  (project-find-regexp "Find regexp")
-                                  (project-find-dir "Find directory")
-                                  (magit-project-status "Magit")
-                                  (bs/project-vterm "Vterm"))))
-
-(bind-key "C-x p t" 'bs/project-vterm)
+    "Opens a project within ~/projects/."
+    (interactive)
+    (let* ((project--list (mapcar (lambda (path) (list (f-short path))) (f-directories "~/projects/"))))
+      (call-interactively 'project-switch-project))))
 
 (provide 'init-project)
 ;;; init-project.el ends here

@@ -19,15 +19,16 @@
 
 ;;; Commentary:
 
-;; Add `ibuffer-vc' and `persistent-scratch' packages.
+;; Add `ibuffer' and `persistent-scratch' packages.
 
 ;;; Code:
 
-(bind-key "C-x C-b" 'ibuffer)
+(use-package ibuffer
+  :bind (("C-x C-b" . ibuffer)))
 
 (use-package persistent-scratch
-  :init
-  (setq persistent-scratch-save-file (concat bs/emacs-cache-directory ".persistent-scratch"))
+  :custom
+  (persistent-scratch-save-file (concat bs/emacs-cache-directory ".persistent-scratch"))
   :config
   (persistent-scratch-setup-default))
 

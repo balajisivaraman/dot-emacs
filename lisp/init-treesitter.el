@@ -25,11 +25,11 @@
 
 (use-package tree-sitter
   :hook ((tree-sitter-mode . tree-sitter-hl-mode))
-  :diminish (tree-sitter-mode)
   :init
   (global-tree-sitter-mode))
-(use-package tree-sitter-langs)
 
+(use-package tree-sitter-langs
+  :after (tree-sitter))
 
 (provide 'init-treesitter)
 ;;; init-treesitter.el ends here

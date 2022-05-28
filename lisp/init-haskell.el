@@ -24,16 +24,15 @@
 ;;; Code:
 
 (use-package haskell-mode
-  :mode ("\\.hs\\'" . haskell-mode))
-
-(defun bs/haskell-mode-hook ()
-  "Hooks for Haskell Mode."
-  (eglot-ensure)
-  (company-mode)
-  (flymake-mode)
-  (eldoc-mode))
-
-(add-hook 'haskell-mode-hook 'bs/haskell-mode-hook)
+  :mode ("\\.hs\\'" . haskell-mode)
+  :hook (haskell-mode . bs/haskell-mode-hook)
+  :config
+  (defun bs/haskell-mode-hook ()
+    "Hooks for Haskell Mode."
+    (eglot-ensure)
+    (company-mode)
+    (flymake-mode)
+    (eldoc-mode)))
 
 (provide 'init-haskell)
 ;;; init-haskell.el ends here

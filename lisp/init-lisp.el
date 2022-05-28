@@ -73,10 +73,10 @@
          lisp-modes))
 
 (use-package paredit
-  :diminish paredit-mode
   :commands paredit-mode
   :hook (paredit-mode
          . (lambda ()
+             (unbind-key "M-n" paredit-mode-map)
              (unbind-key "M-r" paredit-mode-map)
              (unbind-key "M-s" paredit-mode-map)
              (unbind-key "C-j" paredit-mode-map)))
@@ -90,10 +90,7 @@
   "Functions to be called when entering Lisp mode."
   (company-mode t)
   (paredit-mode t)
-  (use-package eldoc
-    :ensure nil
-    :diminish eldoc-mode
-    :commands eldoc-mode))
+  (eldoc-mode t))
 
 (defadvice emacs-lisp-mode
     (after elisp-rename-modeline activate)

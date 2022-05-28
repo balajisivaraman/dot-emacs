@@ -29,26 +29,6 @@
    (lambda (interface) (s-starts-with-p "en" (car interface)))
    (network-interface-list)))
 
-(defun bs/duplicate-line-or-region (&optional begin end)
-  "If region is active, duplicates it. Othewise duplicates the current line."
-  (interactive "r")
-  (save-excursion
-    (let ((reg-begin begin)
-          (reg-end end)
-          (line-text))
-      (if (not (region-active-p))
-          (progn
-            (bs/smarter-move-beginning-of-line nil)
-            (setq reg-begin (point))
-            (move-end-of-line nil)
-            (setq reg-end (point))))
-      (setq line-text (buffer-substring reg-begin reg-end))
-      (goto-char reg-end)
-      (move-end-of-line nil)
-      (newline)
-      (insert line-text))))
-(bind-key "C-c C-d" 'bs/duplicate-line-or-region)
-
 (defsubst hook-into-modes (func &rest modes)
   (dolist (mode-hook modes) (add-hook mode-hook func)))
 

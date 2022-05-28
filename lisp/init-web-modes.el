@@ -24,18 +24,16 @@
 ;;; Code:
 
 (use-package restclient
-  :mode "\\.http\\$")
+  :mode "\\.rest\\$")
 
 (use-package typescript-mode
-  :commands (typescript-mode)
   :hook ((typescript-mode . eglot-ensure)
          (typescript-mode . company-mode))
-  :init
-  (setq typescript-indent-level 2))
+  :custom
+  (typescript-indent-level 2))
 
 (use-package ng2-mode
   :mode ("\\.page\\.html" . ng2-html-mode)
-  :commands (ng2-mode ng2-ts-mode ng2-html-mode)
   :hook (((ng2-ts-mode) . eglot-ensure)
          ((ng2-mode ng2-html-mode ng2-ts-mode) . company-mode)))
 

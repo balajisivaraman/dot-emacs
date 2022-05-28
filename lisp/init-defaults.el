@@ -40,7 +40,6 @@
 (setq confirm-nonexistent-file-or-buffer nil)
 ;; Setting word wrap mode as default
 (global-visual-line-mode 1)
-(diminish 'visual-line-mode)
 ;; Highlight matching parens
 (show-paren-mode t)
 ;; Show column number in bar

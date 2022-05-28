@@ -33,11 +33,11 @@
   :hook (ledger-mode . company-mode)
   :bind (:map ledger-mode-map
               ("M-m r" . bs/insert-rupee-symbol))
-  :config
-  (setq ledger-binary-path "hledger"
-        ledger-mode-should-check-version nil
-        ledger-init-file-name " "
-        ledger-post-amount-alignment-column 75))
+  :custom
+  (ledger-binary-path "hledger")
+  (ledger-mode-should-check-version nil)
+  (ledger-init-file-name " ")
+  (ledger-post-amount-alignment-column 75))
 
 (defun bs/ledger-mode-hook ()
   "Hooks for Ledger Mode."

@@ -25,18 +25,12 @@
 
 (use-package tex-site
   :ensure auctex
+  :hook (LaTeX-mode . company-mode)
   :mode ("\\.tex\\'" . TeX-latex-mode))
 
 (use-package company-auctex
   :after tex-site
-  :init
-  (company-auctex-init))
-
-(defun bs/auctex-mode-hook ()
-  "Hooks for Tex mode."
-  (company-mode t))
-
-(add-hook 'LaTeX-mode-hook 'bs/auctex-mode-hook)
+  :config (company-auctex-init))
 
 (provide 'init-latex)
 ;;; init-latex.el ends here

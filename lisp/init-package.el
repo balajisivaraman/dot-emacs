@@ -34,15 +34,12 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-(unless (package-installed-p 'diminish)
-  (package-install 'diminish))
 (eval-when-compile
   (require 'use-package))
 ;; Always install packages from Melpa, Elpa
 ;; Over-ridden when not used by setting (:ensure nil) in use-package declarations
 (setq use-package-always-ensure t)
 (require 'bind-key)
-(require 'diminish nil t)
 
 (use-package paradox
   :bind

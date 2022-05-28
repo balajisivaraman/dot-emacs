@@ -23,21 +23,20 @@
 
 ;;; Code:
 
-(defvar bs/node-version (s-trim (shell-command-to-string "node -v")))
-
 (use-package eglot
   :commands (eglot-ensure)
   :bind (:map eglot-mode-map
          (("M-m a" . eglot-code-actions)
           ("M-m r" . eglot-rename)
           ("M-m w r" . eglot-reconnect)))
+  :custom
+  (eglot-confirm-server-initiated-edits nil)
   :config
   (add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer")))
   (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(shell-script-mode . ("bash-language-server")))
   (add-to-list 'eglot-server-programs '(c++-mode . ("ccls")))
-  (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
-  (setq eglot-confirm-server-initiated-edits nil))
+  (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio"))))
 
 (use-package cc-mode
   :ensure nil

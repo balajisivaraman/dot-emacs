@@ -70,7 +70,6 @@
    ("M-b" . citar-insert-preset)))
 
 (use-package org-roam
-  :diminish (org-roam-mode)
   :init
   (setq org-roam-v2-ack t)
   (setq
@@ -171,7 +170,6 @@
 (use-package org-roam-bibtex
   :after (org-roam)
   :hook (org-roam-mode . org-roam-bibtex-mode)
-  :diminish (org-roam-bibtex-mode)
   :custom
   (orb-roam-ref-format 'org-cite)
   :config

@@ -25,7 +25,6 @@
 
 ;; pick up changes to files on disk automatically (ie, after git pull)
 (global-auto-revert-mode 1)
-(diminish 'auto-revert-mode)
 
 ;; Backup Directory Configuration
 (set-variable 'temporary-file-directory (concat bs/emacs-cache-directory "temp"))
@@ -47,9 +46,10 @@
 ;; Saveplace Mode - Saves Cursor Position Within Files
 (use-package saveplace
   :ensure nil
-  :init
-  (setq save-place-file (concat bs/emacs-cache-directory ".saveplace"))
-  (save-place-mode))
+  :custom
+  (save-place-file (concat bs/emacs-cache-directory ".saveplace"))
+  :config
+  (save-place-mode t))
 
 (defvar bs/at-work)
 (setq bs/at-work (or (string-equal (downcase (system-name)) "alphacentauri")

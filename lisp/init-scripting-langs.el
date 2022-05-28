@@ -30,7 +30,7 @@
   "\\(.sh\\|.bash\\|.zsh\\)\\(_history\\|_profile\\|rc\\)")
 
 (use-package fish-mode
-  :defer t)
+  :mode "\\(.fish\\)")
 
 (provide 'init-scripting-langs)
 ;;; init-scripting-langs.el ends here

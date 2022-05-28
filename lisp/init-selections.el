@@ -24,13 +24,12 @@
 ;;; Code:
 
 (use-package selectrum
-  :commands (selectrum-mode)
-  :init
+  :config
   (selectrum-mode t))
 
 (use-package orderless
-  :config
-  (setq completion-styles '(orderless)))
+  :custom
+  (completion-styles '(orderless)))
 
 (use-package consult
   :bind
@@ -47,7 +46,7 @@
    :preview-key (kbd "M-.")))
 
 (use-package marginalia
-  :init
+  :config
   (marginalia-mode t))
 
 (use-package embark

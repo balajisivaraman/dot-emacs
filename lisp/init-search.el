@@ -33,11 +33,6 @@
   :custom
   (xref-search-program 'ripgrep))
 
-(use-package visual-regexp
-  :disabled t
-  :bind (("C-c s r" . vr/query-replace)
-         ("C-c s R" . vr/replace)))
-
 (use-package deadgrep
   :commands (deadgrep)
   :bind (("M-s r" . deadgrep)))

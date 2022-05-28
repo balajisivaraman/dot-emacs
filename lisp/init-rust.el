@@ -30,29 +30,7 @@
    rust-format-on-save t))
 
 (use-package cargo
-  :diminish cargo-minor-mode
-  :commands
-  (cargo-minor-mode
-   cargo-process-doc
-   cargo-process-fmt
-   cargo-process-run
-   cargo-process-run-bin
-   cargo-process-run-example
-   cargo-process-new
-   cargo-process-mode
-   cargo-process-init
-   cargo-process-test
-   cargo-process-current-test
-   cargo-process-current-file-tests
-   cargo-process-build
-   cargo-process-clean
-   cargo-process-check
-   cargo-process-bench
-   cargo-process-update
-   cargo-process-repeat
-   cargo-process-clippy
-   cargo-process-search
-   cargo-process-doc-open)
+  :hook (rust-mode . bs/rust-mode-hook)
   :bind
   (:map rust-mode-map
         ("M-m d" . cargo-process-doc)
@@ -74,19 +52,16 @@
         ("M-m C" . cargo-process-clippy)
         ("M-m s" . cargo-process-search)
         ("M-m D" . cargo-process-doc-open))
-  :init
+  :config
   (which-key-add-major-mode-key-based-replacements 'rust-mode
-    "M-m c" "cargo"))
-
-(defun bs/rust-mode-hook ()
-  "Hooks for Rust Mode."
-  (eglot-ensure)
-  (company-mode)
-  (cargo-minor-mode)
-  (flymake-mode)
-  (eldoc-mode))
-
-(add-hook 'rust-mode-hook 'bs/rust-mode-hook)
+    "M-m c" "cargo")
+  (defun bs/rust-mode-hook ()
+    "Hooks for Rust Mode."
+    (eglot-ensure)
+    (company-mode)
+    (cargo-minor-mode)
+    (flymake-mode)
+    (eldoc-mode)))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

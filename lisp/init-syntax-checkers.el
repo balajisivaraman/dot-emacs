@@ -25,10 +25,9 @@
 
 (use-package flymake
   :ensure nil
-  :diminish (flymake-mode)
   :bind (("M-g n" . bs/flymake-errors/flymake-goto-next-error)
          ("M-g p" . bs/flymake-errors/flymake-goto-prev-error))
-  :init
+  :config
   (defhydra bs/flymake-errors ()
     "Flycheck errors."
     ("n" flymake-goto-next-error "next")
@@ -37,7 +36,7 @@
 
 (use-package flymake-proselint
   :after flymake
-  :init
+  :config
   (defun bs/flymake-proselint-setup ()
     "Setup Flymake Proselint."
     (flymake-mode +1)
@@ -45,26 +44,19 @@
 
 ;; Flyspell Mode
 (use-package flyspell
-  :diminish (flyspell-mode . " Ⓕ")
   :ensure nil
-  :commands (flyspell-buffer flyspell-mode)
   :bind (("C-c i b" . flyspell-buffer)
          ("C-c i f" . flyspell-mode))
-  :init
-  (use-package ispell
-    :ensure nil
-    :commands (ispell-comments-and-strings
-               ispell-change-dictionary
-               ispell-kill-ispell
-               ispell-message
-               ispell-region)
-    :bind (("C-c i c" . ispell-comments-and-strings)
-           ("C-c i d" . ispell-change-dictionary)
-           ("C-c i k" . ispell-kill-ispell)
-           ("C-c i m" . ispell-message)
-           ("C-c i r" . ispell-region)))
   :config
   (unbind-key "C-." flyspell-mode-map))
+
+(use-package ispell
+  :ensure nil
+  :bind (("C-c i c" . ispell-comments-and-strings)
+         ("C-c i d" . ispell-change-dictionary)
+         ("C-c i k" . ispell-kill-ispell)
+         ("C-c i m" . ispell-message)
+         ("C-c i r" . ispell-region)))
 
 (provide 'init-syntax-checkers)
 ;;; init-syntax-checkers.el ends here

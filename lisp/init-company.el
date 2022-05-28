@@ -24,24 +24,22 @@
 ;;; Code:
 
 (use-package company
-  :diminish company-mode
   :commands company-mode
-  :init
-  (setq
-   company-minimum-prefix-length 2
-   company-selection-wrap-around t
-   company-show-numbers t
-   company-tooltip-align-annotations t
-   company-require-match nil
-   company-dabbrev-downcase nil
-   company-dabbrev-code-ignore-case nil
-   company-transformers '(company-sort-by-occurrence))
-  (use-package company-quickhelp
-    :init
-    (setq company-quickhelp-delay 0.6)
-    :config
-    (company-quickhelp-mode t)))
+  :custom
+  (company-minimum-prefix-length 2)
+  (company-selection-wrap-around t)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations t)
+  (company-require-match nil)
+  (company-dabbrev-downcase nil)
+  (company-dabbrev-code-ignore-case nil)
+  (company-transformers '(company-sort-by-occurrence)))
 
+(use-package company-quickhelp
+  :custom
+  (company-quickhelp-delay 0.6)
+  :config
+  (company-quickhelp-mode))
 
 (provide 'init-company)
 ;;; init-company.el ends here

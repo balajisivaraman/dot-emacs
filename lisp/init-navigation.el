@@ -29,150 +29,22 @@
 (global-set-key (kbd "C-j") 'jump-map)
 
 (use-package avy
-  :demand t
-  :commands (avy-goto-char avy-goto-word-1 avy-pop-mark avy-goto-line)
+  :custom
+  (avy-timeout-seconds 0.2)
   :bind
-  (("C-j j". bs/avy-goto-word-2-below)
-   ("C-j k". bs/avy-goto-word-2-above)
-   ("C-j c". avy-goto-char)
-   ("C-j l". avy-goto-line))
-  :config
-  (defun bs/avy-goto-word-2 (char1 char2 &optional arg beg end symbol)
-    "Jump to the currently visible CHAR1 followed by CHAR2.
-The window scope is determined by `avy-all-windows'.
-When ARG is non-nil, do the opposite of `avy-all-windows'.
-BEG and END narrow the scope where candidates are searched."
-    (interactive (list (let ((c1 (read-char "char 1: " t)))
-                         (if (memq c1 '(? ?\b))
-                             (keyboard-quit)
-                           c1))
-                       (let ((c2 (read-char "char 2: " t)))
-                         (cond ((eq c2 ?)
-                                (keyboard-quit))
-                               ((memq c2 avy-del-last-char-by)
-                                (keyboard-escape-quit)
-                                (call-interactively 'avy-goto-char-2))
-                               (t
-                                c2)))
-                       current-prefix-arg
-                       nil nil))
-    (when (eq char1 ?)
-      (setq char1 ?\n))
-    (when (eq char2 ?)
-      (setq char2 ?\n))
-    (avy-with bs/avy-goto-word-2
-      (let* ((str (string char1 char2))
-             (regex (cond ((string= str ".")
-                           "\\.")
-                          ((and avy-word-punc-regexp
-                                (string-match avy-word-punc-regexp str))
-                           (regexp-quote str))
-                          ((and (<= char1 26) (<= char2 26))
-                           str)
-                          (t
-                           (concat
-                            (if symbol "\\_<" "\\b")
-                            str)))))
-        (avy-jump regex
-                  :window-flip arg
-                  :beg beg
-                  :end end))))
-
-  (defun bs/avy-goto-word-2-above (char1 char2 &optional arg)
-    "Jump to the currently visible CHAR1 followed by CHAR2 at a word
-start. This is a scoped version of `bs/avy-goto-word-2', where the scope
-is the visible part of the current buffer up to point. The window
-scope is determined by `avy-all-windows'. When ARG is non-nil, do the
-opposite of `avy-all-windows'."
-    (interactive (list (read-char "char 1: " t)
-                       (read-char "char 2: " t)
-                       current-prefix-arg))
-    (avy-with bs/avy-goto-word-2-above
-      (bs/avy-goto-word-2 char1 char2 arg (window-start) (point))))
-
-  (defun bs/avy-goto-word-2-below (char1 char2 &optional arg)
-    "Jump to the currently visible CHAR1 followed by CHAR2. This is a
-scoped version of `bs/avy-goto-word-2', where the scope is the visible
-part of the current buffer following point. The window scope is
-determined by `avy-all-windows'. When ARG is non-nil, do the opposite
-of `avy-all-windows'."
-    (interactive (list (read-char "char 1: " t)
-                       (read-char "char 2: " t)
-                       current-prefix-arg))
-    (avy-with bs/avy-goto-word-2-below
-      (bs/avy-goto-word-2
-       char1 char2 arg
-       (point) (window-end (selected-window) t)))))
+  ("C-j j". avy-goto-char-timer))
 
 (use-package ace-window
   :bind
   ("C-x o" . ace-window))
 
-(use-package golden-ratio
-  :init
-  (defun bs/toggle-golden-ratio ()
-    (interactive)
-    (if (bound-and-true-p golden-ratio-mode)
-        (progn
-          (golden-ratio-mode -1)
-          (balance-windows))
-      (golden-ratio-mode)
-      (golden-ratio)))
-  :diminish (golden-ratio-mode . " ⓖ")
-  :bind (("C-c t g" . balaji-toggle-golden-ratio))
-  :config
-  (setq
-   golden-ratio-extra-commands '(windmove-up
-                                 windmove-down
-                                 windmove-left
-                                 windmove-right
-                                 select-window-0
-                                 select-window-1
-                                 select-window-2
-                                 select-window-3
-                                 select-window-4
-                                 select-window-5
-                                 select-window-6
-                                 select-window-7
-                                 select-window-8
-                                 select-window-9
-                                 ace-window
-                                 ace-delete-window
-                                 ace-select-window
-                                 ace-swap-window
-                                 ace-maximize-window)
-   golden-ratio-auto-scale nil
-   golden-ratio-exclude-modes '(flycheck-error-list-mode
-                                calc-mode
-                                ediff-mode
-                                eshell-mode
-                                dired-mode)
-
-   split-width-threshold nil
-   golden-ratio-exclude-buffer-regexp
-   `(,(rx bos "*" (any "h" "H") "elm*" eos)
-     ,(rx bos "*which-key*" eos)
-     ,(rx bos "*NeoTree*" eos))))
-
-(use-package page                       ; Page navigation
-  :ensure nil
-  :bind (("C-x ]" . bs/pages/forward-page)
-         ("C-x [" . bs/pages/backward-page))
-  :init
-  (defhydra bs/pages ()
-    "Pages"
-    ("[" backward-page "backward")
-    ("]" forward-page "forward")
-    ("n" narrow-to-page "narrow" :exit t)
-    ("q" nil "quit" :exit t)))
-
 (use-package outline
   :ensure nil
   :defer t
-  :diminish outline-minor-mode)
-
-(defhydra bs/outline (:color pink :hint nil)
-  "
+  :bind (("C-c O" . bs/outline/body))
+  :config
+  (defhydra bs/outline (:color pink :hint nil)
+    "
 ^Hide^             ^Show^           ^Move
 ^^^^^^------------------------------------------------------
 _q_: sublevels     _a_: all         _u_: up
@@ -183,48 +55,39 @@ _l_: leaves        _s_: subtree     _b_: backward same level
 _d_: subtree
 
 "
-  ;; Hide
-  ("q" hide-sublevels)    ; Hide everything but the top-level headings
-  ("t" hide-body)         ; Hide everything but headings (all body lines)
-  ("o" hide-other)        ; Hide other branches
-  ("c" hide-entry)        ; Hide this entry's body
-  ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
-  ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
-  ;; Show
-  ("a" show-all)          ; Show (expand) everything
-  ("e" show-entry)        ; Show this heading's body
-  ("i" show-children)     ; Show this heading's immediate child sub-headings
-  ("k" show-branches)     ; Show all sub-headings under this heading
-  ("s" show-subtree)      ; Show (expand) everything in this heading & below
-  ;; Move
-  ("u" outline-up-heading)                ; Up
-  ("n" outline-next-visible-heading)      ; Next
-  ("p" outline-previous-visible-heading)  ; Previous
-  ("f" outline-forward-same-level)        ; Forward - same level
-  ("b" outline-backward-same-level)       ; Backward - same level
-  ("z" nil "leave"))
-
-(global-set-key (kbd "C-c O") 'balaji-outline/body) ; by example
+    ;; Hide
+    ("q" hide-sublevels)  ; Hide everything but the top-level headings
+    ("t" hide-body)    ; Hide everything but headings (all body lines)
+    ("o" hide-other)   ; Hide other branches
+    ("c" hide-entry)   ; Hide this entry's body
+    ("l" hide-leaves)  ; Hide body lines in this entry and sub-entries
+    ("d" hide-subtree) ; Hide everything in this entry and sub-entries
+    ;; Show
+    ("a" show-all)    ; Show (expand) everything
+    ("e" show-entry)  ; Show this heading's body
+    ("i" show-children) ; Show this heading's immediate child sub-headings
+    ("k" show-branches) ; Show all sub-headings under this heading
+    ("s" show-subtree) ; Show (expand) everything in this heading & below
+    ;; Move
+    ("u" outline-up-heading)             ; Up
+    ("n" outline-next-visible-heading)   ; Next
+    ("p" outline-previous-visible-heading) ; Previous
+    ("f" outline-forward-same-level)       ; Forward - same level
+    ("b" outline-backward-same-level)      ; Backward - same level
+    ("z" nil "leave")))
 
 (use-package beginend
-  :diminish
-  (beginend-global-mode . "")
-  :init
-  (beginend-global-mode)
-  (-each (-distinct (-map
-                     (lambda (item) (cdr item))
-                     beginend-modes))
-    (lambda (item) (diminish item ""))))
+  :config
+  (beginend-global-mode))
 
 (use-package bookmark
   :ensure nil
-  :commands (bookmark-jump bookmark-set bookmark-bmenu-list)
   :bind
   (("C-c B l" . bookmark-bmenu-list)
    ("C-c B s" . bookmark-set)
    ("C-j b"   . bookmark-jump))
-  :config
-  (setq bookmark-file (concat bs/emacs-cache-directory "bookmarks")))
+  :custom
+  (bookmark-file (concat bs/emacs-cache-directory "bookmarks")))
 
 (provide 'init-navigation)
 ;;; init-navigation.el ends here

@@ -45,21 +45,19 @@
   (add-to-list 'default-frame-alist '(alpha . (96 . 96))))
 
 (use-package nyan-mode
-  :init (nyan-mode))
+  :config (nyan-mode))
 
 (use-package restart-emacs
-  :commands (restart-emacs save-buffers-kill-emacs)
   :bind
   ("C-c q r" . restart-emacs)
   ("C-c q q" . save-buffers-kill-emacs))
 
 (use-package face-remap
   :ensure nil
-  :diminish (buffer-face-mode)
   :bind
   (("C-+" . bs/font-scaling/text-scale-increase)
    ("C--" . bs/font-scaling/text-scale-decrease))
-  :init
+  :config
   (defhydra bs/font-scaling ()
     "Font scaling"
     ("+" text-scale-increase "Scale Up")
@@ -67,91 +65,85 @@
     ("q" nil "Quit" :exit t )))
 
 (use-package rainbow-delimiters
-  :defer t
-  :init
-  (dolist (hook '(text-mode-hook prog-mode-hook))
-    (add-hook hook #'rainbow-delimiters-mode)))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-height 40))
+  (doom-modeline-height 40)
+  :config (doom-modeline-mode 1))
 
 (use-package all-the-icons
   :custom
   (all-the-icons-scale-factor 1))
 
 (use-package pulsar
-  :demand t
-  :init
-  (pulsar-global-mode t)
   :config
-  (setq pulsar-pulse-functions
-        ;; NOTE 2022-04-09: The commented out functions are from before
-        ;; the introduction of `pulsar-pulse-on-window-change'.  Try that
-        ;; instead.
-        '(recenter-top-bottom
-          move-to-window-line-top-bottom
-          reposition-window
-          ;; bookmark-jump
-          ;; other-window
-          ;; delete-window
-          ;; delete-other-windows
-          forward-page
-          backward-page
-          scroll-up-command
-          scroll-down-command
-          ;; windmove-right
-          ;; windmove-left
-          ;; windmove-up
-          ;; windmove-down
-          ;; windmove-swap-states-right
-          ;; windmove-swap-states-left
-          ;; windmove-swap-states-up
-          ;; windmove-swap-states-down
-          ;; tab-new
-          ;; tab-close
-          ;; tab-next
-          org-next-visible-heading
-          org-previous-visible-heading
-          org-forward-heading-same-level
-          org-backward-heading-same-level
-          outline-backward-same-level
-          outline-forward-same-level
-          outline-next-visible-heading
-          outline-previous-visible-heading
-          outline-up-heading))
-
-  (setq pulsar-pulse-on-window-change t)
-  (setq pulsar-pulse t)
-  (setq pulsar-delay 0.055)
-  (setq pulsar-iterations 10)
-  (setq pulsar-face 'pulsar-red)
-  (setq pulsar-highlight-face 'pulsar-yellow))
+  (pulsar-global-mode t)
+  :custom
+  (pulsar-pulse-functions
+   ;; NOTE 2022-04-09: The commented out functions are from before
+   ;; the introduction of `pulsar-pulse-on-window-change'.  Try that
+   ;; instead.
+   '(recenter-top-bottom
+     move-to-window-line-top-bottom
+     reposition-window
+     ;; bookmark-jump
+     ;; other-window
+     ;; delete-window
+     ;; delete-other-windows
+     forward-page
+     backward-page
+     scroll-up-command
+     scroll-down-command
+     ;; windmove-right
+     ;; windmove-left
+     ;; windmove-up
+     ;; windmove-down
+     ;; windmove-swap-states-right
+     ;; windmove-swap-states-left
+     ;; windmove-swap-states-up
+     ;; windmove-swap-states-down
+     ;; tab-new
+     ;; tab-close
+     ;; tab-next
+     org-next-visible-heading
+     org-previous-visible-heading
+     org-forward-heading-same-level
+     org-backward-heading-same-level
+     outline-backward-same-level
+     outline-forward-same-level
+     outline-next-visible-heading
+     outline-previous-visible-heading
+     outline-up-heading))
+  (pulsar-pulse-on-window-change t)
+  (pulsar-pulse t)
+  (pulsar-delay 0.055)
+  (pulsar-iterations 10)
+  (pulsar-face 'pulsar-red)
+  (pulsar-highlight-face 'pulsar-yellow))
 
 (use-package lin
-  :init
-  (lin-global-mode 1)
   :config
-  (setq lin-face 'lin-blue)
-  (setq lin-mode-hooks
-        '(bongo-mode-hook
-          dired-mode-hook
-          elfeed-search-mode-hook
-          git-rebase-mode-hook
-          grep-mode-hook
-          ibuffer-mode-hook
-          ilist-mode-hook
-          ledger-report-mode-hook
-          log-view-mode-hook
-          magit-log-mode-hook
-          mu4e-headers-mode
-          notmuch-search-mode-hook
-          notmuch-tree-mode-hook
-          occur-mode-hook
-          org-agenda-mode-hook
-          proced-mode-hook
-          tabulated-list-mode-hook)))
+  (lin-global-mode 1)
+  :custom
+  (lin-face 'lin-blue)
+  (lin-mode-hooks '(bongo-mode-hook
+                    dired-mode-hook
+                    elfeed-search-mode-hook
+                    git-rebase-mode-hook
+                    grep-mode-hook
+                    ibuffer-mode-hook
+                    ilist-mode-hook
+                    ledger-report-mode-hook
+                    log-view-mode-hook
+                    magit-log-mode-hook
+                    mu4e-headers-mode
+                    notmuch-search-mode-hook
+                    notmuch-tree-mode-hook
+                    occur-mode-hook
+                    org-agenda-mode-hook
+                    proced-mode-hook
+                    tabulated-list-mode-hook)))
 
 (provide 'init-user-interface)
 ;;; init-user-interface.el ends here

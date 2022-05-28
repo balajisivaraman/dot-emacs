@@ -34,7 +34,7 @@
 (use-package vterm
   :bind
   ("M-T" . bs/scratch-vterm-buffer)
-  :init
+  :config
   (defun bs/scratch-vterm-buffer ()
   "Open a *scratch* vterm buffer for misc operations."
   (interactive)

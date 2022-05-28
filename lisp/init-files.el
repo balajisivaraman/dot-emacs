@@ -25,43 +25,32 @@
 
 (use-package files
   :ensure nil
-  :commands (revert-buffer)
   :bind
   (("C-c f f" . find-file)
    ("C-c f s" . save-buffer)
    ("C-c f w" . write-file)
    ("C-c f z" . revert-buffer)
    ("C-c f /" . revert-buffer))
-  :config
-  (setq revert-without-query '("")))
+  :custom
+  (revert-without-query '("")))
 
 (use-package focus-autosave-mode
-  :init (focus-autosave-mode)
-  :diminish focus-autosave-mode)
+  :config (focus-autosave-mode))
 
 (use-package dired
-  :diminish (dired-omit-mode)
   :ensure nil
   :defer t
+  :custom
+  (dired-auto-revert-buffer t)
+  (dired-listing-switches "-alhF")
+  (dired-ls-F-marks-symlinks t)
+  (dired-recursive-copies 'always)
+  (dired-dwim-target t)
   :config
-  (setq
-   dired-auto-revert-buffer t
-   dired-listing-switches "-alhF"
-   dired-ls-F-marks-symlinks t
-   dired-recursive-copies 'always
-   dired-dwim-target t)
   (unbind-key "M-g" dired-mode-map))
 
 (use-package diredfl
-  :config
-  (diredfl-global-mode t))
-
-(use-package dired-x
-  :after dired
-  :ensure nil
-  :bind
-  (("C-c f j" . dired-jump)
-   ("C-x C-j" . dired-jump)))
+  :hook (dired-mode . diredfl-mode))
 
 (use-package all-the-icons-dired
   :after (all-the-icons dired)
@@ -76,19 +65,17 @@
 
 ;; Hardhat prevents us from editing user-protected files
 (use-package hardhat
-  :init (global-hardhat-mode)
-  :config (setq hardhat-mode-lighter ""))
+  :custom (hardhat-mode-lighter "")
+  :config (global-hardhat-mode))
 
 (use-package recentf
   :ensure nil
   :hook
   ((after-init . (lambda () (recentf-mode 1))))
-  :init
-  (setq-default
-   recentf-max-saved-items 1000
-   recentf-exclude '("/tmp/" "/ssh:"))
-  (setq
-   recentf-save-file (concat bs/emacs-cache-directory "recentf")))
+  :custom
+  (recentf-max-saved-items 1000)
+  (recentf-exclude '("/tmp/" "/ssh:"))
+  (recentf-save-file (concat bs/emacs-cache-directory "recentf")))
 
 (use-package ignoramus
   :config
