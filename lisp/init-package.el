@@ -23,6 +23,15 @@
 
 ;;; Code:
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; package.el should not initialize our packages.
+;; We're going to use use-package for that.
+(setq package-quickstart t
+      package-quickstart-file (concat bs/emacs-cache-directory "package-quickstart.el")
+      package-enable-at-startup nil)
+(package-initialize)
+
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (unless (package-installed-p 'diminish)
@@ -34,13 +43,6 @@
 (setq use-package-always-ensure t)
 (require 'bind-key)
 (require 'diminish nil t)
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; package.el should not initialize our packages.
-;; We're going to use use-package for that.
-(setq package-enable-at-startup nil)
-(package-initialize)
 
 (use-package paradox
   :bind
