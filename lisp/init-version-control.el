@@ -24,6 +24,9 @@
 ;;; Code:
 
 (use-package magit
+  :hook (magit-mode
+         . (lambda ()
+             (unbind-key "C-j" magit-mode-map)))
   :bind
   (("C-x g" . magit-status)
    ("C-c g s" . magit-status)
