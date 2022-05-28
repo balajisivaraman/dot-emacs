@@ -148,5 +148,10 @@
 (use-package iedit
   :bind (("C-;" . iedit-mode)))
 
+(use-package shift-number
+  :bind
+  (("C-c +" . shift-number-up)
+   ("C-c -" . shift-number-down)))
+
 (provide 'init-basic-editing)
 ;;; init-basic-editing.el ends here
