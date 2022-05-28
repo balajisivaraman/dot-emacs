@@ -89,7 +89,7 @@
    org-clock-out-hook nil)
   ;; Agenda Configuration
   (setq
-   org-agenda-files (list (s-concat bs/nextcloud-path "gtd/life.org"))
+   org-agenda-files (list (s-concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org") (s-concat bs/nextcloud-path "TheSacredTexts/5.Tasks/Routines.org"))
    org-agenda-ndays 21
    org-agenda-show-all-dates t
    org-agenda-skip-deadline-if-done t
@@ -229,24 +229,12 @@
   :config
   (setq
    org-capture-templates
-   `(("t" "Todo [inbox]" entry
-      (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Inbox")
+   `(("t" "Inbox [task]" entry
+      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Tasks.org"))
       "* TODO %i%? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :prepend t)
-     ("c" "Org Protocol Capture" entry
-      (file+headline ,(s-concat bs/nextcloud-path "gtd/life.org") "Reading")
-      "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:")
-     ("b" "Break" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Breaks")
-      "* BREAK %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
-     ("i" "Interruption" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Interruptions")
-      "* INTERRUPTION %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
-     ("m" "Meeting" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Meetings")
-      "* MEETING %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t)
-     ("p" "Phone call" entry
-      (file+olp ,(s-concat bs/nextcloud-path "gtd/life.org") "Work" "Phone Calls")
-      "* PHONECALL %? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :clock-in t :clock-keep nil :clock-resume t :unnarrowed t))))
+     ("n" "Inbox [note]" entry
+      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Notes.org"))
+      "* %i%? \n:PROPERTIES:\n:ID:  %(shell-command-to-string \"uuidgen\"):CREATED:  %U\n:END:" :prepend t))))
 
 (defun bs/org-set-created-property ()
   "Set a property on the entry for creation time."

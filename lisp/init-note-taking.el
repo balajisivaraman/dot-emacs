@@ -27,7 +27,7 @@
 (defvar bs/bibfile-path)
 (setq bs/bibfile-path "~/.zotero/zotLib.bib")
 (defvar bs/notes-path)
-(setq bs/notes-path (s-concat bs/nextcloud-path "Notes/bibliography"))
+(setq bs/notes-path (s-concat bs/nextcloud-path "TheSacredTexts/6.BibNotes"))
 
 (defvar bs/org-roam-map)
 (define-prefix-command 'bs/org-roam-map)
@@ -44,12 +44,17 @@
   (bibtex-completion-bibliography bs/bibfile-path)
   (bibtex-completion-pdf-field "file"))
 
-(use-package citar
+(use-package oc
+  :ensure nil
   :custom
-  (org-cite-global-bibliography `(bs/bibfile-path))
+  (org-cite-global-bibliography `(,bs/bibfile-path))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
-  (org-cite-activate-processor 'citar)
+  (org-cite-activate-processor 'citar))
+
+(use-package citar
+  :after oc
+  :custom
   (citar-bibliography org-cite-global-bibliography)
   (citar-at-point-function 'embark-act)
   (citar-open-note-functions '(orb-citar-edit-note))
@@ -71,45 +76,18 @@
 
 (use-package org-roam
   :init
-  (setq org-roam-v2-ack t)
   (setq
-   org-roam-directory (s-concat bs/nextcloud-path "Notes/")
-   org-roam-db-location "~/.org-roam.db"
+   org-roam-directory (s-concat bs/nextcloud-path "TheSacredTexts/")
+   org-roam-db-location (s-concat bs/emacs-cache-directory ".org-roam.db")
    org-roam-db-gc-threshold most-positive-fixnum
-   org-roam-graph-exclude-matcher '("private")
-   org-roam-index-file "index.org"
-   org-roam-completion-system 'ivy
    org-roam-capture-templates
-   `(("d" "default" plain
+   '(("n" "ref + noter" plain
       "%?"
-      :if-new
+      :target
       (file+head
-       "%<%Y%m%d%H%M%S>-${slug}.org"
-       ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
-      :unnarrowed t)
-     ("t" "talk" plain
-      "%?"
-      :if-new
-      (file+head
-       "talks/${slug}.org"
-       ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: Talk: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
-      :unnarrowed t)
-     ("n" "ref + noter" plain
-      "%?"
-      :if-new
-      (file+head
-       "bibliography/${citekey}.org"
-       ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
-:END:
-#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
-
-- tags ::
-- keywords :: ${keywords}
+       "6.BibNotes/${citekey}.org"
+       "#+TITLE: ${citekey}: ${title}
+#+ROAM_KEY: ${ref}
 
 * ${title}
   :PROPERTIES:
@@ -119,43 +97,119 @@
   :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")
   :NOTER_PAGE:
   :END:\n\n")
-      :unnarrowed t)
-     ("r" "ref" plain
-      "%?"
-      :if-new
+      :unnarrowed t
+      :immediate-finish t))
+   org-roam-capture-ref-templates
+   '(("p" "protocol" plain "* ${body}"
+      :target
       (file+head
-       "bibliography/${citekey}.org"
-       ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):ROAM_REFS: ${ref}
-:END:
-#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}\n
-
-- tags ::
-- keywords :: ${keywords}
-
-* ${title}
-  :PROPERTIES:
-  :Custom_ID: ${citekey}
-  :URL: ${url}
-  :AUTHOR: ${author}
-  :END:\n\n")
-      :unnarrowed t)
-     ("p" "private" plain
-      "%?"
-      :if-new
-      (file+head
-       "private/${slug}.org"
-       ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+       "0.Inbox/${slug}.org"
+       "\n\n#+title: ${title}\n\n")
       :unnarrowed t)))
   :bind
-  ("M-n c" . org-roam-capture)
+  ("M-n c a" . bs/capture-new-area)
+  ("M-n c p" . bs/capture-new-project)
+  ("M-n c r" . bs/capture-new-resource)
+  ("M-n c R" . bs/capture-new-project-reference)
   ("M-n i" . org-roam-node-insert)
   ("M-n f" . org-roam-node-find)
   ("M-n r" . org-roam-node-random)
   :config
-  (org-roam-setup))
+  (org-roam-setup)
+  (defun bs/org-roam-filter-by-tag (tag-name)
+    (lambda (node)
+      (member tag-name (org-roam-node-tags node))))
+  (defun bs/capture-new-project ()
+    (interactive)
+    (let* ((node (org-roam-node-read nil nil nil nil "Enter Project Title: "))
+          (title (org-roam-node-title node))
+          (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+      (unless (file-directory-p path)
+        (dired-create-directory path))
+      (org-roam-capture- :node node
+                         :templates '(("p" "project" plain
+                                       "%?"
+                                       :target
+                                       (file+head
+                                        "1.Projects/${title}/Index.org"
+                                        "#+title: ${title}\n#+filetags: Project\n\n* Objectives\n\n* References\n\n* Notes\n")
+                                       :unnarrowed t)))
+      (save-window-excursion
+        (let* ((buffer (find-file-noselect (concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org"))))
+          (with-current-buffer buffer
+            (progn
+              (goto-char (point-min))
+              (widen)
+              (re-search-forward "^* Projects")
+              (org-narrow-to-subtree)
+              (goto-char (point-max))
+              (insert (concat "** " title "\n:PROPERTIES:\n:Category:   " title "\n:END:\n"))
+              (widen)))))))
+  (defun bs/capture-new-area ()
+    (interactive)
+    (let* ((node (org-roam-node-read nil nil nil nil "Enter Area Title: "))
+          (title (org-roam-node-title node))
+          (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+      (unless (file-directory-p path)
+        (dired-create-directory path))
+      (org-roam-capture- :node node
+                         :templates '(("a" "area" plain
+                                       "%?"
+                                       :target
+                                       (file+head
+                                        "2.Areas/${title}/Index.org"
+                                        "#+title: ${title}\n#+filetags: Area\n\n* References\n\n* Notes\n\n* Linked Projects\n")
+                                       :unnarrowed t)))))
+  (defun bs/capture-new-resource ()
+    (interactive)
+    (let* ((node (org-roam-node-read nil nil nil nil "Enter Resource Title: "))
+          (title (org-roam-node-title node))
+          (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+      (unless (file-directory-p path)
+        (dired-create-directory path))
+      (org-roam-capture- :node node
+                         :templates '(("r" "resource" plain
+                                       "%?"
+                                       :target
+                                       (file+head
+                                        "3.Resources/${title}/Index.org"
+                                        "#+title: ${title}\n#+filetags: Resource\n\n* References\n\n* Notes\n")
+                                       :unnarrowed t)))))
+  (defun bs/capture-new-project-reference ()
+    (interactive)
+    (let* ((node (org-roam-node-read nil nil nil nil "Enter Reference Title: "))
+           (project (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Select Project: "))
+           (project-title (org-roam-node-title project)))
+      (org-roam-capture- :node node
+                         :templates `(("r" "reference" plain
+                                       "%?"
+                                       :target
+                                       (file+head
+                                        ,(format "1.Projects/%s/${slug}.org" project-title)
+                                        "#+title: ${title}")
+                                       :unnarrowed t
+                                       :immediate-finish t)))
+      (save-window-excursion
+        (let* ((buffer (find-file-noselect (org-roam-node-file project)))
+               (id (org-roam-node-id node))
+               (title (org-roam-node-title node)))
+          (with-current-buffer buffer
+            (progn
+              (goto-char (point-min))
+              (widen)
+              (re-search-forward "^* References")
+              (org-narrow-to-subtree)
+              (goto-char (point-max))
+              (insert "- ")
+              (insert (org-link-make-string
+                       (concat "id:" id)
+                       title))
+              (insert "\n")
+              (widen))))))))
+
+(use-package org-roam-protocol
+  :ensure nil
+  :defer 20)
 
 (use-package deft
   :after org
@@ -165,7 +219,7 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory (s-concat bs/nextcloud-path "Notes/")))
+  (deft-directory (s-concat bs/nextcloud-path "TheSacredTexts/")))
 
 (use-package org-roam-bibtex
   :after (org-roam)
