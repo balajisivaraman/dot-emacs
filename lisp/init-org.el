@@ -181,6 +181,7 @@
    'org-mode
    '(("^ *\\([-]\\) "
       (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+  (add-to-list 'org-file-apps (cons "\\.xopp\\'" "xournalpp %s"))
   (custom-theme-set-faces
    'user
    ;; configure overall variable pitch and fixed pitch fonts

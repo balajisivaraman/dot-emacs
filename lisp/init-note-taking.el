@@ -111,9 +111,10 @@
   ("M-n c p" . bs/capture-new-project)
   ("M-n c r" . bs/capture-new-resource)
   ("M-n c R" . bs/capture-new-project-reference)
-  ("M-n i" . org-roam-node-insert)
-  ("M-n f" . org-roam-node-find)
-  ("M-n r" . org-roam-node-random)
+  ("M-n i"   . org-roam-node-insert)
+  ("M-n f"   . org-roam-node-find)
+  ("M-n r"   . org-roam-node-random)
+  ("M-n x"   . bs/exclude-current-node)
   :config
   (org-roam-setup)
   (defun bs/org-roam-filter-by-tag (tag-name)
@@ -205,7 +206,11 @@
                        (concat "id:" id)
                        title))
               (insert "\n")
-              (widen))))))))
+              (widen)))))))
+  (defun bs/exclude-current-node ()
+    "Exlude node at point."
+    (interactive)
+    (org-set-property "ROAM_EXCLUDE" "t")))
 
 (use-package org-roam-protocol
   :ensure nil
