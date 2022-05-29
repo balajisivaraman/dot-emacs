@@ -71,7 +71,7 @@
 (require 'init-search)
 (require 'init-basic-editing)
 (require 'init-codestyle)
-(require 'init-company)
+(require 'init-corfu)
 (require 'init-snippets)
 (require 'init-syntax-checkers)
 (require 'init-markup-languages)

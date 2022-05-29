@@ -25,12 +25,8 @@
 
 (use-package tex-site
   :ensure auctex
-  :hook (LaTeX-mode . company-mode)
+  :hook (LaTeX-mode . corfu-mode)
   :mode ("\\.tex\\'" . TeX-latex-mode))
-
-(use-package company-auctex
-  :after tex-site
-  :config (company-auctex-init))
 
 (provide 'init-latex)
 ;;; init-latex.el ends here

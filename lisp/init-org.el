@@ -29,7 +29,7 @@
 
 (use-package org
   :hook ((org-mode . variable-pitch-mode)
-         (org-mode . company-mode)
+         (org-mode . corfu-mode)
          (org-agenda-mode . (lambda () (setq-local line-spacing 3)))
          (before-save . bs/org-set-last-modified))
   :bind

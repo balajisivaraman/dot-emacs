@@ -28,14 +28,14 @@
 
 (use-package typescript-mode
   :hook ((typescript-mode . eglot-ensure)
-         (typescript-mode . company-mode))
+         (typescript-mode . corfu-mode))
   :custom
   (typescript-indent-level 2))
 
 (use-package ng2-mode
   :mode ("\\.page\\.html" . ng2-html-mode)
   :hook (((ng2-ts-mode) . eglot-ensure)
-         ((ng2-mode ng2-html-mode ng2-ts-mode) . company-mode)))
+         ((ng2-mode ng2-html-mode ng2-ts-mode) . corfu-mode)))
 
 (provide 'init-web-modes)
 ;;; init-web-modes.el ends here

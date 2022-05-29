@@ -24,7 +24,8 @@
 ;;; Code:
 
 (use-package python
-  :hook (python-mode . eglot-ensure)
+  :hook ((python-mode . eglot-ensure)
+         (python-mode . corfu-mode))
   :mode ("\\.py" . python-mode)
   :config
   (setq python-indent-offset 4))

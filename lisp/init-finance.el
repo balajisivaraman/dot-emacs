@@ -30,7 +30,7 @@
 
 (use-package ledger-mode
   :mode "\\.ledger$"
-  :hook (ledger-mode . company-mode)
+  :hook (ledger-mode . corfu-mode)
   :bind (:map ledger-mode-map
               ("M-m r" . bs/insert-rupee-symbol))
   :custom
@@ -41,7 +41,7 @@
 
 (defun bs/ledger-mode-hook ()
   "Hooks for Ledger Mode."
-  (company-mode)
+  (corfu-mode)
   (outline-minor-mode))
 
 (add-hook 'ledger-mode-hook 'bs/ledger-mode-hook)

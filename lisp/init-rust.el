@@ -58,7 +58,7 @@
   (defun bs/rust-mode-hook ()
     "Hooks for Rust Mode."
     (eglot-ensure)
-    (company-mode)
+    (corfu-mode)
     (cargo-minor-mode)
     (flymake-mode)
     (eldoc-mode)))

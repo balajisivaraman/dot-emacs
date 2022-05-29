@@ -88,7 +88,7 @@
 
 (defun bs/lisp-mode-hook ()
   "Functions to be called when entering Lisp mode."
-  (company-mode t)
+  (corfu-mode t)
   (paredit-mode t)
   (eldoc-mode t))
 

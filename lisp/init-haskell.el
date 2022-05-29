@@ -30,7 +30,7 @@
   (defun bs/haskell-mode-hook ()
     "Hooks for Haskell Mode."
     (eglot-ensure)
-    (company-mode)
+    (corfu-mode)
     (flymake-mode)
     (eldoc-mode)))
 

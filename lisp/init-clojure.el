@@ -25,7 +25,7 @@
 
 (use-package clojure-mode
   :hook
-  (clojure-mode . company-mode)
+  (clojure-mode . corfu-mode)
   (clojure-mode . eglot-ensure)
   :mode "\\.clj\\$")
 
@@ -39,9 +39,9 @@
   :disabled t
   :hook
   (cider-mode . eldoc-mode)
-  (cider-mode . company-mode)
+  (cider-mode . corfu-mode)
   ;; (cider-mode . flycheck-clojure-setup)
-  (cider-repl-mode . company-mode)
+  (cider-repl-mode . corfu-mode)
   :config
   (setq
    cider-repl-history-file "~/.emacs.d/cider-history"
