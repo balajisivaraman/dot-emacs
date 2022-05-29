@@ -112,7 +112,10 @@
   ("M-n c r" . bs/capture-new-resource)
   ("M-n c R" . bs/capture-new-project-reference)
   ("M-n i"   . org-roam-node-insert)
-  ("M-n f"   . org-roam-node-find)
+  ("M-n f a" . bs/find-para-area)
+  ("M-n f n" . org-roam-node-find)
+  ("M-n f p" . bs/find-para-project)
+  ("M-n f r" . bs/find-para-resource)
   ("M-n r"   . org-roam-node-random)
   ("M-n x"   . bs/exclude-current-node)
   :config
@@ -120,11 +123,25 @@
   (defun bs/org-roam-filter-by-tag (tag-name)
     (lambda (node)
       (member tag-name (org-roam-node-tags node))))
+  (defun bs/create-new-para-tasks-category (group title)
+    "Create a new category subtree named TITLE under parent subtree
+named GROUP."
+    (save-window-excursion
+      (let* ((buffer (find-file-noselect (concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org"))))
+        (with-current-buffer buffer
+          (progn
+            (goto-char (point-min))
+            (widen)
+            (re-search-forward (format "^* %s" group))
+            (org-narrow-to-subtree)
+            (goto-char (point-max))
+            (insert (concat "** " title "\n:PROPERTIES:\n:Category:   " title "\n:END:\n"))
+            (widen))))))
   (defun bs/capture-new-project ()
     (interactive)
     (let* ((node (org-roam-node-read nil nil nil nil "Enter Project Title: "))
-          (title (org-roam-node-title node))
-          (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+           (title (org-roam-node-title node))
+           (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -135,22 +152,12 @@
                                         "1.Projects/${title}/Index.org"
                                         "#+title: ${title}\n#+filetags: Project\n\n* Objectives\n\n* References\n\n* Notes\n")
                                        :unnarrowed t)))
-      (save-window-excursion
-        (let* ((buffer (find-file-noselect (concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org"))))
-          (with-current-buffer buffer
-            (progn
-              (goto-char (point-min))
-              (widen)
-              (re-search-forward "^* Projects")
-              (org-narrow-to-subtree)
-              (goto-char (point-max))
-              (insert (concat "** " title "\n:PROPERTIES:\n:Category:   " title "\n:END:\n"))
-              (widen)))))))
+      (bs/create-new-para-tasks-category "PROJECTS" title)))
   (defun bs/capture-new-area ()
     (interactive)
     (let* ((node (org-roam-node-read nil nil nil nil "Enter Area Title: "))
-          (title (org-roam-node-title node))
-          (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+           (title (org-roam-node-title node))
+           (path (concat bs/nextcloud-path "TheSacredTexts/2.Areas/" title "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -160,12 +167,13 @@
                                        (file+head
                                         "2.Areas/${title}/Index.org"
                                         "#+title: ${title}\n#+filetags: Area\n\n* References\n\n* Notes\n\n* Linked Projects\n")
-                                       :unnarrowed t)))))
+                                       :unnarrowed t)))
+      (bs/create-new-para-tasks-category "AREAS" title)))
   (defun bs/capture-new-resource ()
     (interactive)
     (let* ((node (org-roam-node-read nil nil nil nil "Enter Resource Title: "))
-          (title (org-roam-node-title node))
-          (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+           (title (org-roam-node-title node))
+           (path (concat bs/nextcloud-path "TheSacredTexts/3.Resources/" title "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -175,7 +183,8 @@
                                        (file+head
                                         "3.Resources/${title}/Index.org"
                                         "#+title: ${title}\n#+filetags: Resource\n\n* References\n\n* Notes\n")
-                                       :unnarrowed t)))))
+                                       :unnarrowed t)))
+      (bs/create-new-para-tasks-category "RESOURCES" title)))
   (defun bs/capture-new-project-reference ()
     (interactive)
     (let* ((node (org-roam-node-read nil nil nil nil "Enter Reference Title: "))
@@ -208,9 +217,22 @@
               (insert "\n")
               (widen)))))))
   (defun bs/exclude-current-node ()
-    "Exlude node at point."
+    "Exclude node at point."
     (interactive)
-    (org-set-property "ROAM_EXCLUDE" "t")))
+    (org-set-property "ROAM_EXCLUDE" "t"))
+  (defun bs/find-para-node (type)
+    "Find P.A.R.A node of TYPE using `org-roam-node-find'."
+    (interactive)
+    (org-roam-node-find nil nil (bs/org-roam-filter-by-tag type) nil))
+  (defun bs/find-para-project ()
+    (interactive)
+    (bs/find-para-node "Project"))
+  (defun bs/find-para-area ()
+    (interactive)
+    (bs/find-para-node "Area"))
+  (defun bs/find-para-resource ()
+    (interactive)
+    (bs/find-para-node "Resource")))
 
 (use-package org-roam-protocol
   :ensure nil
