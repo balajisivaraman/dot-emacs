@@ -135,6 +135,7 @@ named GROUP."
             (re-search-forward (format "^* %s" group))
             (org-narrow-to-subtree)
             (goto-char (point-max))
+            (insert "\n")
             (insert (concat "** " title "\n:PROPERTIES:\n:Category:   " title "\n:END:\n"))
             (widen))))))
   (defun bs/capture-new-project ()
