@@ -53,7 +53,7 @@
   ("C-c q q" . save-buffers-kill-emacs))
 
 (use-package face-remap
-  :ensure nil
+  :straight nil
   :bind
   (("C-+" . bs/font-scaling/text-scale-increase)
    ("C--" . bs/font-scaling/text-scale-decrease))

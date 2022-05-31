@@ -166,15 +166,15 @@
 
 (use-package org-protocol
   :after org
-  :ensure nil)
+  :straight nil)
 
 (use-package org-checklist
   :after org
-  :ensure nil)
+  :straight nil)
 
 (use-package org-indent
   :after org
-  :ensure nil
+  :straight nil
   :commands (org-indent-mode)
   :hook (org-mode . org-indent-mode))
 
@@ -182,7 +182,7 @@
   :hook (org-mode . org-modern-mode))
 
 (use-package org-capture
-  :ensure nil
+  :straight nil
   :after org
   :bind
   (("M-o c" . org-capture))

@@ -39,7 +39,7 @@
   (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio"))))
 
 (use-package cc-mode
-  :ensure nil
+  :straight nil
   :hook (c++-mode . eglot-ensure))
 
 (provide 'init-lsp)

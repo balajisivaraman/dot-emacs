@@ -24,7 +24,7 @@
 ;;; Code:
 
 (use-package files
-  :ensure nil
+  :straight nil
   :bind
   (("C-c f f" . find-file)
    ("C-c f s" . save-buffer)
@@ -38,7 +38,7 @@
   :config (focus-autosave-mode))
 
 (use-package dired
-  :ensure nil
+  :straight nil
   :defer t
   :custom
   (dired-auto-revert-buffer t)
@@ -69,7 +69,7 @@
   :config (global-hardhat-mode))
 
 (use-package recentf
-  :ensure nil
+  :straight nil
   :hook
   ((after-init . (lambda () (recentf-mode 1))))
   :custom

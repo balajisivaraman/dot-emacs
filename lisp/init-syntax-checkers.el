@@ -24,7 +24,7 @@
 ;;; Code:
 
 (use-package flymake
-  :ensure nil
+  :straight nil
   :bind (("M-g n" . bs/flymake-errors/flymake-goto-next-error)
          ("M-g p" . bs/flymake-errors/flymake-goto-prev-error))
   :config
@@ -44,14 +44,14 @@
 
 ;; Flyspell Mode
 (use-package flyspell
-  :ensure nil
+  :straight nil
   :bind (("C-c i b" . flyspell-buffer)
          ("C-c i f" . flyspell-mode))
   :config
   (unbind-key "C-." flyspell-mode-map))
 
 (use-package ispell
-  :ensure nil
+  :straight nil
   :bind (("C-c i c" . ispell-comments-and-strings)
          ("C-c i d" . ispell-change-dictionary)
          ("C-c i k" . ispell-kill-ispell)

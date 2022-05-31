@@ -45,7 +45,7 @@
   (bibtex-completion-pdf-field "file"))
 
 (use-package oc
-  :ensure nil
+  :straight nil
   :custom
   (org-cite-global-bibliography `(,bs/bibfile-path))
   (org-cite-insert-processor 'citar)
@@ -239,7 +239,7 @@ named GROUP."
     (bs/find-para-node "Resource")))
 
 (use-package org-roam-protocol
-  :ensure nil
+  :straight nil
   :defer 20)
 
 (use-package deft

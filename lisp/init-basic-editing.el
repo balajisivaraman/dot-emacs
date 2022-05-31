@@ -36,7 +36,7 @@
 
 ;; Rectangle Editing
 (use-package rect
-  :ensure nil
+  :straight nil
   :bind
   (("C-x r i" . string-insert-rectangle)
    ("C-x r r" . replace-rectangle)))

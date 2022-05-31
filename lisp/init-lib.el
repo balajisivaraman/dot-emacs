@@ -26,6 +26,7 @@
 (use-package s)
 (use-package dash)
 (use-package f)
+(use-package hydra :commands (defhydra))
 
 (provide 'init-lib)
 ;;; init-lib.el ends here

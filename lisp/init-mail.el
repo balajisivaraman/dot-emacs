@@ -24,6 +24,7 @@
 ;;; Code:
 
 (use-package mu4e
+  :straight nil
   :load-path "/usr/share/emacs/site-lisp/mu4e"
   :bind (("C-c m m" . mu4e))
   :config
