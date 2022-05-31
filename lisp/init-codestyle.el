@@ -36,12 +36,13 @@
   :straight nil
   :custom
   (whitespace-style '(face trailing space-before-tab empty missing-newline-at-eof))
-  :init
-  (global-whitespace-mode t))
+  :hook
+  ((text-mode . whitespace-mode)
+   (prog-mode . whitespace-mode)))
 
 (use-package whitespace-cleanup-mode
   :bind
-  (("C-c f c" . whitespace-cleanup-mode))
+  (("C-c f c" . whitespace-cleanup))
   :config
   (global-whitespace-cleanup-mode t))
 
