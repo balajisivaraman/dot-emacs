@@ -23,15 +23,11 @@
 
 ;;; Code:
 
-(defun bs/network-connection-available-p ()
-  "Check whether we have internet connectivity."
-  (-any-p
-   (lambda (interface) (s-starts-with-p "en" (car interface)))
-   (network-interface-list)))
-
+;;;###autoload
 (defsubst hook-into-modes (func &rest modes)
   (dolist (mode-hook modes) (add-hook mode-hook func)))
 
+;;;###autoload
 (defun bs/dot-emacs ()
   "Go directly to .emacs, do not pass Go, do not collect $200."
   (interactive)
@@ -39,20 +35,7 @@
   (find-file (s-concat user-emacs-directory "init.el")))
 (bind-key "C-c f d" 'bs/dot-emacs)
 
-(defun bs/indent-region-or-buffer (&optional begin end)
-  "Indent a region or the whole file.
-
-If called after a region is marked, indents the region between BEGIN and END.
-
-Otherwise indents the whole buffer, i.e. everything between `point-min' and `point-max'"
-  (interactive "r")
-  (save-excursion
-    (delete-trailing-whitespace)
-    (if (region-active-p)
-        (indent-region begin end nil)
-      (indent-region (point-min) (point-max) nil))))
-(bind-key "C-c B i" 'bs/indent-region-or-buffer)
-
+;;;###autoload
 (defun unfill-paragraph (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."
   (interactive (progn (barf-if-buffer-read-only) '(t)))
@@ -60,7 +43,6 @@ Otherwise indents the whole buffer, i.e. everything between `point-min' and `poi
         ;; This would override `fill-column' if it's an integer.
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
-
 (bind-key "M-Q" 'unfill-paragraph global-map)
 
 (provide 'init-functions)
