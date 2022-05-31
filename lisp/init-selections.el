@@ -23,9 +23,9 @@
 
 ;;; Code:
 
-(use-package selectrum
-  :config
-  (selectrum-mode t))
+(use-package vertico
+  :init
+  (vertico-mode t))
 
 (use-package orderless
   :custom
