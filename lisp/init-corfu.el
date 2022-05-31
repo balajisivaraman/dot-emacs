@@ -26,13 +26,13 @@
 (use-package corfu
   :custom
   (corfu-cycle t)
-  (corfu-auto nil) 
+  (corfu-auto nil)
   (corfu-separator ?\s)
   (corfu-quit-at-boundary nil)
-  (corfu-quit-no-match nil)  
+  (corfu-quit-no-match nil)
   (corfu-preview-current nil)
-  (corfu-preselect-first t)  
-  (corfu-on-exact-match nil) 
+  (corfu-preselect-first t)
+  (corfu-on-exact-match nil)
   (corfu-echo-documentation nil)
   (corfu-scroll-margin 5)
   (tab-always-indent 'complete))
