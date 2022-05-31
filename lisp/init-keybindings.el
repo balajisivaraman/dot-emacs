@@ -28,6 +28,7 @@
 ;; Newline should always indent by default.
 (bind-key "<RET>" 'newline-and-indent)
 (unbind-key "C-x C-c")
+(unbind-key "C-x C-z")
 
 (define-key input-decode-map [?\C-m] [C-m])
 (define-key input-decode-map [?\C-i] [C-i])
