@@ -20,7 +20,8 @@
 
 ;;; Commentary:
 
-;; This file loads any custom code style (indentation, whitespace etc.) settings I like to use in all languages.
+;; This file loads any custom code style (indentation, whitespace
+;; etc.) settings I like to use in all languages.
 
 ;;; Code:
 
@@ -31,12 +32,18 @@
 (setq mode-require-final-newline nil
       require-final-newline nil)
 
-;; Cleanup unnecessary whitespace
-(use-package ethan-wspace
+(use-package whitespace
+  :ensure nil
+  :custom
+  (whitespace-style '(face trailing space-before-tab empty missing-newline-at-eof))
+  :init
+  (global-whitespace-mode t))
+
+(use-package whitespace-cleanup-mode
   :bind
-  (("C-c f c" . ethan-wspace-clean-all))
+  (("C-c f c" . whitespace-cleanup-mode))
   :config
-  (global-ethan-wspace-mode t))
+  (global-whitespace-cleanup-mode t))
 
 (provide 'init-codestyle)
 ;;; init-codestyle.el ends here
