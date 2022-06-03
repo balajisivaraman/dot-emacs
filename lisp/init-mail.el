@@ -86,7 +86,7 @@ Thanks & Regards,
                   (smtpmail-smtp-service   . 1025)
                   (starttls-gnutls-program . "gnutls-cli")
                   (starttls-use-gnutls     . t)
-                  (smtpmail-stream-type    . 'starttls)
+                  (smtpmail-stream-type    . starttls)
                   (mu4e-drafts-folder      . "/personal/Drafts")
                   (mu4e-sent-folder        . "/personal/Sent")
                   (mu4e-refile-folder      . "/personal/All Mail")
