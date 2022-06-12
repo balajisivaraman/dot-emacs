@@ -45,5 +45,29 @@
     (fill-paragraph nil region)))
 (bind-key "M-Q" 'unfill-paragraph global-map)
 
+;;;###autoload
+(defun bs/ui-configuration ()
+  "Configure custom fonts."
+  (custom-theme-set-faces
+   'user
+   ;; configure overall variable pitch and fixed pitch fonts
+   '(default ((t (:family "Monospace" :weight normal :height 125))))
+   '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
+   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 125))))
+
+   ;; configure fonts for org headings and document title
+   '(org-level-5 ((t (:height 1.1))))
+   '(org-level-4 ((t (:height 1.15))))
+   '(org-level-3 ((t (:height 1.21))))
+   '(org-level-2 ((t (:height 1.27))))
+   '(org-level-1 ((t (:height 1.33)))))
+  (modus-themes-load-vivendi))
+
+;;;###autoload
+(defun bs/frame-functions (frame)
+  "Configure custom settings given initial non-daemon FRAME. Intended
+for `after-make-frame-functions'."
+  (bs/ui-configuration))
+
 (provide 'init-functions)
 ;;; init-functions.el ends here

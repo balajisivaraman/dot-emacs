@@ -126,4 +126,8 @@
          file-name-handler-alist bs/file-name-handler-alist)
    (server-start)))
 
+(if bs/at-work
+    (bs/ui-configuration)
+  (add-hook 'after-make-frame-functions #'bs/frame-functions))
+
 ;;; init.el ends here

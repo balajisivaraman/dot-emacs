@@ -132,20 +132,7 @@
    'org-mode
    '(("^ *\\([-]\\) "
       (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-  (add-to-list 'org-file-apps (cons "\\.xopp\\'" "xournalpp %s"))
-  (custom-theme-set-faces
-   'user
-   ;; configure overall variable pitch and fixed pitch fonts
-   '(default ((t (:family "Monospace" :weight normal :height 133))))
-   '(variable-pitch ((t (:family "SF Pro Text" :height 130))))
-   '(fixed-pitch ((t (:family "Monospace" :weight normal :height 133))))
-
-   ;; configure fonts for org headings and document title
-   '(org-level-5 ((t (:height 1.1))))
-   '(org-level-4 ((t (:height 1.15))))
-   '(org-level-3 ((t (:height 1.21))))
-   '(org-level-2 ((t (:height 1.27))))
-   '(org-level-1 ((t (:height 1.33))))))
+  (add-to-list 'org-file-apps (cons "\\.xopp\\'" "xournalpp %s")))
 
 (use-package org-contrib
   :after org
