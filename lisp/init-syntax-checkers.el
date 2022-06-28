@@ -36,6 +36,7 @@
 
 (use-package flymake-proselint
   :after flymake
+  :hook (markdown-mode . bs/flymake-proselint-setup)
   :config
   (defun bs/flymake-proselint-setup ()
     "Setup Flymake Proselint."
