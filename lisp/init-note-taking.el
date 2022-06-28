@@ -72,7 +72,7 @@
   (("C-c b" . citar-insert-citation)
    (:map org-mode-map :package org ("C-c b" . #'org-cite-insert))
    :map minibuffer-local-map
-   ("M-b" . citar-insert-preset)))
+   ("M-B" . citar-insert-preset)))
 
 (use-package org-roam
   :init
