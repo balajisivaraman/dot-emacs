@@ -100,7 +100,7 @@
       :unnarrowed t
       :immediate-finish t))
    org-roam-capture-ref-templates
-   '(("p" "protocol" plain "* ${body}"
+   '(("c" "clip web content" plain "* ${body}"
       :target
       (file+head
        "0.Inbox/${slug}.org"
@@ -240,7 +240,7 @@ named GROUP."
 
 (use-package org-roam-protocol
   :straight nil
-  :defer 20)
+  :defer 5)
 
 (use-package deft
   :after org

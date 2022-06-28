@@ -43,8 +43,6 @@
   (setq
    org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CXLD(x!)")
                        (sequence "WAIT(w)" "HOLD(h)" "|" "DONE(d!)" "CXLD(x!)" "BREAK" "MEETING" "PHONECALL" "INTERRUPTION"))
-   org-tag-alist (quote (("@home" . ?h)
-                         ("@work" . ?w)))
    org-deadline-warning-days 14
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
@@ -168,12 +166,15 @@
   :config
   (setq
    org-capture-templates
-   `(("t" "Inbox [task]" entry
-      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Tasks.org"))
-      "* TODO %i%? \n:PROPERTIES:\n:CREATED:  %U\n:END:" :prepend t)
-     ("n" "Inbox [note]" entry
-      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Notes.org"))
-      "* %i%? \n:PROPERTIES:\n:ID:  %(shell-command-to-string \"uuidgen\"):CREATED:  %U\n:END:" :prepend t))))
+   `(("r" "Inbox [Read Later]" entry
+      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Inbox.org"))
+      "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:\n")
+     ("t" "Inbox [Task]" entry
+      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Inbox.org"))
+      "* TODO %i%?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :prepend t)
+     ("n" "Inbox [Note]" entry
+      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Inbox.org"))
+      "* %i%?\n:PROPERTIES:\n:ID:  %(shell-command-to-string \"uuidgen\"):CREATED:  %U\n:END:" :prepend t))))
 
 (use-package bs-org
   :straight nil
