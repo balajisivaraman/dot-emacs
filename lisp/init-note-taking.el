@@ -120,6 +120,9 @@
   ("M-n x"   . bs/exclude-current-node)
   :config
   (org-roam-setup)
+  (defun bs/folderify-roam-node-title (node)
+    "Sanitise a Roam node title for folder names."
+    (string-replace ": " " - " (org-roam-node-title node)))
   (defun bs/org-roam-filter-by-tag (tag-name)
     (lambda (node)
       (member tag-name (org-roam-node-tags node))))
@@ -138,28 +141,29 @@ named GROUP."
             (insert "\n")
             (insert (concat "** " title "\n:PROPERTIES:\n:CATEGORY:   " title "\n:END:\n"))
             (widen))))))
-  (defun bs/capture-new-project ()
-    (interactive)
+  (defun bs/capture-new-project (&optional arg)
+    (interactive "P")
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Enter Project Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/notes-path "1.Projects/" title "/")))
-      (unless (file-directory-p path)
-        (dired-create-directory path))
-      (org-roam-capture- :node node
-                         :templates '(("p" "project" plain
-                                       "%?"
-                                       :target
-                                       (file+head
-                                        "1.Projects/${title}/Index.org"
-                                        "#+title: ${title}\n#+filetags: Project\n\n* Objectives\n\n* References\n\n* Notes\n")
-                                       :unnarrowed t
-                                       :immediate-finish t)))
+           (path (concat bs/notes-path "1.Projects/" (bs/folderify-roam-node title) "/")))
+      (unless arg
+        (progn (unless (file-directory-p path)
+                 (dired-create-directory path))
+               (org-roam-capture- :node node
+                                  :templates '(("p" "project" plain
+                                                "%?"
+                                                :target
+                                                (file+head
+                                                 "1.Projects/${bs/folderify-roam-node-title}/Index.org"
+                                                 "#+title: ${title}\n#+filetags: Project\n\n* Objectives\n\n* References\n\n* Notes\n")
+                                                :unnarrowed t
+                                                :immediate-finish t)))))
       (bs/create-new-para-tasks-category "PROJECTS" title)))
   (defun bs/capture-new-area ()
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Area") nil nil "Enter Area Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/notes-path "2.Areas/" title "/")))
+           (path (concat bs/notes-path "2.Areas/" (bs/folderify-roam-node title) "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -167,7 +171,7 @@ named GROUP."
                                        "%?"
                                        :target
                                        (file+head
-                                        "2.Areas/${title}/Index.org"
+                                        "2.Areas/${bs/folderify-roam-node-title}/Index.org"
                                         "#+title: ${title}\n#+filetags: Area\n\n* References\n\n* Notes\n\n* Linked Projects\n")
                                        :unnarrowed t
                                        :immediate-finish t)))
@@ -176,7 +180,7 @@ named GROUP."
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Resource") nil nil "Enter Resource Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/notes-path "3.Resources/" title "/")))
+           (path (concat bs/notes-path "3.Resources/" (bs/folderify-roam-node title) "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -184,7 +188,7 @@ named GROUP."
                                        "%?"
                                        :target
                                        (file+head
-                                        "3.Resources/${title}/Index.org"
+                                        "3.Resources/${bs/folderify-roam-node-title}/Index.org"
                                         "#+title: ${title}\n#+filetags: Resource\n\n* References\n\n* Notes\n")
                                        :unnarrowed t
                                        :immediate-finish t)))
