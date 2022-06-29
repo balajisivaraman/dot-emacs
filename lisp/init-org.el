@@ -116,12 +116,12 @@
                   ((org-agenda-overriding-header "Next Actions")
                    (org-agenda-skip-function #'bs/org-skip-learning-and-based-on-context)))
        (tags-todo "todo=\"NEXT\""
-                  ((org-agenda-overriding-header "Learning List")
+                  ((org-agenda-overriding-header "Active Learning List")
                    (org-agenda-skip-function (lambda () (bs/org-include-or-skip-learning-actions-only t))))))))
    org-agenda-prefix-format '((agenda . "  %i   %-25c %-5s  %-8(bs/format-entry-scheduled-deadline-time)")
-                              (todo . "  %i     %-40c ")
-                              (tags . "  %i     %-40c ")
-                              (search . "  %i     %-40c ")))
+                              (todo . "  %i   %-42c ")
+                              (tags . "  %i   %-42c ")
+                              (search . "  %i   %-42c ")))
   ;; Org Id Configuration
   (add-to-list 'org-modules 'org-id)
   (setq org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations"))

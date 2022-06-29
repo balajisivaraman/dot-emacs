@@ -133,7 +133,7 @@ INCLUDE is nil."
     (widen)
     (let* ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
            (category (org-get-category))
-           (learning-category-list '("Learning" "Books" "Papers" "Articles" "Slides" "Reading" "Watching")))
+           (learning-category-list '("Learning" "Book" "Paper" "Article" "SlideDeck" "Reading" "Watching")))
       (cond
        ((and include (-contains? learning-category-list category))
         nil)
