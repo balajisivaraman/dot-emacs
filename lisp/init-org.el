@@ -47,9 +47,9 @@
    org-reverse-note-order nil
    org-confirm-elisp-link-function nil
    org-log-done 'time
-   org-archive-location (s-concat bs/nextcloud-path "gtd/archives.org::")
+   org-archive-location (s-concat bs/tasks-path "archives.org::")
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets `((,(s-concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org") :level . 2))
+   org-refile-targets `((,(s-concat bs/tasks-path "life.org") :level . 2))
    org-global-properties '(("Effort_ALL" . "5min 10min 15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h 12h 16h 24h"))
    org-ellipsis "  "
    org-use-speed-commands t
@@ -86,7 +86,7 @@
    org-clock-out-hook nil)
   ;; Agenda Configuration
   (setq
-   org-agenda-files (list (s-concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org") (s-concat bs/nextcloud-path "TheSacredTexts/5.Tasks/Routines.org"))
+   org-agenda-files (list (s-concat bs/tasks-path "life.org") (s-concat bs/tasks-path "inbox.org"))
    org-agenda-ndays 21
    org-agenda-show-all-dates t
    org-agenda-skip-deadline-if-done t
@@ -167,13 +167,13 @@
   (setq
    org-capture-templates
    `(("r" "Inbox [Read Later]" entry
-      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Inbox.org"))
+      (file ,(s-concat bs/tasks-path "inbox.org"))
       "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:\n")
      ("t" "Inbox [Task]" entry
-      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Inbox.org"))
+      (file ,(s-concat bs/tasks-path "inbox.org"))
       "* TODO %i%?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :prepend t)
      ("n" "Inbox [Note]" entry
-      (file ,(s-concat bs/nextcloud-path "TheSacredTexts/0.Inbox/Inbox.org"))
+      (file ,(s-concat bs/notes-path "0.Inbox/inbox.org"))
       "* %i%?\n:PROPERTIES:\n:ID:  %(shell-command-to-string \"uuidgen\"):CREATED:  %U\n:END:" :prepend t))))
 
 (use-package bs-org

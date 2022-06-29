@@ -62,6 +62,10 @@
        ((string-equal (downcase (system-name)) "tatooine") "/home/balaji/Nextcloud/")
        (bs/at-work "/mnt/c/Users/Balaji Sivaraman/Nextcloud/")
        (t "/media/backup/Nextcloud/")))
+(defvar bs/tasks-path)
+(setq bs/tasks-path (s-concat bs/nextcloud-path "ThePlainTextLife/tasks/"))
+(defvar bs/notes-path)
+(setq bs/notes-path (s-concat bs/nextcloud-path "ThePlainTextLife/notes/"))
 
 (defvar bs/org-agenda-icons-path)
 (setq bs/org-agenda-icons-path (s-concat user-emacs-directory "icons/"))

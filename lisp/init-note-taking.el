@@ -26,8 +26,8 @@
 
 (defvar bs/bibfile-path)
 (setq bs/bibfile-path "~/.zotero/zotLib.bib")
-(defvar bs/notes-path)
-(setq bs/notes-path (s-concat bs/nextcloud-path "TheSacredTexts/6.BibNotes"))
+(defvar bs/bibnotes-path)
+(setq bs/bibnotes-path (s-concat bs/nextcloud-path "ThePlainTextLife/5.BibNotes"))
 
 (defvar bs/org-roam-map)
 (define-prefix-command 'bs/org-roam-map)
@@ -40,7 +40,7 @@
 (use-package bibtex-completion
   :defer t
   :custom
-  (bibtex-completion-notes-path bs/notes-path)
+  (bibtex-completion-notes-path bs/bibnotes-path)
   (bibtex-completion-bibliography bs/bibfile-path)
   (bibtex-completion-pdf-field "file"))
 
@@ -62,7 +62,7 @@
                      (suffix . "          ${=key= id:15}    ${=type=:12}    ${tags keywords:*}")
                      (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
                      (note . "Notes on ${author editor}, ${title}")))
-  (citar-notes-paths `(,bs/notes-path))
+  (citar-notes-paths `(,bs/bibnotes-path))
   (bibtex-dialect 'biblatex)
   (citar-symbols `((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
                    (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-blue :v-adjust -0.3) . " ")
@@ -77,7 +77,7 @@
 (use-package org-roam
   :init
   (setq
-   org-roam-directory (s-concat bs/nextcloud-path "TheSacredTexts/")
+   org-roam-directory bs/notes-path
    org-roam-db-location (s-concat bs/emacs-cache-directory ".org-roam.db")
    org-roam-db-gc-threshold most-positive-fixnum
    org-roam-capture-templates
@@ -85,7 +85,7 @@
       "%?"
       :target
       (file+head
-       "6.BibNotes/${citekey}.org"
+       "5.BibNotes/${citekey}.org"
        "#+TITLE: ${citekey}: ${title}
 #+ROAM_KEY: ${ref}
 
@@ -127,7 +127,7 @@
     "Create a new category subtree named TITLE under parent subtree
 named GROUP."
     (save-window-excursion
-      (let* ((buffer (find-file-noselect (concat bs/nextcloud-path "TheSacredTexts/5.Tasks/PARA.org"))))
+      (let* ((buffer (find-file-noselect (concat bs/tasks-path "life.org"))))
         (with-current-buffer buffer
           (progn
             (goto-char (point-min))
@@ -142,7 +142,7 @@ named GROUP."
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Enter Project Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/nextcloud-path "TheSacredTexts/1.Projects/" title "/")))
+           (path (concat bs/notes-path "1.Projects/" title "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -159,7 +159,7 @@ named GROUP."
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Area") nil nil "Enter Area Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/nextcloud-path "TheSacredTexts/2.Areas/" title "/")))
+           (path (concat bs/notes-path "2.Areas/" title "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -176,7 +176,7 @@ named GROUP."
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Resource") nil nil "Enter Resource Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/nextcloud-path "TheSacredTexts/3.Resources/" title "/")))
+           (path (concat bs/notes-path "3.Resources/" title "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -250,7 +250,7 @@ named GROUP."
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory (s-concat bs/nextcloud-path "TheSacredTexts/")))
+  (deft-directory bs/notes-path))
 
 (use-package org-roam-bibtex
   :after (org-roam)
@@ -275,7 +275,7 @@ named GROUP."
    ;; I want to see the whole file
    org-noter-hide-other nil
    ;; Everything is relative to the main notes file
-   org-noter-notes-search-path (list bs/notes-path)
+   org-noter-notes-search-path (list bs/bibnotes-path)
    ;; Auto save location in PDF
    org-noter-auto-save-last-location t))
 
