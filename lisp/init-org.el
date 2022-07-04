@@ -118,10 +118,11 @@
        (tags-todo "todo=\"NEXT\""
                   ((org-agenda-overriding-header "Active Learning List")
                    (org-agenda-skip-function (lambda () (bs/org-include-or-skip-learning-actions-only t))))))))
-   org-agenda-prefix-format '((agenda . "  %i   %-25c %-5s  %-8(bs/format-entry-scheduled-deadline-time)")
-                              (todo . "  %i   %-42c ")
-                              (tags . "  %i   %-42c ")
-                              (search . "  %i   %-42c ")))
+   org-agenda-prefix-format '((agenda . "  %i   %-20c %-5s  %-8(bs/format-entry-scheduled-deadline-time)")
+                              (todo . "  %i   %-37c ")
+                              (tags . "  %i   %-26c 鬒 %-8e")
+                              (search . "  %i   %-37c "))
+   org-agenda-remove-tags t)
   ;; Org Id Configuration
   (add-to-list 'org-modules 'org-id)
   (setq org-id-locations-file (concat bs/emacs-cache-directory ".org-id-locations"))
