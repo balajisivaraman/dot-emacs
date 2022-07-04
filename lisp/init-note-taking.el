@@ -120,7 +120,7 @@
   ("M-n x"   . bs/exclude-current-node)
   :config
   (org-roam-setup)
-  (defun bs/folderify-roam-node-title (node)
+  (defun bs/folderify-roam-node (node)
     "Sanitise a Roam node title for folder names."
     (string-replace ": " " - " (org-roam-node-title node)))
   (defun bs/org-roam-filter-by-tag (tag-name)
@@ -145,7 +145,7 @@ named GROUP."
     (interactive "P")
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Enter Project Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/notes-path "1.Projects/" (bs/folderify-roam-node title) "/")))
+           (path (concat bs/notes-path "1.Projects/" (bs/folderify-roam-node node) "/")))
       (unless arg
         (progn (unless (file-directory-p path)
                  (dired-create-directory path))
@@ -163,7 +163,7 @@ named GROUP."
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Area") nil nil "Enter Area Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/notes-path "2.Areas/" (bs/folderify-roam-node title) "/")))
+           (path (concat bs/notes-path "2.Areas/" (bs/folderify-roam-node node) "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
@@ -180,7 +180,7 @@ named GROUP."
     (interactive)
     (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Resource") nil nil "Enter Resource Title: "))
            (title (org-roam-node-title node))
-           (path (concat bs/notes-path "3.Resources/" (bs/folderify-roam-node title) "/")))
+           (path (concat bs/notes-path "3.Resources/" (bs/folderify-roam-node node) "/")))
       (unless (file-directory-p path)
         (dired-create-directory path))
       (org-roam-capture- :node node
