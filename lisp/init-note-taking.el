@@ -105,7 +105,8 @@
       (file+head
        "0.Inbox/${slug}.org"
        "\n\n#+title: ${title}\n\n")
-      :unnarrowed t)))
+      :unnarrowed t
+      :immediate-finish t)))
   :bind
   ("M-n c a" . bs/capture-new-area)
   ("M-n c p" . bs/capture-new-project)

@@ -168,7 +168,8 @@
    org-capture-templates
    `(("r" "Inbox [Read Later]" entry
       (file ,(s-concat bs/tasks-path "inbox.org"))
-      "* TODO Read: %:description \n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:\n")
+      "* TODO Read: %:description\n:PROPERTIES:\n:CREATED:  %U\n:URL: %l\n:END:\n"
+      :immediate-finish t)
      ("t" "Inbox [Task]" entry
       (file ,(s-concat bs/tasks-path "inbox.org"))
       "* TODO %i%?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :prepend t)
