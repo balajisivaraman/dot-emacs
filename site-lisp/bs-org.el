@@ -253,7 +253,8 @@ Categories without icons are skipped by default."
 (defun bs/set-org-agenda-category-icon-alist ()
   (setq org-agenda-category-icon-alist (append (cl-loop for agenda-file in (org-agenda-files)
                                                         append (bs/get-category-icons-alist agenda-file))
-                                               `(("Routines" ,(s-concat bs/org-agenda-icons-path "habit.png") nil nil :ascent center)))))
+                                               `(("Routines" ,(s-concat bs/org-agenda-icons-path "habit.png") nil nil :ascent center)
+                                                 ("Inbox" ,(s-concat bs/org-agenda-icons-path "inbox.png") nil nil :ascent center)))))
 
 ;;;###autolaod
 (defun bs/org-refile ()
