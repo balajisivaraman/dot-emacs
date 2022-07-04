@@ -118,6 +118,8 @@
   ("M-n f r" . bs/find-para-resource)
   ("M-n r"   . org-roam-node-random)
   ("M-n x"   . bs/exclude-current-node)
+  :commands
+  (bs/org-roam-refile-node-under-project)
   :config
   (org-roam-setup)
   (defun bs/folderify-roam-node (node)
@@ -224,6 +226,43 @@ named GROUP."
                        title))
               (insert "\n")
               (widen)))))))
+  (defun bs/org-roam-refile-node-under-project ()
+    "Refiles the node at point as a reference of a project of user's
+choosing."
+    (interactive)
+    (let* ((project-node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Select Project: "))
+           (current-node (org-roam-node-at-point)))
+      (if (s-suffix? "inbox.org" (org-roam-node-file current-node))
+          (print (format "Refiling headline node in inbox.org to project '%s'" (org-roam-node-title current-node) (org-roam-node-title project-node)))
+        (let* ((new-file (concat (substring (org-roam-node-file project-node)
+                                            0
+                                            (s-index-of "/Index.org" (org-roam-node-file project-node)))
+                                 "/"
+                                 (substring (org-roam-node-file current-node)
+                                            (+ 6 (s-index-of "Inbox/" (org-roam-node-file current-node)))
+                                            (length (org-roam-node-file current-node))))))
+          (print (format "Refiling file node in '%s' to project '%s'" (org-roam-node-title current-node) (org-roam-node-title project-node)))
+          (rename-file (org-roam-node-file current-node) new-file)
+          (kill-buffer (current-buffer))
+          (find-file new-file)
+          (save-window-excursion
+            (let* ((buffer (find-file-noselect (org-roam-node-file project-node)))
+                   (id (org-roam-node-id current-node))
+                   (title (org-roam-node-title current-node)))
+              (with-current-buffer buffer
+                (progn
+                  (goto-char (point-min))
+                  (widen)
+                  (re-search-forward "^* References")
+                  (org-narrow-to-subtree)
+                  (goto-char (point-max))
+                  (insert "- ")
+                  (insert (org-link-make-string
+                           (concat "id:" id)
+                           title))
+                  (insert "\n")
+                  (widen)
+                  (save-buffer)))))))))
   (defun bs/exclude-current-node ()
     "Exclude node at point."
     (interactive)

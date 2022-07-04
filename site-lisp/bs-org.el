@@ -255,5 +255,16 @@ Categories without icons are skipped by default."
                                                         append (bs/get-category-icons-alist agenda-file))
                                                `(("Routines" ,(s-concat bs/org-agenda-icons-path "habit.png") nil nil :ascent center)))))
 
+;;;###autolaod
+(defun bs/org-refile ()
+  "If entry at point is an org-roam node, then ask for a project to
+refile it to. Otherwise, delegate to standard `org-refile'."
+  (interactive)
+  (let* ((current-node (org-roam-node-at-point)))
+    (print current-node)
+    (if current-node
+        (bs/org-roam-refile-node-under-project)
+      (org-refile))))
+
 (provide 'bs-org)
 ;;; bs-org.el ends here

@@ -179,6 +179,8 @@
 (use-package bs-org
   :straight nil
   :commands (bs/format-entry-scheduled-deadline-time)
+  :bind
+  (:map org-mode-map ("C-c C-w" . bs/org-refile))
   :hook
   ((before-save . bs/org-set-last-modified)
    (org-agenda-mode . bs/set-org-agenda-category-icon-alist)))
