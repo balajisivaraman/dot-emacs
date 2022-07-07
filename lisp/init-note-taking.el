@@ -157,7 +157,7 @@ named GROUP."
                                                 "%?"
                                                 :target
                                                 (file+head
-                                                 "1.Projects/${bs/folderify-roam-node-title}/Index.org"
+                                                 "1.Projects/${bs/folderify-roam-node}/Index.org"
                                                  "#+title: ${title}\n#+filetags: Project\n\n* Objectives\n\n* References\n\n* Notes\n")
                                                 :unnarrowed t
                                                 :immediate-finish t)))))
@@ -174,7 +174,7 @@ named GROUP."
                                        "%?"
                                        :target
                                        (file+head
-                                        "2.Areas/${bs/folderify-roam-node-title}/Index.org"
+                                        "2.Areas/${bs/folderify-roam-node}/Index.org"
                                         "#+title: ${title}\n#+filetags: Area\n\n* References\n\n* Notes\n\n* Linked Projects\n")
                                        :unnarrowed t
                                        :immediate-finish t)))
@@ -191,7 +191,7 @@ named GROUP."
                                        "%?"
                                        :target
                                        (file+head
-                                        "3.Resources/${bs/folderify-roam-node-title}/Index.org"
+                                        "3.Resources/${bs/folderify-roam-node}/Index.org"
                                         "#+title: ${title}\n#+filetags: Resource\n\n* References\n\n* Notes\n")
                                        :unnarrowed t
                                        :immediate-finish t)))
