@@ -69,6 +69,7 @@
    org-fast-tag-selection-single-key 'expert
    org-auto-align-tags nil
    org-tags-column 0
+   org-imenu-depth 3
    )
   ;; Clock Configuration
   (org-clock-persistence-insinuate)
