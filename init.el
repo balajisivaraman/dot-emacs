@@ -99,10 +99,7 @@
 (require 'init-project)
 (require 'init-kubernetes)
 (require 'init-mail)
-
-;; Initialize OS specific bindings
-(when (eq system-type 'gnu/linux)
-  (require 'init-linux))
+(require 'init-os-customisations)
 
 ;;; Benchmarking Startup End
 (when (window-system)

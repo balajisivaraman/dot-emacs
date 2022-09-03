@@ -1,4 +1,4 @@
-;;; init-linux.el --- Customizations for Linux -*- lexical-binding: t -*-
+;;; init-os-customisations.el --- Customizations for Linux -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021  Balaji Sivaraman
 
@@ -24,6 +24,7 @@
 ;;; Code:
 
 (use-package pinentry
+  :if (string-equal system-type "gnu/linux")
   :init
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start))
@@ -32,6 +33,7 @@
   :mode ("\\.nix\\'" . nix-mode))
 
 (use-package vterm
+  :if (not (string-equal system-type "windows-nt"))
   :bind
   ("M-T" . bs/scratch-vterm-buffer)
   :config
@@ -43,5 +45,5 @@
          (default-directory "~"))
     (vterm))))
 
-(provide 'init-linux)
-;;; init-linux.el ends here
+(provide 'init-os-customisations)
+;;; init-os-customisations.el ends here
