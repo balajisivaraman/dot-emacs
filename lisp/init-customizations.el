@@ -53,13 +53,15 @@
 
 (defvar bs/at-work)
 (setq bs/at-work (or (string-equal (downcase (system-name)) "alphacentauri")
-                     (string-equal (downcase (system-name)) "tatooine")))
+                     (string-equal (downcase (system-name)) "tatooine")
+                     (string-equal (downcase (system-name)) "korriban.local")))
 
 (defvar bs/nextcloud-path)
 (setq bs/nextcloud-path
       (cond
        ((and bs/at-work (eq system-type 'windows-nt)) "C:/Users/Balaji Sivaraman/Nextcloud/")
        ((string-equal (downcase (system-name)) "tatooine") "/home/balaji/Nextcloud/")
+       ((string-equal (downcase (system-name)) "korriban.local") "/Users/balaji/Nextcloud/")
        (bs/at-work "/mnt/c/Users/Balaji Sivaraman/Nextcloud/")
        (t "/media/backup/Nextcloud/")))
 (defvar bs/tasks-path)
