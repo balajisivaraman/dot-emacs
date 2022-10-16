@@ -24,7 +24,7 @@
 ;;; Code:
 
 (use-package tex-site
-  :straight auctex
+  :ensure auctex
   :hook (LaTeX-mode . corfu-mode)
   :mode ("\\.tex\\'" . TeX-latex-mode))
 

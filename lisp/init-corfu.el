@@ -43,7 +43,7 @@
 
 (use-package corfu-quick
   :after (corfu)
-  :straight nil
+  :ensure nil
   :bind (:map corfu-map
          ("\M-q" . corfu-quick-complete)
          ("\C-q" . corfu-quick-insert)))

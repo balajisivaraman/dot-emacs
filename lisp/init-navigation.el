@@ -43,7 +43,7 @@
   ("C-x o" . ace-window))
 
 (use-package outline
-  :straight nil
+  :ensure nil
   :defer t
   :bind (("C-c O" . bs/outline/body))
   :config
@@ -85,7 +85,7 @@ _d_: subtree
   (beginend-global-mode))
 
 (use-package bookmark
-  :straight nil
+  :ensure nil
   :bind
   (("C-c B l" . bookmark-bmenu-list)
    ("C-c B s" . bookmark-set)

@@ -32,7 +32,7 @@
 
 (use-package eshell
   :commands (eshell)
-  :straight nil
+  :ensure nil
   :config
   (setq
    eshell-directory-name (concat bs/emacs-cache-directory "eshell")))

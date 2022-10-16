@@ -45,7 +45,7 @@
   (bibtex-completion-pdf-field "file"))
 
 (use-package oc
-  :straight nil
+  :ensure nil
   :custom
   (org-cite-global-bibliography `(,bs/bibfile-path))
   (org-cite-insert-processor 'citar)
@@ -283,7 +283,7 @@ choosing."
     (bs/find-para-node "Resource")))
 
 (use-package org-roam-protocol
-  :straight nil
+  :ensure nil
   :defer 5)
 
 (use-package deft

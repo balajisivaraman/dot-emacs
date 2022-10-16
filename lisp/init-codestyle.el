@@ -33,7 +33,7 @@
       require-final-newline nil)
 
 (use-package whitespace
-  :straight nil
+  :ensure nil
   :custom
   (whitespace-style '(face trailing space-before-tab empty missing-newline-at-eof))
   :hook

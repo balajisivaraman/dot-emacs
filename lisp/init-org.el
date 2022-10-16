@@ -145,15 +145,15 @@
 
 (use-package org-protocol
   :after org
-  :straight nil)
+  :ensure nil)
 
 (use-package org-checklist
   :after org
-  :straight nil)
+  :ensure nil)
 
 (use-package org-indent
   :after org
-  :straight nil
+  :ensure nil
   :commands (org-indent-mode)
   :hook (org-mode . org-indent-mode))
 
@@ -161,7 +161,7 @@
   :hook (org-mode . org-modern-mode))
 
 (use-package org-capture
-  :straight nil
+  :ensure nil
   :after org
   :bind
   (("M-o c" . org-capture))
@@ -180,7 +180,7 @@
       "* %i%?\n:PROPERTIES:\n:ID:  %(shell-command-to-string \"uuidgen\"):CREATED:  %U\n:END:" :prepend t))))
 
 (use-package bs-org
-  :straight nil
+  :ensure nil
   :commands (bs/format-entry-scheduled-deadline-time)
   :bind
   (:map org-mode-map ("C-c C-w" . bs/org-refile))

@@ -24,7 +24,7 @@
 ;;; Code:
 
 (use-package shell-script-mode
-  :straight nil
+  :ensure nil
   :hook (shell-script-mode . eglot-ensure)
   :mode
   "\\(.sh\\|.bash\\|.zsh\\)\\(_history\\|_profile\\|rc\\)")

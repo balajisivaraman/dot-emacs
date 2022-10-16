@@ -26,7 +26,7 @@
 ;;; Code:
 
 (use-package project
-  :straight nil
+  :ensure nil
   :bind
   (("C-x p C" . project-compile)
    ("C-x p g" . magit-project-status)

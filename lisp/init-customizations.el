@@ -45,7 +45,7 @@
 
 ;; Saveplace Mode - Saves Cursor Position Within Files
 (use-package saveplace
-  :straight nil
+  :ensure nil
   :custom
   (save-place-file (concat bs/emacs-cache-directory ".saveplace"))
   :config

@@ -24,12 +24,12 @@
 ;;; Code:
 
 (use-package grep
-  :straight nil
+  :ensure nil
   :custom
   (find-program "fd"))
 
 (use-package xref
-  :straight nil
+  :ensure nil
   :custom
   (xref-search-program 'ripgrep))
 

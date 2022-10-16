@@ -1,4 +1,4 @@
-;;; init-package.el --- Initialize straight.el and use-package. -*- lexical-binding: t -*-
+;;; init-package.el --- Initialize package.el and any dependencies. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021  Balaji Sivaraman
 
@@ -19,19 +19,44 @@
 
 ;;; Commentary:
 
-;; This file contains initialization code for straight.el and use-package.
+;; This file contains initialization code for package.el and convenience packages like use-package and paradox.
 
 ;;; Code:
 
-(straight-use-package 'use-package)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; package.el should not initialize our packages.
+;; We're going to use use-package for that.
+(setq package-quickstart t
+      package-quickstart-file (concat bs/emacs-cache-directory "package-quickstart.el")
+      package-enable-at-startup nil)
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
-(setq straight-use-package-by-default t)
-(setq use-package-verbose t)
+;; Always install packages from Melpa, Elpa
+;; Over-ridden when not used by setting (:ensure nil) in use-package declarations
+(setq use-package-always-ensure t)
 (require 'bind-key)
 
-(bind-key "M-P u" 'straight-pull-all)
-(bind-key "M-P c" 'straight-remove-unused-repos)
+(use-package paradox
+  :bind
+  (("M-P u" . paradox-upgrade-packages)
+   ("M-P r" . package-refresh-contents))
+  :config
+  (setq
+   paradox-execute-asynchronously nil ; No async update, please
+   paradox-spinner-type 'moon      ; Fancy spinner
+   ;; Show all possible counts
+   paradox-display-download-count t
+   paradox-display-star-count t
+   ;; Don't star automatically
+   paradox-automatically-star nil
+   ;; Hide download button, and wiki packages
+   paradox-use-homepage-buttons nil ; Can type v instead
+   paradox-hide-wiki-packages t))
 
 (provide 'init-package)
 ;;; init-package.el ends here
