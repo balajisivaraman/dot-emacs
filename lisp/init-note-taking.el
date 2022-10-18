@@ -69,10 +69,14 @@
                    (link ,(all-the-icons-octicon "link" :face 'all-the-icons-orange :v-adjust 0.01) . " ")))
   (citar-symbol-separator "  ")
   :bind
-  (("C-c b" . citar-insert-citation)
-   (:map org-mode-map :package org ("C-c b" . #'org-cite-insert))
-   :map minibuffer-local-map
-   ("M-B" . citar-insert-preset)))
+  (("M-n b" . citar-open)
+   ("C-c b" . citar-insert-citation)
+   (:map org-mode-map :package org ("C-c b" . #'org-cite-insert))))
+
+(use-package citar-embark
+  :after citar embark
+  :no-require
+  :config (citar-embark-mode))
 
 (use-package org-roam
   :init
@@ -97,8 +101,22 @@
   :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")
   :NOTER_PAGE:
   :END:\n\n")
-      :unnarrowed t
-      :immediate-finish t))
+      :unnarrowed t)
+     ("r" "ref" plain
+      "%?"
+      :if-new
+      (file+head
+       "5.BibNotes/${citekey}.org"
+       "#+TITLE: ${citekey}: ${title}
+#+ROAM_KEY: ${ref}\n
+
+* ${title}
+  :PROPERTIES:
+  :Custom_ID: ${citekey}
+  :URL: ${url}
+  :AUTHOR: ${author}
+  :END:\n\n")
+      :unnarrowed t))
    org-roam-capture-ref-templates
    '(("c" "clip web content" plain "* ${body}"
       :target
@@ -282,6 +300,14 @@ choosing."
     (interactive)
     (bs/find-para-node "Resource")))
 
+(use-package org-roam-ui
+  :after org-roam
+  :custom
+  (org-roam-ui-sync-theme t)
+  (org-roam-ui-follow t)
+  (org-roam-ui-update-on-save t)
+  (org-roam-ui-open-on-start t))
+
 (use-package org-roam-protocol
   :ensure nil
   :defer 5)
@@ -298,13 +324,27 @@ choosing."
 
 (use-package org-roam-bibtex
   :after (org-roam)
-  :hook (org-roam-mode . org-roam-bibtex-mode)
-  :custom
-  (orb-roam-ref-format 'org-cite)
+  :init
+  (org-roam-bibtex-mode)
   :config
   (setq
    orb-preformat-keywords
    '("citekey" "entry-type" "date" "pdf?" "note?" "file" "author" "editor" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "keywords" "url")))
+
+(use-package citar-org-roam
+  :after citar org-roam
+  :no-require
+  :config
+  (citar-org-roam-mode)
+  (citar-register-notes-source
+   'orb-citar-source (list :name "Org-Roam Notes"
+                           :category 'org-roam-node
+                           :items #'citar-org-roam--get-candidates
+                           :hasitems #'citar-org-roam-has-notes
+                           :open #'citar-org-roam-open-note
+                           :create #'orb-citar-edit-note
+                           :annotate #'citar-org-roam--annotate))
+  (setq citar-notes-source 'orb-citar-source))
 
 (use-package org-noter
   :after (:any org pdf-view)
