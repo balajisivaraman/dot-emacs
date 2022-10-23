@@ -31,6 +31,7 @@
   (setq python-indent-offset 4))
 
 (use-package pyenv-mode
+  :disabled t
   :init
   (add-to-list 'exec-path "~/.pyenv/shims")
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
