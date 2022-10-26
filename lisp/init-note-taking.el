@@ -27,7 +27,7 @@
 (defvar bs/bibfile-path)
 (setq bs/bibfile-path "~/.zotero/zotLib.bib")
 (defvar bs/bibnotes-path)
-(setq bs/bibnotes-path (s-concat bs/nextcloud-path "ThePlainTextLife/5.BibNotes"))
+(setq bs/bibnotes-path (s-concat bs/nextcloud-path "ThePlainTextLife/notes"))
 
 (defvar bs/org-roam-map)
 (define-prefix-command 'bs/org-roam-map)
@@ -85,11 +85,20 @@
    org-roam-db-location (s-concat bs/emacs-cache-directory ".org-roam.db")
    org-roam-db-gc-threshold most-positive-fixnum
    org-roam-capture-templates
-   '(("n" "ref + noter" plain
+   '(("d" "default" plain
+      "%?"
+      :if-new
+      (file+head
+       "${slug}.org"
+       ":PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):END:
+#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+      :unnarrowed t)
+     ("n" "ref + noter" plain
       "%?"
       :target
       (file+head
-       "5.BibNotes/${citekey}.org"
+       "references/${citekey}.org"
        "#+TITLE: ${citekey}: ${title}
 #+ROAM_KEY: ${ref}
 
@@ -106,7 +115,7 @@
       "%?"
       :if-new
       (file+head
-       "5.BibNotes/${citekey}.org"
+       "references/${citekey}.org"
        "#+TITLE: ${citekey}: ${title}
 #+ROAM_KEY: ${ref}\n
 
@@ -116,15 +125,7 @@
   :URL: ${url}
   :AUTHOR: ${author}
   :END:\n\n")
-      :unnarrowed t))
-   org-roam-capture-ref-templates
-   '(("c" "clip web content" plain "* ${body}"
-      :target
-      (file+head
-       "0.Inbox/${slug}.org"
-       "\n\n#+title: ${title}\n\n")
-      :unnarrowed t
-      :immediate-finish t)))
+      :unnarrowed t)))
   :bind
   ("M-n c a" . bs/capture-new-area)
   ("M-n c p" . bs/capture-new-project)
@@ -137,168 +138,11 @@
   ("M-n f r" . bs/find-para-resource)
   ("M-n r"   . org-roam-node-random)
   ("M-n x"   . bs/exclude-current-node)
+  ("M-n f r"   . org-roam-node-random)
   :commands
   (bs/org-roam-refile-node-under-project)
   :config
-  (org-roam-setup)
-  (defun bs/folderify-roam-node (node)
-    "Sanitise a Roam node title for folder names."
-    (string-replace ": " " - " (org-roam-node-title node)))
-  (defun bs/org-roam-filter-by-tag (tag-name)
-    (lambda (node)
-      (member tag-name (org-roam-node-tags node))))
-  (defun bs/create-new-para-tasks-category (group title)
-    "Create a new category subtree named TITLE under parent subtree
-named GROUP."
-    (save-window-excursion
-      (let* ((buffer (find-file-noselect (concat bs/tasks-path "life.org"))))
-        (with-current-buffer buffer
-          (progn
-            (goto-char (point-min))
-            (widen)
-            (re-search-forward (format "^* %s" group))
-            (org-narrow-to-subtree)
-            (goto-char (point-max))
-            (insert "\n")
-            (insert (concat "** " title "\n:PROPERTIES:\n:CATEGORY:   " title "\n:END:\n"))
-            (widen))))))
-  (defun bs/capture-new-project (&optional arg)
-    (interactive "P")
-    (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Enter Project Title: "))
-           (title (org-roam-node-title node))
-           (path (concat bs/notes-path "1.Projects/" (bs/folderify-roam-node node) "/")))
-      (unless arg
-        (progn (unless (file-directory-p path)
-                 (dired-create-directory path))
-               (org-roam-capture- :node node
-                                  :templates '(("p" "project" plain
-                                                "%?"
-                                                :target
-                                                (file+head
-                                                 "1.Projects/${bs/folderify-roam-node}/Index.org"
-                                                 "#+title: ${title}\n#+filetags: Project\n\n* Objectives\n\n* References\n\n* Notes\n")
-                                                :unnarrowed t
-                                                :immediate-finish t)))))
-      (bs/create-new-para-tasks-category "PROJECTS" title)))
-  (defun bs/capture-new-area ()
-    (interactive)
-    (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Area") nil nil "Enter Area Title: "))
-           (title (org-roam-node-title node))
-           (path (concat bs/notes-path "2.Areas/" (bs/folderify-roam-node node) "/")))
-      (unless (file-directory-p path)
-        (dired-create-directory path))
-      (org-roam-capture- :node node
-                         :templates '(("a" "area" plain
-                                       "%?"
-                                       :target
-                                       (file+head
-                                        "2.Areas/${bs/folderify-roam-node}/Index.org"
-                                        "#+title: ${title}\n#+filetags: Area\n\n* References\n\n* Notes\n\n* Linked Projects\n")
-                                       :unnarrowed t
-                                       :immediate-finish t)))
-      (bs/create-new-para-tasks-category "AREAS" title)))
-  (defun bs/capture-new-resource ()
-    (interactive)
-    (let* ((node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Resource") nil nil "Enter Resource Title: "))
-           (title (org-roam-node-title node))
-           (path (concat bs/notes-path "3.Resources/" (bs/folderify-roam-node node) "/")))
-      (unless (file-directory-p path)
-        (dired-create-directory path))
-      (org-roam-capture- :node node
-                         :templates '(("r" "resource" plain
-                                       "%?"
-                                       :target
-                                       (file+head
-                                        "3.Resources/${bs/folderify-roam-node}/Index.org"
-                                        "#+title: ${title}\n#+filetags: Resource\n\n* References\n\n* Notes\n")
-                                       :unnarrowed t
-                                       :immediate-finish t)))
-      (bs/create-new-para-tasks-category "RESOURCES" title)))
-  (defun bs/capture-new-project-reference ()
-    (interactive)
-    (let* ((node (org-roam-node-read nil nil nil nil "Enter Reference Title: "))
-           (project (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Select Project: "))
-           (project-title (org-roam-node-title project)))
-      (org-roam-capture- :node node
-                         :templates `(("r" "reference" plain
-                                       "%?"
-                                       :target
-                                       (file+head
-                                        ,(format "1.Projects/%s/${slug}.org" project-title)
-                                        "#+title: ${title}")
-                                       :unnarrowed t
-                                       :immediate-finish t)))
-      (save-window-excursion
-        (let* ((buffer (find-file-noselect (org-roam-node-file project)))
-               (id (org-roam-node-id node))
-               (title (org-roam-node-title node)))
-          (with-current-buffer buffer
-            (progn
-              (goto-char (point-min))
-              (widen)
-              (re-search-forward "^* References")
-              (org-narrow-to-subtree)
-              (goto-char (point-max))
-              (insert "- ")
-              (insert (org-link-make-string
-                       (concat "id:" id)
-                       title))
-              (insert "\n")
-              (widen)))))))
-  (defun bs/org-roam-refile-node-under-project ()
-    "Refiles the node at point as a reference of a project of user's
-choosing."
-    (interactive)
-    (let* ((project-node (org-roam-node-read nil (bs/org-roam-filter-by-tag "Project") nil nil "Select Project: "))
-           (current-node (org-roam-node-at-point)))
-      (if (s-suffix? "inbox.org" (org-roam-node-file current-node))
-          (print (format "Refiling headline node in inbox.org to project '%s'" (org-roam-node-title current-node) (org-roam-node-title project-node)))
-        (let* ((new-file (concat (substring (org-roam-node-file project-node)
-                                            0
-                                            (s-index-of "/Index.org" (org-roam-node-file project-node)))
-                                 "/"
-                                 (substring (org-roam-node-file current-node)
-                                            (+ 6 (s-index-of "Inbox/" (org-roam-node-file current-node)))
-                                            (length (org-roam-node-file current-node))))))
-          (print (format "Refiling file node in '%s' to project '%s'" (org-roam-node-title current-node) (org-roam-node-title project-node)))
-          (rename-file (org-roam-node-file current-node) new-file)
-          (kill-buffer (current-buffer))
-          (find-file new-file)
-          (save-window-excursion
-            (let* ((buffer (find-file-noselect (org-roam-node-file project-node)))
-                   (id (org-roam-node-id current-node))
-                   (title (org-roam-node-title current-node)))
-              (with-current-buffer buffer
-                (progn
-                  (goto-char (point-min))
-                  (widen)
-                  (re-search-forward "^* References")
-                  (org-narrow-to-subtree)
-                  (goto-char (point-max))
-                  (insert "- ")
-                  (insert (org-link-make-string
-                           (concat "id:" id)
-                           title))
-                  (insert "\n")
-                  (widen)
-                  (save-buffer)))))))))
-  (defun bs/exclude-current-node ()
-    "Exclude node at point."
-    (interactive)
-    (org-set-property "ROAM_EXCLUDE" "t"))
-  (defun bs/find-para-node (type)
-    "Find P.A.R.A node of TYPE using `org-roam-node-find'."
-    (interactive)
-    (org-roam-node-find nil nil (bs/org-roam-filter-by-tag type) nil))
-  (defun bs/find-para-project ()
-    (interactive)
-    (bs/find-para-node "Project"))
-  (defun bs/find-para-area ()
-    (interactive)
-    (bs/find-para-node "Area"))
-  (defun bs/find-para-resource ()
-    (interactive)
-    (bs/find-para-node "Resource")))
+  (org-roam-setup))
 
 (use-package org-roam-ui
   :after org-roam
