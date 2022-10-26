@@ -49,7 +49,7 @@
    org-log-done 'time
    org-archive-location (s-concat bs/tasks-path "archives.org::")
    org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets `((,(s-concat bs/tasks-path "life.org") :level . 2))
+   org-refile-targets `((,(s-concat bs/tasks-path "life.org") :maxlevel . 2))
    org-global-properties '(("Effort_ALL" . "5min 10min 15min 30min 45min 1h 2h 3h 4h 5h 6h 7h 8h 12h 16h 24h"))
    org-ellipsis "  "
    org-use-speed-commands t

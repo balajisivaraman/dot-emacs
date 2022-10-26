@@ -69,7 +69,7 @@
                    (link ,(all-the-icons-octicon "link" :face 'all-the-icons-orange :v-adjust 0.01) . " ")))
   (citar-symbol-separator "  ")
   :bind
-  (("M-n b" . citar-open)
+  (("M-n f b" . citar-open)
    ("C-c b" . citar-insert-citation)
    (:map org-mode-map :package org ("C-c b" . #'org-cite-insert))))
 
@@ -87,12 +87,12 @@
    org-roam-capture-templates
    '(("d" "default" plain
       "%?"
-      :if-new
+      :target
       (file+head
        "${slug}.org"
-       ":PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):END:
-#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+       "#+TITLE: ${title}
+#+CREATED: %U
+#+LAST_MODIFIED: %U\n\n")
       :unnarrowed t)
      ("n" "ref + noter" plain
       "%?"
@@ -113,7 +113,7 @@
       :unnarrowed t)
      ("r" "ref" plain
       "%?"
-      :if-new
+      :target
       (file+head
        "references/${citekey}.org"
        "#+TITLE: ${citekey}: ${title}
@@ -127,15 +127,8 @@
   :END:\n\n")
       :unnarrowed t)))
   :bind
-  ("M-n c a" . bs/capture-new-area)
-  ("M-n c p" . bs/capture-new-project)
-  ("M-n c r" . bs/capture-new-resource)
-  ("M-n c R" . bs/capture-new-project-reference)
   ("M-n i"   . org-roam-node-insert)
-  ("M-n f a" . bs/find-para-area)
   ("M-n f n" . org-roam-node-find)
-  ("M-n f p" . bs/find-para-project)
-  ("M-n f r" . bs/find-para-resource)
   ("M-n r"   . org-roam-node-random)
   ("M-n x"   . bs/exclude-current-node)
   ("M-n f r"   . org-roam-node-random)
@@ -206,6 +199,20 @@
    org-noter-notes-search-path (list bs/bibnotes-path)
    ;; Auto save location in PDF
    org-noter-auto-save-last-location t))
+
+(use-package bs-note-taking
+  :disabled t
+  :ensure nil
+  :bind
+  ("M-n c a" . bs/capture-new-area)
+  ("M-n c m" . bs/capture-new-meeting)
+  ("M-n c p" . bs/capture-new-work-project)
+  ("M-n c r" . bs/capture-new-resource)
+  ("M-n c R" . bs/capture-new-project-reference)
+  ("M-n f a" . bs/find-para-area)
+  ("M-n f p" . bs/find-para-project)
+  ("M-n f r" . bs/find-para-resource)
+  ("M-n x"   . bs/exclude-current-node))
 
 (provide 'init-note-taking)
 ;;; init-note-taking.el ends here
