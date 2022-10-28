@@ -101,6 +101,8 @@
        "references/${citekey}.org"
        "#+TITLE: ${citekey}: ${title}
 #+ROAM_KEY: ${ref}
+#+CREATED: %U
+#+LAST_MODIFIED: %U
 
 * ${title}
   :PROPERTIES:
@@ -117,7 +119,9 @@
       (file+head
        "references/${citekey}.org"
        "#+TITLE: ${citekey}: ${title}
-#+ROAM_KEY: ${ref}\n
+#+ROAM_KEY: ${ref}
+#+CREATED: %U
+#+LAST_MODIFIED: %U
 
 * ${title}
   :PROPERTIES:
