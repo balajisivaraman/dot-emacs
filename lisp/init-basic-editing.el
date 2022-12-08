@@ -32,7 +32,23 @@
   (undo-tree-visualizer-timestamps t)
   (undo-tree-history-directory-alist `(("." . ,(concat bs/emacs-cache-directory "undo-tree"))))
   :config
-  (global-undo-tree-mode 1))
+  (global-undo-tree-mode 1)
+  ;; Suppress the message saying that the undo history file was
+  ;; saved (because this happens every single time you save a file).
+  (defun bs/undo-tree-suppress-undo-history-saved-message
+      (undo-tree-save-history &rest args)
+    (let ((inhibit-message t))
+      (apply undo-tree-save-history args)))
+
+  ;; Suppress the message saying that the undo history could not be
+  ;; loaded because the file changed outside of Emacs.
+  (defun bs/undo-tree-suppress-buffer-modified-message
+      (undo-tree-load-history &rest args)
+    (let ((inhibit-message t))
+      (apply undo-tree-load-history args)))
+
+  (advice-add #'undo-tree-load-history :around
+              #'bs/undo-tree-suppress-buffer-modified-message))
 
 ;; Rectangle Editing
 (use-package rect
