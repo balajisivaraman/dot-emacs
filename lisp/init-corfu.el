@@ -37,9 +37,10 @@
   (corfu-scroll-margin 5)
   (tab-always-indent 'complete))
 
-(use-package corfu-doc
+(use-package corfu-popupinfo
+  :ensure nil
   :after corfu
-  :hook (corfu-mode . corfu-doc-mode))
+  :hook (corfu-mode . corfu-popupinfo-mode))
 
 (use-package corfu-quick
   :after (corfu)
