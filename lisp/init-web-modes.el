@@ -27,6 +27,7 @@
   :mode "\\.rest\\$")
 
 (use-package typescript-mode
+  :mode ("\\.ts" . typescript-mode)
   :hook ((typescript-mode . eglot-ensure)
          (typescript-mode . corfu-mode))
   :custom
