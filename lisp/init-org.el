@@ -71,6 +71,7 @@
    org-tags-column 0
    org-imenu-depth 3
    org-startup-with-inline-images t
+   org-image-actual-width nil
    )
   ;; Clock Configuration
   (org-clock-persistence-insinuate)
