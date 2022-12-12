@@ -70,6 +70,7 @@
    org-auto-align-tags nil
    org-tags-column 0
    org-imenu-depth 3
+   org-startup-with-inline-images t
    )
   ;; Clock Configuration
   (org-clock-persistence-insinuate)
@@ -178,6 +179,11 @@
      ("n" "Inbox [Note]" entry
       (file ,(s-concat bs/notes-path "0.Inbox/inbox.org"))
       "* %i%?\n:PROPERTIES:\n:ID:  %(shell-command-to-string \"uuidgen\"):CREATED:  %U\n:END:" :prepend t))))
+
+(use-package org-download
+  :after org
+  :custom
+  (org-download-method 'attach))
 
 (use-package bs-org
   :ensure nil
