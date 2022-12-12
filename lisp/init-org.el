@@ -183,6 +183,7 @@
   :ensure nil
   :commands (bs/format-entry-scheduled-deadline-time)
   :bind
+  ("M-o R" . bs/org-archive-all-done-cxld-tasks)
   (:map org-mode-map ("C-c C-w" . bs/org-refile))
   :hook
   ((before-save . bs/org-set-last-modified)

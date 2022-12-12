@@ -267,5 +267,25 @@ refile it to. Otherwise, delegate to standard `org-refile'."
         (bs/org-roam-refile-node-under-project)
       (org-refile))))
 
+;;;###autoload
+(defun bs/org-archive-all-done-cxld-tasks ()
+  "Archive all DONE or CXLD tasks across all agenda files."
+  (interactive)
+  (save-window-excursion
+    (-each org-agenda-files
+      (lambda (agenda-file)
+        (let* ((buffer (find-file-noselect agenda-file)))
+          (with-current-buffer buffer
+            (progn
+              (goto-char (point-min))
+              (widen)
+              (while (<= (point) (point-max))
+                (condition-case nil
+                    (progn
+                      (re-search-forward "^[*]+ \\(DONE\\|CXLD\\)")
+                      (org-archive-subtree))
+                  ((debug error) nil))))
+            (save-buffer)))))))
+
 (provide 'bs-org)
 ;;; bs-org.el ends here
