@@ -139,7 +139,11 @@
   :commands
   (bs/org-roam-refile-node-under-project)
   :config
-  (org-roam-setup))
+  (org-roam-setup)
+  (defun bs/exclude-current-node ()
+    "Exclude node at point."
+    (interactive)
+    (org-set-property "ROAM_EXCLUDE" "t")))
 
 (use-package org-roam-ui
   :after org-roam
