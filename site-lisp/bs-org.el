@@ -279,12 +279,11 @@ refile it to. Otherwise, delegate to standard `org-refile'."
             (progn
               (goto-char (point-min))
               (widen)
-              (while (<= (point) (point-max))
-                (condition-case nil
-                    (progn
-                      (re-search-forward "^[*]+ \\(DONE\\|CXLD\\)")
-                      (org-archive-subtree))
-                  ((debug error) nil))))
+              (condition-case nil
+                  (while t
+                    (progn (re-search-forward "^[*]+ \\(DONE\\|CXLD\\)")
+                           (org-archive-subtree)))
+                ((debug error) nil)))
             (save-buffer)))))))
 
 (provide 'bs-org)
