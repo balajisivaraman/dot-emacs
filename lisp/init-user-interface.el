@@ -19,15 +19,13 @@
 
 ;;; Commentary:
 
-;; Loads Gruvbox Theme, removes extraneous user-interface elements and makes Emacs more usable.
+;; Loads Dracula Theme, removes extraneous user-interface elements and makes Emacs more usable.
 
 ;;; Code:
 
-(use-package modus-themes
-  :config
-  (load-theme 'modus-vivendi t)
-  (set-frame-parameter (selected-frame) 'alpha '(96 . 96))
-  (add-to-list 'default-frame-alist '(alpha . (96 . 96))))
+(use-package dracula-theme
+  :init
+  (load-theme 'dracula t))
 
 (use-package nyan-mode
   :config (nyan-mode))
