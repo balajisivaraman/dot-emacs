@@ -141,9 +141,9 @@
   :config
   (add-to-list 'org-modules 'org-depend))
 
-(use-package org-bullets
+(use-package org-superstar
   :after org
-  :hook ((org-mode . org-bullets-mode)))
+  :hook ((org-mode . org-superstar-mode)))
 
 (use-package org-protocol
   :after org
