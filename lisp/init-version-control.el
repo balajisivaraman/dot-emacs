@@ -39,7 +39,7 @@
   :after magit
   :hook ((magit-mode . (lambda () (magit-delta-mode +1))))
   :custom
-  (magit-delta-default-dark-theme "Dracula"))
+  (magit-delta-default-dark-theme "Catppuccin Mocha"))
 
 (use-package git-timemachine
   :bind (("C-c g t" . git-timemachine)))

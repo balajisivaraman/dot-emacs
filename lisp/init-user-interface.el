@@ -23,9 +23,9 @@
 
 ;;; Code:
 
-(use-package dracula-theme
-  :init
-  (load-theme 'dracula t))
+(use-package catppuccin-theme
+  :config
+  (load-theme 'catppuccin t))
 
 (use-package nyan-mode
   :config (nyan-mode))
