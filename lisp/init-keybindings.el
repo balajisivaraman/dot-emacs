@@ -47,8 +47,10 @@
 ;; Inspired by Spacemacs and Sebastian Wiesner's Config
 ;; The latter can be found here: https://github.com/lunaryorn/.emacs.d/blob/master/init.el#L317
 (use-package which-key
-  :init (which-key-mode)
+  :demand t
+  :diminish
   :config
+  (which-key-mode)
   (setq which-key-idle-delay 0.4
         which-key-sort-order 'which-key-prefix-then-key-order
         ;; Let's go unicode :)
