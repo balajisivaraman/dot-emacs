@@ -2,6 +2,7 @@
 
 | Icon File                              | Created By                                                        | Downloaded From                                                    |
 |----------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|
+| [apple.png](./apple.png)               | [Freepik](https://www.flaticon.com/authors/freepik)               | [Link](https://www.flaticon.com/free-icon/apple_1240942)           |
 | [building.png](./building.png)         | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/premium-icon/skyscraper_562460)    |
 | [family.png](./family.png)             | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/free-icon/family_2829744)          |
 | [guitar.png](./guitar.png)             | [Freepik](https://www.freepik.com/)                               | ![Link](https://www.flaticon.com/free-icon/electric-guitar_355081) |
@@ -16,6 +17,6 @@
 | [personal.png](./personal.png)         | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/premium-icon/worker_2813832)       |
 | [productivity.png](./productivity.png) | [juicy-fish](https://www.flaticon.com/authors/juicy-fish)         | [Link](https://www.flaticon.com/free-icon/multitasking_9005431)    |
 | [programming.png](./programming.png)   | [Eucalyp](https://www.flaticon.com/authors/eucalyp)               | [Link](https://www.flaticon.com/free-icon/programing_2463510)      |
-| [reading.png](./reading.png)           | [monkik](https://www.flaticon.com/authors/monkik)                | [Link](https://www.flaticon.com/free-icon/reading_3749948)         |
-| [vacation.png](./vacation.png)         | [wanicon](https://www.flaticon.com/authors/wanicon)               | [Link](https://www.flaticon.com/premium-icon/vacation_3628028)     |
-| [writing.png](./writing.png)           | [Freepik](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/free-icon/pencil_3075908)          |
+| [reading.png](./reading.png)           | [monkik](https://www.flaticon.com/authors/monkik)                 | [Link](https://www.flaticon.com/free-icon/reading_3749948)         |
+| [vacation.png](./vacation.png)         | [wanicon](https://www.freepik.com/)                               | [Link](https://www.flaticon.com/free-icon/vacations_2664593)       |
+| [writing.png](./writing.png)           | [Freepik](https://www.flaticon.com/authors/freepik)               | [Link](https://www.flaticon.com/free-icon/pencil_3075908)          |
