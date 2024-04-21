@@ -43,7 +43,7 @@
   (consult-customize
    consult-buffer consult-ripgrep consult-bookmark
    consult-recent-file
-   :preview-key (kbd "M-.")))
+   :preview-key '(:debounce 0.4 any)))
 
 (use-package marginalia
   :config
