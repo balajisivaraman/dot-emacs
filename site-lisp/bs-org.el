@@ -228,7 +228,7 @@ HH:MM format. Deadline time gets preference if it exists."
   "Returns tuple of category and category-icon of the Org node at
 point."
   (let* ((category-name (org-get-category))
-         (category-icon-name (org-entry-get (point) "CATEGORY_ICON")))
+         (category-icon-name (org-entry-get (point) "CATEGORY_ICON" t)))
     (when category-icon-name
       `(,category-name . ,category-icon-name))))
 
