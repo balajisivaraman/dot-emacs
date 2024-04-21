@@ -30,7 +30,6 @@
 (setq package-quickstart t
       package-quickstart-file (concat bs/emacs-cache-directory "package-quickstart.el")
       package-enable-at-startup nil)
-(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
