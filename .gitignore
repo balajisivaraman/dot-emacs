@@ -8,6 +8,9 @@ eln-cache/
 # Transient files
 transient/
 
+# Project cache
+projects
+
 # macOS
 .DS_Store
 

@@ -21,8 +21,13 @@
 ;; Load configuration modules in order
 (require 'init-elpaca)      ;; Package manager
 (require 'init-defaults)    ;; Sensible defaults
+(require 'init-keybindings) ;; General & Which-Key setup (must load early)
 (require 'init-ui)          ;; UI and appearance
 (require 'init-macos)       ;; macOS settings
+(require 'init-editing)     ;; Editing enhancements
+(require 'init-completion)  ;; Completion stack
+(require 'init-buffers)     ;; Buffer management
+(require 'init-utilities)   ;; Utilities (restart-emacs, etc.)
 
 ;; Measure startup time
 (add-hook 'emacs-startup-hook

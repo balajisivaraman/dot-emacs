@@ -118,5 +118,23 @@ Level 0 is base size, level 1 is 1.2x, level 2 is 1.44x, etc."
   (bs/set-base-typography)
   (message "Base font size updated to %d pt" size))
 
+;;; Golden Ratio - Automatic window resizing
+(use-package golden-ratio
+  :ensure t
+  :config
+  ;; Enable golden-ratio mode
+  (golden-ratio-mode 1)
+
+  ;; Exclude certain modes/commands from golden-ratio
+  (setq golden-ratio-exclude-modes
+        '("ediff-mode"
+          "eshell-mode"
+          "dired-mode"))
+
+  ;; Don't resize minibuffer and which-key
+  (setq golden-ratio-exclude-buffer-regexp
+        '("^ \\*Minibuf.*\\*$"
+          "^\\*which-key\\*$")))
+
 (provide 'init-ui)
 ;;; init-ui.el ends here
