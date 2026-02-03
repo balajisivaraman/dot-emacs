@@ -28,6 +28,9 @@
 (require 'init-completion)  ;; Completion stack
 (require 'init-buffers)     ;; Buffer management
 (require 'init-utilities)   ;; Utilities (restart-emacs, etc.)
+(require 'init-project)     ;; Project management
+(require 'init-dired)       ;; Dired enhancements
+(require 'init-tools)       ;; Development tools (magit, deft, helpful)
 
 ;; Measure startup time
 (add-hook 'emacs-startup-hook
