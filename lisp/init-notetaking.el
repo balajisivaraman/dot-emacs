@@ -85,7 +85,7 @@
   :hook (org-mode . org-modern-mode)
   :config
   ;; What to modernize
-  (setq org-modern-keyword nil              ;; Keep standard keywords
+  (setq org-modern-keyword t                ;; Prettify keywords
         org-modern-checkbox nil             ;; Keep standard checkboxes
         org-modern-table t                  ;; Modernize tables
         org-modern-tag t                    ;; Modernize tags
