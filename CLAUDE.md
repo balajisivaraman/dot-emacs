@@ -259,6 +259,23 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 
 **Scopes**: phase1-5, ui, editing, completion, notetaking, utilities, etc.
 
+## Future Ideas and Planned Features
+
+The `docs/future-ideas/` directory contains detailed implementation plans for potential features and extensions:
+
+- **tech-radar.md**: Personal Technology Radar system built on Vulpea
+  - Track tools, techniques, platforms, languages, and frameworks
+  - Query by category, adoption ring, status, and review needs
+  - Generate reports and maintain technology decisions over time
+  - Estimated implementation: 6-8 hours with Claude Code
+
+When implementing features from this directory:
+1. Read the full plan before starting
+2. Follow the phased approach outlined in the document
+3. Update the plan with any lessons learned
+4. Remove from future-ideas or mark as implemented once complete
+5. Update CLAUDE.md to document the new capability
+
 ## Support and Context
 
 When working with this configuration:
