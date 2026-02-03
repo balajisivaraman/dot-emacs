@@ -47,7 +47,8 @@
   "M-j" "avy/jump"
   "M-m" "org/notes"
   "M-g" "magit/git"
-  "M-s" "search")
+  "M-s" "search"
+  "C-c c" "config")
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

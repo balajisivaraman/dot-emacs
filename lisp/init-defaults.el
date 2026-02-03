@@ -33,9 +33,8 @@
 ;; Enable line numbers globally
 (global-display-line-numbers-mode 1)
 
-;; Disable line numbers in specific modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
+;; Disable line numbers in specific modes (not org-mode)
+(dolist (mode '(term-mode-hook
                 shell-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -97,9 +96,6 @@
 
 ;; Fill column for text wrapping
 (setq-default fill-column 80)
-
-;; Line spacing for better readability
-(setq-default line-spacing 0.2)
 
 ;;; History and Persistence
 ;; Save minibuffer history

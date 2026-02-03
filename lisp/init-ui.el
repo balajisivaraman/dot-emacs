@@ -81,15 +81,15 @@
 (defvar bs/base-font-size 14
   "Base font size in points for all typography calculations.")
 
-;; Minor Third scale ratio (1.2)
-(defvar bs/font-scale-ratio 1.2
-  "Typography scale ratio for heading sizes (Minor Third = 1.2).")
+;; Minor Second scale ratio (1.125)
+(defvar bs/font-scale-ratio 1.125
+  "Typography scale ratio for heading sizes (Minor Second = 1.125).")
 
 ;; Font families
-(defvar bs/heading-font "Vollkorn SC"
+(defvar bs/heading-font "Gentium Book Basic"
   "Font family for headings.")
 
-(defvar bs/variable-pitch-font "SN Pro"
+(defvar bs/variable-pitch-font "Gentium Book Basic"
   "Font family for variable-pitch text (body text).")
 
 (defvar bs/monospace-font "Lilex Nerd Font"

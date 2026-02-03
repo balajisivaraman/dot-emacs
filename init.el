@@ -31,6 +31,7 @@
 (require 'init-project)     ;; Project management
 (require 'init-dired)       ;; Dired enhancements
 (require 'init-tools)       ;; Development tools (magit, deft, helpful)
+(require 'init-org)         ;; Org-mode and note-taking
 
 ;; Measure startup time
 (add-hook 'emacs-startup-hook

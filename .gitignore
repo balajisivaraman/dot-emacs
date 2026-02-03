@@ -11,6 +11,13 @@ transient/
 # Project cache
 projects
 
+# Bookmarks and session files
+bookmarks
+bookmarks~
+
+# Database files
+*.db
+
 # macOS
 .DS_Store
 
