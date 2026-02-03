@@ -21,6 +21,8 @@
 ;; Load configuration modules in order
 (require 'init-elpaca)      ;; Package manager
 (require 'init-defaults)    ;; Sensible defaults
+(require 'init-ui)          ;; UI and appearance
+(require 'init-macos)       ;; macOS settings
 
 ;; Measure startup time
 (add-hook 'emacs-startup-hook

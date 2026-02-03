@@ -39,10 +39,15 @@ A modern, modular Emacs configuration focused on Org Mode note-taking and writin
 **Emacs 30+ with native compilation** (recommended):
 
 ```bash
-# Using Homebrew on macOS
+# Using Homebrew on macOS (simplest method)
 brew tap d12frosted/emacs-plus
-brew install emacs-plus@31 --with-native-comp --with-imagemagick --with-natural-title-bar
+brew install --cask emacs-plus-app
+
+# Verify native compilation is available
+emacs --batch --eval "(message \"%s\" (if (and (fboundp 'native-comp-available-p) (native-comp-available-p)) \"Native comp available\" \"No native comp\"))"
 ```
+
+The `emacs-plus-app` cask includes native compilation and comprehensive image format support by default.
 
 ### Setup
 
@@ -71,11 +76,15 @@ This configuration uses **standard Emacs keybindings** (no Evil mode). Custom pr
 
 Uses **Minor Third scale (1.2 ratio)** for harmonious heading sizes:
 
-- **Headings**: Vollkorn (Bold)
+- **Headings**: Vollkorn SC (Small Caps, Bold)
 - **Body Text**: SN Pro (variable-pitch)
 - **Code**: Lilex Nerd Font (monospace)
 
-Base font size is configurable via a single variable.
+Base font size is easily configurable:
+```elisp
+;; Change base font size and all headings will scale automatically
+(bs/update-base-font-size 14)  ; or 16, 18, etc.
+```
 
 ### Clean Separation
 
