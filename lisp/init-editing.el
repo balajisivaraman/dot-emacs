@@ -20,8 +20,18 @@
   (setq undo-tree-history-directory-alist
         `(("." . ,(expand-file-name "undo-tree/" user-cache-directory))))
 
-  ;; Enable persistent undo history
+  ;; Enable persistent undo history (but not for iCloud files)
   (setq undo-tree-auto-save-history t)
+
+  ;; Don't save undo history for files in iCloud Drive
+  ;; This prevents corruption from iCloud sync conflicts
+  (defun bs/undo-tree-suppress-icloud-history ()
+    "Disable undo-tree history for iCloud Drive files."
+    (when (and buffer-file-name
+               (string-match-p "Mobile Documents/com~apple~CloudDocs" buffer-file-name))
+      (setq-local undo-tree-auto-save-history nil)))
+
+  (add-hook 'find-file-hook #'bs/undo-tree-suppress-icloud-history)
 
   ;; Don't show undo tree in diff by default (can toggle with 'd')
   (setq undo-tree-visualizer-diff nil)
