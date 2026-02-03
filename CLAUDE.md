@@ -261,13 +261,21 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 
 ## Future Ideas and Planned Features
 
-The `docs/future-ideas/` directory contains detailed implementation plans for potential features and extensions:
+The `docs/future-ideas/` directory contains implementation plans for potential features and extensions:
+
+### Detailed Plans
 
 - **tech-radar.md**: Personal Technology Radar system built on Vulpea
   - Track tools, techniques, platforms, languages, and frameworks
   - Query by category, adoption ring, status, and review needs
   - Generate reports and maintain technology decisions over time
-  - Estimated implementation: 6-8 hours with Claude Code
+  - Estimated implementation: 1-2 hours with Claude Code (plan already detailed)
+
+### Quick Additions
+
+- **quick-additions.md**: Simpler capabilities that don't require extensive planning
+  - **vterm**: Terminal emulator within Emacs to replace Alacritty (~30-60 min)
+  - **AI Integration**: Aider, gptel, or similar for AI coding assistance (~30-60 min)
 
 When implementing features from this directory:
 1. Read the full plan before starting
