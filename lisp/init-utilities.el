@@ -31,6 +31,24 @@
   (which-key-add-key-based-replacements
     "C-c q" "quit/restart"))
 
+;;; Helpful - Better help buffers
+(use-package helpful
+  :ensure t
+  :config
+  ;; Replace default help commands with helpful
+  (general-define-key
+   "C-h f" 'helpful-callable
+   "C-h v" 'helpful-variable
+   "C-h k" 'helpful-key
+   "C-h C" 'helpful-command
+   "C-h F" 'helpful-function))
+
+;;; GCMH - Garbage Collector Magic Hack
+(use-package gcmh
+  :ensure t
+  :config
+  (gcmh-mode 1))
+
 ;;; Configuration Management Keybindings
 (general-define-key
  :prefix "C-c c"

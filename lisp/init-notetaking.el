@@ -1,10 +1,11 @@
-;;; init-org.el --- Org-mode and note-taking configuration -*- lexical-binding: t; -*-
+;;; init-notetaking.el --- Note-taking configuration -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; Configures Org-mode for writing and note-taking with:
+;; Configures Org-mode and note-taking with:
 ;; - Vulpea for note management and linking
 ;; - Vulpea-journal for daily notes
 ;; - Vulpea-ui for sidebar and widgets
+;; - Deft for fast note searching
 ;; - org-modern and org-superstar for visual enhancements
 ;; - Custom capture templates for notes and journal
 
@@ -250,7 +251,9 @@ Uses bs/calculate-font-height for consistent scaling."
    "s" '(vulpea-ui-sidebar-toggle :which-key "toggle sidebar")))
 
 ;;; Org Capture Templates
-(with-eval-after-load 'org-capture
+(use-package org-capture
+  :after (org vulpea)
+  :config
   (setq org-capture-templates
         '(("n" "Plain Note" plain
            (file (lambda ()
@@ -281,9 +284,22 @@ Uses bs/calculate-font-height for consistent scaling."
            :unnarrowed t
            :hook (org-id-get-create)))))
 
-;;; Update Deft directory to match org directory
-(with-eval-after-load 'deft
-  (setq deft-directory bs/org-directory))
+;;; Deft - Fast note searching
+(use-package deft
+  :ensure t
+  :config
+  ;; Set deft directory to match org directory
+  (setq deft-directory bs/org-directory
+        deft-extensions '("org" "txt" "md")
+        deft-recursive t
+        deft-use-filename-as-title t
+        deft-use-filter-string-for-filename t
+        deft-auto-save-interval 0)
 
-(provide 'init-org)
-;;; init-org.el ends here
+  ;; Deft keybinding with M-s prefix (search)
+  (general-define-key
+   :prefix "M-s"
+   "d" '(deft :which-key "deft (search notes)")))
+
+(provide 'init-notetaking)
+;;; init-notetaking.el ends here

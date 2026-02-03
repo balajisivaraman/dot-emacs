@@ -16,9 +16,8 @@ All immediate subdirectories will be added as projects.")
 (require 'project)
 
 ;; Add which-key description for C-x p prefix
-(with-eval-after-load 'which-key
-  (which-key-add-key-based-replacements
-    "C-x p" "project"))
+(which-key-add-key-based-replacements
+  "C-x p" "project")
 
 ;; Automatically discover projects in configured directory
 (defun bs/discover-projects ()
@@ -63,8 +62,7 @@ Searches recursively through all subdirectories."
         (magit-project-status "Magit" ?m)))
 
 ;; Use project.el with consult
-(with-eval-after-load 'consult
-  (setq consult-project-function #'consult--default-project-function))
+(setq consult-project-function #'consult--default-project-function)
 
 (provide 'init-project)
 ;;; init-project.el ends here

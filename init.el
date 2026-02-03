@@ -19,19 +19,19 @@
   (make-directory user-cache-directory t))
 
 ;; Load configuration modules in order
-(require 'init-elpaca)      ;; Package manager
-(require 'init-defaults)    ;; Sensible defaults
-(require 'init-keybindings) ;; General & Which-Key setup (must load early)
-(require 'init-ui)          ;; UI and appearance
-(require 'init-macos)       ;; macOS settings
-(require 'init-editing)     ;; Editing enhancements
-(require 'init-completion)  ;; Completion stack
-(require 'init-buffers)     ;; Buffer management
-(require 'init-utilities)   ;; Utilities (restart-emacs, etc.)
-(require 'init-project)     ;; Project management
-(require 'init-dired)       ;; Dired enhancements
-(require 'init-tools)       ;; Development tools (magit, deft, helpful)
-(require 'init-org)         ;; Org-mode and note-taking
+(require 'init-elpaca)         ;; Package manager
+(require 'init-defaults)       ;; Sensible defaults
+(require 'init-keybindings)    ;; General & Which-Key setup (must load early)
+(require 'init-ui)             ;; UI and appearance
+(require 'init-macos)          ;; macOS settings
+(require 'init-editing)        ;; Editing enhancements
+(require 'init-completion)     ;; Completion stack
+(require 'init-buffers)        ;; Buffer management
+(require 'init-utilities)      ;; Utilities (restart-emacs, helpful, gcmh)
+(require 'init-project)        ;; Project management
+(require 'init-dired)          ;; Dired enhancements
+(require 'init-version-control);; Version control (magit, magit-delta)
+(require 'init-notetaking)     ;; Note-taking (org, vulpea, deft)
 
 ;; Measure startup time
 (add-hook 'emacs-startup-hook
