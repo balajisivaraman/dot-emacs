@@ -49,6 +49,37 @@
   :config
   (gcmh-mode 1))
 
+;;; Crux - Useful interactive commands
+(use-package crux
+  :ensure t
+  :config
+  ;; Unbind prefixes we want to use
+  (global-unset-key (kbd "C-c f"))
+  (global-unset-key (kbd "C-c b"))
+  (global-unset-key (kbd "C-c e"))
+
+  ;; File operations keybindings
+  (general-define-key
+   "C-c f d" '(crux-delete-file-and-buffer :which-key "delete file and buffer")
+   "C-c f r" '(crux-rename-file-and-buffer :which-key "rename file and buffer")
+   "C-c f c" '(crux-copy-file-preserve-attributes :which-key "copy file"))
+
+  ;; Buffer operations
+  (general-define-key
+   "C-c b R" '(crux-revert-buffer-no-confirm :which-key "revert buffer")
+   "C-c b k" '(crux-kill-other-buffers :which-key "kill other buffers"))
+
+  ;; Editing shortcuts
+  (general-define-key
+   "C-c e d" '(crux-duplicate-current-line-or-region :which-key "duplicate line/region")
+   "C-c e D" '(crux-duplicate-and-comment-current-line-or-region :which-key "duplicate and comment"))
+
+  ;; Which-key prefix descriptions
+  (which-key-add-key-based-replacements
+    "C-c f" "file operations"
+    "C-c b" "buffer operations"
+    "C-c e" "editing"))
+
 ;;; Configuration Management Keybindings
 (general-define-key
  :prefix "C-c c"
