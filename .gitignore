@@ -1,0 +1,21 @@
+# Emacs cache and temporary files
+.cache/
+
+# Compiled files
+*.elc
+eln-cache/
+
+# Transient files
+transient/
+
+# macOS
+.DS_Store
+
+# Emacs autosave and backup files (should be in .cache, but just in case)
+*~
+\#*\#
+.\#*
+
+# ELPA/Elpaca build artifacts (already in .cache, but being explicit)
+elpa/
+elpaca/
