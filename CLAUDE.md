@@ -271,6 +271,13 @@ The `docs/future-ideas/` directory contains implementation plans for potential f
   - Generate reports and maintain technology decisions over time
   - Estimated implementation: 1-2 hours with Claude Code (plan already detailed)
 
+- **book-metadata-fetch.md**: Auto-populate book notes with metadata and cover images
+  - Fetch book details from Open Library API by ISBN or title search
+  - Download and embed book cover images
+  - Auto-create book notes with all metadata pre-filled
+  - No database overhead - enhances existing book capture workflow
+  - Estimated implementation: 1.5-2 hours with Claude Code
+
 ### Quick Additions
 
 - **quick-additions.md**: Simpler capabilities that don't require extensive planning
