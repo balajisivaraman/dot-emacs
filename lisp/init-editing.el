@@ -9,6 +9,9 @@
 ;;; Undo Tree
 (use-package undo-tree
   :ensure t
+  :init
+  ;; Unbind C-z from its default (suspend-frame) before undo-tree loads
+  (global-unset-key (kbd "C-z"))
   :config
   ;; Enable undo-tree globally
   (global-undo-tree-mode)
@@ -26,11 +29,10 @@
   ;; Prevent undo-tree from littering
   (setq undo-tree-visualizer-timestamps t)
 
-  ;; Keybindings
-  (general-define-key
-   "C-z" 'undo-tree-undo
-   "C-Z" 'undo-tree-redo    ;; C-Shift-z (uppercase Z)
-   "M-_" 'undo-tree-redo))  ;; Alternative: Meta-underscore
+  ;; Set keybindings directly in undo-tree-map
+  (define-key undo-tree-map (kbd "C-z") 'undo-tree-undo)
+  (define-key undo-tree-map (kbd "C-S-z") 'undo-tree-redo)
+  (define-key undo-tree-map (kbd "M-_") 'undo-tree-redo))
 
 ;;; Avy - Jump to visible text
 (use-package avy

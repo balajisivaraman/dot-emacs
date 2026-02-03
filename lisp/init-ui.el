@@ -6,9 +6,16 @@
 
 ;;; Code:
 
-;;; Theme Configuration - Modus Operandi
+;;; Theme Configuration - Modus Themes
 (use-package modus-themes
   :ensure t
+  :init
+  ;; Pre-load both themes so auto-dark can switch between them
+  ;; Third argument 't means load but don't enable
+  (load-theme 'modus-operandi t 't)
+  (load-theme 'modus-vivendi t 't)
+  ;; Enable Operandi as the default light theme
+  (enable-theme 'modus-operandi)
   :config
   ;; Colorful headings with rainbow colors
   (setq modus-themes-headings
@@ -32,8 +39,20 @@
   ;; Keep UI elements monospace
   (setq modus-themes-variable-pitch-ui nil)
 
-  ;; Load modus-operandi theme
-  (load-theme 'modus-operandi t))
+  ;; Mark modus themes as safe
+  (setq custom-safe-themes t))
+
+;;; Auto Dark - Switch themes based on macOS system appearance
+(use-package auto-dark
+  :ensure t
+  :after modus-themes
+  :custom
+  (auto-dark-themes '((modus-vivendi) (modus-operandi)))
+  ;; Enable osascript for emacs-plus-app (cask version)
+  (auto-dark-allow-osascript t)
+  :init
+  ;; Enable auto-dark mode to handle theme switching
+  (auto-dark-mode 1))
 
 ;;; Modeline Configuration
 (use-package doom-modeline
