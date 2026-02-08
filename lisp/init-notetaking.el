@@ -254,25 +254,29 @@ Uses bs/calculate-font-height for consistent scaling."
 (use-package org-capture
   :after (org vulpea)
   :config
+  ;; Store the last entered title for reuse
+  (defvar bs/last-capture-title nil
+    "Store the last entered title for org-capture.")
+
   (setq org-capture-templates
         '(("n" "Plain Note" plain
            (file (lambda ()
+                   (setq bs/last-capture-title (read-string "Note title: "))
                    (expand-file-name
-                    (format "%s.org"
-                            (read-string "Note title: "))
+                    (format "%s.org" bs/last-capture-title)
                     bs/org-directory)))
-           "#+TITLE: %^{Title}\n#+FILETAGS: %^{Tags}\n#+DATE: %u\n\n%?"
+           "#+TITLE: %(identity bs/last-capture-title)\n#+FILETAGS: %^{Tags}\n#+DATE: %u\n\n%?"
            :empty-lines 1
            :unnarrowed t
            :hook (org-id-get-create))
 
           ("b" "Book Note" plain
            (file (lambda ()
+                   (setq bs/last-capture-title (read-string "Book title: "))
                    (expand-file-name
-                    (format "%s.org"
-                            (read-string "Book title: "))
+                    (format "%s.org" bs/last-capture-title)
                     bs/org-books-directory)))
-           "#+TITLE: %^{Title}\n#+AUTHOR: %^{Author}\n#+FILETAGS: :book:\n#+DATE: %u\n\n%?"
+           "#+TITLE: %(identity bs/last-capture-title)\n#+AUTHOR: %^{Author}\n#+FILETAGS: :book:\n#+DATE: %u\n\n%?"
            :empty-lines 1
            :unnarrowed t
            :hook (org-id-get-create))
