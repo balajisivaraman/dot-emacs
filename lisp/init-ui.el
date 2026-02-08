@@ -86,10 +86,10 @@
   "Typography scale ratio for heading sizes (Minor Second = 1.125).")
 
 ;; Font families
-(defvar bs/heading-font "Gentium Book Basic"
+(defvar bs/heading-font "Literata"
   "Font family for headings.")
 
-(defvar bs/variable-pitch-font "Gentium Book Basic"
+(defvar bs/variable-pitch-font "Literata"
   "Font family for variable-pitch text (body text).")
 
 (defvar bs/monospace-font "Lilex Nerd Font"

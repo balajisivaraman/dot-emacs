@@ -54,10 +54,20 @@
 
   ;; Logging
   (setq org-log-done 'time                  ;; Log completion time
-        org-log-into-drawer t)              ;; Log into LOGBOOK drawer
+        org-log-into-drawer t))
 
-  ;; Enable variable-pitch mode for org
-  (add-hook 'org-mode-hook 'variable-pitch-mode))
+;;; Mixed Pitch - Intelligent variable/fixed pitch mixing
+(use-package mixed-pitch
+  :ensure t
+  :hook (org-mode . mixed-pitch-mode)
+  :config
+  ;; Don't make org metadata smaller - keep at normal size
+  (setq mixed-pitch-set-height nil)
+
+  ;; Set the variable-pitch face that mixed-pitch will use
+  (set-face-attribute 'variable-pitch nil
+                     :family bs/variable-pitch-font
+                     :height (round (* bs/base-font-size 10 1.2))))
 
 ;;; Org ID - UUID generation for notes
 (use-package org-id
@@ -170,12 +180,7 @@ Uses bs/calculate-font-height for consistent scaling."
                          :family bs/heading-font
                          :weight 'bold
                          ;; Use absolute size (in 1/10 points) instead of relative
-                         :height (round (* bs/base-font-size 10 (bs/calculate-font-height scale-level))))))
-
-  ;; Keep variable-pitch at 1.4x size for readability
-  (set-face-attribute 'variable-pitch nil
-                     :family bs/variable-pitch-font
-                     :height (round (* bs/base-font-size 10 1.4)))) ;; 50% larger
+                         :height (round (* bs/base-font-size 10 (bs/calculate-font-height scale-level)))))))
 
 ;; Apply typography on org-mode hook
 (add-hook 'org-mode-hook #'bs/set-org-typography)
