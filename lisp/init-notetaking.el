@@ -69,6 +69,25 @@
                      :family bs/variable-pitch-font
                      :height (round (* bs/base-font-size 10 1.2))))
 
+;;; Writeroom Mode - Distraction-free writing
+(use-package writeroom-mode
+  :ensure t
+  :config
+  (setq writeroom-width 100)
+  (setq writeroom-fullscreen-effect 'maximized)  ;; Maximize, not true fullscreen
+  (setq writeroom-mode-line t)                   ;; Keep mode line visible
+
+  ;; Hide line numbers in writeroom mode
+  (add-hook 'writeroom-mode-hook
+            (lambda ()
+              (if writeroom-mode
+                  (setq-local display-line-numbers nil)
+                (setq-local display-line-numbers t))))
+
+  ;; Keybinding to toggle
+  (general-define-key
+   "C-c w" '(writeroom-mode :which-key "writeroom mode")))
+
 ;;; Org ID - UUID generation for notes
 (use-package org-id
   :after org
@@ -158,13 +177,13 @@
   ;; Don't show in agenda
   (setq org-sticky-header-always-show-header nil))
 
-;;; Org Typography - Apply Minor Second scale to headings
+;;; Org Typography - Apply typographic scale to headings
 (defun bs/set-org-typography ()
-  "Apply Minor Second typographic scale to org headings.
+  "Apply typographic scale to org headings.
 Uses bs/calculate-font-height for consistent scaling."
   (interactive)
 
-  ;; Set org-level faces with Minor Second scale (absolute sizes, not relative)
+  ;; Set org-level faces with typographic scale (absolute sizes, not relative)
   ;; Level 1 is largest (level 5), down to level 8 (level 1)
   (dolist (level-config '((org-level-1 . 5)
                          (org-level-2 . 4)

@@ -81,9 +81,9 @@
 (defvar bs/base-font-size 14
   "Base font size in points for all typography calculations.")
 
-;; Minor Second scale ratio (1.125)
-(defvar bs/font-scale-ratio 1.125
-  "Typography scale ratio for heading sizes (Minor Second = 1.125).")
+;; Minor Third scale ratio (1.067)
+(defvar bs/font-scale-ratio 1.067
+  "Typography scale ratio for heading sizes (Minor Third = 1.067).")
 
 ;; Font families
 (defvar bs/heading-font "Literata"
@@ -92,13 +92,13 @@
 (defvar bs/variable-pitch-font "Literata"
   "Font family for variable-pitch text (body text).")
 
-(defvar bs/monospace-font "Lilex Nerd Font"
+(defvar bs/monospace-font "JetbrainsMono Nerd Font"
   "Font family for monospace text (code).")
 
 ;; Calculate height for a given level using Minor Third scale
 (defun bs/calculate-font-height (level)
   "Calculate font height for LEVEL using Minor Third scale.
-Level 0 is base size, level 1 is 1.2x, level 2 is 1.44x, etc."
+Level 0 is base size, level 1 is 1.067x, level 2 is 1.138x, etc."
   (expt bs/font-scale-ratio level))
 
 ;; Set base typography (non-org faces)
