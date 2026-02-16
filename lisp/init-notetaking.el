@@ -74,8 +74,8 @@
   :ensure t
   :config
   (setq writeroom-width 100)
-  (setq writeroom-fullscreen-effect 'maximized)  ;; Maximize, not true fullscreen
-  (setq writeroom-mode-line t)                   ;; Keep mode line visible
+  (setq writeroom-fullscreen-effect nil)  ;; Don't maximize window
+  (setq writeroom-mode-line t)            ;; Keep mode line visible
 
   ;; Hide line numbers in writeroom mode
   (add-hook 'writeroom-mode-hook
