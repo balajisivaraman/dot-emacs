@@ -31,6 +31,7 @@
 (require 'init-project)        ;; Project management
 (require 'init-dired)          ;; Dired enhancements
 (require 'init-version-control);; Version control (magit, magit-delta)
+(require 'init-terminal)       ;; Terminal (vterm)
 (require 'init-notetaking)     ;; Note-taking (org, vulpea, deft)
 
 ;; Measure startup time
