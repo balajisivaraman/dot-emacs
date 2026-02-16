@@ -92,7 +92,7 @@
 (defvar bs/variable-pitch-font "Literata"
   "Font family for variable-pitch text (body text).")
 
-(defvar bs/monospace-font "JetbrainsMono Nerd Font"
+(defvar bs/monospace-font "Lilex Nerd Font"
   "Font family for monospace text (code).")
 
 ;; Calculate height for a given level using Minor Third scale
