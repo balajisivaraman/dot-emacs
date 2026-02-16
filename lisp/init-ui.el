@@ -137,6 +137,13 @@ Level 0 is base size, level 1 is 1.067x, level 2 is 1.138x, etc."
   (bs/set-base-typography)
   (message "Base font size updated to %d pt" size))
 
+;;; Global Text Scale - Zoom in/out with keyboard
+;; Built-in Emacs 29+ feature for global font scaling
+(general-define-key
+ "C-=" '(global-text-scale-adjust :which-key "increase font")
+ "C--" '(global-text-scale-adjust :which-key "decrease font")
+ "C-0" '(global-text-scale-adjust :which-key "reset font"))
+
 ;;; Golden Ratio - Automatic window resizing
 (use-package golden-ratio
   :ensure t
