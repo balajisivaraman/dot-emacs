@@ -40,6 +40,9 @@
   :after magit
   :hook (magit-mode . magit-delta-mode)
   :config
+  ;; Ignore global gitconfig to prevent rendering conflicts
+  (add-to-list 'magit-delta-delta-args "--no-gitconfig")
+
   ;; Use delta themes that complement Modus themes
   ;; Modus Operandi (light) pairs well with Catppuccin Latte
   ;; Modus Vivendi (dark) pairs well with Catppuccin Mocha
