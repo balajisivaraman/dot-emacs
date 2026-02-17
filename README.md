@@ -84,9 +84,8 @@ This configuration uses **standard Emacs keybindings** (no Evil mode). Custom pr
 
 Uses **Minor Third scale (1.2 ratio)** for harmonious heading sizes:
 
-- **Headings**: Vollkorn SC (Small Caps, Bold)
-- **Body Text**: SN Pro (variable-pitch)
-- **Code**: Lilex Nerd Font (monospace)
+- **Headings and Body Text**: Literata
+- **Code**: FiraCode Nerd Font (monospace)
 
 Base font size is easily configurable:
 ```elisp
