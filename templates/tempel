@@ -1,0 +1,6 @@
+;; Hugo shortcode snippets
+markdown-mode
+
+(nutgraf "{{< nutgraf >}}" n p n "{{< /nutgraf >}}")
+(dek     "{{< dek >}}" n p n "{{< /dek >}}")
+(img     "{{< img src=\"" p "\" alt=\"" p "\" >}}")

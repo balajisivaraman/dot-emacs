@@ -1,0 +1,5 @@
+# Transient/generated Emacs state
+.cache/
+
+# Elpaca build artefacts (stored under user-emacs-directory by default)
+elpaca/
