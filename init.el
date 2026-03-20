@@ -54,6 +54,7 @@
 (require 'bs-core)
 (elpaca-wait)   ; ensure general, auto-dark, and all bs-core packages are ready
 (require 'bs-completion)
+(require 'bs-code-nav)
 (require 'bs-writing)
 
 ;;; init.el ends here

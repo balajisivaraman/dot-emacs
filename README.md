@@ -38,6 +38,7 @@ font used by the modeline, dired, ibuffer, and completion.
 ├── lisp/
 │   ├── bs-core.el         Cache, baseline settings, theme, fonts, tools
 │   ├── bs-completion.el   Minibuffer + in-buffer completion stack
+│   ├── bs-code-nav.el     Monorepo navigation + optional guarded Eglot
 │   └── bs-writing.el      Markdown, writing mode, spell-check, Hugo helpers
 └── templates/
     └── tempel             Hugo shortcode snippets
@@ -88,15 +89,21 @@ font used by the modeline, dired, ibuffer, and completion.
 | `C-x p b` | `project-switch-to-buffer` | Switch to project buffer |
 | `C-x p k` | `project-kill-buffers` | Kill all project buffers |
 | `C-x p g` | `project-find-regexp` | Grep in project |
+| `C-x p s` | `bs/consult-ripgrep-project` | Ripgrep from project root |
 | `C-x p t` | `bs/vterm-project` | Open terminal in project root |
+| `C-x p c` | `bs/copilot-in-project` | Open Copilot terminal in side window |
+| `C-x p e` | `bs/reload-project-env` | Reload direnv/mise env for current buffer |
 | `C-x p P` | `bs/project-scan-code-dir` | Scan ~/code and register all git projects |
+| `C-x p T` | `bs/project-generate-tags` | Generate TAGS with ctags |
+| `C-x p V` | `bs/project-visit-tags` | Load project TAGS |
+| `C-x p X` | `bs/eglot-maybe` | Start Eglot only if server exists |
 
 ### Other
 
 | Key | Command | Description |
 |-----|---------|-------------|
 | `M-T` | `bs/vterm-scratch` | Open scratch terminal |
-| `C-c g` | `magit-status` | Open Magit |
+| `C-c g` / `C-x g` | `magit-status` | Open Magit |
 | `C-x C-j` | `dired-jump` | Jump to dired for current file |
 | `C-.` | `embark-act` | Context action menu |
 | `M-.` | `embark-dwim` | Smart context action |
@@ -122,6 +129,7 @@ font used by the modeline, dired, ibuffer, and completion.
 | `doom-modeline` | Feature-rich modeline with icons |
 | `which-key` | Shows key binding continuations in a popup |
 | `exec-path-from-shell` | Imports PATH from login shell on macOS |
+| `envrc` | Buffer-local project environment loading via direnv |
 | `general` | Structured prefix key definition |
 | `helpful` | Richer *Help* buffers |
 | `transient` | Ensures >=0.12 (magit dependency) |
@@ -158,6 +166,64 @@ font used by the modeline, dired, ibuffer, and completion.
 | `bs-writing-mode` | Custom minor mode combining olivetti + mixed-pitch + visual-line |
 | `jinx` | Fast spell-checker (enchant backend) |
 | `tempel` | Lightweight snippet system with Hugo shortcodes |
+
+### bs-code-nav.el
+
+| Command | Purpose |
+|---------|---------|
+| `bs/project-generate-tags` | Build project-local TAGS for xref-style symbol jumps |
+| `bs/project-visit-tags` | Load existing project TAGS |
+| `bs/eglot-maybe` | Guarded Eglot startup (quiet fallback when server missing) |
+
+## Monorepo Navigation (Python/JS/React/Terraform/CloudFormation)
+
+Baseline navigation works without Conda/npm/LSP installs:
+
+- `project.el` + `xref` for project-aware navigation
+- `consult-ripgrep` for text search across large trees
+- TAGS fallback via `C-x p T` and `C-x p V`
+
+## macOS modifier mapping
+
+- Command is mapped to Meta.
+- Option remains Alt.
+
+Optional LSP layer:
+
+- Use `C-x p X` (`bs/eglot-maybe`) to start Eglot only when the current mode has a mapped server binary in `PATH`.
+- Missing binaries do not error; Emacs stays on xref/consult/tags flow.
+
+## Per-project tools with mise
+
+Use `mise` as the source of truth for project tool versions, and `envrc`/`direnv`
+to apply them buffer-locally inside Emacs.
+
+Project setup:
+
+1. Add `.mise.toml` (or `mise.toml`) at project root.
+2. Add `.envrc` with:
+   `eval "$(mise env --shell zsh)"`
+3. Run `direnv allow` in that project root.
+
+In Emacs:
+
+- `envrc-global-mode` is enabled from `bs-core.el`.
+- Use `C-x p e` (`bs/reload-project-env`) after changing `.mise.toml` or `.envrc`.
+
+This keeps different projects/buffers on different toolchains (Python/Node/etc.)
+without restarting Emacs.
+
+### Optional tooling installs (only if you want LSP)
+
+- Python: `pyright-langserver` (or compatible server)
+- JS/TS/React: `typescript-language-server`
+- Terraform: `terraform-ls`
+- CloudFormation/YAML: `yaml-language-server`
+
+## Copilot Terminal Workflow
+
+- `C-x p c` opens a right-side vterm at the current project root and runs `copilot`.
+- `golden-ratio` is enabled so active code windows remain primary while the Copilot terminal stays secondary.
 
 ## Writing Workflow
 

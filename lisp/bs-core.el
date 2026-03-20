@@ -71,6 +71,10 @@
 ;; Ensure files end with a newline
 (setq require-final-newline t)
 
+;; macOS modifiers: keep Option as Alt, map Command to Meta.
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'alt)
+
 ;;; Theme — auto-dark (switches modus-operandi/vivendi with macOS appearance)
 (use-package auto-dark
   :ensure t
@@ -79,6 +83,20 @@
   (auto-dark-themes '((modus-vivendi) (modus-operandi)))
   (auto-dark-allow-osascript t)
   :init (auto-dark-mode))
+
+;; Feature modules can hook here to re-apply theme-sensitive face tweaks.
+(defvar bs/theme-change-hook nil
+  "Hook run after a theme is enabled.")
+
+(defun bs/run-theme-change-hook (&rest _)
+  "Run `bs/theme-change-hook' after theme changes."
+  (dolist (fn bs/theme-change-hook)
+    (condition-case err
+        (funcall fn)
+      (error
+       (message "theme-change hook failed (%s): %s" fn (error-message-string err))))))
+
+(advice-add 'enable-theme :after #'bs/run-theme-change-hook)
 
 ;;; Fonts
 ;; Default monospace face.
@@ -116,6 +134,21 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
+;;; envrc — per-buffer project environments via direnv (works well with mise)
+(use-package envrc
+  :ensure t
+  :config
+  (envrc-global-mode 1))
+
+(defun bs/reload-project-env ()
+  "Reload direnv/mise environment for the current buffer."
+  (interactive)
+  (if (fboundp 'envrc-reload)
+      (progn
+        (envrc-reload)
+        (message "Reloaded project environment"))
+    (user-error "envrc is not available")))
+
 ;;; General.el — organised prefix key definitions.
 (use-package general
   :ensure t
@@ -134,7 +167,10 @@
    "C-x p b" '(project-switch-to-buffer :which-key "switch buffer")
    "C-x p k" '(project-kill-buffers     :which-key "kill buffers")
    "C-x p g" '(project-find-regexp      :which-key "grep")
+   "C-x p s" '(bs/consult-ripgrep-project :which-key "ripgrep project")
    "C-x p t" '(bs/vterm-project         :which-key "terminal")
+   "C-x p c" '(bs/copilot-in-project    :which-key "copilot")
+   "C-x p e" '(bs/reload-project-env    :which-key "reload env")
    "C-x p P" '(bs/project-scan-code-dir :which-key "scan ~/code"))
   (general-define-key
    "C-c q q" '(save-buffers-kill-emacs :which-key "quit")
@@ -150,7 +186,12 @@
   :bind (("C-h f" . helpful-callable)
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)
-         ("C-h x" . helpful-command)))
+         ("C-h x" . helpful-command))
+  :config
+  (global-set-key [remap describe-function] #'helpful-callable)
+  (global-set-key [remap describe-variable] #'helpful-variable)
+  (global-set-key [remap describe-key] #'helpful-key)
+  (global-set-key [remap describe-command] #'helpful-command))
 
 ;;; transient — magit requires transient ≥ 0.12; override the old built-in.
 (use-package transient :ensure t)
@@ -158,7 +199,8 @@
 ;;; magit
 (use-package magit
   :ensure t
-  :bind ("C-c g" . magit-status))
+  :bind (("C-c g" . magit-status)
+         ("C-x g" . magit-status)))
 
 ;;; undo-tree
 (use-package undo-tree
@@ -225,16 +267,73 @@
 (use-package vterm
   :ensure t)
 
-(defun bs/vterm-scratch ()
-  "Open a scratch vterm buffer."
-  (interactive)
-  (vterm "*scratch-terminal*"))
+(use-package golden-ratio
+  :ensure t
+  :config
+  ;; Keep Copilot side terminal stable instead of letting it dominate layout.
+  (add-to-list 'golden-ratio-inhibit-functions
+               (lambda ()
+                 (string-match-p "\\*copilot-" (buffer-name))))
+  (golden-ratio-mode 1))
 
-(defun bs/vterm-project ()
-  "Open a vterm buffer rooted in the current project."
+(defun bs/vterm--new-numbered-name (base-name)
+  "Return next available numbered terminal buffer name from BASE-NAME."
+  (let ((n 2))
+    (while (get-buffer (format "%s-%d*" (substring base-name 0 -1) n))
+      (setq n (1+ n)))
+    (format "%s-%d*" (substring base-name 0 -1) n)))
+
+(defun bs/vterm--open (base-name default-dir force-new)
+  "Open vterm with BASE-NAME in DEFAULT-DIR.
+Reuse existing base buffer unless FORCE-NEW is non-nil."
+  (let* ((default-directory default-dir)
+         (target-name (if force-new
+                          (bs/vterm--new-numbered-name base-name)
+                        base-name))
+         (existing (get-buffer target-name)))
+    (if existing
+        (pop-to-buffer existing)
+      (vterm target-name))))
+
+(defun bs/vterm-scratch (arg)
+  "Open a scratch vterm buffer in HOME.
+With prefix ARG, force creation of a new numbered buffer."
+  (interactive "P")
+  (bs/vterm--open "*scratch-terminal*"
+                  (expand-file-name "~")
+                  arg))
+
+(defun bs/vterm-project (arg)
+  "Open a project-rooted vterm buffer.
+With prefix ARG, force creation of a new numbered buffer."
+  (interactive "P")
+  (let ((project (project-current t)))
+    (bs/vterm--open (format "*vterm-%s*" (project-name project))
+                    (project-root project)
+                    arg)))
+
+(defun bs/copilot-in-project ()
+  "Open Copilot CLI in a side vterm rooted at the current project."
   (interactive)
-  (let ((default-directory (project-root (project-current t))))
-    (vterm (format "*vterm-%s*" (project-name (project-current))))))
+  (let* ((project (project-current t))
+         (root (project-root project))
+         (name (project-name project))
+         (default-directory root)
+         (buffer-name (format "*copilot-%s*" name))
+         (buffer (get-buffer buffer-name)))
+    (display-buffer-in-side-window
+     (or buffer (get-buffer-create buffer-name))
+     '((side . right)
+       (slot . 1)
+       (window-width . 0.33)))
+    (select-window (get-buffer-window buffer-name))
+    (unless (derived-mode-p 'vterm-mode)
+      (vterm buffer-name))
+    (when (bound-and-true-p golden-ratio-mode)
+      (golden-ratio))
+    (unless buffer
+      (vterm-send-string "copilot")
+      (vterm-send-return))))
 
 (defun bs/project-scan-code-dir ()
   "Scan ~/code recursively and register all git projects."

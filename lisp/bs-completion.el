@@ -32,6 +32,12 @@
 (use-package consult
   :ensure t)
 
+(defun bs/consult-ripgrep-project ()
+  "Run `consult-ripgrep' from the current project root."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (consult-ripgrep)))
+
 ;; Search keybindings under C-c s (defined in bs-core via general).
 ;; C-s / C-r intentionally left as isearch-forward/isearch-backward.
 (use-package general

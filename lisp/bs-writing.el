@@ -1,6 +1,20 @@
 ;;; bs-writing.el --- Markdown, distraction-free writing, Hugo helpers -*- lexical-binding: t -*-
 
 ;;; markdown-mode
+(defun bs/apply-markdown-heading-faces ()
+  "Apply custom markdown heading typography."
+  (dolist (spec '((markdown-header-face-1 outline-1 2.441)
+                  (markdown-header-face-2 outline-2 1.953)
+                  (markdown-header-face-3 outline-3 1.563)
+                  (markdown-header-face-4 outline-4 1.250)
+                  (markdown-header-face-5 outline-5 1.0)))
+    (let ((face (nth 0 spec)))
+      (when (facep face)
+        (set-face-attribute face nil
+                            :family "Alegreya SC"
+                            :height (nth 2 spec)
+                            :inherit (nth 1 spec))))))
+
 (use-package markdown-mode
   :ensure t
   :mode ("\\.md\\'" . markdown-mode)
@@ -9,16 +23,10 @@
   (setq markdown-hide-markup t)
   (setq markdown-header-scaling t)
   (setq markdown-header-scaling-values '(2.441 1.953 1.563 1.250 1.0 1.0))
-  ;; Apply Alegreya SC + outline-N color inheritance to heading faces.
-  (dolist (spec '((markdown-header-face-1 outline-1 2.441)
-                  (markdown-header-face-2 outline-2 1.953)
-                  (markdown-header-face-3 outline-3 1.563)
-                  (markdown-header-face-4 outline-4 1.250)
-                  (markdown-header-face-5 outline-5 1.0)))
-    (set-face-attribute (nth 0 spec) nil
-                        :family "Alegreya SC"
-                        :height (nth 2 spec)
-                        :inherit (nth 1 spec))))
+  (bs/apply-markdown-heading-faces))
+
+;; Reapply custom markdown heading faces after auto-dark theme switches.
+(add-hook 'bs/theme-change-hook #'bs/apply-markdown-heading-faces)
 
 ;;; olivetti — centered writing column
 (use-package olivetti
