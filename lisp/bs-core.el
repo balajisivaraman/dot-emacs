@@ -73,7 +73,7 @@
 
 ;; macOS modifiers: keep Option as Alt, map Command to Meta.
 (setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'alt)
+(setq mac-option-modifier 'meta)
 
 ;;; Theme — auto-dark (switches modus-operandi/vivendi with macOS appearance)
 (use-package auto-dark
