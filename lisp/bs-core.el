@@ -156,6 +156,7 @@
   :config
   ;; Define the major prefix namespaces so which-key shows meaningful labels.
   (general-define-key :prefix "C-c h" "" '(nil :which-key "Hugo"))
+  (general-define-key :prefix "M-n"   "" '(nil :which-key "Notes / PKM"))
   (general-define-key :prefix "C-c s" "" '(nil :which-key "Search"))
   (general-define-key :prefix "C-x p" "" '(nil :which-key "Project"))
   (general-define-key :prefix "C-c q" "" '(nil :which-key "Quit"))

@@ -56,5 +56,6 @@
 (require 'bs-completion)
 (require 'bs-code-nav)
 (require 'bs-writing)
+(require 'bs-pkm)
 
 ;;; init.el ends here
