@@ -215,6 +215,14 @@
   (global-set-key (kbd "C-S-z") #'undo-tree-redo)
   (global-set-key (kbd "C-?")   #'undo-tree-redo))
 
+;;; crux — practical editing commands
+(use-package crux
+  :ensure t
+  :bind (("C-a"   . crux-move-beginning-of-line)
+         ("C-c D" . crux-delete-file-and-buffer)
+         ("C-c R" . crux-rename-file-and-buffer)
+         ("C-c d" . crux-duplicate-current-line-or-region)))
+
 ;;; ibuffer — better buffer list, replacing list-buffers
 (global-set-key [remap list-buffers] #'ibuffer)
 (setq ibuffer-show-empty-filter-groups nil)
