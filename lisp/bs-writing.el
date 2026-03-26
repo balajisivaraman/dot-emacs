@@ -58,12 +58,14 @@
         ;; keeping fringes at 0 even after olivetti-reset-window runs.
         (add-hook 'window-configuration-change-hook
                   #'bs/writing-hide-fringes nil :local)
-        (bs/writing-hide-fringes))
+        (bs/writing-hide-fringes)
+        (local-set-key (kbd "C-a") #'beginning-of-visual-line))
     (olivetti-mode -1)
     (mixed-pitch-mode -1)
     (visual-line-mode -1)
     (remove-hook 'window-configuration-change-hook
                  #'bs/writing-hide-fringes :local)
+    (local-unset-key (kbd "C-a"))
     (dolist (win (get-buffer-window-list nil nil t))
       (set-window-fringes win nil nil))))
 
