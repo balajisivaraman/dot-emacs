@@ -16,7 +16,7 @@
 
 ;;; ─── Variables and helpers ──────────────────────────────────────────────────
 
-(defvar bs/pkm-directory (expand-file-name "~/Documents/notes/")
+(defvar bs/pkm-directory (expand-file-name "~/Library/Mobile Documents/com~apple~CloudDocs/notes")
   "Root directory for the PKM vault.")
 
 (defun bs/pkm--slugify (title)
