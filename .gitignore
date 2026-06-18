@@ -3,3 +3,6 @@
 
 # Elpaca build artefacts (stored under user-emacs-directory by default)
 elpaca/
+
+# ELN Cache
+eln-cache/
