@@ -354,8 +354,9 @@ With prefix ARG, force creation of a new numbered buffer."
                         (project-remember-project proj)
                         (cl-incf count))
                     (dolist (entry (directory-files dir t "^[^.]"))
-                      (when (file-directory-p entry)
-                        (scan entry))))))
+                      (pcase entry
+                        ((pred file-directory-p) (scan entry))
+                        ((pred file-symlink-p (scan (file-symlink-p entry)))))))))
       (scan (expand-file-name "~/code")))
     (message "Registered %d projects from ~/code" count)))
 
