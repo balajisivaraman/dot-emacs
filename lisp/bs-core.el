@@ -100,9 +100,9 @@
 
 ;;; Fonts
 ;; Default monospace face.
-(set-face-attribute 'default nil :family "Monego Nerd Font" :height 120)
+(set-face-attribute 'default nil :family "Monaco Nerd Font" :height 120)
 ;; Fixed-pitch face matches default.
-(set-face-attribute 'fixed-pitch nil :family "Monego Nerd Font" :height 1.0)
+(set-face-attribute 'fixed-pitch nil :family "Monaco Nerd Font" :height 1.0)
 ;; Variable-pitch face for prose.
 (set-face-attribute 'variable-pitch nil :family "Literata" :height 1.0)
 

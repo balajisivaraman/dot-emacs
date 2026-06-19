@@ -7,7 +7,7 @@ Personal Emacs 29+ configuration for Hugo blog writing.
 - Emacs 29+
 - macOS (works on Linux too; some settings are macOS-specific)
 - Fonts:
-  - [Monego Nerd Font](https://github.com/cseelus/monego) — monospaced / code
+  - [Monaco Nerd Font](https://github.com/thep0y/monaco-nerd-font) — monospaced / code
   - [Literata](https://fonts.google.com/specimen/Literata) — variable-pitch prose
   - [Alegreya SC](https://fonts.google.com/specimen/Alegreya+SC) — headings
 - `nerd-icons` icon font — run `M-x nerd-icons-install-fonts` on first launch
