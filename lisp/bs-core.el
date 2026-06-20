@@ -104,7 +104,7 @@
 ;; Fixed-pitch face matches default.
 (set-face-attribute 'fixed-pitch nil :family "Monaco Nerd Font" :height 1.0)
 ;; Variable-pitch face for prose.
-(set-face-attribute 'variable-pitch nil :family "Literata" :height 1.0)
+(set-face-attribute 'variable-pitch nil :family "Literata" :height 1.2)
 
 ;;; nerd-icons — required by doom-modeline (font already installed)
 (use-package nerd-icons

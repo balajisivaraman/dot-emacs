@@ -36,7 +36,9 @@
 
 ;;; mixed-pitch — variable-pitch prose with fixed-pitch code
 (use-package mixed-pitch
-  :ensure t)
+  :ensure t
+  :custom
+  (mixed-pitch-set-height t))
 
 ;;; bs-writing-mode — distraction-free minor mode
 (defun bs/writing-hide-fringes ()
