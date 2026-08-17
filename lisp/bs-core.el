@@ -99,12 +99,22 @@
 (advice-add 'enable-theme :after #'bs/run-theme-change-hook)
 
 ;;; Fonts
-;; Default monospace face.
-(set-face-attribute 'default nil :family "Monaco Nerd Font" :height 120)
-;; Fixed-pitch face matches default.
-(set-face-attribute 'fixed-pitch nil :family "Monaco Nerd Font" :height 1.0)
-;; Variable-pitch face for prose.
-(set-face-attribute 'variable-pitch nil :family "Literata" :height 1.2)
+;; set-face-attribute :family silently falls back to Helvetica for user-installed fonts
+;; on macOS (mac-ct backend). Using open-font + :font bypasses the broken resolution path.
+;; Hooked into bs/theme-change-hook so fonts survive auto-dark theme switches.
+(defun bs/apply-fonts ()
+  "Apply font settings. Hooked into bs/theme-change-hook to survive theme switches."
+  (when (display-graphic-p)
+    (set-face-attribute 'default nil
+                        :font (open-font (find-font (font-spec :family "NotoSansM Nerd Font")))
+                        :height 140)
+    (set-face-attribute 'fixed-pitch nil
+                        :font (open-font (find-font (font-spec :family "NotoSansM Nerd Font")))
+                        :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family "Literata" :height 1.2)))
+
+(add-hook 'bs/theme-change-hook #'bs/apply-fonts)
+(bs/apply-fonts)
 
 ;;; nerd-icons — required by doom-modeline (font already installed)
 (use-package nerd-icons
